@@ -1,2 +1,2 @@
-# red-hat-design-tokens
-Red Hat design tokens
+# Red Hat Design Tokens
+Design tokens for Red Hat
