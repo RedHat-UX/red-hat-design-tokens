@@ -1,0 +1,23 @@
+color:
+  brand:
+    red:
+      value: '{color.red.400}'
+      comment: Brand red
+      lightest:
+        value: '{color.red.100}'
+        comment: Lightest brand red
+      lighter:
+        value: '{color.red.200}'
+        comment: lighter brand red
+      light:
+        value: '{color.red.300}'
+        comment: Light brand red
+      dark:
+        value: '{color.red.500}'
+        comment: Dark brand red/Brand red hover
+      darker:
+        value: '{color.red.600}'
+        comment: Darker brand red
+      darkest:
+        value: '{color.red.700}'
+        comment: Darkest brand red

@@ -1,0 +1,19 @@
+color:
+  red:
+    50:
+      value: '#faeae8'
+      comment: Danger Alert background
+    100:
+      value: '#fddbdb'
+    200:
+      value: '#fab6b6'
+    300:
+      value: '#f56d6d'
+    400:
+      value: '#ee0000'
+    500:
+      value: '#be0000'
+    600:
+      value: '#8f0000'
+    700:
+      value: '#5f0000'

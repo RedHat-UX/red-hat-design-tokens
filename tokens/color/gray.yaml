@@ -1,0 +1,52 @@
+color:
+  white:
+    value: '#ffffff'
+    comment: Primary surface (light theme)
+    attributes:
+      type: gray
+  black:
+    100:
+      value: '#fafafa'
+      comment: Tertiary surface (light theme)
+      attributes:
+        type: gray
+    200:
+      value: '#f0f0f0'
+      comment: Secondary surface (light theme)
+      attributes:
+        type: gray
+    300:
+      value: '#c9c9c9'
+      comment: Borders or rules (light theme)
+      attributes:
+        type: gray
+    400:
+      value: '#aaaaaa'
+      comment: Secondary text (light theme)
+      attributes:
+        type: gray
+    500:
+      value: '#8b8b8b'
+      comment: Borders or rules (dark theme)
+      attributes:
+        type: gray
+    600:
+      value: '#6c6c6c'
+      comment: Secondary text (light theme)
+      attributes:
+        type: gray
+    700:
+      value: '#4d4d4d'
+      comment: Secondary surface (dark theme)
+      attributes:
+        type: gray
+    800:
+      value: '#2e2e2e'
+      comment: Tertiary surface (dark theme)
+      attributes:
+        type: gray
+    900:
+      value: '#151515'
+      comment: Primary surface (dark theme)
+      attributes:
+        type: gray

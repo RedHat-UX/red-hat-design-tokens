@@ -1,0 +1,29 @@
+box-shadow:
+  sm:
+    value:
+      offsetX: 0
+      offsetY: 0.125rem
+      blur: 0.25rem
+      spread: 0
+      color: rgba(21, 21, 21, 0.2)
+  md:
+    value:
+      offsetX: 0
+      offsetY: 0.25rem
+      blur: 0.5rem
+      spread: 0.0625rem
+      color: rgba(21, 21, 21, 0.25)
+  lg:
+    value:
+      offsetX: 0
+      offsetY: 0.25rem
+      blur: 0.5rem
+      spread: 0.0625rem
+      color: rgba(21, 21, 21, 0.3)
+  xl:
+    value:
+      offsetX: 0
+      offsetY: 0.75rem
+      blur: 1.5rem
+      spread: 0.125rem
+      color: rgba(21, 21, 21, 0.35)

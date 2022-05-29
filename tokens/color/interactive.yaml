@@ -1,0 +1,4 @@
+color:
+  interactive:
+    blue:
+      value: '{color.blue.500}'

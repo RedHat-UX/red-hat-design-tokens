@@ -1,0 +1,14 @@
+color:
+  purple:
+    100:
+      value: '#cbc1ff'
+      comment: Inline link visited hover (dark theme)
+    200:
+      value: '#a18fff'
+      comment: Inline link visited (dark theme)
+    300:
+      value: '#6753ac'
+      comment: Inline link visited (light theme)
+    400:
+      value: '#1f0066'
+      comment: Inline link visited hover (light theme)

@@ -1,0 +1,16 @@
+color:
+  blue:
+    100:
+      value: '#e7f1fa'
+    200:
+      value: '#bee1f4'
+    300:
+      value: '#73bdf7'
+    400:
+      value: '#2b9af3'
+    500:
+      value: '#0066cc'
+    600:
+      value: '#004080'
+    700:
+      value: '#002952'

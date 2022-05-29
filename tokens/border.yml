@@ -1,0 +1,19 @@
+border:
+  width:
+    sm:
+      value: 0.0625rem
+    md:
+      value: 0.125rem
+    lg:
+      value: 0.1875rem
+  radius:
+    sharp:
+      value: 0
+      comment: Border radius reset
+    default:
+      comment: Card with 3px border radius
+      value: 0.1875rem
+    pill:
+      value: 5rem
+      comment: Pill border radius
+

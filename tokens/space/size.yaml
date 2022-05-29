@@ -1,0 +1,31 @@
+size:
+  xs:
+    value: 0.25rem
+    comment: 4px generic size token
+  sm:
+    value: 0.5rem
+    comment: 8px generic size token
+  md:
+    value: 1.0rem
+    comment: 16px generic size token
+  lg:
+    value: 1.5rem
+    comment: 24px generic size token
+  xl:
+    value: 2.0rem
+    comment: 32px generic size token
+  2xl:
+    value: 3.0rem
+    comment: 48px generic size token
+  3xl:
+    value: 4.0rem
+    comment: 64px generic size token
+  4xl:
+    value: 5.0rem
+    comment: 80px generic size token
+  5xl:
+    value: 6.0rem
+    comment: 96px generic size token
+  8xl:
+    value: 8.0rem
+    comment: 128px generic size token

@@ -1,0 +1,14 @@
+color:
+  text:
+    primary:
+      on:
+        dark:
+          value: '{color.white}'
+        light:
+          value: '{color.black.900}'
+    secondary:
+      on:
+        dark:
+          value: '{color.black.400}'
+        light:
+          value: '{color.black.600}'

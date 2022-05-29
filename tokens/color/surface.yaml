@@ -1,0 +1,20 @@
+color:
+  surface:
+    lightest:
+      value: '{color.white}'
+      comment: Primary surface (light theme)
+    lighter:
+      value: '{color.black.100}'
+      comment: Tertiary surface (light theme)
+    light:
+      value: '{color.black.200}'
+      comment: Secondary surface (light theme)
+    dark:
+      value: '{color.black.700}'
+      comment: Secondary surface (dark theme)
+    darker:
+      value: '{color.black.800}'
+      comment: Secondary surface (dark theme)
+    darkest:
+      value: '{color.black.900}'
+      comment: Secondary surface (dark theme)

@@ -1,0 +1,31 @@
+space:
+  xs:
+    value: '{size.xs}'
+    comment: 4px spacer
+  sm:
+    value: '{size.sm}'
+    comment: 8px spacer
+  md:
+    value: '{size.md}'
+    comment: 16px spacer
+  lg:
+    value: '{size.lg}'
+    comment: 24px spacer
+  xl:
+    value: '{size.xl}'
+    comment: 32px spacer
+  2xl:
+    value: '{size.2xl}'
+    comment: 48px spacer
+  3xl:
+    value: '{size.3xl}'
+    comment: 64px spacer
+  4xl:
+    value: '{size.4xl}'
+    comment: 80px spacer
+  5xl:
+    value: '{size.5xl}'
+    comment: 96px spacer
+  8xl:
+    value: '{size.8xl}'
+    comment: 128px spacer

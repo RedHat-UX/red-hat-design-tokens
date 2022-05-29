@@ -1,0 +1,14 @@
+color:
+  border:
+    primary:
+      on:
+        dark:
+          value: '{color.white}'
+        light:
+          value: '{color.black.900}'
+    secondary:
+      on:
+        light:
+          value: '{color.black.300}'
+        dark:
+          value: '{color.black.500}'

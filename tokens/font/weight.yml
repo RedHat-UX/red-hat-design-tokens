@@ -1,0 +1,11 @@
+font:
+  weight:
+    regular:
+      value: 400
+      comment: Regular font weight
+    medium:
+      value: 500
+      comment: Medium font weight
+    bold:
+      value: 600
+      comment: Bold font weight

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Red Hat Design System</title>
+    <link rel="stylesheet" href="https://static.redhat.com/libs/redhat/redhat-font/2/webfonts/red-hat-font.css">
+    <link rel="stylesheet" href="https://static.redhat.com/libs/redhat/redhat-theme/4/advanced-theme.css">
+    <style>
+      :root {
+        --swatch-size: 350px;
+        font-family: {{ dictionary.properties.font.family.text.value | safe }};
+        font-size: 18px;
+        line-height: 1.6;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      :is(h1,h2,h3,h4,h5,h6) {
+        font-family: {{ dictionary.properties.font.family.heading.value | safe }};
+      }
+
+      header {
+        background: {{ dictionary.properties.color.black['900'].value }};
+        color: {{ dictionary.properties.color.text.primary.on.dark.value }};
+        padding: {{ dictionary.properties.space.xs.value }} {{ dictionary.properties.space.md.value }};
+      }
+
+      h1 {
+        margin: 0;
+      }
+
+      #color,
+      #box-shadow {
+        display: grid;
+        gap: {{ dictionary.properties.space.md.value }};
+        grid-template-columns: repeat(auto-fill, var(--swatch-size));
+        padding: {{ dictionary.properties.space.sm.value }};
+      }
+
+      article {
+        display: grid;
+      }
+
+      .color {
+        align-content: start;
+      }
+
+      .font-family {
+        align-content: center;
+      }
+
+      button {
+        border: none;
+        display: grid;
+        background: none;
+      }
+
+      .color button {
+        padding: 0;
+        align-content: end;
+        text-align: end;
+      }
+
+      .color output {
+        width: var(--swatch-size);
+        aspect-ratio: 2;
+      }
+
+      code {
+        text-align: start;
+      }
+
+      .color :is(code, .comment) {
+        padding: {{ dictionary.properties.space.sm.value }};
+        background: white;
+        text-align: end;
+      }
+
+      .comment:empty {
+        display: none;
+      }
+
+      section :is(h2, h3, h4, h5, h6) {
+        grid-column: -1/1;
+        text-transform: capitalize;
+      }
+
+      .box-shadow button {
+        width: var(--swatch-size);
+        aspect-ratio: 2;
+      }
+    </style>
+    <script type="module">
+      for (const button of document.querySelectorAll('section button')) {
+        button.addEventListener('click', async function(event) {
+          await navigator.clipboard.writeText(event.target
+            .closest('article')
+            .querySelector('code')
+            .textContent
+            .trim());
+        })
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <h1>Red Hat Design System</h1>
+    </header>
+    <main>
+      <section id="color">
+        <h2>Color</h2>
+        {%- for family, values in colors -%}
+          <h3>{{ family }}</h3>
+          {%- for color in values -%}
+            <article class="color">
+              <button>
+                <output style="background: {{ color.value }}"></output>
+                <code>var(--{{ color.name }}, {{ color.value }})</code>
+                <span class="comment">{{ color.comment }}</span>
+              </button>
+            </article>
+          {%- endfor -%}
+        {%- endfor -%}
+      </section>
+
+      <section id="box-shadow">
+        <h2>Box shadow</h2>
+        {% for key, shadow in dictionary.properties['box-shadow']  %}
+          <article class="box-shadow">
+            <h3>{{ key }}</h3>
+            <span class="comment">{{ shadow.comment }}</span>
+            <button style="box-shadow: {{ shadow.value }}">
+              <code>var(--{{ shadow.name }}, {{ shadow.value }})</code>
+            </button>
+          </article>
+        {% endfor %}
+      </section>
+
+      {% set font = dictionary.properties.font %}
+
+      <section id="typography">
+        <h2>Typography</h2>
+        {%- for key, family in font.family -%}
+          <article class="font-family">
+            <h3>{{ key }}</h3>
+            <span class="comment" style="font-family: {{ family.value }}">
+              {{ family.comment }} - The fox jumped over the little dog's back
+            </span>
+            <button>
+              <code>var(--{{ family.name }}, {{ family.value }})</code>
+            </button>
+          </article>
+        {%- endfor -%}
+
+        <h3>Heading font sizes</h3>
+        {%- for key, size in font.size.heading -%}
+          <article class="font-size heading">
+            <h4>{{ key }}</h4>
+            <span class="comment" style="font-size: {{ size.value }}; font-family: {{ font.family.heading.value }}">
+              {{ size.comment }} - The fox jumped over the little dog's back
+            </span>
+            <button>
+              <code>var(--{{ size.name }}, {{ size.value }})</code>
+            </button>
+          </article>
+        {%- endfor -%}
+        
+        <h3>Text font sizes</h3>
+        {%- for key, size in font.size.text -%}
+          <article class="font-size text">
+            <h4>{{ key }}</h4>
+            <span class="comment" style="font-size: {{ size.value }}; font-family: {{ font.family.text.value }}">
+              {{ size.comment }} - The fox jumped over the little dog's back
+            </span>
+            <button>
+              <code>var(--{{ size.name }}, {{ size.value }})</code>
+            </button>
+          </article>
+        {%- endfor -%}
+
+        <h3>Font weights</h3>
+        {%- for key, weight in font.weight -%}
+          <article class="font-weight">
+            <h4>{{ key }}</h4>
+            <span class="comment" style="font-weight: {{ weight.value }}">
+              {{ weight.comment }} - The fox jumped over the little dog's back
+            </span>
+            <button>
+              <code>var(--{{ weight.name }}, {{ weight.value }})</code>
+            </button>
+          </article>
+        {%- endfor -%}
+        
+      </section>
+
+    </main>
+  </body>
+</html>
+
