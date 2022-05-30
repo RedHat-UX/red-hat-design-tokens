@@ -33,11 +33,9 @@ Import tokens as JavaScript objects:
 ```js
 import { ColorBlue300 } from '@rhds/tokens';
 
-html`
-  <span style="color: ${ColorBlue300}">
-`
+html`<span style="color: ${ColorBlue300}">I'm blue</span>`;
 ```
-*NOTE:* We *strongly* recommend using CSS variables (and accompanying snippets) instead of importing tokens as JavaScript objects.
+**NOTE**: We *strongly* recommend using CSS variables (and accompanying snippets) instead of importing tokens as JavaScript objects.
 
 Load snippets in VSCode:
 > Search for `Red Hat Design System` in the VSCode marketplace
@@ -50,6 +48,6 @@ require 'luasnip.loaders.from_vscode'.lazy_load { paths = {
 } }
 ```
 
-## Contributing
+## 🏆 Contributing
 See [CONTRIBUTING.md](./CONTRIBUTING.md)
 
