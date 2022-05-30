@@ -25,6 +25,20 @@
       ]
     }
   },
+  "categories": [
+    "Snippets"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "css",
+          "scss"
+        ],
+        "path": "./build/snippets/vscode.json"
+      }
+    ]
+  },
   "devDependencies": {
     "@web/dev-server": "^0.1.31",
     "nunjucks": "^3.2.3",

@@ -2,9 +2,9 @@ const YAML = require('yaml');
 const StyleDictionary = require('style-dictionary');
 const nunjucks = require('nunjucks');
 const path = require('path');
+const fs = require('fs');
 
 const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers;
-
 const env = nunjucks.configure(path.join(__dirname, 'docs'));
 
 env.addFilter('log', function(x) { console.log(x); });
@@ -15,23 +15,8 @@ StyleDictionary.registerFileHeader({
     return [
       ...defaultMessage,
       '',
-      '@licence MIT',
-      `Copyright © ${new Date().getFullYear()} Red Hat`,
-      '',
-      'Permission is hereby granted, free of charge, to any person obtaining a copy of this software',
-      'and associated documentation files (the “Software”), to deal in the Software without',
-      'restriction, including without limitation the rights to use, copy, modify, merge, publish,',
-      'distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the',
-      'Software is furnished to do so, subject to the following conditions:',
-      '',
-      'The above copyright notice and this permission notice shall be included in all copies or',
-      'substantial portions of the Software.',
-      '',
-      'THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING',
-      'BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND',
-      'NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,',
-      'DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING',
-      'FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.',
+      '@license',
+      ...fs.readFileSync(path.join(__dirname, 'LICENSE'), 'utf8').split('\n'),
     ];
   },
 });
@@ -79,6 +64,23 @@ export const resetStyles = css\`
 ${formattedVariables({ format: 'css', dictionary, outputReferences: options.outputReferences })}
 }\`;
 export default resetStyles;`,
+});
+
+StyleDictionary.registerFormat({
+  name: 'snippets/vscode',
+  formatter: ({ dictionary }) =>
+    JSON.stringify(Object.fromEntries(
+      dictionary.allProperties.map(prop => [
+        prop.title ?? prop.name,
+        {
+          scope: 'css,scss',
+          // prefix: prop.path.reduce((prefixes, path) => [...prefixes, `${prefixes.at(-1)}-${path}`], ['--rh']),
+          prefix:[  `--${prop.name}`],
+          body: [`var(--${prop.name}, ${prop.value})`],
+          description: prop.comment,
+        }
+      ])
+    ), null, 2),
 });
 
 StyleDictionary.registerFormat({
@@ -157,21 +159,6 @@ module.exports = {
         }
       ]
     },
-    html: {
-      transformGroup: 'css',
-      buildPath: 'build/',
-      prefix: 'rh',
-      files: [
-        {
-          destination: 'index.html',
-          format: 'html/docs',
-          options: {
-            fileHeader: 'redhat/legal',
-            outputReferences: true,
-          },
-        },
-      ]
-    },
     json: {
       transformGroup: 'css',
       buildPath: 'build/json/',
@@ -183,6 +170,28 @@ module.exports = {
           fileHeader: 'redhat/legal',
           outputReferences: true,
         }
+      }, ]
+    },
+    html: {
+      transformGroup: 'css',
+      buildPath: 'build/',
+      prefix: 'rh',
+      files: [{
+        destination: 'index.html',
+        format: 'html/docs',
+        options: {
+          fileHeader: 'redhat/legal',
+          outputReferences: true,
+        },
+      }]
+    },
+    snippets: {
+      transformGroup: 'css',
+      buildPath: 'build/snippets/',
+      prefix: 'rh',
+      files: [{
+        destination: 'vscode.json',
+        format: 'snippets/vscode',
       }]
     }
   }
