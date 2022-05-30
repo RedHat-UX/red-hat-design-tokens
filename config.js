@@ -49,10 +49,8 @@ import { css } from 'lit';
 export const resetStyles = css\`
 :host {
 ${formattedVariables({ format: 'css', dictionary, outputReferences: options.outputReferences })}
-}
-\`;
-export default resetStyles;
-  `,
+}\`;
+export default resetStyles;`,
 });
 
 StyleDictionary.registerFormat({
