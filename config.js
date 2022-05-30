@@ -46,7 +46,7 @@ StyleDictionary.registerFormat({
   name: 'css/lit',
   formatter: ({ dictionary, options }) => `
 import { css } from 'lit';
-export const resetStyles = css\`,
+export const resetStyles = css\`
 :host {
 ${formattedVariables({ format: 'css', dictionary, outputReferences: options.outputReferences })}
 }
