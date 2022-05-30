@@ -116,20 +116,6 @@ module.exports = {
     }
   }],
   platforms: {
-    scss: {
-      transformGroup: 'scss',
-      buildPath: 'build/scss/',
-      prefix: 'rh',
-      files: [
-        {
-          destination: '_variables.scss',
-          format: 'scss/variables',
-          options: {
-            fileHeader: 'redhat/legal',
-          }
-        }
-      ]
-    },
     css: {
       transformGroup: 'css',
       buildPath: 'build/css/',
@@ -159,6 +145,22 @@ module.exports = {
         }
       ]
     },
+
+    scss: {
+      transformGroup: 'scss',
+      buildPath: 'build/scss/',
+      prefix: 'rh',
+      files: [
+        {
+          destination: '_variables.scss',
+          format: 'scss/variables',
+          options: {
+            fileHeader: 'redhat/legal',
+          }
+        }
+      ]
+    },
+
     json: {
       transformGroup: 'css',
       buildPath: 'build/json/',
@@ -172,6 +174,37 @@ module.exports = {
         }
       }, ]
     },
+
+    js: {
+      transformGroup: 'js',
+      buildPath: 'build/js/',
+      files: [{
+        destination: 'tokens.js',
+        format: 'javascript/es6',
+        options: {
+          fileHeader: 'redhat/legal',
+        },
+      }, {
+        destination: 'tokens.d.ts',
+        format: 'typescript/es6-declarations',
+        options: {
+          fileHeader: 'redhat/legal',
+        },
+      }, {
+        destination: 'tokens.cjs',
+        format: 'javascript/module-flat',
+        options: {
+          fileHeader: 'redhat/legal',
+        },
+      }, {
+        destination: 'tokens.d.cts',
+        format: 'typescript/es6-declarations',
+        options: {
+          fileHeader: 'redhat/legal',
+        },
+      }]
+    },
+
     html: {
       transformGroup: 'css',
       buildPath: 'build/',
@@ -185,6 +218,7 @@ module.exports = {
         },
       }]
     },
+
     snippets: {
       transformGroup: 'css',
       buildPath: 'build/snippets/',

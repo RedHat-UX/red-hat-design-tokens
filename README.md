@@ -29,6 +29,16 @@ class RhJazzHands extends LitElement {
 }
 ```
 
+Import tokens as JavaScript objects:
+```js
+import { ColorBlue300 } from '@rhds/tokens';
+
+html`
+  <span style="color: ${ColorBlue300}">
+`
+```
+*NOTE:* We *strongly* recommend using CSS variables (and accompanying snippets) instead of importing tokens as JavaScript objects.
+
 Load snippets in VSCode:
 > Search for `Red Hat Design System` in the VSCode marketplace
 
