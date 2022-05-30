@@ -3,31 +3,11 @@ const StyleDictionary = require('style-dictionary');
 const nunjucks = require('nunjucks');
 const path = require('path');
 
+const { formattedVariables } = StyleDictionary.formatHelpers;
+
 const env = nunjucks.configure(path.join(__dirname, 'docs'));
 
 env.addFilter('log', function(x) { console.log(x); });
-
-StyleDictionary.registerFormat({
-  name: 'html/docs',
-  formatter({ dictionary, platform, options }) {
-    return env.render('index.html', {
-      dictionary,
-      platform,
-      colors: dictionary.allTokens.filter(x => x.attributes?.category === 'color').reduce((acc, color) => ({
-        ...acc,
-        [color.attributes.type]: [
-          ...acc[color.attributes.type] ?? [],
-          color,
-          ...Object.entries(color).flatMap(([key, value]) =>
-            typeof value !== 'object' || key.match(/original|attributes|path/)? [] : ({
-              ...value,
-              name: value.name ?? color.path.reduce((a, b)=> `${a}-${b}`, 'rh') + '-' + key,
-            }))
-        ],
-      }), {}),
-    })
-  }
-});
 
 StyleDictionary.registerTransform({
   type: 'value',
@@ -62,6 +42,41 @@ StyleDictionary.registerTransformGroup({
   ]
 })
 
+StyleDictionary.registerFormat({
+  name: 'css/lit',
+  formatter: ({ dictionary, options }) => `
+import { css } from 'lit';
+export const resetStyles = css\`,
+:host {
+${formattedVariables({ format: 'css', dictionary, outputReferences: options.outputReferences })}
+}
+\`;
+export default resetStyles;
+  `,
+});
+
+StyleDictionary.registerFormat({
+  name: 'html/docs',
+  formatter({ dictionary, platform, options }) {
+    return env.render('index.html', {
+      dictionary,
+      platform,
+      colors: dictionary.allTokens.filter(x => x.attributes?.category === 'color').reduce((acc, color) => ({
+        ...acc,
+        [color.attributes.type]: [
+          ...acc[color.attributes.type] ?? [],
+          color,
+          ...Object.entries(color).flatMap(([key, value]) =>
+            typeof value !== 'object' || key.match(/original|attributes|path/)? [] : ({
+              ...value,
+              name: value.name ?? color.path.reduce((a, b)=> `${a}-${b}`, 'rh') + '-' + key,
+            }))
+        ],
+      }), {}),
+    })
+  }
+});
+
 module.exports = {
   source: [
     'tokens/**/*.{yaml,yml}',
@@ -92,10 +107,15 @@ module.exports = {
         {
           destination: 'global.css',
           format: 'css/variables'
-        },
-        {
+        }, {
           destination: 'shared.css',
           format: 'css/variables',
+          options: {
+            selector: ':host'
+          }
+        }, {
+          destination: 'reset.css.js',
+          format: 'css/lit',
           options: {
             selector: ':host'
           }
