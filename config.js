@@ -3,23 +3,51 @@ const StyleDictionary = require('style-dictionary');
 const nunjucks = require('nunjucks');
 const path = require('path');
 
-const { formattedVariables } = StyleDictionary.formatHelpers;
+const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers;
 
 const env = nunjucks.configure(path.join(__dirname, 'docs'));
 
 env.addFilter('log', function(x) { console.log(x); });
 
+StyleDictionary.registerFileHeader({
+  name: 'redhat/legal',
+  fileHeader(defaultMessage) {
+    return [
+      ...defaultMessage,
+      '',
+      '@licence MIT',
+      `Copyright © ${new Date().getFullYear()} Red Hat`,
+      '',
+      'Permission is hereby granted, free of charge, to any person obtaining a copy of this software',
+      'and associated documentation files (the “Software”), to deal in the Software without',
+      'restriction, including without limitation the rights to use, copy, modify, merge, publish,',
+      'distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the',
+      'Software is furnished to do so, subject to the following conditions:',
+      '',
+      'The above copyright notice and this permission notice shall be included in all copies or',
+      'substantial portions of the Software.',
+      '',
+      'THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING',
+      'BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND',
+      'NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,',
+      'DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING',
+      'FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.',
+    ];
+  },
+});
+
 StyleDictionary.registerTransform({
   type: 'value',
-  name: 'box-shadow',
+  name: 'shadow/css',
   matcher: token => token.path.includes('box-shadow'),
-  transformer: ({ value: { offsetX, offsetY, blur, spread, color }}) => `${offsetX} ${offsetY} ${blur} ${spread} ${color}`
+  transformer: ({ value: { offsetX, offsetY, blur, spread, color }}) =>
+    `${offsetX} ${offsetY} ${blur} ${spread} ${color}`,
 })
 
 StyleDictionary.registerTransformGroup({
   name: 'css',
   transforms: [
-    'box-shadow',
+    'shadow/css',
     'attribute/cti',
     'name/cti/kebab',
     'time/seconds',
@@ -32,7 +60,7 @@ StyleDictionary.registerTransformGroup({
 StyleDictionary.registerTransformGroup({
   name: 'scss',
   transforms: [
-    'box-shadow',
+    'shadow/css',
     'attribute/cti',
     'name/cti/kebab',
     'time/seconds',
@@ -44,7 +72,7 @@ StyleDictionary.registerTransformGroup({
 
 StyleDictionary.registerFormat({
   name: 'css/lit',
-  formatter: ({ dictionary, options }) => `
+  formatter: ({ file, dictionary, options }) => `${fileHeader({file})}
 import { css } from 'lit';
 export const resetStyles = css\`
 :host {
@@ -93,7 +121,10 @@ module.exports = {
       files: [
         {
           destination: '_variables.scss',
-          format: 'scss/variables'
+          format: 'scss/variables',
+          options: {
+            fileHeader: 'redhat/legal',
+          }
         }
       ]
     },
@@ -104,17 +135,23 @@ module.exports = {
       files: [
         {
           destination: 'global.css',
-          format: 'css/variables'
+          format: 'css/variables',
+          options: {
+            fileHeader: 'redhat/legal',
+            selector: ':root'
+          }
         }, {
           destination: 'shared.css',
           format: 'css/variables',
           options: {
+            fileHeader: 'redhat/legal',
             selector: ':host'
           }
         }, {
           destination: 'reset.css.js',
           format: 'css/lit',
           options: {
+            fileHeader: 'redhat/legal',
             selector: ':host'
           }
         }
@@ -129,6 +166,7 @@ module.exports = {
           destination: 'index.html',
           format: 'html/docs',
           options: {
+            fileHeader: 'redhat/legal',
             outputReferences: true,
           },
         },
@@ -142,7 +180,8 @@ module.exports = {
         destination: 'tokens.json',
         format: 'json',
         options: {
-          outputReferences: true
+          fileHeader: 'redhat/legal',
+          outputReferences: true,
         }
       }]
     }
