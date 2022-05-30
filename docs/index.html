@@ -1,15 +1,39 @@
 <!DOCTYPE html>
+{%- set css = dictionary.properties -%}
+{%- set font = css.font -%}
+
+{%- macro variable(item) -%}
+  var(--{{ item.name }}, {{ item.value }})
+{%- endmacro -%}
+
+{%- macro copyButton(item) -%}
+  <span class="comment">{{ item.comment }}</span>
+  <code>
+    {{ variable(item) }}
+    <button data-variable="{{ variable(item) }}">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><filter color-interpolation-filters="sRGB" x="0" y="0" height="100%" width="100%" id="filter-yiwh0vpm3"><feFlood result="COLOR"></feFlood><feComposite operator="in" in="COLOR" in2="SourceAlpha"></feComposite></filter><image width="100%" height="100%" href="https://access.redhat.com/webassets/avalon/j/lib/rh-iconfont-svgs/web-icon-copy.svg" style="filter:url(#filter-yiwh0vpm3);"></image></svg>
+    </button>
+  </code>
+{%- endmacro -%}
+
+{%- macro typographyDemo(item) -%}
+  <h4>{{ item.comment }}</h4>
+  <p>The quick brown fox jumped over the lazy dog's back.</p>
+  {{ copyButton(item) }}
+{%- endmacro -%}
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Red Hat Design System</title>
+    <link rel="shortcut icon" href="https://www.redhat.com/misc/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="https://static.redhat.com/libs/redhat/redhat-font/2/webfonts/red-hat-font.css">
     <link rel="stylesheet" href="https://static.redhat.com/libs/redhat/redhat-theme/4/advanced-theme.css">
     <style>
       :root {
         --swatch-size: 350px;
-        font-family: {{ dictionary.properties.font.family.text.value | safe }};
+        font-family: {{ css.font.family.text.value | safe }};
         font-size: 18px;
         line-height: 1.6;
       }
@@ -21,68 +45,37 @@
       }
 
       :is(h1,h2,h3,h4,h5,h6) {
-        font-family: {{ dictionary.properties.font.family.heading.value | safe }};
+        font-family: {{ css.font.family.heading.value | safe }};
       }
 
       header {
-        background: {{ dictionary.properties.color.black['900'].value }};
-        color: {{ dictionary.properties.color.text.primary.on.dark.value }};
-        padding: {{ dictionary.properties.space.xs.value }} {{ dictionary.properties.space.md.value }};
+        background: {{ css.color.black['900'].value }};
+        color: {{ css.color.text.primary.on.dark.value }};
+        padding: {{ css.space.xs.value }} {{ css.space.md.value }};
+        display: flex;
+        align-items: center;
+        height: 72px;
       }
 
       h1 {
-        margin: 0;
+        display: contents;
       }
 
-      #color,
-      #box-shadow {
+      h1 svg {
+        width: 240px;
+      }
+
+      section {
         display: grid;
-        gap: {{ dictionary.properties.space.md.value }};
+        gap: {{ css.space.md.value }};
         grid-template-columns: repeat(auto-fill, var(--swatch-size));
-        padding: {{ dictionary.properties.space.sm.value }};
+        padding: {{ css.space.sm.value }};
+        align-items: start;
       }
 
       article {
         display: grid;
-      }
-
-      .color {
-        align-content: start;
-      }
-
-      .font-family {
-        align-content: center;
-      }
-
-      button {
-        border: none;
-        display: grid;
-        background: none;
-      }
-
-      .color button {
-        padding: 0;
-        align-content: end;
-        text-align: end;
-      }
-
-      .color output {
-        width: var(--swatch-size);
-        aspect-ratio: 2;
-      }
-
-      code {
-        text-align: start;
-      }
-
-      .color :is(code, .comment) {
-        padding: {{ dictionary.properties.space.sm.value }};
-        background: white;
-        text-align: end;
-      }
-
-      .comment:empty {
-        display: none;
+        position: relative;
       }
 
       section :is(h2, h3, h4, h5, h6) {
@@ -90,39 +83,98 @@
         text-transform: capitalize;
       }
 
-      .box-shadow button {
+      code {
+        font-size: {{ css.font.size.text.sm.value }};
+      }
+
+      code, .comment {
+        padding: {{ css.space.sm.value }};
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .comment:empty {
+        display: none;
+      }
+
+      button {
+        border-radius: {{ css.border.radius.default.value }};
+        border-width: 0;
+        padding: {{ css.space.xs.value }};
+        background: none;
+      }
+
+      button:is(:focus, :active, :hover) {
+        background: {{ css.color.interactive.blue.lightest.value }};
+      }
+
+      .color {
+        align-content: start;
+      }
+
+      .font p {
+        font-size: var(--font-size, {{ css.font.size.text.md.value }});
+        font-family: var(--font-family, {{ css.font.family.text.value }});
+        font-weight: var(--font-weight, {{ css.font.weight.text.value }});
+      }
+
+      .font.family {
+        align-content: center;
+      }
+
+      .color output {
         width: var(--swatch-size);
         aspect-ratio: 2;
+      }
+
+      .box-shadow output {
+        width: var(--swatch-size);
+        aspect-ratio: 2;
+        border-radius: {{ css.border.radius.default.value }};
+        box-shadow: var(--box-shadow);
+      }
+
+      #typography {
+        --swatch-size: 100%;
+      }
+
+      :is(#typography, .box-shadow) .comment {
+        display: none;
       }
     </style>
     <script type="module">
       for (const button of document.querySelectorAll('section button')) {
         button.addEventListener('click', async function(event) {
-          await navigator.clipboard.writeText(event.target
-            .closest('article')
-            .querySelector('code')
-            .textContent
-            .trim());
-        })
+          await navigator.clipboard.writeText(event.target.closest('[data-variable]').dataset.variable);
+        });
       }
     </script>
   </head>
   <body>
     <header>
-      <h1>Red Hat Design System</h1>
+      <h1>
+        <svg version="1.1" x="0" y="0" viewBox="0 0 284 48" style="enable-background:new 0 0 284 48" xml:space="preserve" aria-label="Red Hat Digital Design System">
+          <g id="Logo" transform="translate(-20 -16)">
+            <path style="fill: currentColor" d="M103.2 42.8h5.4c4.2 0 7.4 3.1 7.4 7s-3.2 7-7.4 7h-5.4v-14zm2.9 2.6v8.8h2.5c2.5 0 4.4-1.9 4.4-4.4 0-2.5-1.9-4.5-4.4-4.5h-2.5zM117.6 43.6c0-.9.7-1.6 1.6-1.6.9 0 1.6.7 1.6 1.6s-.7 1.6-1.6 1.6c-.9 0-1.6-.7-1.6-1.6zm2.9 13.2h-2.7V46.4h2.7v10.4zM122.2 51.6c0-3 2.4-5.3 5.4-5.3 1 0 2 .3 2.8.8v-.7h2.7v10.4c0 2.8-1.8 4.3-5.2 4.3-1.6 0-3.1-.3-4.3-.9l1-2.1c1.1.6 2.2.8 3.3.8 1.6 0 2.5-.7 2.5-2.1V56c-.8.6-1.8.9-2.9.9-3 0-5.3-2.4-5.3-5.3zm5.7 3c1 0 1.8-.3 2.4-.9v-4.1c-.6-.6-1.5-.9-2.4-.9-1.7 0-3 1.3-3 3 0 1.6 1.3 2.9 3 2.9zM135 43.6c0-.9.7-1.6 1.6-1.6.9 0 1.6.7 1.6 1.6s-.7 1.6-1.6 1.6c-.9 0-1.6-.7-1.6-1.6zm2.9 13.2h-2.7V46.4h2.7v10.4zM141.5 48.7h-2.1v-2.3h2.1v-2.7l2.7-.6v3.3h3v2.3h-3v4.6c0 1 .4 1.3 1.4 1.3.5 0 .9-.1 1.5-.2v2.2c-.6.2-1.5.3-2.1.3-2.3 0-3.5-1.1-3.5-3.1v-5.1zM148 53.8c0-2 1.6-3.2 4.3-3.2.9 0 1.7.1 2.5.4v-.7c0-1.2-.7-1.8-2.2-1.8-.9 0-1.9.3-3.2.9l-1-2c1.6-.8 3.1-1.1 4.6-1.1 2.8 0 4.4 1.4 4.4 3.9V57h-2.7v-.7c-.9.6-1.8.9-3 .9-2.1-.2-3.7-1.5-3.7-3.4zm4.6 1.3c.9 0 1.7-.2 2.3-.7v-1.6c-.7-.3-1.4-.4-2.2-.4-1.3 0-2 .5-2 1.3 0 .9.7 1.4 1.9 1.4zM162.4 56.8h-2.7v-14l2.7-.6v14.6zM176.3 56c-.8.7-1.9 1-3 1-3 0-5.3-2.4-5.3-5.4 0-3 2.4-5.3 5.4-5.3 1 0 2 .3 2.8.8v-4.3l2.7-.6v14.6h-2.7V56zm-2.5-1.4c1 0 1.9-.4 2.5-1v-4.1c-.6-.6-1.5-1-2.5-1-1.7 0-3 1.3-3 3 0 1.8 1.3 3.1 3 3.1zM186.3 57c-3.2 0-5.6-2.4-5.6-5.4 0-3 2.3-5.4 5.4-5.4 3 0 5.2 2.4 5.2 5.6v.7h-7.8c.4 1.3 1.5 2.2 3 2.2.9 0 1.7-.3 2.3-.8l1.8 1.6c-1.3 1.1-2.6 1.5-4.3 1.5zm-2.9-6.4h5.1c-.3-1.2-1.3-2.1-2.5-2.1-1.3 0-2.2.8-2.6 2.1zM193.5 53.8c1.2.8 2.3 1.2 3.4 1.2 1.2 0 2-.4 2-1.1 0-.5-.4-.8-1.3-1l-2-.3c-2.1-.3-3.2-1.3-3.2-3 0-2 1.7-3.3 4.3-3.3 1.5 0 3 .4 4.3 1.3l-1.3 1.8c-1.1-.7-2.2-1-3.2-1s-1.6.4-1.6 1 .4.8 1.4 1l2 .3c2 .3 3.2 1.4 3.2 3 0 2-1.9 3.4-4.6 3.4-1.9 0-3.6-.5-4.8-1.4l1.4-1.9zM202.6 43.6c0-.9.7-1.6 1.6-1.6.9 0 1.6.7 1.6 1.6s-.7 1.6-1.6 1.6c-.9 0-1.6-.7-1.6-1.6zm3 13.2h-2.7V46.4h2.7v10.4zM207.2 51.6c0-3 2.4-5.3 5.4-5.3 1 0 2 .3 2.8.8v-.7h2.7v10.4c0 2.8-1.8 4.3-5.2 4.3-1.6 0-3.1-.3-4.3-.9l1-2.1c1.1.6 2.2.8 3.3.8 1.6 0 2.5-.7 2.5-2.1V56c-.8.6-1.8.9-2.9.9-2.9 0-5.3-2.4-5.3-5.3zm5.7 3c1 0 1.8-.3 2.4-.9v-4.1c-.6-.6-1.5-.9-2.4-.9-1.7 0-3 1.3-3 3 0 1.6 1.3 2.9 3 2.9zM220.3 46.4h2.7v.8c.8-.7 1.8-1 2.9-1 2.4 0 4.1 1.7 4.1 4.1v6.5h-2.7v-6.1c0-1.3-.8-2.2-2.2-2.2-.9 0-1.7.4-2.1 1v7.2h-2.7V46.4zM236.6 53.8c1.2.8 2.3 1.2 3.4 1.2 1.2 0 2-.4 2-1.1 0-.5-.4-.8-1.3-1l-2-.3c-2.1-.3-3.2-1.3-3.2-3 0-2 1.7-3.3 4.3-3.3 1.5 0 3 .4 4.3 1.3l-1.3 1.8c-1.1-.7-2.2-1-3.2-1s-1.6.4-1.6 1 .4.8 1.4 1l2 .3c2 .3 3.2 1.4 3.2 3 0 2-1.9 3.4-4.6 3.4-1.9 0-3.6-.5-4.8-1.4l1.4-1.9zM248.7 56.9l-4.1-10.5h3l2.6 7.1 3-7.1h3l-4.8 11.2c-1.1 2.5-2.3 3.5-4.6 3.5-.5 0-.9 0-1.2-.1v-2.4c.3.1.5.1 1 .1 1 0 1.7-.5 2.1-1.4v-.4zM257.8 53.8c1.2.8 2.3 1.2 3.4 1.2 1.2 0 2-.4 2-1.1 0-.5-.4-.8-1.3-1l-2-.3c-2.1-.3-3.2-1.3-3.2-3 0-2 1.7-3.3 4.3-3.3 1.5 0 3 .4 4.3 1.3l-1.3 1.8c-1.1-.7-2.2-1-3.2-1s-1.6.4-1.6 1 .4.8 1.4 1l2 .3c2 .3 3.2 1.4 3.2 3 0 2-1.9 3.4-4.6 3.4-1.9 0-3.6-.5-4.8-1.4l1.4-1.9zM268.3 48.7h-2.1v-2.3h2.1v-2.7l2.7-.6v3.3h3v2.3h-3v4.6c0 1 .4 1.3 1.4 1.3.5 0 .9-.1 1.5-.2v2.2c-.6.2-1.5.3-2.1.3-2.3 0-3.5-1.1-3.5-3.1v-5.1zM280.4 57c-3.2 0-5.6-2.4-5.6-5.4 0-3 2.3-5.4 5.4-5.4 3 0 5.2 2.4 5.2 5.6v.7h-7.8c.4 1.3 1.5 2.2 3 2.2.9 0 1.7-.3 2.3-.8l1.8 1.6c-1.4 1.1-2.6 1.5-4.3 1.5zm-2.9-6.4h5.1c-.3-1.2-1.3-2.1-2.5-2.1-1.3 0-2.2.8-2.6 2.1zM287 46.4h2.7v.8c.7-.6 1.7-1 2.7-1 1.3 0 2.4.6 3.1 1.6.8-1 2-1.6 3.4-1.6 2.3 0 4 1.7 4 4.1v6.5h-2.7v-6.1c0-1.3-.8-2.2-2-2.2-.8 0-1.5.4-2 1 0 .2.1.5.1.7v6.5h-2.7v-6.1c0-1.3-.8-2.2-2-2.2-.8 0-1.5.3-1.9.9v7.3H287V46.4zM103.3 20.8h6.4c2.8 0 4.7 1.7 4.7 4.1 0 1.8-1.1 3.3-2.9 3.8l3.1 6h-2.3l-2.9-5.7h-3.9v5.7h-2.1V20.8zm2.1 1.9v4.7h4.1c1.6 0 2.7-.9 2.7-2.3s-1.1-2.3-2.7-2.3h-4.1zM120.6 35c-3 0-5.3-2.3-5.3-5.3 0-2.9 2.2-5.2 5.1-5.2 2.8 0 4.9 2.3 4.9 5.3v.6h-8c.3 1.7 1.7 2.9 3.4 2.9 1 0 1.9-.3 2.6-.9l1.3 1.3c-1.3.9-2.5 1.3-4 1.3zm-3.4-6.1h6c-.3-1.6-1.5-2.7-3-2.7s-2.7 1.1-3 2.7zM135 33.9c-.9.7-1.9 1.1-3.1 1.1-2.9 0-5.1-2.3-5.1-5.3 0-2.9 2.3-5.2 5.2-5.2 1.1 0 2.2.4 3.1 1v-4.7l2-.4v14.4h-2v-.9zm-2.9-.6c1.1 0 2.1-.4 2.8-1.2v-4.6c-.7-.8-1.7-1.2-2.8-1.2-2 0-3.5 1.5-3.5 3.5s1.6 3.5 3.5 3.5zM143.7 20.8h2.1v6h7.4v-6h2.1v14h-2.1v-6.1h-7.4v6.1h-2.1v-14zM157.3 31.9c0-1.9 1.6-3.1 4.1-3.1 1 0 1.9.2 2.8.6v-1.1c0-1.4-.9-2.2-2.5-2.2-.9 0-1.9.3-3.2.9l-.7-1.5c1.5-.7 2.8-1 4.2-1 2.6 0 4.2 1.3 4.2 3.6v6.7h-2V34c-.9.7-1.9 1.1-3.2 1.1-2.2-.1-3.7-1.3-3.7-3.2zm4.2 1.6c1.1 0 2-.3 2.7-1v-1.8c-.8-.4-1.6-.6-2.6-.6-1.5 0-2.4.7-2.4 1.7 0 1.1.9 1.7 2.3 1.7zM169.4 26.3h-2.2v-1.7h2.2V22l2-.5v3.1h3v1.7h-3v5.5c0 1 .4 1.4 1.5 1.4.6 0 1-.1 1.5-.2v1.7c-.5.2-1.3.3-1.9.3-2 0-3-.9-3-2.7v-6z"/>
+            <path id="Rectangle" style="fill: currentColor" d="M84.9 18.8h1v40h-1z"/>
+            <g id="Icon" transform="translate(19.5 21.5)">
+              <path id="Path" d="M40.8 14.8c.1.3.1.6.1.9 0 3.7-4.5 4.4-7.7 4.4C21 20.1 12 12.5 12 10.2c0-.2 0-.3.1-.5l-1 2.3c-.2.6-.4 1.2-.4 1.8 0 4.5 10.2 11.4 21.9 11.4 5.2 0 9.1-1.9 9.1-5.4-.1-.9-.2-1.7-.4-2.5l-.5-2.5z"/>
+              <path id="Path-2" d="M33.2 20c3.1 0 7.7-.6 7.7-4.4 0-.3 0-.6-.1-.9l-1.9-8.1c-.4-1.8-.8-2.6-3.9-4.2-2.4-1.2-7.7-3.3-9.3-3.3-1.5 0-1.9 1.9-3.6 1.9S19.2-.4 17.6-.4c-1.5 0-2.5 1-3.2 3.1 0 0-2.1 5.9-2.4 6.8 0 .2-.1.3-.1.5 0 2.5 9.1 10 21.3 10m8.1-2.8c.2.8.4 1.7.4 2.5 0 3.5-3.9 5.4-9.1 5.4-11.7 0-21.9-6.8-21.9-11.4 0-.6.1-1.3.4-1.8-4.2.2-9.6 1-9.6 5.8 0 7.9 18.6 17.6 33.4 17.6 11.3 0 14.2-5.1 14.2-9.2-.1-3.1-2.8-6.8-7.8-8.9" style="fill:#e00"/>
+            </g>
+          </g>
+        </svg>
+      </h1>
     </header>
     <main>
       <section id="color">
         <h2>Color</h2>
         {%- for family, values in colors -%}
           <h3>{{ family }}</h3>
-          {%- for color in values -%}
+          {%- for item in values -%}
             <article class="color">
-              <button>
-                <output style="background: {{ color.value }}"></output>
-                <code>var(--{{ color.name }}, {{ color.value }})</code>
-                <span class="comment">{{ color.comment }}</span>
-              </button>
+              <output style="background: {{ item.value }}"></output>
+              {{ copyButton(item) }}
             </article>
           {%- endfor -%}
         {%- endfor -%}
@@ -130,69 +182,42 @@
 
       <section id="box-shadow">
         <h2>Box shadow</h2>
-        {% for key, shadow in dictionary.properties['box-shadow']  %}
-          <article class="box-shadow">
-            <h3>{{ key }}</h3>
-            <span class="comment">{{ shadow.comment }}</span>
-            <button style="box-shadow: {{ shadow.value }}">
-              <code>var(--{{ shadow.name }}, {{ shadow.value }})</code>
-            </button>
+        {% for key, item in css['box-shadow']  %}
+          <article class="box-shadow" style="--box-shadow: {{ item.value }}">
+            <h3>{{ item.comment }}</h3>
+            <output></output>
+            {{ copyButton(item) }}
           </article>
         {% endfor %}
       </section>
 
-      {% set font = dictionary.properties.font %}
-
       <section id="typography">
         <h2>Typography</h2>
-        {%- for key, family in font.family -%}
-          <article class="font-family">
-            <h3>{{ key }}</h3>
-            <span class="comment" style="font-family: {{ family.value }}">
-              {{ family.comment }} - The fox jumped over the little dog's back
-            </span>
-            <button>
-              <code>var(--{{ family.name }}, {{ family.value }})</code>
-            </button>
+        <h3>Font families</h3>
+        {%- for key, item in font.family -%}
+          <article class="font family" style="--font-family: {{ item.value }}">
+            {{ typographyDemo(item) }}
           </article>
         {%- endfor -%}
 
         <h3>Heading font sizes</h3>
-        {%- for key, size in font.size.heading -%}
-          <article class="font-size heading">
-            <h4>{{ key }}</h4>
-            <span class="comment" style="font-size: {{ size.value }}; font-family: {{ font.family.heading.value }}">
-              {{ size.comment }} - The fox jumped over the little dog's back
-            </span>
-            <button>
-              <code>var(--{{ size.name }}, {{ size.value }})</code>
-            </button>
+        {%- for key, item in font.size.heading -%}
+          <article class="font size heading" style="--font-size: {{ item.value }}; --font-family: {{ font.family.heading.value }}">
+            {{ typographyDemo(item) }}
           </article>
         {%- endfor -%}
         
         <h3>Text font sizes</h3>
-        {%- for key, size in font.size.text -%}
-          <article class="font-size text">
-            <h4>{{ key }}</h4>
-            <span class="comment" style="font-size: {{ size.value }}; font-family: {{ font.family.text.value }}">
-              {{ size.comment }} - The fox jumped over the little dog's back
-            </span>
-            <button>
-              <code>var(--{{ size.name }}, {{ size.value }})</code>
-            </button>
+        {%- for key, item in font.size.text -%}
+          <article class="font size text" style="--font-size: {{ item.value }};">
+            {{ typographyDemo(item) }}
           </article>
         {%- endfor -%}
 
         <h3>Font weights</h3>
-        {%- for key, weight in font.weight -%}
-          <article class="font-weight">
-            <h4>{{ key }}</h4>
-            <span class="comment" style="font-weight: {{ weight.value }}">
-              {{ weight.comment }} - The fox jumped over the little dog's back
-            </span>
-            <button>
-              <code>var(--{{ weight.name }}, {{ weight.value }})</code>
-            </button>
+        {%- for key, item in font.weight -%}
+          <article class="font weight" style="--font-weight: {{ item.value }}">
+            {{ typographyDemo(item) }}
           </article>
         {%- endfor -%}
         
