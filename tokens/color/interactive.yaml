@@ -11,3 +11,12 @@ color:
       darkest:
         value: '{color.blue.700}'
 
+    purple:
+      lightest:
+        value: '{color.purple.100}'
+      lighter:
+        value: '{color.purple.300}'
+      darker:
+        value: '{color.purple.500}'
+      darkest:
+        value: '{color.purple.700}'
