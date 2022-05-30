@@ -1,82 +1,45 @@
 # Red Hat Design Tokens
 
-## Getting Started
+[Design Tokens](https://design-tokens.github.io/community-group/format/) for Red Hat's [Digital Design System](https://ux.redhat.com).
 
-```bash
-npm ci
-npm run build
+## 🚚 Installation
+```sh
+npm i @rhds/tokens
 ```
 
-You should see something like this output:
-```
-scss
-✔︎ build/scss/_variables.scss
-
-css
-✔︎ build/css/global.css
-✔︎ build/css/shared.css
-```
-
-## Dev Server
-
-To develop tokens against a dev serve, open a terminal and run
-
-```bash
-npm run build watch
+## 🎭 Usage
+Apply defaults to the document root by importing the global stylesheet:
+```html
+<link rel="stylesheet" href="/url/to/@rhds/tokens/css/global.css">
+<style>
+  :is(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--rh-font-family-heading);
+  }
+</style>
 ```
 
-and in another terminal run
+Reset a component's styles (preventing inheritance) by adding `resetStyles` to it's static Constructible Style Sheet list:
+```ts
+import { resetStyles } from '@rhds/tokens/css/reset.css.js';
+import style from './rh-jazz-hands.css';
 
-```bash
-npm run start
+@customElement('rh-jazz-hands')
+class RhJazzHands extends LitElement {
+  static readonly styles = [resetStyles, style];
+}
 ```
 
-## Defining Tokens
+Load snippets in VSCode:
+> Search for `Red Hat Design System` in the VSCode marketplace
 
-Tokens are defined in [YAML](https://yaml.org) files, following the [Design Tokens Draft Community Group Report](https://design-tokens.github.io/community-group/format/).
-
-### YAML Notes
-YAML strings do not need to be quoted, unless they start with a special character. Therefore, `comment`s should not be quoted, but color values and references should.
-
-```yaml
-color:
-  brand:
-    red:
-      value: "{color.red.400}"
-      comment: Brand red
-      50:
-        value: "#faeae8"
-        comment: Danger Alert background
-      100:
-        value: "#fddbdb"
-      200:
-        value: "#fab6b6"
-      300:
-        value: "#f56d6d"
-      400:
-        value: "#ee0000"
-      500:
-        value: "#be0000"
-      600:
-        value: "#8f0000"
-      700:
-        value: "#5f0000"
-      lightest:
-        value: "{color.red.100}"
-        comment: Lightest brand red
-      lighter:
-        value: "{color.red.200}"
-        comment: lighter brand red
-      light:
-        value: "{color.red.300}"
-        comment: Light brand red
-      dark:
-        value: "{color.red.500}"
-        comment: Dark brand red/Brand red hover
-      darker:
-        value: "{color.red.600}"
-        comment: Darker brand red
-      darkest:
-        value: "{color.red.700}"
-        comment: Darkest brand red
+Load snippets in neovim via LuaSnips:
+```lua
+require 'luasnip.loaders.from_vscode'.lazy_load { paths = {
+  -- Path to the built project, perhaps in your `node_modules`
+  "~/Developer/redhat-ux/red-hat-design-tokens"
+} }
 ```
+
+## Contributing
+See [CONTRIBUTING.md](./CONTRIBUTING.md)
+
