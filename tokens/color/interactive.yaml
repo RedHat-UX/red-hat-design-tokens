@@ -2,3 +2,12 @@ color:
   interactive:
     blue:
       value: '{color.blue.500}'
+      lightest:
+        value: '{color.blue.100}'
+      lighter:
+        value: '{color.blue.300}'
+      darker:
+        value: '{color.blue.600}'
+      darkest:
+        value: '{color.blue.700}'
+
