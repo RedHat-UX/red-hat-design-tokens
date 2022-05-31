@@ -4,11 +4,15 @@ const nunjucks = require('nunjucks');
 const path = require('path');
 const fs = require('fs');
 
-const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers;
 const env = nunjucks.configure(path.join(__dirname, 'docs'));
 
 env.addFilter('log', function(x) { console.log(x); });
 
+const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers;
+
+/**
+ * Copy the repo license (MIT) into file headers
+ */
 StyleDictionary.registerFileHeader({
   name: 'redhat/legal',
   fileHeader(defaultMessage) {
@@ -25,7 +29,6 @@ StyleDictionary.registerFileHeader({
  * Transform a record or box-shadow properties to a css box-shadow property value
  * @see https://design-tokens.github.io/community-group/format/#shadow
  */
-
 StyleDictionary.registerTransform({
   type: 'value',
   name: 'shadow/css',
@@ -38,7 +41,6 @@ StyleDictionary.registerTransform({
  * Transform an array of cubic bezier timing values to a css cubic-bezier() call
  * @see https://design-tokens.github.io/community-group/format/#cubic-bezier
  */
-
 StyleDictionary.registerTransform({
   type: 'value',
   name: 'cubic-bezier/css',
@@ -61,6 +63,17 @@ const CSS_TRANSFORMS = [
 StyleDictionary.registerTransformGroup({ name: 'css', transforms: CSS_TRANSFORMS })
 StyleDictionary.registerTransformGroup({ name: 'scss', transforms: CSS_TRANSFORMS })
 
+/**
+ * Lit CSS object
+ * @example ```js
+ * import { resetStyles } from '@rhds/tokens/reset.css.js';
+ *
+ * class RhJazzHands extends LitElement {
+ *   // reset all RHDS variables to defaults
+ *   static styles = [resetStyles];
+ * }
+ * ```
+ */
 StyleDictionary.registerFormat({
   name: 'css/lit',
   formatter: ({ file, dictionary, options }) => `${fileHeader({file})}
@@ -72,6 +85,9 @@ ${formattedVariables({ format: 'css', dictionary, outputReferences: options.outp
 export default resetStyles;`,
 });
 
+/**
+ * Exports VSCode style snippets for editor support
+ */
 StyleDictionary.registerFormat({
   name: 'snippets/vscode',
   formatter: ({ dictionary }) =>
@@ -80,15 +96,16 @@ StyleDictionary.registerFormat({
         prop.title ?? prop.name,
         {
           scope: 'css,scss',
-          // prefix: prop.path.reduce((prefixes, path) => [...prefixes, `${prefixes.at(-1)}-${path}`], ['--rh']),
-          prefix:[  `--${prop.name}`],
+          prefix: [`--${prop.name}`],
           body: [`var(--${prop.name}, ${prop.value})`],
           description: prop.comment,
-        }
-      ])
-    ), null, 2),
+        },
+    ])), null, 2),
 });
 
+/**
+ * Generates a single-file web page to demonstrate token values
+ */
 StyleDictionary.registerFormat({
   name: 'html/docs',
   formatter({ dictionary, platform, options }) {
@@ -101,7 +118,7 @@ StyleDictionary.registerFormat({
           ...acc[color.attributes.type] ?? [],
           color,
           ...Object.entries(color).flatMap(([key, value]) =>
-            typeof value !== 'object' || key.match(/original|attributes|path/)? [] : ({
+            typeof value !== 'object' || key.match(/original|attributes|path|type/)? [] : ({
               ...value,
               name: value.name ?? color.path.reduce((a, b)=> `${a}-${b}`, 'rh') + '-' + key,
             }))
