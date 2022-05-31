@@ -21,39 +21,45 @@ StyleDictionary.registerFileHeader({
   },
 });
 
+/**
+ * Transform a record or box-shadow properties to a css box-shadow property value
+ * @see https://design-tokens.github.io/community-group/format/#shadow
+ */
+
 StyleDictionary.registerTransform({
   type: 'value',
   name: 'shadow/css',
-  matcher: token => token.path.includes('box-shadow'),
+  matcher: token => token.type === 'shadow',
   transformer: ({ value: { offsetX, offsetY, blur, spread, color }}) =>
     `${offsetX} ${offsetY} ${blur} ${spread} ${color}`,
 })
 
-StyleDictionary.registerTransformGroup({
-  name: 'css',
-  transforms: [
-    'shadow/css',
-    'attribute/cti',
-    'name/cti/kebab',
-    'time/seconds',
-    'content/icon',
-    'size/rem',
-    'color/css',
-  ]
+/**
+ * Transform an array of cubic bezier timing values to a css cubic-bezier() call
+ * @see https://design-tokens.github.io/community-group/format/#cubic-bezier
+ */
+
+StyleDictionary.registerTransform({
+  type: 'value',
+  name: 'cubic-bezier/css',
+  matcher: token => token.type === 'cubicBezier',
+  transformer: ({ value }) =>
+    `cubic-bezier(${value.join(', ')})`,
 })
 
-StyleDictionary.registerTransformGroup({
-  name: 'scss',
-  transforms: [
-    'shadow/css',
-    'attribute/cti',
-    'name/cti/kebab',
-    'time/seconds',
-    'content/icon',
-    'size/rem',
-    'color/css',
-  ]
-})
+const CSS_TRANSFORMS = [
+  'shadow/css',
+  'cubic-bezier/css',
+  'attribute/cti',
+  'name/cti/kebab',
+  'time/seconds',
+  'content/icon',
+  'size/rem',
+  'color/css',
+];
+
+StyleDictionary.registerTransformGroup({ name: 'css', transforms: CSS_TRANSFORMS })
+StyleDictionary.registerTransformGroup({ name: 'scss', transforms: CSS_TRANSFORMS })
 
 StyleDictionary.registerFormat({
   name: 'css/lit',
@@ -106,9 +112,7 @@ StyleDictionary.registerFormat({
 });
 
 module.exports = {
-  source: [
-    'tokens/**/*.{yaml,yml}',
-  ],
+  source: ['tokens/**/*.{yaml,yml}'],
   parsers: [{
     pattern: /\.ya?ml$/,
     parse({ contents }) {

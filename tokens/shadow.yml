@@ -1,6 +1,7 @@
 box-shadow:
   sm:
     comment: Small box shadow
+    type: shadow
     value:
       offsetX: 0
       offsetY: 0.125rem
@@ -9,6 +10,7 @@ box-shadow:
       color: rgba(21, 21, 21, 0.2)
   md:
     comment: Medium box shadow
+    type: shadow
     value:
       offsetX: 0
       offsetY: 0.25rem
@@ -17,6 +19,7 @@ box-shadow:
       color: rgba(21, 21, 21, 0.25)
   lg:
     comment: Large box shadow
+    type: shadow
     value:
       offsetX: 0
       offsetY: 0.25rem
@@ -25,6 +28,7 @@ box-shadow:
       color: rgba(21, 21, 21, 0.3)
   xl:
     comment: Extra large box shadow
+    type: shadow
     value:
       offsetX: 0
       offsetY: 0.75rem
