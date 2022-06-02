@@ -92,15 +92,20 @@ StyleDictionary.registerFormat({
   name: 'snippets/vscode',
   formatter: ({ dictionary }) =>
     JSON.stringify(Object.fromEntries(
-      dictionary.allProperties.map(prop => [
-        prop.title ?? prop.name,
-        {
-          scope: 'css,scss',
-          prefix: [`--${prop.name}`],
-          body: [`var(--${prop.name}, ${prop.value})`],
-          description: prop.comment,
-        },
-    ])), null, 2),
+      dictionary.allProperties.map(prop => {
+        return [
+            prop.title ?? prop.name,
+            {
+              scope: 'css,scss',
+              prefix: [
+                `--${prop.name}`,
+                prop.value?.startsWith?.('#') ? prop.value.replace(/^#/, '') : null
+              ].filter(Boolean),
+              body: [`var(--${prop.name}, ${prop.value})`],
+              description: prop.comment,
+            },
+        ]
+      })), null, 2),
 });
 
 /**
@@ -187,7 +192,7 @@ module.exports = {
       buildPath: 'build/json/',
       prefix: 'rh',
       files: [{
-        destination: 'tokens.json',
+        destination: 'rhds.tokens.json',
         format: 'json',
         options: {
           fileHeader: 'redhat/legal',
@@ -200,7 +205,7 @@ module.exports = {
       transformGroup: 'js',
       buildPath: 'build/js/',
       files: [{
-        destination: 'tokens.js',
+        destination: 'rhds.tokens.js',
         format: 'javascript/es6',
         options: {
           fileHeader: 'redhat/legal',
