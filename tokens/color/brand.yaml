@@ -1,8 +1,13 @@
 color:
   brand:
     red:
-      value: '{color.red.400}'
-      comment: Brand red
+      # @see https://github.com/amzn/style-dictionary/issues/716#issuecomment-943673202
+      _:
+        value: '{color.red.400}'
+        comment: Brand red
+      on:
+        dark:
+          value: '{color.red.350}'
       lightest:
         value: '{color.red.100}'
         comment: Lightest brand red

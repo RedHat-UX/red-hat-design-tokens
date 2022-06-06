@@ -9,6 +9,9 @@ color:
       value: '#fab6b6'
     300:
       value: '#f56d6d'
+    350:
+      value: '#f33'
+      comment: Brand Red on dark background
     400:
       value: '#e00'
       comment: Brand Red
