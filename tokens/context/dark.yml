@@ -1,0 +1,24 @@
+context:
+  dark:
+    color:
+      text:
+        # @see https://github.com/amzn/style-dictionary/issues/716#issuecomment-943673202
+        _:
+          type: color
+          value: '{color.text.primary.on.dark}'
+        muted:
+          type: color
+          value: '{color.surface.light}' #f0f0f0, closest to #d2d2d2 from pf
+        link:
+          _:
+            type: color
+            value: '{color.interactive.blue.lighter}'
+          hover:
+            type: color
+            value: '{color.interactive.blue._}'
+          focus:
+            type: color
+            value: '{color.interactive.blue._}'
+          visited:
+            type: color
+            value: '{color.interactive.blue._}'

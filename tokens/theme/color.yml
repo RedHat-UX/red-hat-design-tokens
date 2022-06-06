@@ -1,0 +1,12 @@
+theme:
+  color:
+    text:
+      value: '{color.text.primary.on.light}'
+    link:
+      value: '{color.interactive.blue}'
+      hover:
+        value: '{color.interactive.blue}'
+      active:
+        value: '{color.interactive.blue}'
+      focus:
+        value: '{color.interactive.blue}'

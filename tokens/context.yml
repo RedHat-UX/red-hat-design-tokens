@@ -1,0 +1,28 @@
+context:
+  $description: Default (i.e. on-light) context colour values
+
+  # saturated:
+  #   --pfe-broadcasted--text: var(--pfe-theme--color--text--on-saturated, #fff);
+  #   --pfe-broadcasted--text--muted: var(--pfe-theme--color--text--muted--on-saturated, #d2d2d2);
+  #   --pfe-broadcasted--link: var(--pfe-theme--color--link--on-saturated, #fff);
+  #   --pfe-broadcasted--link--hover: var(--pfe-theme--color--link--hover--on-saturated, #fafafa);
+  #   --pfe-broadcasted--link--focus: var(--pfe-theme--color--link--focus--on-saturated, #fafafa);
+  #   --pfe-broadcasted--link--visited: var(--pfe-theme--color--link--visited--on-saturated, #d2d2d2);
+  #   --pfe-broadcasted--link-decoration: var(--pfe-theme--link-decoration--on-saturated, underline);
+  #   --pfe-broadcasted--link-decoration--hover: var(--pfe-theme--link-decoration--hover--on-saturated, underline);
+  #   --pfe-broadcasted--link-decoration--focus: var(--pfe-theme--link-decoration--focus--on-saturated, underline);
+  #   --pfe-broadcasted--link-decoration--visited: var(--pfe-theme--link-decoration--visited--on-saturated, underline);
+  #
+
+  link:
+    decoration:
+      # @see https://github.com/amzn/style-dictionary/issues/716#issuecomment-943673202
+      _:
+        value: none
+      hover:
+        value: underline
+      focus:
+        value: underline
+      visited:
+        value: none
+
