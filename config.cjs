@@ -92,20 +92,47 @@ StyleDictionary.registerFormat({
   name: 'snippets/vscode',
   formatter: ({ dictionary }) =>
     JSON.stringify(Object.fromEntries(
-      dictionary.allProperties.map(prop => {
+      dictionary.allTokens.map(token => {
         return [
-            prop.title ?? prop.name,
+            token.title ?? token.name,
             {
               scope: 'css,scss',
               prefix: [
-                `--${prop.name}`,
-                prop.value?.startsWith?.('#') ? prop.value.replace(/^#/, '') : null
+                `--${token.name}`,
+                token.value?.startsWith?.('#') ? token.value.replace(/^#/, '') : null
               ].filter(Boolean),
-              body: [`var(--${prop.name}, ${prop.value})`],
-              description: prop.comment,
+              body: [`var(--${token.name}, ${token.value})`],
+              description: token.comment,
             },
         ]
       })), null, 2),
+});
+
+const isColor = token => token.type === 'color' || token.path.includes('color');
+// token.original?.value?.startsWith?.('{color.');
+
+const pairAliasWithValue = token => {
+  if (typeof token.value === 'string') {
+    const name = token.original?.value?.startsWith('{') ? token.original.value.replace(/\._}$/, '}') : `{${token.path.reduce((a, b) => `${a}.${b}`, '')}}`.replace(/^\{\./, '{');
+    return [ [ name, token.value ] ];
+  } else if (token.value) {
+    return Object.fromEntries(Object.entries(token.value).map(pairAliasWithValue))
+  } else {
+    return []
+  }
+}
+
+/**
+ * Exports [vim-hexokinase](https://github.com/RRethy/vim-hexokinase) custom patterns
+ */
+StyleDictionary.registerFormat({
+  name: 'editor/hexokinase',
+  formatter: ({ dictionary }) =>
+    JSON.stringify({
+      regex_pattern: '\\{color\\.(\\w+)\.(\\d{1,3})\\}',
+      colour_table: Object.fromEntries(
+      dictionary.allTokens.filter(isColor).flatMap(pairAliasWithValue))
+    }, null, 2),
 });
 
 /**
@@ -245,13 +272,16 @@ module.exports = {
       }]
     },
 
-    snippets: {
+    editor: {
       transformGroup: 'css',
-      buildPath: 'build/snippets/',
+      buildPath: 'build/editor/',
       prefix: 'rh',
       files: [{
         destination: 'vscode.json',
         format: 'snippets/vscode',
+      }, {
+        destination: 'hexokinase.json',
+        format: 'editor/hexokinase',
       }]
     }
   }

@@ -46,7 +46,7 @@
           "css",
           "scss"
         ],
-        "path": "./build/snippets/vscode.json"
+        "path": "./build/editor/vscode.json"
       }
     ]
   },
