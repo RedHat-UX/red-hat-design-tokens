@@ -21,7 +21,7 @@ color:
       attributes:
         type: gray
     400:
-      value: '#aaaaaa'
+      value: '#aaa'
       comment: Secondary text (light theme)
       attributes:
         type: gray
