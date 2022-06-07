@@ -4,7 +4,6 @@ color:
       # @see https://github.com/amzn/style-dictionary/issues/716#issuecomment-943673202
       _:
         value: '{color.blue.500}'
-
       lightest:
         value: '{color.blue.100}'
       lighter:
