@@ -10,12 +10,29 @@ npm run build
 
 You should see something like this output:
 ```
-scss
-✔︎ build/scss/_variables.scss
+```css
+✔︎ css/global.css
+✔︎ css/shared.css
+✔︎ css/reset.css.js
 
-css
-✔︎ build/css/global.css
-✔︎ build/css/shared.css
+scss
+✔︎ scss/_variables.scss
+
+json
+✔︎ json/rhds.tokens.json
+
+js
+✔︎ js/rhds.tokens.js
+✔︎ js/tokens.d.ts
+✔︎ js/tokens.cjs
+✔︎ js/tokens.d.cts
+
+html
+✔︎ build/index.html
+
+editor
+✔︎ editor/vscode.json
+✔︎ editor/hexokinase.json
 ```
 
 ## Dev Server

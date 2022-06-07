@@ -1,5 +1,11 @@
 node_modules
 build
+editor
+js
+json
+css
+scss
+
 
 .DS_Store
 .wireit

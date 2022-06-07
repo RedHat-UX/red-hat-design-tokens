@@ -7,8 +7,8 @@
     "start": "wireit"
   },
   "type": "module",
-  "main": "build/js/tokens.js",
-  "module": "build/js/tokens.js",
+  "main": "js/tokens.cjs",
+  "module": "js/tokens.js",
   "exports": {
     ".": {
       "import": "build/js/tokens.js",
@@ -26,7 +26,12 @@
         "config.cjs"
       ],
       "output": [
-        "build/**"
+        "build/**",
+        "css/**",
+        "editor/**",
+        "js/**",
+        "json/**",
+        "scss/**"
       ]
     },
     "start": {
@@ -46,7 +51,7 @@
           "css",
           "scss"
         ],
-        "path": "./build/editor/vscode.json"
+        "path": "./editor/vscode.json"
       }
     ]
   },

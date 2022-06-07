@@ -171,7 +171,7 @@ module.exports = {
   platforms: {
     css: {
       transformGroup: 'css',
-      buildPath: 'build/css/',
+      buildPath: 'css/',
       prefix: 'rh',
       files: [
         {
@@ -201,7 +201,7 @@ module.exports = {
 
     scss: {
       transformGroup: 'scss',
-      buildPath: 'build/scss/',
+      buildPath: 'scss/',
       prefix: 'rh',
       files: [
         {
@@ -216,7 +216,7 @@ module.exports = {
 
     json: {
       transformGroup: 'css',
-      buildPath: 'build/json/',
+      buildPath: 'json/',
       prefix: 'rh',
       files: [{
         destination: 'rhds.tokens.json',
@@ -230,7 +230,7 @@ module.exports = {
 
     js: {
       transformGroup: 'js',
-      buildPath: 'build/js/',
+      buildPath: 'js/',
       files: [{
         destination: 'rhds.tokens.js',
         format: 'javascript/es6',
@@ -274,7 +274,7 @@ module.exports = {
 
     editor: {
       transformGroup: 'css',
-      buildPath: 'build/editor/',
+      buildPath: 'editor/',
       prefix: 'rh',
       files: [{
         destination: 'vscode.json',
