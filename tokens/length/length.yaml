@@ -1,4 +1,13 @@
 length:
+  4xs:
+    value: 0.0625rem
+    comment: 1px length token
+  3xs:
+    value: 0.125rem
+    comment: 2px length token
+  2xs:
+    value: 0.1875rem
+    comment: 3px length token
   xs:
     value: 0.25rem
     comment: 4px length token
