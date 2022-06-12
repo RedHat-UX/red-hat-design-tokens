@@ -4,8 +4,8 @@ box-shadow:
     type: shadow
     value:
       offsetX: 0
-      offsetY: 0.125rem
-      blur: 0.25rem
+      offsetY: '{length.3xs}'
+      blur: '{length.xs}'
       spread: 0
       color: rgba(21, 21, 21, 0.2)
   md:
@@ -13,18 +13,18 @@ box-shadow:
     type: shadow
     value:
       offsetX: 0
-      offsetY: 0.25rem
-      blur: 0.5rem
-      spread: 0.0625rem
+      offsetY: '{length.xs}'
+      blur: '{length.sm}'
+      spread: '{length.4xs}'
       color: rgba(21, 21, 21, 0.25)
   lg:
     comment: Large box shadow
     type: shadow
     value:
       offsetX: 0
-      offsetY: 0.25rem
-      blur: 0.5rem
-      spread: 0.0625rem
+      offsetY: '{length.xs}'
+      blur: '{length.sm}'
+      spread: '{length.4xs}'
       color: rgba(21, 21, 21, 0.3)
   xl:
     comment: Extra large box shadow
@@ -32,6 +32,6 @@ box-shadow:
     value:
       offsetX: 0
       offsetY: 0.75rem
-      blur: 1.5rem
-      spread: 0.125rem
+      blur: '{length.lg}'
+      spread: '{length.3xs}'
       color: rgba(21, 21, 21, 0.35)
