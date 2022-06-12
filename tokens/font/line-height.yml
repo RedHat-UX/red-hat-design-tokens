@@ -1,7 +1,10 @@
 line-height:
   sm:
     value: 1.3
+    comment: Large headings
   md:
     value: 1.4
+    comment: Medium headings
   lg:
     value: 1.5
+    comment: Small headings and body text
