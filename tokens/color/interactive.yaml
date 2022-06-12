@@ -3,17 +3,21 @@ color:
     blue:
       lightest:
         value: '{color.blue.100}'
+        comment: Inline link hover (dark theme)
       lighter:
         value: '{color.blue.200}'
+        comment: Inline link (dark theme)
       darker:
         value: '{color.blue.300}'
+        comment: Inline link (light theme)
       darkest:
         value: '{color.blue.400}'
+        comment: Inline link hover (light theme)
 
     purple:
       lightest:
-        comment: Inline link visited hover (dark theme)
         value: '{color.purple.100}'
+        comment: Inline link visited hover (dark theme)
       lighter:
         value: '{color.purple.200}'
         comment: Inline link visited (dark theme)

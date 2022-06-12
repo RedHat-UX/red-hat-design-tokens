@@ -4,17 +4,23 @@ color:
       on:
         dark:
           value: '{color.white}'
+          comment: Primary text color for dark theme
         light:
           value: '{color.black.900}'
+          comment: Primary text color for light theme
     secondary:
       on:
         dark:
           value: '{color.black.300}'
+          comment: Secondary text color for dark theme
         light:
           value: '{color.black.600}'
+          comment: Secondary text color for light theme
     brand:
       on:
         dark:
           value: '{color.red.500}'
+          comment: Brand text color for dark theme
         light:
           value: '{color.red.400}'
+          comment: Brand text color for light theme
