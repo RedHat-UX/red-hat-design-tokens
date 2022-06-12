@@ -1,0 +1,31 @@
+length:
+  xs:
+    value: 0.25rem
+    comment: 4px length token
+  sm:
+    value: 0.5rem
+    comment: 8px length token
+  md:
+    value: 1.0rem
+    comment: 16px length token
+  lg:
+    value: 1.5rem
+    comment: 24px length token
+  xl:
+    value: 2.0rem
+    comment: 32px length token
+  2xl:
+    value: 3.0rem
+    comment: 48px length token
+  3xl:
+    value: 4.0rem
+    comment: 64px length token
+  4xl:
+    value: 5.0rem
+    comment: 80px length token
+  5xl:
+    value: 6.0rem
+    comment: 96px length token
+  8xl:
+    value: 8.0rem
+    comment: 128px length token
