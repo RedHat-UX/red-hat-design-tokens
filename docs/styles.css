@@ -157,6 +157,40 @@ output.swatch.light {
   display: block;
 }
 
+.border output {
+  width: var(--rh-length-2xl);
+  aspect-ratio: 2;
+  display: block;
+  border-style: solid;
+  border-width: var(--border-width, var(--rh-border-width-sm));
+  border-color: var(--border-color, var(--rh-color-border-primary-on-light));
+  border-radius: var(--border-radius, var(--rh-border-radius-default));
+}
+
+.opacity output {
+  opacity: var(--opacity);
+  background-color: black;
+  display: block;
+  width: var(--rh-length-xl);
+  aspect-ratio: 1;
+}
+
+.space output {
+  width: var(--space);
+  background-color: black;
+  opacity: var(--rh-opacity-60);
+  display: block;
+  aspect-ratio: 1;
+}
+
+.length output {
+  width: var(--length);
+  background-color: black;
+  opacity: var(--rh-opacity-60);
+  display: block;
+  border-bottom: 2px solid var(--rh-color-border-primary-on-light);
+}
+
 #typography {
   --swatch-size: 100%;
 }

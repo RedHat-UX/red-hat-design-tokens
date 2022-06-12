@@ -1,4 +1,9 @@
 opacity:
+  comment: >-
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+    architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+    asperiores aliquid distinctio consectetur obcaecati?
+
   0:
     value: 0%
   10:

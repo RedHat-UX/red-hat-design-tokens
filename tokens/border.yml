@@ -1,5 +1,9 @@
 border:
   width:
+    comment: >-
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+      architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+      asperiores aliquid distinctio consectetur obcaecati?
     sm:
       value: '{length.4xs}'
       comment: 1px border width
@@ -9,9 +13,14 @@ border:
     lg:
       value: '{length.2xs}'
       comment: 3px border width
+
   radius:
+    comment: >-
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+      architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+      asperiores aliquid distinctio consectetur obcaecati?
     sharp:
-      value: 0
+      value: 0.0rem
       comment: Border radius reset
     default:
       comment: Card with 3px border radius
