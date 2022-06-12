@@ -4,7 +4,7 @@
   font-size: 18px;
   line-height: 1.6;
 }
-
+style
 html,
 body {
   margin: 0;
@@ -147,6 +147,10 @@ output.swatch {
 
 output.swatch.light {
   border-color: var(--rh-color-black-900);
+}
+
+.line-height output {
+  line-height: var(--line-height);
 }
 
 .box-shadow output {

@@ -22,7 +22,7 @@
   {{ copyButton(item) }}
 {%- endmacro -%}
 
-{%- macro table(name) -%}
+{%- macro table(name, output = '') -%}
   <table>
     <thead>
       <tr>
@@ -38,23 +38,23 @@
         {%- if key != 'comment' -%}
           <tr class="{{name}}">
             <td style="--{{name}}: {{ item.value }};">
-            <output></output>
-          </td>
-          <td><code>${{ item.name }}</code></td>
-          <td>
-            <code>
-              {% if item.attributes.px %}
-                <span class="rem">{{ item.value }}</span>
-                <br/>
-                <span class="px">{{ item.attributes.px }}</span>
-              {% else %}
-                {{ item.value }}
-              {% endif %}
-            </code>
-          </td>
-          <td>{{ item.comment }}</td>
-          <td>{{ copyButton(item) }}</td>
-        </tr>
+              <output>{{ output | safe }}</output>
+            </td>
+            <td><code>${{ item.name }}</code></td>
+            <td>
+              <code>
+                {% if item.attributes.px %}
+                  <span class="rem">{{ item.value }}</span>
+                  <br/>
+                  <span class="px">{{ item.attributes.px }}</span>
+                {% else %}
+                  {{ item.value }}
+                {% endif %}
+              </code>
+            </td>
+            <td>{{ item.comment }}</td>
+            <td>{{ copyButton(item) }}</td>
+          </tr>
         {%- endif -%}
         {%- endfor -%}
       {% else %}
@@ -225,6 +225,10 @@
           {%- endif -%}
           {%- endfor -%}
         {%- endcall -%}
+
+        <h2>Line height</h2>
+        <p>{{ css['line-height'].comment }}</p>
+        {%- call table('line-height', output = 'Line<br/>height') -%}{%- endcall -%}
       </section>
 
       <section id="border">
