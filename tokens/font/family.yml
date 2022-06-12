@@ -1,10 +1,10 @@
 font:
   family:
     heading:
-      value: '"RedHatDisplay", "Overpass", Helvetica, Arial, sans-serif'
+      value: '"RedHatDisplay", "Overpass", Overpass, Helvetica, Arial, sans-serif'
       comment: Heading font family
     text:
-      value: '"RedHatText", "Overpass", Helvetica, Arial, sans-serif'
+      value: '"RedHatText", "Overpass", Overpass, Helvetica, Arial, sans-serif'
       comment: Body text font family
     code:
       value: '"RedHatMono", "Courier New", Courier, monospace'
