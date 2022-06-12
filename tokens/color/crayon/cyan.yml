@@ -2,7 +2,11 @@ color:
   cyan:
     50:
       value: '#f2f9f9'
+      comment: Alert - Default background
     300:
       value: '#009596'
+      comment: Alert - Default accent
     500:
       value: '#003737'
+      comment: Alert - Default title text
+

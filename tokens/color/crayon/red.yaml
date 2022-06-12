@@ -2,7 +2,7 @@ color:
   red:
     50:
       value: '#faeae8'
-      comment: Example - critical alert background
+      comment: Alert - Critical background
     100:
       value: '#fddbdb'
       comment: Lightest red
@@ -37,13 +37,6 @@ color:
     light:
       value: '{color.red.300}'
       comment: Light brand red
-    on:
-      dark:
-        value: '{color.red.400}'
-        comment: Brand red on dark background
-      light:
-        value: '{color.red.500}'
-        comment: Brand red on light background
     dark:
       value: '{color.red.600}'
       comment: Dark brand red/Brand red hover

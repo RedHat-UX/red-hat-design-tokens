@@ -2,7 +2,10 @@ color:
   green:
     50:
       value: '#f3faf2'
+      comment: Alert - Success background
     500:
       value: '#3e8635'
+      comment: Alert - Success accent
     600:
       value: '#1e4f18'
+      comment: Alert - Success title text

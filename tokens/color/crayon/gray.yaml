@@ -1,4 +1,7 @@
 color:
+  gray:
+    order: 50
+
   white:
     value: '#ffffff'
     comment: Primary surface (light theme) or primary text (dark theme)

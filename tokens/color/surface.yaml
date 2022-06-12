@@ -1,5 +1,11 @@
 color:
   surface:
+    order: 20
+    comment: >-
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+      architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+      asperiores aliquid distinctio consectetur obcaecati?
+
     lightest:
       value: '{color.white}'
       comment: Primary surface (light theme)

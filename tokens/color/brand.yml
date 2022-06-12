@@ -1,0 +1,19 @@
+color:
+  brand:
+    order: 0
+    comment: >-
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+      architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+      asperiores aliquid distinctio consectetur obcaecati?
+    red:
+      comment: >-
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+        architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+        asperiores aliquid distinctio consectetur obcaecati?
+      on:
+        dark:
+          value: '{color.red.400}'
+          comment: Brand red on dark background
+        light:
+          value: '{color.red.500}'
+          comment: Brand red on light background

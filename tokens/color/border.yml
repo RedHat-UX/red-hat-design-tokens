@@ -1,14 +1,22 @@
 color:
   border:
+    comment: >-
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+      architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+      asperiores aliquid distinctio consectetur obcaecati?
     primary:
       on:
-        dark:
-          value: '{color.white}'
         light:
           value: '{color.black.900}'
+          comment: Secondary CTA border (dark theme)
+        dark:
+          value: '{color.white}'
+          comment: Secondary CTA border (light theme)
     secondary:
       on:
         light:
           value: '{color.black.300}'
+          comment: Card border (light theme)
         dark:
           value: '{color.black.500}'
+          comment: Card border (light theme)

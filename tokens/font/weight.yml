@@ -1,11 +1,18 @@
 font:
   weight:
+    comment: >-
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+      architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+      asperiores aliquid distinctio consectetur obcaecati?
     regular:
       value: 400
+      type: fontWeight
       comment: Regular font weight
     medium:
       value: 500
+      type: fontWeight
       comment: Medium font weight
     bold:
       value: 700
+      type: fontWeight
       comment: Bold font weight

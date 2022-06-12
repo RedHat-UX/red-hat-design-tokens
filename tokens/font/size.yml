@@ -1,6 +1,11 @@
 font:
   size:
+
     heading:
+      comment: >-
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+        architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+        asperiores aliquid distinctio consectetur obcaecati?
       sm:
         value: 1.25rem
         comment: h6 font size
@@ -19,7 +24,12 @@ font:
       3xl:
         value: 3rem
         comment: h1 font size
+
     text:
+      comment: >-
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+        architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+        asperiores aliquid distinctio consectetur obcaecati?
       sm:
         value: 0.75rem
         comment: 12px font size
