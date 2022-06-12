@@ -1,0 +1,8 @@
+color:
+  cyan:
+    50:
+      value: '#f2f9f9'
+    300:
+      value: '#009596'
+    500:
+      value: '#003737'

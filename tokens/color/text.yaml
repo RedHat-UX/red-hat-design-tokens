@@ -9,6 +9,12 @@ color:
     secondary:
       on:
         dark:
-          value: '{color.black.400}'
+          value: '{color.black.300}'
         light:
           value: '{color.black.600}'
+    brand:
+      on:
+        dark:
+          value: '{color.red.500}'
+        light:
+          value: '{color.red.400}'

@@ -1,0 +1,8 @@
+color:
+  green:
+    50:
+      value: '#f3faf2'
+    500:
+      value: '#3e8635'
+    600:
+      value: '#1e4f18'

@@ -1,0 +1,55 @@
+color:
+  red:
+    50:
+      value: '#faeae8'
+      comment: Example - critical alert background
+    100:
+      value: '#fddbdb'
+      comment: Lightest red
+    200:
+      value: '#fab6b6'
+      comment: Lighter red
+    300:
+      value: '#f56d6d'
+      comment: Light red
+    400:
+      value: '#ff3333'
+      comment: Brand red (dark theme)
+    500:
+      value: '#ee0000'
+      comment: Brand red (light theme)
+    600:
+      value: '#be0000'
+      comment: Dark red or brand red hover
+    700:
+      value: '#8f0000'
+      comment: Darker red
+    800:
+      value: '#5f0000'
+      comment: Darkest red
+
+    lightest:
+      value: '{color.red.100}'
+      comment: Lightest brand red
+    lighter:
+      value: '{color.red.200}'
+      comment: lighter brand red
+    light:
+      value: '{color.red.300}'
+      comment: Light brand red
+    on:
+      dark:
+        value: '{color.red.400}'
+        comment: Brand red on dark background
+      light:
+        value: '{color.red.500}'
+        comment: Brand red on light background
+    dark:
+      value: '{color.red.600}'
+      comment: Dark brand red/Brand red hover
+    darker:
+      value: '{color.red.700}'
+      comment: Darker brand red
+    darkest:
+      value: '{color.red.800}'
+      comment: Darkest brand red

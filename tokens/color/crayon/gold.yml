@@ -1,0 +1,8 @@
+color:
+  gold:
+    50:
+      value: '#fdf7e7'
+    400:
+      value: '#f0ab00'
+    600:
+      value: '#795600'

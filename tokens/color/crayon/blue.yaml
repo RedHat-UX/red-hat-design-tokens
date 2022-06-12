@@ -1,16 +1,16 @@
 color:
   blue:
-    100:
+    50:
       value: '#e7f1fa'
-    200:
+    100:
       value: '#bee1f4'
-    300:
+    200:
       value: '#73bcf7'
-    400:
+    250:
       value: '#2b9af3'
-    500:
-      value: '#06c'
-    600:
+    300:
+      value: '#0066cc'
+    400:
       value: '#004080'
-    700:
+    450:
       value: '#002952'

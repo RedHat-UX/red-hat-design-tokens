@@ -2,9 +2,9 @@ color:
   purple:
     100:
       value: '#cbc1ff'
-    300:
+    200:
       value: '#a18fff'
-    500:
+    300:
       value: '#6753ac'
-    700:
+    400:
       value: '#1f0066'

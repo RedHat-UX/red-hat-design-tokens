@@ -8,11 +8,11 @@ context:
           value: '{color.text.primary.on.light}'
         muted:
           type: color
-          value: '{color.text.secondary.on.light}' # 6c6c6c, closest to #6a6e73 from PF
+          value: '{color.text.secondary.on.light}'
         link:
           _:
             type: color
-            value: '{color.interactive.blue._}'
+            value: '{color.interactive.blue.darkest}'
           hover:
             type: color
             value: '{color.interactive.blue.darker}'
