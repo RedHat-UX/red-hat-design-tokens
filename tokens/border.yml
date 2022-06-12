@@ -1,19 +1,22 @@
 border:
   width:
     sm:
-      value: 0.0625rem
+      value: '{length.4xs}'
+      comment: 1px border width
     md:
-      value: 0.125rem
+      value: '{length.3xs}'
+      comment: 2px border width
     lg:
-      value: 0.1875rem
+      value: '{length.2xs}'
+      comment: 3px border width
   radius:
     sharp:
       value: 0
       comment: Border radius reset
     default:
       comment: Card with 3px border radius
-      value: 0.1875rem
+      value: '{length.2xs}'
     pill:
-      value: 5rem
+      value: '{length.4xl}'
       comment: Pill border radius
 
