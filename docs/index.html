@@ -1,69 +1,5 @@
+{% import "macros.html" as m with context %}
 <!DOCTYPE html>
-{%- set css = dictionary.properties -%}
-{%- set font = css.font -%}
-
-{%- macro variable(item) -%}
-  var(--{{ item.name }}, {{ item.value }})
-{%- endmacro -%}
-
-{%- macro copyButton(item) -%}
-  {%- set id = item.name + "-copy" -%}
-  <rh-tooltip for="{{ id }}" position="inline-start"><code>{{ variable(item) }}</code></rh-tooltip>
-  <button class="copy-button" data-variable="{{ variable(item) }}">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-      <path d="M30.286 6.857q.714 0 1.214.5t.5 1.214v21.714q0 .714-.5 1.214t-1.214.5H13.143q-.714 0-1.214-.5t-.5-1.214v-5.143H1.715q-.714 0-1.214-.5t-.5-1.214v-12q0-.714.357-1.571T1.215 8.5l7.286-7.286q.5-.5 1.357-.857T11.429 0h7.429q.714 0 1.214.5t.5 1.214v5.857q1.214-.714 2.286-.714h7.429zm-9.715 3.804L15.232 16h5.339v-5.339zM9.143 3.804 3.804 9.143h5.339V3.804zm3.5 11.553 5.643-5.643V2.285h-6.857v7.429q0 .714-.5 1.214t-1.214.5H2.286v11.429h9.143v-4.571q0-.714.357-1.571t.857-1.357zm17.071 14.357V9.143h-6.857v7.429q0 .714-.5 1.214t-1.214.5h-7.429v11.429h16z"/>
-    </svg>
-  </button>
-{%- endmacro -%}
-
-{%- macro typographyDemo(item) -%}
-  <h4>{{ item.comment }}</h4>
-  <p>The quick brown fox jumped over the lazy dog's back.</p>
-  {{ copyButton(item) }}
-{%- endmacro -%}
-
-{%- macro table(name, output = '') -%}
-  <table>
-    <thead>
-      <tr>
-        <th>Example</th>
-        <th>Token name</th>
-        <th>Value</th>
-        <th>Use case</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% if name %}
-        {%- for key, item in css[name] -%}
-        {%- if key != 'comment' -%}
-          <tr class="{{name}}">
-            <td style="--{{name}}: {{ item.value }};">
-              <output>{{ output | safe }}</output>
-            </td>
-            <td><code>${{ item.name }}</code></td>
-            <td>
-              <code>
-                {% if item.attributes.px %}
-                  <span class="rem">{{ item.value }}</span>
-                  <br/>
-                  <span class="px">{{ item.attributes.px }}</span>
-                {% else %}
-                  {{ item.value }}
-                {% endif %}
-              </code>
-            </td>
-            <td>{{ item.comment }}</td>
-            <td>{{ copyButton(item) }}</td>
-          </tr>
-        {%- endif -%}
-        {%- endfor -%}
-      {% else %}
-        {{ caller() }}
-      {% endif %}
-    </tbody>
-  </table>
-{%- endmacro -%}
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -87,218 +23,56 @@
     <header>
       <h1>
         <svg version="1.1" x="0" y="0" viewBox="0 0 284 48" style="enable-background:new 0 0 284 48" xml:space="preserve" aria-label="Red Hat Digital Design System">
-          <g id="Logo" transform="translate(-20 -16)">
+          <g transform="translate(-20 -16)">
             <path style="fill: currentColor" d="M103.2 42.8h5.4c4.2 0 7.4 3.1 7.4 7s-3.2 7-7.4 7h-5.4v-14zm2.9 2.6v8.8h2.5c2.5 0 4.4-1.9 4.4-4.4 0-2.5-1.9-4.5-4.4-4.5h-2.5zM117.6 43.6c0-.9.7-1.6 1.6-1.6.9 0 1.6.7 1.6 1.6s-.7 1.6-1.6 1.6c-.9 0-1.6-.7-1.6-1.6zm2.9 13.2h-2.7V46.4h2.7v10.4zM122.2 51.6c0-3 2.4-5.3 5.4-5.3 1 0 2 .3 2.8.8v-.7h2.7v10.4c0 2.8-1.8 4.3-5.2 4.3-1.6 0-3.1-.3-4.3-.9l1-2.1c1.1.6 2.2.8 3.3.8 1.6 0 2.5-.7 2.5-2.1V56c-.8.6-1.8.9-2.9.9-3 0-5.3-2.4-5.3-5.3zm5.7 3c1 0 1.8-.3 2.4-.9v-4.1c-.6-.6-1.5-.9-2.4-.9-1.7 0-3 1.3-3 3 0 1.6 1.3 2.9 3 2.9zM135 43.6c0-.9.7-1.6 1.6-1.6.9 0 1.6.7 1.6 1.6s-.7 1.6-1.6 1.6c-.9 0-1.6-.7-1.6-1.6zm2.9 13.2h-2.7V46.4h2.7v10.4zM141.5 48.7h-2.1v-2.3h2.1v-2.7l2.7-.6v3.3h3v2.3h-3v4.6c0 1 .4 1.3 1.4 1.3.5 0 .9-.1 1.5-.2v2.2c-.6.2-1.5.3-2.1.3-2.3 0-3.5-1.1-3.5-3.1v-5.1zM148 53.8c0-2 1.6-3.2 4.3-3.2.9 0 1.7.1 2.5.4v-.7c0-1.2-.7-1.8-2.2-1.8-.9 0-1.9.3-3.2.9l-1-2c1.6-.8 3.1-1.1 4.6-1.1 2.8 0 4.4 1.4 4.4 3.9V57h-2.7v-.7c-.9.6-1.8.9-3 .9-2.1-.2-3.7-1.5-3.7-3.4zm4.6 1.3c.9 0 1.7-.2 2.3-.7v-1.6c-.7-.3-1.4-.4-2.2-.4-1.3 0-2 .5-2 1.3 0 .9.7 1.4 1.9 1.4zM162.4 56.8h-2.7v-14l2.7-.6v14.6zM176.3 56c-.8.7-1.9 1-3 1-3 0-5.3-2.4-5.3-5.4 0-3 2.4-5.3 5.4-5.3 1 0 2 .3 2.8.8v-4.3l2.7-.6v14.6h-2.7V56zm-2.5-1.4c1 0 1.9-.4 2.5-1v-4.1c-.6-.6-1.5-1-2.5-1-1.7 0-3 1.3-3 3 0 1.8 1.3 3.1 3 3.1zM186.3 57c-3.2 0-5.6-2.4-5.6-5.4 0-3 2.3-5.4 5.4-5.4 3 0 5.2 2.4 5.2 5.6v.7h-7.8c.4 1.3 1.5 2.2 3 2.2.9 0 1.7-.3 2.3-.8l1.8 1.6c-1.3 1.1-2.6 1.5-4.3 1.5zm-2.9-6.4h5.1c-.3-1.2-1.3-2.1-2.5-2.1-1.3 0-2.2.8-2.6 2.1zM193.5 53.8c1.2.8 2.3 1.2 3.4 1.2 1.2 0 2-.4 2-1.1 0-.5-.4-.8-1.3-1l-2-.3c-2.1-.3-3.2-1.3-3.2-3 0-2 1.7-3.3 4.3-3.3 1.5 0 3 .4 4.3 1.3l-1.3 1.8c-1.1-.7-2.2-1-3.2-1s-1.6.4-1.6 1 .4.8 1.4 1l2 .3c2 .3 3.2 1.4 3.2 3 0 2-1.9 3.4-4.6 3.4-1.9 0-3.6-.5-4.8-1.4l1.4-1.9zM202.6 43.6c0-.9.7-1.6 1.6-1.6.9 0 1.6.7 1.6 1.6s-.7 1.6-1.6 1.6c-.9 0-1.6-.7-1.6-1.6zm3 13.2h-2.7V46.4h2.7v10.4zM207.2 51.6c0-3 2.4-5.3 5.4-5.3 1 0 2 .3 2.8.8v-.7h2.7v10.4c0 2.8-1.8 4.3-5.2 4.3-1.6 0-3.1-.3-4.3-.9l1-2.1c1.1.6 2.2.8 3.3.8 1.6 0 2.5-.7 2.5-2.1V56c-.8.6-1.8.9-2.9.9-2.9 0-5.3-2.4-5.3-5.3zm5.7 3c1 0 1.8-.3 2.4-.9v-4.1c-.6-.6-1.5-.9-2.4-.9-1.7 0-3 1.3-3 3 0 1.6 1.3 2.9 3 2.9zM220.3 46.4h2.7v.8c.8-.7 1.8-1 2.9-1 2.4 0 4.1 1.7 4.1 4.1v6.5h-2.7v-6.1c0-1.3-.8-2.2-2.2-2.2-.9 0-1.7.4-2.1 1v7.2h-2.7V46.4zM236.6 53.8c1.2.8 2.3 1.2 3.4 1.2 1.2 0 2-.4 2-1.1 0-.5-.4-.8-1.3-1l-2-.3c-2.1-.3-3.2-1.3-3.2-3 0-2 1.7-3.3 4.3-3.3 1.5 0 3 .4 4.3 1.3l-1.3 1.8c-1.1-.7-2.2-1-3.2-1s-1.6.4-1.6 1 .4.8 1.4 1l2 .3c2 .3 3.2 1.4 3.2 3 0 2-1.9 3.4-4.6 3.4-1.9 0-3.6-.5-4.8-1.4l1.4-1.9zM248.7 56.9l-4.1-10.5h3l2.6 7.1 3-7.1h3l-4.8 11.2c-1.1 2.5-2.3 3.5-4.6 3.5-.5 0-.9 0-1.2-.1v-2.4c.3.1.5.1 1 .1 1 0 1.7-.5 2.1-1.4v-.4zM257.8 53.8c1.2.8 2.3 1.2 3.4 1.2 1.2 0 2-.4 2-1.1 0-.5-.4-.8-1.3-1l-2-.3c-2.1-.3-3.2-1.3-3.2-3 0-2 1.7-3.3 4.3-3.3 1.5 0 3 .4 4.3 1.3l-1.3 1.8c-1.1-.7-2.2-1-3.2-1s-1.6.4-1.6 1 .4.8 1.4 1l2 .3c2 .3 3.2 1.4 3.2 3 0 2-1.9 3.4-4.6 3.4-1.9 0-3.6-.5-4.8-1.4l1.4-1.9zM268.3 48.7h-2.1v-2.3h2.1v-2.7l2.7-.6v3.3h3v2.3h-3v4.6c0 1 .4 1.3 1.4 1.3.5 0 .9-.1 1.5-.2v2.2c-.6.2-1.5.3-2.1.3-2.3 0-3.5-1.1-3.5-3.1v-5.1zM280.4 57c-3.2 0-5.6-2.4-5.6-5.4 0-3 2.3-5.4 5.4-5.4 3 0 5.2 2.4 5.2 5.6v.7h-7.8c.4 1.3 1.5 2.2 3 2.2.9 0 1.7-.3 2.3-.8l1.8 1.6c-1.4 1.1-2.6 1.5-4.3 1.5zm-2.9-6.4h5.1c-.3-1.2-1.3-2.1-2.5-2.1-1.3 0-2.2.8-2.6 2.1zM287 46.4h2.7v.8c.7-.6 1.7-1 2.7-1 1.3 0 2.4.6 3.1 1.6.8-1 2-1.6 3.4-1.6 2.3 0 4 1.7 4 4.1v6.5h-2.7v-6.1c0-1.3-.8-2.2-2-2.2-.8 0-1.5.4-2 1 0 .2.1.5.1.7v6.5h-2.7v-6.1c0-1.3-.8-2.2-2-2.2-.8 0-1.5.3-1.9.9v7.3H287V46.4zM103.3 20.8h6.4c2.8 0 4.7 1.7 4.7 4.1 0 1.8-1.1 3.3-2.9 3.8l3.1 6h-2.3l-2.9-5.7h-3.9v5.7h-2.1V20.8zm2.1 1.9v4.7h4.1c1.6 0 2.7-.9 2.7-2.3s-1.1-2.3-2.7-2.3h-4.1zM120.6 35c-3 0-5.3-2.3-5.3-5.3 0-2.9 2.2-5.2 5.1-5.2 2.8 0 4.9 2.3 4.9 5.3v.6h-8c.3 1.7 1.7 2.9 3.4 2.9 1 0 1.9-.3 2.6-.9l1.3 1.3c-1.3.9-2.5 1.3-4 1.3zm-3.4-6.1h6c-.3-1.6-1.5-2.7-3-2.7s-2.7 1.1-3 2.7zM135 33.9c-.9.7-1.9 1.1-3.1 1.1-2.9 0-5.1-2.3-5.1-5.3 0-2.9 2.3-5.2 5.2-5.2 1.1 0 2.2.4 3.1 1v-4.7l2-.4v14.4h-2v-.9zm-2.9-.6c1.1 0 2.1-.4 2.8-1.2v-4.6c-.7-.8-1.7-1.2-2.8-1.2-2 0-3.5 1.5-3.5 3.5s1.6 3.5 3.5 3.5zM143.7 20.8h2.1v6h7.4v-6h2.1v14h-2.1v-6.1h-7.4v6.1h-2.1v-14zM157.3 31.9c0-1.9 1.6-3.1 4.1-3.1 1 0 1.9.2 2.8.6v-1.1c0-1.4-.9-2.2-2.5-2.2-.9 0-1.9.3-3.2.9l-.7-1.5c1.5-.7 2.8-1 4.2-1 2.6 0 4.2 1.3 4.2 3.6v6.7h-2V34c-.9.7-1.9 1.1-3.2 1.1-2.2-.1-3.7-1.3-3.7-3.2zm4.2 1.6c1.1 0 2-.3 2.7-1v-1.8c-.8-.4-1.6-.6-2.6-.6-1.5 0-2.4.7-2.4 1.7 0 1.1.9 1.7 2.3 1.7zM169.4 26.3h-2.2v-1.7h2.2V22l2-.5v3.1h3v1.7h-3v5.5c0 1 .4 1.4 1.5 1.4.6 0 1-.1 1.5-.2v1.7c-.5.2-1.3.3-1.9.3-2 0-3-.9-3-2.7v-6z"/>
-            <path id="Rectangle" style="fill: currentColor" d="M84.9 18.8h1v40h-1z"/>
-            <g id="Icon" transform="translate(19.5 21.5)">
-              <path id="Path" d="M40.8 14.8c.1.3.1.6.1.9 0 3.7-4.5 4.4-7.7 4.4C21 20.1 12 12.5 12 10.2c0-.2 0-.3.1-.5l-1 2.3c-.2.6-.4 1.2-.4 1.8 0 4.5 10.2 11.4 21.9 11.4 5.2 0 9.1-1.9 9.1-5.4-.1-.9-.2-1.7-.4-2.5l-.5-2.5z"/>
-              <path id="Path-2" d="M33.2 20c3.1 0 7.7-.6 7.7-4.4 0-.3 0-.6-.1-.9l-1.9-8.1c-.4-1.8-.8-2.6-3.9-4.2-2.4-1.2-7.7-3.3-9.3-3.3-1.5 0-1.9 1.9-3.6 1.9S19.2-.4 17.6-.4c-1.5 0-2.5 1-3.2 3.1 0 0-2.1 5.9-2.4 6.8 0 .2-.1.3-.1.5 0 2.5 9.1 10 21.3 10m8.1-2.8c.2.8.4 1.7.4 2.5 0 3.5-3.9 5.4-9.1 5.4-11.7 0-21.9-6.8-21.9-11.4 0-.6.1-1.3.4-1.8-4.2.2-9.6 1-9.6 5.8 0 7.9 18.6 17.6 33.4 17.6 11.3 0 14.2-5.1 14.2-9.2-.1-3.1-2.8-6.8-7.8-8.9" style="fill:#e00"/>
+            <path style="fill: currentColor" d="M84.9 18.8h1v40h-1z"/>
+            <g transform="translate(19.5 21.5)">
+              <path d="M40.8 14.8c.1.3.1.6.1.9 0 3.7-4.5 4.4-7.7 4.4C21 20.1 12 12.5 12 10.2c0-.2 0-.3.1-.5l-1 2.3c-.2.6-.4 1.2-.4 1.8 0 4.5 10.2 11.4 21.9 11.4 5.2 0 9.1-1.9 9.1-5.4-.1-.9-.2-1.7-.4-2.5l-.5-2.5z"/>
+              <path d="M33.2 20c3.1 0 7.7-.6 7.7-4.4 0-.3 0-.6-.1-.9l-1.9-8.1c-.4-1.8-.8-2.6-3.9-4.2-2.4-1.2-7.7-3.3-9.3-3.3-1.5 0-1.9 1.9-3.6 1.9S19.2-.4 17.6-.4c-1.5 0-2.5 1-3.2 3.1 0 0-2.1 5.9-2.4 6.8 0 .2-.1.3-.1.5 0 2.5 9.1 10 21.3 10m8.1-2.8c.2.8.4 1.7.4 2.5 0 3.5-3.9 5.4-9.1 5.4-11.7 0-21.9-6.8-21.9-11.4 0-.6.1-1.3.4-1.8-4.2.2-9.6 1-9.6 5.8 0 7.9 18.6 17.6 33.4 17.6 11.3 0 14.2-5.1 14.2-9.2-.1-3.1-2.8-6.8-7.8-8.9" style="fill:#e00"/>
             </g>
           </g>
         </svg>
       </h1>
     </header>
     <main>
-      <section id="color">
-        <h2>Color</h2>
-        <p>{{ dictionary.tokens.color.comment }}</p>
-        {%- for name, family in colors -%}
-          <h3>{{ name }}</h3>
-          <p>{{ dictionary.tokens.color[name].comment }}</p>
-          {%- call table() -%}
-            {%- for item in family.values -%}
-            {%- set r = item.attributes.rgb.r -%}
-            {%- set g = item.attributes.rgb.g -%}
-            {%- set b = item.attributes.rgb.b -%}
-            {%- set a = item.attributes.rgb.a -%}
-            <tr>
-              <td><output class="swatch{{ ' light' if item.attributes.isLight }}" style="background: {{ item.value }}"></output></td>
-              <td><code>${{ item.name }}</code></td>
-              <td>
-                <code>
-                  <span class="hex">{{ item.value }}</span>
-                  <br/>
-                  <span class="rgb">rgb({{ r }}, {{ g }}, {{ b }})</span>
-                </code>
-              </td>
-              <td>{{ item.comment }}</td>
-              <td class="copy-cell">{{ copyButton(item) }}</td>
-            </tr>
-            {%- endfor -%}
-          {%- endcall -%}
+      <section id="overview">
+        <h2>Overview</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, commodi. Minus obcaecati ea aperiam omnis tenetur veniam voluptatem, magni expedita ducimus, est reprehenderit reiciendis nisi.</p>
+      </section>
+
+      {%- call m.category('color') -%}
+        {%- for name, family in allTokens | colors | groupby('attributes.type') | excludekeys('border', 'text', 'icon') | sortColorGroupByOrder -%}
+          <h3>{{ name | capitalize }}</h3>
+          {{- tokens.color[name] | getDocs | getDescription | safe -}}
+          {{ m.colorTable(family) }}
         {%- endfor -%}
-      </section>
+      {%- endcall -%}
 
-      <section id="box-shadow">
-        <h2>Box shadow</h2>
-        <p>{{ css['box-shadow'].comment }}</p>
-        {%- call table('box-shadow') -%}{%- endcall -%}
-      </section>
+      {{ m.category('box-shadow') }}
 
-      <section id="typography">
-        <h2>Typography</h2>
-        <p>{{ css.font.comment }}</p>
-        <h3>Font families</h3>
-        <p>{{ css.font.family.comment }}</p>
-        {%- call table() -%}
-          {%- for key, item in font.family -%}
-            {%- if key != 'comment' -%}
-            <tr class="font family">
-              <td style="--font-family: {{ item.value }}"><output>{{ item.example }}</output></td>
-              <td><code>${{ item.name }}</code></td>
-              <td><code>{{ item.original.value[0] }}</td>
-              <td>{{ item.comment }}</td>
-              <td>{{ copyButton(item) }}</td>
-            </article>
-            {%- endif -%}
-          {%- endfor -%}
-        {%- endcall -%}
+      {%- call m.category('font') -%}
+        {{ m.subcategory(collection = tokens.font.family) }}
+        {{ m.subcategory(collection = tokens.font.size.heading, rowType = 'fontSize') }}
+        {{ m.subcategory(collection = tokens.font.size['body-text'], rowType = 'fontSize') }}
+        {{ m.subcategory(collection = tokens.font.size.code, rowType = 'fontSize') }}
+        {{ m.subcategory(collection = tokens.font.weight.heading) }}
+        {{ m.subcategory(collection = tokens.font.weight['body-text']) }}
+        {{ m.subcategory(collection = tokens.font.weight.code) }}
+        {{ m.subcategory(collection = tokens['line-height']) }}
+        {{ m.subcategory(collection = tokens.color.text) }}
+      {%- endcall -%}
 
-        <h3>Heading font sizes</h3>
-        <p>{{ css.font.size.heading.comment }}</p>
-        {%- call table() -%}
-          {%- for key, item in font.size.heading -%}
-          {%- if key != 'comment' -%}
-          <tr class="font size heading">
-            <td style="--font-size: {{ item.value }}; --font-family: {{ font.family.heading.value }}">
-              <output>Aa</output>
-            </td>
-            <td><code>${{ item.name }}</code></td>
-            <td>
-              <code>
-                <span class="rem">{{ item.value }}</span>
-                <br/>
-                <span class="px">{{ item.attributes.px }}</span>
-              </code>
-            </td>
-            <td>{{ item.comment }}</td>
-            <td>{{ copyButton(item) }}</td>
-          </tr>
-          {%- endif -%}
-          {%- endfor -%}
-        {%- endcall -%}
+      {% call m.category('border') %}
+        {{ m.subcategory(collection = tokens.border.radius, rowType = 'borderRadius') }}
+        {{ m.subcategory(collection = tokens.border.width, rowType = 'borderWidth') }}
+        {{ m.subcategory(collection = tokens.color.border) }}
+      {% endcall %}
 
-        <h3>Text font sizes</h3>
-        <p>{{ css.font.size.text.comment }}</p>
-        {%- call table() -%}
-          {%- for key, item in font.size.text -%}
-          {%- if key != 'comment' -%}
-          <tr class="font size text">
-            <td style="--font-size: {{ item.value }};">
-              <output>Aa</output>
-            </td>
-            <td><code>${{ item.name }}</code></td>
-            <td>
-              <code>
-                <span class="rem">{{ item.value }}</span>
-                <br/>
-                <span class="px">{{ item.attributes.px }}</span>
-              </code>
-            </td>
-            <td>{{ item.comment }}</td>
-            <td>{{ copyButton(item) }}</td>
-          </tr>
-          {%- endif -%}
-          {%- endfor -%}
-        {%- endcall -%}
+      {{ m.category('opacity') }}
+      {{ m.category('space') }}
+      {{ m.category('length') }}
+      {{ m.subcategory(collection = tokens.size.icon, level = 2, name = 'icon-size') }}
 
-        <h3>Font weights</h3>
-        <p>{{ css.font.weight.comment }}</p>
-        {%- call table() -%}
-          {%- for key, item in font.weight -%}
-          {%- if key != 'comment' -%}
-          <tr class="font weight">
-            <td style="--font-weight: {{ item.value }};">
-              <output>{{ item.attributes.aliases[0] }}</output>
-            </td>
-            <td><code>${{ item.name }}</code></td>
-            <td>
-              <code>
-                <span class="numerical">{{ item.value }}</span>
-                <br/>
-                <span class="common">{{ item.attributes.aliases[0] }}</span>
-              </code>
-            </td>
-            <td>{{ item.comment }}</td>
-            <td>{{ copyButton(item) }}</td>
-          </tr>
-          {%- endif -%}
-          {%- endfor -%}
-        {%- endcall -%}
-
-        <h2>Line height</h2>
-        <p>{{ css['line-height'].comment }}</p>
-        {%- call table('line-height', output = 'Line<br/>height') -%}{%- endcall -%}
-      </section>
-
-      <section id="border">
-        <h2>Border</h2>
-        <p>{{ css.border.comment }}</p>
-        <h3>Radius</h3>
-        <p>{{ css.border.radius.comment }}</p>
-        {%- call table() -%}
-          {%- for key, item in css.border.radius -%}
-          {%- if key != 'comment' -%}
-          <tr class="border radius">
-            <td style="--border-radius: {{ item.value }};">
-              <output></output>
-            </td>
-            <td><code>${{ item.name }}</code></td>
-            <td>
-              <code>
-                <span class="rem">{{ item.value }}</span>
-                <br/>
-                <span class="px">{{ item.attributes.px }}</span>
-              </code>
-            </td>
-            <td>{{ item.comment }}</td>
-            <td>{{ copyButton(item) }}</td>
-          </tr>
-          {%- endif -%}
-          {%- endfor -%}
-        {%- endcall -%}
-        <h3>Width</h3>
-        <p>{{ css.border.width.comment }}</p>
-        {%- call table() -%}
-          {%- for key, item in css.border.width -%}
-          {%- if key != 'comment' -%}
-          <tr class="border width">
-            <td style="--border-width: {{ item.value }};">
-              <output></output>
-            </td>
-            <td><code>${{ item.name }}</code></td>
-            <td>
-              <code>
-                <span class="rem">{{ item.value }}</span>
-                <br/>
-                <span class="px">{{ item.attributes.px }}</span>
-              </code>
-            </td>
-            <td>{{ item.comment }}</td>
-            <td>{{ copyButton(item) }}</td>
-          </tr>
-          {%- endif -%}
-          {%- endfor -%}
-        {%- endcall -%}
-      </section>
-
-      <section id="opacity">
-        <h2>Opacity</h2>
-        <p>{{ css.opacity.comment }}</p>
-        {%- call table('opacity') -%}{%- endcall -%}
-      </section>
-
-      <section id="space">
-        <h2>Space</h2>
-        <p>{{ css.space.comment }}</p>
-        {%- call table('space') -%}{%- endcall -%}
-      </section>
-
-      <section id="length">
-        <h2>Length</h2>
-        <p>{{ css.length.comment }}</p>
-        {%- call table('length') -%}{%- endcall -%}
-      </section>
     </main>
   </body>
 </html>

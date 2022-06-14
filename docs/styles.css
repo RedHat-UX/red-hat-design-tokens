@@ -1,7 +1,7 @@
 :root {
   --swatch-size: 350px;
-  font-family: var(--rh-font-family-text);
-  font-size: 18px;
+  font-family: var(--rh-font-family-body-text);
+  font-size: var(--rh-font-size-body-text-lg);
   line-height: 1.6;
 }
 style
@@ -52,7 +52,12 @@ th {
 }
 
 tr {
-  border-bottom: 1px solid var(--rh-color-border-secondary-on-light);
+  border-bottom: 1px solid var(--rh-color-border-subtle-on-light);
+}
+
+td.item-name > div {
+  display: flex;
+  flex-flow: column;
 }
 
 .hex {
@@ -72,6 +77,10 @@ section {
   align-items: start;
 }
 
+section section {
+  padding: 0;
+}
+
 article {
   display: grid;
   position: relative;
@@ -79,11 +88,11 @@ article {
 
 section :is(h2, h3, h4, h5, h6) {
   grid-column: -1/1;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
 }
 
 code {
-  font-size: var(--rh-font-size-text-sm);
+  font-size: var(--rh-font-size-body-text-sm);
   font-weight: var(--rh-font-weight-text);
 }
 
@@ -123,7 +132,7 @@ td:nth-child(4) { width: 360px; }
 
 .font output {
   font-size: var(--font-size, var(--rh-font-size-heading-md));
-  font-family: var(--font-family, var(--rh-font-family-text));
+  font-family: var(--font-family, var(--rh-font-family-body-text));
   font-weight: var(--font-weight, var(--rh-font-weight-text));
 }
 
@@ -167,7 +176,7 @@ output.swatch.light {
   display: block;
   border-style: solid;
   border-width: var(--border-width, var(--rh-border-width-sm));
-  border-color: var(--border-color, var(--rh-color-border-primary-on-light));
+  border-color: var(--border-color, var(--rh-color-border-strong-on-light));
   border-radius: var(--border-radius, var(--rh-border-radius-default));
 }
 
@@ -192,7 +201,35 @@ output.swatch.light {
   background-color: black;
   opacity: var(--rh-opacity-60);
   display: block;
-  border-bottom: 2px solid var(--rh-color-border-primary-on-light);
+  border-bottom: 2px solid var(--rh-color-border-strong-on-light);
+  position: relative;
+}
+
+.length output::before, .length output::after {
+  content: '';
+  position: absolute;
+  display: block;
+  height: 4px;
+  width: 0;
+  inset-block: -4px;
+  border-style: solid;
+  border-inline-width: 2px 0;
+  border-color: var(--rh-color-border-interactive-on-light);
+}
+
+.length output::before {
+  inset-inline: -2px 100%;
+}
+
+.length output::after {
+  inset-inline: 100% 2px;
+}
+
+.icon-size output {
+  aspect-ratio: 1;
+  display: block;
+  width: var(--icon-size);
+  border: var(--rh-border-width-md) dotted var(--rh-color-border-strong-on-light);
 }
 
 #typography {

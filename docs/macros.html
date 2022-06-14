@@ -1,0 +1,211 @@
+{%- macro variable(item) -%}
+  var(--{{ item.name }}, {{ item.value }})
+{%- endmacro -%}
+
+{%- macro copyButton(item) -%}
+  {%- set id = item.name + "-copy" -%}
+  <rh-tooltip for="{{ id }}" position="inline-start"><code>{{ variable(item) }}</code></rh-tooltip>
+  <button class="copy-button" data-variable="{{ variable(item) }}">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+      <path d="M30.286 6.857q.714 0 1.214.5t.5 1.214v21.714q0 .714-.5 1.214t-1.214.5H13.143q-.714 0-1.214-.5t-.5-1.214v-5.143H1.715q-.714 0-1.214-.5t-.5-1.214v-12q0-.714.357-1.571T1.215 8.5l7.286-7.286q.5-.5 1.357-.857T11.429 0h7.429q.714 0 1.214.5t.5 1.214v5.857q1.214-.714 2.286-.714h7.429zm-9.715 3.804L15.232 16h5.339v-5.339zM9.143 3.804 3.804 9.143h5.339V3.804zm3.5 11.553 5.643-5.643V2.285h-6.857v7.429q0 .714-.5 1.214t-1.214.5H2.286v11.429h9.143v-4.571q0-.714.357-1.571t.857-1.357zm17.071 14.357V9.143h-6.857v7.429q0 .714-.5 1.214t-1.214.5h-7.429v11.429h16z"/>
+    </svg>
+  </button>
+{%- endmacro -%}
+
+{%- macro aliases(item) -%}
+  {% if item | isRef  %}
+    <code>${{ item | deref }}</code>
+  {% endif %}
+{%- endmacro -%}
+
+{%- macro nameCell(item) -%}
+  <td class="item-name">
+    <div>
+      <code>${{ item.name }}</code>{{ aliases(item) }}
+    </div>
+  </td>
+{%- endmacro -%}
+
+{%- macro typographyDemo(item) -%}
+  <h4>{{ item.comment }}</h4>
+  <p>The quick brown fox jumped over the lazy dog's back.</p>
+  {{ copyButton(item) }}
+{%- endmacro -%}
+
+{%- macro lengthCode(item) -%}
+  <code>
+    <span class="rem">{{ item.value }}</span>
+    <br/>
+    <span class="px">{{ item.attributes.px }}</span>
+  </code>
+{%- endmacro -%}
+
+{%- macro colorRow(item) -%}
+  {%- set r = item.attributes.rgb.r -%}
+  {%- set g = item.attributes.rgb.g -%}
+  {%- set b = item.attributes.rgb.b -%}
+  {%- set a = item.attributes.rgb.a -%}
+  <tr>
+    <td><output class="swatch{{ ' light' if item.attributes.isLight }}" style="background: {{ item.value }}"></output></td>
+    {{ nameCell(item) }}
+    <td>
+      <code>
+        <span class="hex">{{ item.value }}</span>
+        <br/>
+        <span class="rgb">rgb({{ r }}, {{ g }}, {{ b }})</span>
+      </code>
+    </td>
+    <td>{{ item.comment }}</td>
+    <td class="copy-cell">{{ copyButton(item) }}</td>
+  </tr>
+{%- endmacro -%}
+
+{%- macro colorTable(collection) -%}
+  {%- call table() -%}
+    {%- for item in collection -%}
+      {{- colorRow(item) -}}
+    {%- endfor -%}
+  {%- endcall -%}
+{%- endmacro -%}
+
+{%- macro fontFamilyRow(item) -%}
+  <tr class="font family">
+    <td style="--font-family: {{ item.value }}"><output>{{ item.$extensions['com.redhat.ux'].example }}</output></td>
+    {{ nameCell(item) }}
+    <td><code>{{ item.original.value[0] }}</td>
+    <td>{{ item.comment }}</td>
+    <td>{{ copyButton(item) }}</td>
+  </article>
+{%- endmacro -%}
+
+{%- macro fontSizeRow(item, fontFamily = 'var(--rh-font-family-text)') -%}
+  <tr class="font size">
+    <td style="--font-size: {{ item.value }}; --font-family: {{ fontFamily }}">
+      <output>Aa</output>
+    </td>
+    {{ nameCell(item) }}
+    <td>{{ lengthCode(item) }}</td>
+    <td>{{ item.comment }}</td>
+    <td>{{ copyButton(item) }}</td>
+  </tr>
+{%- endmacro -%}
+
+{%- macro fontWeightRow(item, fontFamily = 'var(--rh-font-family-text)') -%}
+  <tr class="font weight">
+    <td style="--font-weight: {{ item.value }}; --font-family: {{ fontFamily }};">
+      <output>{{ item.attributes.aliases[0] }}</output>
+    </td>
+    {{ nameCell(item) }}
+    <td>
+      <code>
+        <span class="numerical">{{ item.value }}</span>
+        <br/>
+        <span class="common">{{ item.attributes.aliases[0] }}</span>
+      </code>
+    </td>
+    <td>{{ item.comment }}</td>
+    <td>{{ copyButton(item) }}</td>
+  </tr>
+{%- endmacro -%}
+
+{%- macro borderRadiusRow(item) -%}
+  <tr class="border radius">
+    <td style="--border-radius: {{ item.value }};">
+      <output></output>
+    </td>
+    {{ nameCell(item) }}
+    <td>{{ lengthCode(item) }}</td>
+    <td>{{ item.comment }}</td>
+    <td>{{ copyButton(item) }}</td>
+  </tr>
+{%- endmacro -%}
+
+{%- macro borderWidthRow(item) -%}
+  <tr class="border width">
+    <td style="--border-width: {{ item.value }};">
+      <output></output>
+    </td>
+    {{ nameCell(item) }}
+    <td>{{ lengthCode(item) }}</td>
+    <td>{{ item.comment }}</td>
+    <td>{{ copyButton(item) }}</td>
+  </tr>
+{%- endmacro -%}
+
+{%- macro table(collection, output = '', name = '', rowType = undefined) -%}
+  <table>
+    <thead>
+      <tr>
+        <th>Example</th>
+        <th>Token name</th>
+        <th>Value</th>
+        <th>Use case</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%- if collection -%}
+        {%- for _, item in collection | stripmeta -%}
+          {% if rowType == 'fontSize' %}
+            {{ fontSizeRow(item, fontFamily = (collection | getDocs).fontFamily) }}
+          {% elif rowType == 'borderRadius' %}
+            {{ borderRadiusRow(item) }}
+          {% elif rowType == 'borderWidth' %}
+            {{ borderWidthRow(item) }}
+          {% elif collection.$type == 'fontWeight' %}
+            {{ fontWeightRow(item, fontFamily = (collection | getDocs).fontFamily) }}
+          {% elif collection.$type == 'fontFamily' %}
+            {{ fontFamilyRow(item) }}
+          {% else %}
+            <tr class="{{ name }}" data-key="{{ key }}">
+              <td style="--{{ name }}: {{ item.value }};">
+                <output>{{ output | safe }}</output>
+              </td>
+              {{ nameCell(item) }}
+              <td>
+                  {%- if item.attributes.px -%}
+                    {{ lengthCode(item) }}
+                  {%- else -%}
+                    <code>{{ item.value }}</code>
+                  {%- endif -%}
+                </code>
+              </td>
+              <td>{{ item.comment }}</td>
+              <td>{{ copyButton(item) }}</td>
+            </tr>
+          {% endif %}
+        {%- endfor -%}
+      {% else %}
+        {{ caller() }}
+      {% endif %}
+    </tbody>
+  </table>
+{%- endmacro -%}
+
+{%- macro category(name, level = 2) -%}
+  {%- set collection = tokens[name] -%}
+  {%- set docs = collection | getDocs -%}
+  <section id="{{ name }}">
+    <h{{ level }}>{{ docs.heading or (name | replace('-', ' ') | capitalize) }}</h{{ level }}>
+    {{- docs | getDescription | safe -}}
+    {% if caller %}
+      {{ caller() }}
+    {% else %}
+      {%- call table(collection, output = docs.example, name = name) -%}{%- endcall -%}
+    {% endif %}
+  </section>
+{%- endmacro -%}
+
+{%- macro subcategory(collection, rowType = undefined, name = undefined) -%}
+  {%- set docs = collection | getDocs -%}
+  <section id="{{ docs.heading | slugify | lower }}">
+    <h3>{{ docs.heading }}</h3>
+    {{- docs | getDescription | safe -}}
+    {% if caller %}
+      {{ caller() }}
+    {% elif collection.$type == 'color' %}
+      {{ colorTable(collection | flattenTokens) }}
+    {% else %}
+      {%- call table(collection, output = docs.example, rowType = rowType, name = name) -%}{%- endcall -%}
+    {% endif %}
+  </section>
+{%- endmacro -%}
