@@ -2,7 +2,10 @@ color:
   green:
     50:
       value: '#f3faf2'
-      comment: Alert - Success background
+      comment: alert - success background
+    100:
+      value: '#bde5b8'
+      comment: Label - Filled (Green) border color
     500:
       value: '#3e8635'
       comment: Alert - Success accent

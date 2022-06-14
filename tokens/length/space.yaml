@@ -1,8 +1,10 @@
 space:
-  comment: >-
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-    architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-    asperiores aliquid distinctio consectetur obcaecati?
+  $extensions:
+    com.redhat.ux:
+      description: >-
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+        architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+        asperiores aliquid distinctio consectetur obcaecati?
 
   xs:
     value: '{length.xs}'

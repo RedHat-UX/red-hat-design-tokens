@@ -2,7 +2,7 @@ animation:
   speed:
     value: 0.3s
   timing:
-    type: cubicBezier
+    $type: cubicBezier
     value:
       - 0.465
       - 0.183

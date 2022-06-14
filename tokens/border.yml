@@ -1,31 +1,46 @@
 border:
+  $extensions:
+    com.redhat.ux:
+      description: >-
+        Border Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+        architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+        asperiores aliquid distinctio consectetur obcaecati?
+
   width:
-    comment: >-
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-      architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-      asperiores aliquid distinctio consectetur obcaecati?
+    $extensions:
+      com.redhat.ux:
+        heading: Width
+        description: >-
+          Border Width Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+          architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+          asperiores aliquid distinctio consectetur obcaecati?
+
     sm:
       value: '{length.4xs}'
-      comment: 1px border width
+      comment: '1px border width; Example: Secondary CTA or Button'
     md:
       value: '{length.3xs}'
-      comment: 2px border width
+      comment: '2px border width: Example: Alert'
     lg:
       value: '{length.2xs}'
-      comment: 3px border width
+      comment: '3px border width: Example: Expanded Accordion panel'
 
   radius:
-    comment: >-
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-      architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-      asperiores aliquid distinctio consectetur obcaecati?
+    $extensions:
+      com.redhat.ux:
+        heading: Radius
+        description: >-
+          Border Radius Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+          architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+          asperiores aliquid distinctio consectetur obcaecati?
+
     sharp:
       value: 0.0rem
       comment: Border radius reset
     default:
-      comment: Card with 3px border radius
+      comment: '3px border radius; Example: Card'
       value: '{length.2xs}'
     pill:
       value: '{length.4xl}'
-      comment: Pill border radius
+      comment: 'Pill border radius; Example: Label'
 

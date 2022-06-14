@@ -1,0 +1,33 @@
+color:
+  icon:
+    $type: color # we must make this explicit because style-dictionary v3 does not implement the dtcg grouping algorithm
+    $extensions:
+      com.redhat.ux:
+        category: icon
+        heading: Color
+        description: >-
+          **Icon Color** Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+          architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+          asperiores aliquid distinctio consectetur obcaecati?
+
+    primary:
+      on:
+        light:
+          value: '{color.brand.red.500}'
+        dark:
+          value: '{color.brand.red.400}'
+
+    secondary:
+      on:
+        light:
+          value: '{color.black.900}'
+        dark:
+          value: '{color.white}'
+
+    subtle:
+      # @see https://github.com/amzn/style-dictionary/issues/716#issuecomment-943673202
+      _:
+        value: '{color.black.500}'
+      hover:
+        value: '{color.black.400}'
+

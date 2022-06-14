@@ -1,23 +1,26 @@
 color:
   accent:
-    order: 10
-    comment: >-
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-      architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-      asperiores aliquid distinctio consectetur obcaecati?
+    $extensions:
+      com.redhat.ux:
+        order: 10
+        description: >-
+          Color Accent Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+          architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+          asperiores aliquid distinctio consectetur obcaecati?
+
     base:
       on:
         light:
-          value: '{color.blue.200}'
-          comment: Base accent color for light theme
+          value: '{color.blue.400}'
+          comment: Inline link (light theme)
         dark:
-          value: '{color.blue.300}'
-          comment: Base accent color for dark theme
+          value: '{color.blue.200}'
+          comment: Inline link (dark theme)
     brand:
       on:
         light:
           value: '{color.red.500}'
-          comment: Brand accent color for light theme
+          comment: Brand red (light theme)
         dark:
           value: '{color.red.400}'
-          comment: Brand accent color for dark theme
+          comment: Brand red (dark theme)

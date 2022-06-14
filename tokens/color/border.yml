@@ -1,22 +1,47 @@
 color:
   border:
-    comment: >-
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-      architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-      asperiores aliquid distinctio consectetur obcaecati?
-    primary:
+    $type: color # we must make this explicit because style-dictionary v3 does not implement the dtcg grouping algorithm
+    $extensions:
+      com.redhat.ux:
+        category: border
+        heading: Color
+        description: >-
+          Border Color Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+          architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+          asperiores aliquid distinctio consectetur obcaecati?
+
+    strong:
       on:
         light:
           value: '{color.black.900}'
-          comment: Secondary CTA border (dark theme)
+          comment: Strong border color (light theme)
         dark:
           value: '{color.white}'
-          comment: Secondary CTA border (light theme)
-    secondary:
+          comment: Strong border color (dark theme)
+
+    subtle:
       on:
         light:
           value: '{color.black.300}'
-          comment: Card border (light theme)
+          comment: Subtle border color (light theme)
         dark:
-          value: '{color.black.500}'
-          comment: Card border (light theme)
+          value: '{color.black.600}'
+          comment: Subtle border color (light theme)
+
+    interactive:
+      on:
+        light:
+          value: '{color.blue.400}'
+          comment: Interactive border color (light theme)
+        dark:
+          value: '{color.blue.200}'
+          comment: Interactive border color (light theme)
+
+    danger:
+      on:
+        light:
+          value: '{color.red.500}'
+          comment: Danger border color (light theme)
+        dark:
+          value: '{color.red.400}'
+          comment: Danger border color (light theme)

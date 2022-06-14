@@ -1,10 +1,13 @@
 color:
   purple:
+    50:
+      value: '#f2f0fc'
+      comment: Label - Filled (Purple) background color
     100:
       value: '#cbc1ff'
-    200:
-      value: '#a18fff'
     300:
+      value: '#a18fff'
+    500:
       value: '#6753ac'
-    400:
+    700:
       value: '#1f0066'

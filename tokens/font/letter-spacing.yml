@@ -1,0 +1,5 @@
+letter-spacing:
+  body:
+    text:
+      value: 0.0125rem
+      comment: Extra letter spacing for small body text sizes

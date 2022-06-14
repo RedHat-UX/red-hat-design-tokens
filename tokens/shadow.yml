@@ -1,12 +1,14 @@
 box-shadow:
-  comment: >-
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-    architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-    asperiores aliquid distinctio consectetur obcaecati?
+  $extensions:
+    com.redhat.ux:
+      description: >-
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+        architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+        asperiores aliquid distinctio consectetur obcaecati?
+
   sm:
-    type: shadow
+    $type: shadow
     comment: Small box shadow
-    example: Accordion panel
     value:
       offsetX: 0
       offsetY: '{length.3xs}'
@@ -14,9 +16,8 @@ box-shadow:
       spread: 0
       color: rgba(21, 21, 21, 0.2)
   md:
-    type: shadow
+    $type: shadow
     comment: Medium box shadow
-    example: Card
     value:
       offsetX: 0
       offsetY: '{length.xs}'
@@ -24,22 +25,20 @@ box-shadow:
       spread: '{length.4xs}'
       color: rgba(21, 21, 21, 0.25)
   lg:
-    type: shadow
+    $type: shadow
     comment: Large box shadow
-    example: Toast
     value:
       offsetX: 0
-      offsetY: '{length.xs}'
-      blur: '{length.sm}'
-      spread: '{length.4xs}'
+      offsetY: '{length.sm}'
+      blur: '{length.md}'
+      spread: '{length.3xs}'
       color: rgba(21, 21, 21, 0.3)
   xl:
-    type: shadow
+    $type: shadow
     comment: Extra large box shadow
-    example: Dialog
     value:
       offsetX: 0
-      offsetY: 0.75rem
-      blur: '{length.lg}'
-      spread: '{length.3xs}'
+      offsetY: '{length.md}'
+      blur: '{length.xl}'
+      spread: '{length.2xs}'
       color: rgba(21, 21, 21, 0.35)

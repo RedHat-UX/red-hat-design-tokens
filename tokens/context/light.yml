@@ -1,25 +1,20 @@
 context:
   light:
     color:
+      $type: color
       text:
         # @see https://github.com/amzn/style-dictionary/issues/716#issuecomment-943673202
         _:
-          type: color
           value: '{color.text.primary.on.light}'
         muted:
-          type: color
           value: '{color.text.secondary.on.light}'
         link:
           _:
-            type: color
             value: '{color.interactive.blue.darkest}'
           hover:
-            type: color
             value: '{color.interactive.blue.darker}'
           focus:
-            type: color
             value: '{color.interactive.blue.darker}'
           visited:
-            type: color
             value: '{color.interactive.purple.darker}'
 

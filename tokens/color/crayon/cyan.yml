@@ -3,8 +3,14 @@ color:
     50:
       value: '#f2f9f9'
       comment: Alert - Default background
+    100:
+      value: '#a2d9d9'
+      comment: Label (Cyan) border color
     300:
       value: '#009596'
+      comment: Alert - Default accent
+    400:
+      value: '#005f60'
       comment: Alert - Default accent
     500:
       value: '#003737'

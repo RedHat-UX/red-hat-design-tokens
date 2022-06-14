@@ -1,15 +1,19 @@
 line-height:
-  comment: >-
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-    architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-    asperiores aliquid distinctio consectetur obcaecati?
+  $extensions:
+    com.redhat.ux:
+      heading: Line height
+      example: Line<br/>height
+      description: >-
+        Line height Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+        architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+        asperiores aliquid distinctio consectetur obcaecati?
 
-  sm:
+  heading:
     value: 1.3
-    comment: Line height for large headings
-  md:
+    comment: Line height for headings
+  body-text:
     value: 1.4
-    comment: Line height for medium headings
-  lg:
+    comment: Line height for body text
+  code:
     value: 1.5
-    comment: Line height for small headings and body text
+    comment: Line height for code

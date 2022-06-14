@@ -7,8 +7,9 @@ color:
     comment: Primary surface (light theme) or primary text (dark theme)
     attributes:
       type: gray
+
   black:
-    100:
+    150:
       value: '#f5f5f5'
       comment: Tertiary surface (light theme)
       attributes:
@@ -38,12 +39,12 @@ color:
       comment: Borders (dark theme) or secondary text (light theme)
       attributes:
         type: gray
-    700:
+    800:
       value: '#3c3f42'
       comment: Secondary surface (dark theme)
       attributes:
         type: gray
-    800:
+    850:
       value: '#212427'
       comment: Tertiary surface (dark theme)
       attributes:

@@ -1,13 +1,20 @@
 font:
   family:
-    comment: >-
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-      architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-      asperiores aliquid distinctio consectetur obcaecati?
+    $type: fontFamily
+    $extensions:
+      com.redhat.ux:
+        heading: Font family
+        description: >-
+          **Font Family** Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+          architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+          asperiores aliquid distinctio consectetur obcaecati?
+
     heading:
-      type: fontFamily
-      comment: Font family for headings
-      example: Display
+      $type: fontFamily
+      comment: Heading font family
+      $extensions:
+        com.redhat.ux:
+          example: Display
       value:
         - '"RedHatDisplay"'
         - '"Overpass"'
@@ -15,10 +22,12 @@ font:
         - Helvetica
         - Arial
         - sans-serif
-    text:
-      type: fontFamily
-      comment: Font family for body text
-      example: Body text
+    body-text:
+      $type: fontFamily
+      comment: Body text font family
+      $extensions:
+        com.redhat.ux:
+          example: Body text
       value:
         - '"RedHatText"'
         - '"Overpass"'
@@ -27,9 +36,11 @@ font:
         - Arial
         - sans-serif
     code:
-      type: fontFamily
-      comment: Font family for code 
-      example: Code
+      $type: fontFamily
+      comment: Code font family
+      $extensions:
+        com.redhat.ux:
+          example: Code
       value:
         - '"RedHatMono"'
         - '"Courier New"'
