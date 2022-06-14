@@ -1,32 +1,66 @@
-const YAML = require('yaml');
-const StyleDictionary = require('style-dictionary');
-const nunjucks = require('nunjucks');
-const path = require('path');
-const fs = require('fs');
+//@ts-check
+//
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
-const env = nunjucks.configure(path.join(__dirname, 'docs'));
+import Color from 'tinycolor2';
+import YAML from 'yaml';
+import StyleDictionary from 'style-dictionary';
 
-env.addFilter('log', function(x) { console.log(x); });
+import flattenTokens from 'style-dictionary/lib/utils/flattenProperties.js';
+import nunjucks from 'nunjucks';
+import slugify from '@sindresorhus/slugify';
+import markdownit from 'markdown-it';
+
+const md = markdownit({
+  html: true,
+  linkify: true,
+});
+
+const env = nunjucks.configure(fileURLToPath(new URL('./docs', import.meta.url)));
 
 const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers;
 
-const isColor = token => token.type === 'color' || token.path.includes('color');
-const isShadow = token => token.type === 'shadow';
-const isCubicBezier = token => token.type === 'cubicBezier';
-const isFontFamily = token => token.type === 'fontFamily';
-const isFontWeight = token => token.type === 'fontWeight';
+/** OpenFont weight string aliases */
+const WGHT_ALIASES = {
+  100: ['thin', 'hairline'],
+  200: ['extra-light', 'ultra-light'],
+  300: ['light'],
+  400: ['regular', 'normal', 'book'],
+  500: ['medium',],
+  600: ['semi-bold', 'demi-bold'],
+  700: ['bold'],
+  800: ['extra-bold', 'ultra-bold'],
+  900: ['black', 'heavy'],
+  950: ['extra-black', 'ultra-black']
+}
+
+const isColor = token => token.$type === 'color' || token.path.includes('color');
+const isShadow = token => token.$type === 'shadow';
+const isCubicBezier = token => token.$type === 'cubicBezier';
+const isFontFamily = token => token.$type === 'fontFamily';
+const isFontWeight = token => token.$type === 'fontWeight';
+const pairAliasWithValue = token => {
+  if (typeof token.value === 'string') {
+    const name = token.original?.value?.startsWith('{') ? token.original.value.replace(/\._}$/, '}') : `{${token.path.reduce((a, b) => `${a}.${b}`, '')}}`.replace(/^\{\./, '{');
+    return [ [ name, token.value ] ];
+  } else if (token.value) {
+    return Object.fromEntries(Object.entries(token.value).map(pairAliasWithValue))
+  } else {
+    return []
+  }
+}
 
 /**
  * Copy the repo license (MIT) into file headers
  */
-StyleDictionary.registerFileHeader({
-  name: 'redhat/legal',
+StyleDictionary.registerFileHeader({ name: 'redhat/legal',
   fileHeader(defaultMessage) {
     return [
       ...defaultMessage,
       '',
       '@license',
-      ...fs.readFileSync(path.join(__dirname, 'LICENSE'), 'utf8').split('\n'),
+      ...fs.readFileSync(fileURLToPath(new URL('./LICENSE', import.meta.url)), 'utf8').split('\n'),
     ];
   },
 });
@@ -35,7 +69,21 @@ StyleDictionary.registerFileHeader({
  * Transform a record or box-shadow properties to a css box-shadow property value
  * @see https://design-tokens.github.io/community-group/format/#shadow
  */
-StyleDictionary.registerTransform({ name: 'shadow/css',
+StyleDictionary.registerTransform({ name: 'dtcg/type/color',
+  type: 'attribute',
+  transitive: true,
+  matcher: isColor,
+  transformer: (token) => {
+    token.$type ??= 'color';
+    return token.attributes;
+  },
+});
+
+/**
+ * Transform a record or box-shadow properties to a css box-shadow property value
+ * @see https://design-tokens.github.io/community-group/format/#shadow
+ */
+StyleDictionary.registerTransform({ name: 'dtcg/shadow/css',
   type: 'value',
   transitive: true,
   matcher: isShadow,
@@ -47,7 +95,7 @@ StyleDictionary.registerTransform({ name: 'shadow/css',
  * Transform an array of cubic bezier timing values to a css cubic-bezier() call
  * @see https://design-tokens.github.io/community-group/format/#cubic-bezier
  */
-StyleDictionary.registerTransform({ name: 'cubic-bezier/css',
+StyleDictionary.registerTransform({ name: 'dtcg/cubic-bezier/css',
   type: 'value',
   matcher: isCubicBezier,
   transformer: ({ value }) =>
@@ -58,13 +106,16 @@ StyleDictionary.registerTransform({ name: 'cubic-bezier/css',
  * Transform an array of font family specifiers to a comma separated list
  * @see https://design-tokens.github.io/community-group/format/#font-family
  */
-StyleDictionary.registerTransform({ name: 'font-family/css',
+StyleDictionary.registerTransform({ name: 'dtcg/font-family/css',
   type: 'value',
   matcher: isFontFamily,
   transformer: ({ value }) =>
     `${value.join(', ')}`,
 })
 
+/**
+ * Add px values for rem-based tokens, assuming default 16px base px font size
+ */
 StyleDictionary.registerTransform({ name: 'remToPx/css',
   type: 'value',
   transitive: true,
@@ -80,20 +131,10 @@ StyleDictionary.registerTransform({ name: 'remToPx/css',
   }
 });
 
-const WGHT_ALIASES = {
-  100: ['thin', 'hairline'],
-  200: ['extra-light', 'ultra-light'],
-  300: ['light'],
-  400: ['regular', 'normal', 'book'],
-  500: ['medium',],
-  600: ['semi-bold', 'demi-bold'],
-  700: ['bold'],
-  800: ['extra-bold', 'ultra-bold'],
-  900: ['black', 'heavy'],
-  950: ['extra-black', 'ultra-black']
-}
-
-StyleDictionary.registerTransform({ name: 'font-weight/css',
+/**
+ * Add font weight string aliases to font-weight types
+ */
+StyleDictionary.registerTransform({ name: 'dtcg/font-weight/css',
   transitive: true,
   type: 'value',
   matcher: isFontWeight,
@@ -103,11 +144,13 @@ StyleDictionary.registerTransform({ name: 'font-weight/css',
   }
 });
 
+/**
+ * Add HEX, RGB, HSL, HSV, and isLight (boolean) to colour types
+ */
 StyleDictionary.registerTransform({ name: 'attribute/color',
   type: 'attribute',
   matcher: isColor,
   transformer: function (token) {
-    const Color = require('tinycolor2');
     const color = Color(token.value);
     return {
       hex: color.toHex(),
@@ -119,23 +162,31 @@ StyleDictionary.registerTransform({ name: 'attribute/color',
   },
 });
 
-const CSS_TRANSFORMS = [
+/** Transforms to apply to s/css outputs */
+StyleDictionary.registerTransformGroup({ name: 'css', transforms: [
+  'dtcg/cubic-bezier/css',
+  'dtcg/font-family/css',
+  'dtcg/font-weight/css',
+  'dtcg/shadow/css',
+  'dtcg/type/color',
   'attribute/cti',
   'attribute/color',
   'name/cti/kebab',
   'time/seconds',
   'content/icon',
   'size/rem',
-  'cubic-bezier/css',
   'remToPx/css',
-  'shadow/css',
   'color/css',
-  'font-family/css',
-  'font-weight/css',
-];
+] });
 
-StyleDictionary.registerTransformGroup({ name: 'css', transforms: CSS_TRANSFORMS })
-StyleDictionary.registerTransformGroup({ name: 'scss', transforms: CSS_TRANSFORMS })
+/** Transforms to apply to s/css outputs */
+StyleDictionary.registerTransformGroup({ name: '', transforms: [
+  'dtcg/cubic-bezier/css',
+  'dtcg/font-family/css',
+  'dtcg/font-weight/css',
+  'dtcg/shadow/css',
+  'dtcg/type/color',
+  ...StyleDictionary.transformGroup.js] });
 
 /**
  * Lit CSS object
@@ -180,17 +231,6 @@ StyleDictionary.registerFormat({ name: 'snippets/vscode',
       })), null, 2),
 });
 
-const pairAliasWithValue = token => {
-  if (typeof token.value === 'string') {
-    const name = token.original?.value?.startsWith('{') ? token.original.value.replace(/\._}$/, '}') : `{${token.path.reduce((a, b) => `${a}.${b}`, '')}}`.replace(/^\{\./, '{');
-    return [ [ name, token.value ] ];
-  } else if (token.value) {
-    return Object.fromEntries(Object.entries(token.value).map(pairAliasWithValue))
-  } else {
-    return []
-  }
-}
-
 /**
  * Exports [vim-hexokinase](https://github.com/RRethy/vim-hexokinase) custom patterns
  */
@@ -208,33 +248,52 @@ StyleDictionary.registerFormat({ name: 'editor/hexokinase',
  */
 StyleDictionary.registerFormat({ name: 'html/docs',
   formatter({ dictionary, platform }) {
-    fs.copyFileSync(path.join(__dirname, 'docs', 'styles.css'), path.join(__dirname, 'build', 'styles.css'))
-    const colors = dictionary.allTokens
-      .filter(isColor)
-      .sort((a, b) => (dictionary.tokens.color[a.attributes.type]?.order ?? Infinity) - (dictionary.tokens.color[b.attributes.type]?.order ?? Infinity))
-      .reduce((acc, color) => ({
-        ...acc,
-        [color.attributes.type]: {
-          values: [
-            ...acc[color.attributes.type]?.values ?? [],
-            color,
-            ...Object.entries(color).flatMap(([key, value]) =>
-              typeof value !== 'object' || key.match(/original|attributes|path|type/)? [] : ({
-                ...value,
-                name: value.name ?? color.path.reduce((a, b)=> `${a}-${b}`, 'rh') + '-' + key,
-              }))
-          ]
-        },
-      }), {});
+    const getDocs = x => x?.$extensions?.['com.redhat.ux']
+    const getColorGroupOrder = x => getDocs(dictionary.tokens.color[x])?.order ?? Infinity;
+    const filterEntries = (p, x) => Object.fromEntries(Object.entries(x).filter(p));
+    const sortEntries = (p, x) => Object.fromEntries(Object.entries(x).sort(p));
+    const entryHasValue = ([_, v]) => typeof v === 'object' && 'value' in v;
+    env.addFilter('log', x => console.log(x));
+    env.addFilter('isRef', x => x?.original?.value?.startsWith?.('{') ?? false);
+    env.addFilter('deref', x => `rh-${x.original.value.replace(/[{}]/g, '').split('.').join('-')}`);
+    env.addFilter('slugify', x => slugify(x))
+    env.addFilter('getValues', x => filterEntries(entryHasValue, x));
+    env.addFilter('flattenTokens', flattenTokens);
+    env.addFilter('getDocs', getDocs);
+    env.addFilter('getDescription', x => md.render(x?.description ?? ''));
+    env.addFilter('colors', x => x?.filter(isColor));
+    env.addFilter('excludekeys', (x, ...keys) => filterEntries(([k]) => !keys.includes(k), x));
+    env.addFilter('pickkeys', (x, ...keys) => filterEntries(([k]) => keys.includes(k), x));
+    env.addFilter('stripmeta', x => filterEntries(([k]) => k !== 'comment' && !k.startsWith('$'), x ?? {}));
+    env.addFilter('sortColorGroupByOrder', x => sortEntries(([a], [b]) => getColorGroupOrder(a) - getColorGroupOrder(b), x));
+    env.addFilter('buildCollection', name => ({
+      ...dictionary.tokens[name],
+      ...filterEntries(([_, v]) => getDocs(v)?.category === name, dictionary.tokens.color)
+    }));
+
     return env.render('index.html', {
-      dictionary,
+      tokens: dictionary.tokens,
+      allTokens: dictionary.allTokens,
       platform,
-      colors,
     });
   }
 });
 
-module.exports = {
+const DOCS_STYLES_IN = fileURLToPath(new URL('./docs/styles.css', import.meta.url));
+const DOCS_STYLES_OUT = fileURLToPath(new URL('./build/styles.css', import.meta.url));
+/** Copy web assets to build dir */
+StyleDictionary.registerAction({ name: 'copyAssets',
+  do() {
+    fs.copyFileSync(DOCS_STYLES_IN, DOCS_STYLES_OUT)
+  },
+  undo() {
+    fs.rmSync(DOCS_STYLES_OUT, {
+      force: true,
+    });
+  }
+});
+
+StyleDictionary.extend({
   source: ['tokens/**/*.{yaml,yml}'],
   parsers: [{
     pattern: /\.ya?ml$/,
@@ -274,7 +333,7 @@ module.exports = {
     },
 
     scss: {
-      transformGroup: 'scss',
+      transformGroup: 'css',
       buildPath: 'scss/',
       prefix: 'rh',
       files: [
@@ -336,6 +395,7 @@ module.exports = {
       transformGroup: 'css',
       buildPath: 'build/',
       prefix: 'rh',
+      actions: ['copyAssets'],
       files: [{
         destination: 'index.html',
         format: 'html/docs',
@@ -366,4 +426,4 @@ module.exports = {
       }]
     }
   }
-}
+}).buildAllPlatforms();

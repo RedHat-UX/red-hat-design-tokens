@@ -17,13 +17,11 @@
   },
   "wireit": {
     "build": {
-      "command": "style-dictionary build -c config.cjs",
+      "command": "node build.js",
       "files": [
         "tokens/**/*",
         "docs/**/*",
-        "config.js",
-        "config.mjs",
-        "config.cjs"
+        "build.js"
       ],
       "output": [
         "build/**",
@@ -35,7 +33,7 @@
       ]
     },
     "start": {
-      "command": "wds --open --watch --root-dir build",
+      "command": "wds",
       "dependencies": [
         "build"
       ]
@@ -57,7 +55,9 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.22.0",
+    "@sindresorhus/slugify": "^2.1.0",
     "@web/dev-server": "^0.1.31",
+    "markdown-it": "^13.0.1",
     "nunjucks": "^3.2.3",
     "style-dictionary": "^3.7.0",
     "wireit": "^0.4.3",
