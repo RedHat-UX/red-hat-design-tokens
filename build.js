@@ -270,6 +270,13 @@ StyleDictionary.registerFormat({ name: 'html/docs',
       ...dictionary.tokens[name],
       ...filterEntries(([_, v]) => getDocs(v)?.category === name, dictionary.tokens.color)
     }));
+    env.addFilter('collateBrandColors', collection => {
+      console.log(collection.reduce((acc, token) => ({
+        ...acc,
+        [token.value]: [...acc[token.value] ?? [], token]
+      }), {}));
+      return collection;
+    });
 
     return env.render('index.html', {
       tokens: dictionary.tokens,

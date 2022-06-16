@@ -17,4 +17,4 @@ font:
       medium:
         $type: fontWeight
         comment: Medium font weight
-        value: 500
+        value: 700

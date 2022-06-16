@@ -40,6 +40,6 @@ length:
   5xl:
     value: 6.0rem
     comment: 96px length token
-  8xl:
+  6xl:
     value: 8.0rem
     comment: 128px length token

@@ -9,30 +9,66 @@ space:
   xs:
     value: '{length.xs}'
     comment: 4px spacer
+    $extensions:
+      com.redhat.ux:
+        color: '#ec861b'
   sm:
     value: '{length.sm}'
     comment: 8px spacer
+    $extensions:
+      com.redhat.ux:
+        color: '#f3d53c'
   md:
+    value: '{length.sm}'
+    comment: 8px spacer
+    $extensions:
+      com.redhat.ux:
+        color: '#9bd917'
+  lg:
     value: '{length.md}'
     comment: 16px spacer
-  lg:
+    $extensions:
+      com.redhat.ux:
+        color: '#51a549'
+  xl:
     value: '{length.lg}'
     comment: 24px spacer
-  xl:
+    $extensions:
+      com.redhat.ux:
+        color: '#1b8793'
+  2xl:
     value: '{length.xl}'
     comment: 32px spacer
-  2xl:
+    $extensions:
+      com.redhat.ux:
+        color: '#1893d2'
+  3xl:
     value: '{length.2xl}'
     comment: 48px spacer
-  3xl:
+    $extensions:
+      com.redhat.ux:
+        color: '#6743c6'
+  4xl:
     value: '{length.3xl}'
     comment: 64px spacer
-  4xl:
+    $extensions:
+      com.redhat.ux:
+        color: '#341974'
+  5xl:
     value: '{length.4xl}'
     comment: 80px spacer
-  5xl:
+    $extensions:
+      com.redhat.ux:
+        color: '#b300b3'
+  6xl:
     value: '{length.5xl}'
     comment: 96px spacer
-  8xl:
-    value: '{length.8xl}'
+    $extensions:
+      com.redhat.ux:
+        color: '#f279a1'
+  7xl:
+    value: '{length.6xl}'
     comment: 128px spacer
+    $extensions:
+      com.redhat.ux:
+        color: '#bf1d1d'

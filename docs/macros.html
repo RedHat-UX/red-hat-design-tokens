@@ -158,7 +158,7 @@
           {% else %}
             <tr class="{{ name }}" data-key="{{ key }}">
               <td style="--{{ name }}: {{ item.value }};">
-                <output>{{ output | safe }}</output>
+                <output{{((' style="background-color: '+item.$extensions['com.redhat.ux'].color+';"') if name == 'space') | safe}}>{{ output | safe }}</output>
               </td>
               {{ nameCell(item) }}
               <td>

@@ -33,5 +33,5 @@ size:
       value: '{length.5xl}'
       comment: 96px spacer
     '09':
-      value: '{length.8xl}'
+      value: '{length.6xl}'
       comment: 128px spacer

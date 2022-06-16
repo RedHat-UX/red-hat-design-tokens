@@ -2,6 +2,8 @@ context:
   light:
     color:
       $type: color
+      focus:
+        value: '{color.interactive.blue.darker}'
       text:
         # @see https://github.com/amzn/style-dictionary/issues/716#issuecomment-943673202
         _:
@@ -10,11 +12,16 @@ context:
           value: '{color.text.secondary.on.light}'
         link:
           _:
-            value: '{color.interactive.blue.darkest}'
+            value: '{color.interactive.blue.darker}'
           hover:
-            value: '{color.interactive.blue.darker}'
+            value: '{color.interactive.blue.darkest}'
           focus:
-            value: '{color.interactive.blue.darker}'
+            value: '{color.interactive.blue.darkest}'
           visited:
-            value: '{color.interactive.purple.darker}'
+            _:
+              value: '{color.interactive.purple.darker}'
+            hover:
+              value: '{color.interactive.purple.darkest}'
+            focus:
+              value: '{color.interactive.purple.darkest}'
 

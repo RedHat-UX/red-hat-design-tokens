@@ -14,7 +14,7 @@ font:
       regular:
         $type: fontWeight
         comment: Regular font weight for headings
-        value: 400
+        value: 300
       medium:
         $type: fontWeight
         comment: Medium font weight for headings
