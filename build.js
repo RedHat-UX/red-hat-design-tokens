@@ -254,6 +254,7 @@ StyleDictionary.registerFormat({ name: 'html/docs',
     const sortEntries = (p, x) => Object.fromEntries(Object.entries(x).sort(p));
     const entryHasValue = ([_, v]) => typeof v === 'object' && 'value' in v;
     env.addFilter('log', x => console.log(x));
+    env.addFilter('trace', x => (console.log(x), x));
     env.addFilter('isRef', x => x?.original?.value?.startsWith?.('{') ?? false);
     env.addFilter('deref', x => `rh-${x.original.value.replace(/[{}]/g, '').split('.').join('-')}`);
     env.addFilter('slugify', x => slugify(x))
@@ -270,24 +271,13 @@ StyleDictionary.registerFormat({ name: 'html/docs',
       ...dictionary.tokens[name],
       ...filterEntries(([_, v]) => getDocs(v)?.category === name, dictionary.tokens.color)
     }));
-    env.addFilter('collateBrandColors', collection => {
-      console.log(collection.reduce((acc, token) => ({
-        ...acc,
-        [token.value]: [...acc[token.value] ?? [], token]
-      }), {}));
-      return collection;
-    });
-
-    return env.render('index.html', {
-      tokens: dictionary.tokens,
-      allTokens: dictionary.allTokens,
-      platform,
-    });
+    return env.render('index.html', { ...dictionary, platform });
   }
 });
 
 const DOCS_STYLES_IN = fileURLToPath(new URL('./docs/styles.css', import.meta.url));
 const DOCS_STYLES_OUT = fileURLToPath(new URL('./build/styles.css', import.meta.url));
+
 /** Copy web assets to build dir */
 StyleDictionary.registerAction({ name: 'copyAssets',
   do() {
