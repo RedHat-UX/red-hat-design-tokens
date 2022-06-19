@@ -44,12 +44,7 @@
         {%- for name, family in allTokens | colors | groupby('attributes.type') | excludekeys('border', 'text', 'icon') | sortColorGroupByOrder -%}
           <h3>{{ name | capitalize }}</h3>
           {{- tokens.color[name] | getDocs | getDescription | safe -}}
-          {% if name == 'brand' %}
-            {# brand is a special case, see build.js #}
-            {{ m.colorTable(family | collateBrandColors) }}
-          {% else %}
-            {{ m.colorTable(family) }}
-          {% endif %}
+          {{ m.colorTable(family) }}
         {%- endfor -%}
       {%- endcall -%}
 
