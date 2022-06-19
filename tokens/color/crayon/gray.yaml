@@ -39,12 +39,12 @@ color:
       comment: Borders (dark theme) or secondary text (light theme)
       attributes:
         type: gray
-    800:
+    700:
       value: '#3c3f42'
       comment: Secondary surface (dark theme)
       attributes:
         type: gray
-    850:
+    800:
       value: '#212427'
       comment: Tertiary surface (dark theme)
       attributes:

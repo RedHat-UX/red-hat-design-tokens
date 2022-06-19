@@ -13,9 +13,9 @@ color:
     primary:
       on:
         light:
-          value: '{color.brand.red.500}'
+          value: '{color.brand.red.on.light}'
         dark:
-          value: '{color.brand.red.400}'
+          value: '{color.brand.red.on.dark}'
 
     secondary:
       on:

@@ -18,10 +18,10 @@ color:
       value: '{color.black.200}'
       comment: Secondary surface (light theme)
     dark:
-      value: '{color.black.800}'
+      value: '{color.black.700}'
       comment: Secondary surface (dark theme)
     darker:
-      value: '{color.black.850}'
+      value: '{color.black.800}'
       comment: Tertiary surface (dark theme)
     darkest:
       value: '{color.black.900}'
