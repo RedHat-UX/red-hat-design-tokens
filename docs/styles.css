@@ -93,7 +93,7 @@ section :is(h2, h3, h4, h5, h6) {
 
 code {
   font-size: var(--rh-font-size-body-text-sm);
-  font-weight: var(--rh-font-weight-text);
+  font-weight: var(--rh-font-weight-body-text);
 }
 
 .comment:empty {
@@ -133,7 +133,7 @@ td:nth-child(4) { width: 360px; }
 .font output {
   font-size: var(--font-size, var(--rh-font-size-heading-md));
   font-family: var(--font-family, var(--rh-font-family-body-text));
-  font-weight: var(--font-weight, var(--rh-font-weight-text));
+  font-weight: var(--font-weight, var(--rh-font-weight-body-text-regular));
 }
 
 .font.family {
