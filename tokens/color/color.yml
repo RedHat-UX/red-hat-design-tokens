@@ -1,0 +1,9 @@
+color:
+  $type: color
+  $extensions:
+    com.redhat.ux:
+      heading: Global color
+      description: >-
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+        architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+        asperiores aliquid distinctio consectetur obcaecati?

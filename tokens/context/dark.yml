@@ -1,0 +1,26 @@
+context:
+  dark:
+    color:
+      $type: color
+      focus:
+        value: '{color.interactive.blue.lighter}'
+      text:
+        # @see https://github.com/amzn/style-dictionary/issues/716#issuecomment-943673202
+        _:
+          value: '{color.text.primary.on.dark}'
+        muted:
+          value: '{color.text.secondary.on.dark}' #f0f0f0, closest to #d2d2d2 from pf
+        link:
+          _:
+            value: '{color.interactive.blue.lighter}'
+          hover:
+            value: '{color.interactive.blue.lightest}'
+          focus:
+            value: '{color.interactive.blue.lightest}'
+          visited:
+            _:
+              value: '{color.interactive.purple.lighter}'
+            hover:
+              value: '{color.interactive.purple.lightest}'
+            focus:
+              value: '{color.interactive.purple.lightest}'

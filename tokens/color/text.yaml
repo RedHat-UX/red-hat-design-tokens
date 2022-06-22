@@ -1,0 +1,35 @@
+color:
+  text:
+    $type: color # we must make this explicit because style-dictionary v3 does not implement the dtcg grouping algorithm
+    $extensions:
+      com.redhat.ux:
+        heading: Text color
+        description: >-
+          Text Color Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+          architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+          asperiores aliquid distinctio consectetur obcaecati?
+
+    primary:
+      on:
+        light:
+          value: '{color.black.900}'
+          comment: Primary text color for light theme
+        dark:
+          value: '{color.white}'
+          comment: Primary text color for dark theme
+    secondary:
+      on:
+        light:
+          value: '{color.black.600}'
+          comment: Secondary text color for light theme
+        dark:
+          value: '{color.black.300}'
+          comment: Secondary text color for dark theme
+    brand:
+      on:
+        light:
+          value: '{color.red.500}'
+          comment: Brand text color for light theme
+        dark:
+          value: '{color.red.400}'
+          comment: Brand text color for dark theme

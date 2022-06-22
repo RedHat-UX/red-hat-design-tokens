@@ -1,0 +1,11 @@
+color:
+  gold:
+    50:
+      value: '#fdf7e7'
+      comment: Alert - Warning background
+    400:
+      value: '#f0ab00'
+      comment: Alert - Warning accent
+    600:
+      value: '#795600'
+      comment: Alert - Warning title text

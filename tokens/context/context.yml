@@ -1,0 +1,18 @@
+context:
+  $extensions:
+    com.redhat.ux:
+      description: >-
+        Default (i.e. on-light) context colour values
+
+  link:
+    decoration:
+      # @see https://github.com/amzn/style-dictionary/issues/716#issuecomment-943673202
+      _:
+        value: none
+      hover:
+        value: underline
+      focus:
+        value: underline
+      visited:
+        value: none
+

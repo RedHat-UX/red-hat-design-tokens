@@ -1,0 +1,45 @@
+color:
+  brand:
+    $extensions:
+      com.redhat.ux:
+        order: 0
+        description: >-
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+          architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+          asperiores aliquid distinctio consectetur obcaecati?
+
+    red:
+      $extensions:
+        com.redhat.ux:
+          description: >-
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+            architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+            asperiores aliquid distinctio consectetur obcaecati?
+
+      lightest:
+        value: '{color.red.100}'
+        comment: Lightest brand red
+      lighter:
+        value: '{color.red.200}'
+        comment: lighter brand red
+      light:
+        value: '{color.red.300}'
+        comment: Light brand red
+
+      on:
+        dark:
+          value: '{color.red.400}'
+          comment: Brand red on dark background
+        light:
+          value: '{color.red.500}'
+          comment: Brand red on light background
+
+      dark:
+        value: '{color.red.600}'
+        comment: Dark brand red/Brand red hover
+      darker:
+        value: '{color.red.700}'
+        comment: Darker brand red
+      darkest:
+        value: '{color.red.800}'
+        comment: Darkest brand red

@@ -1,0 +1,37 @@
+size:
+  icon:
+    $extensions:
+      com.redhat.ux:
+        heading: Icon
+        description: >-
+          **Icon size** Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+          architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+          asperiores aliquid distinctio consectetur obcaecati?
+
+    '01':
+      value: '{length.lg}'
+      comment: 16px icon box
+    '02':
+      value: '{length.xl}'
+      comment: 24px icon box
+    '03':
+      value: '{length.2xl}'
+      comment: 32px icon box
+    '04':
+      value: 2.5rem
+      comment: 40px spacer
+    '05':
+      value: '{length.3xl}'
+      comment: 48px spacer
+    '06':
+      value: '{length.4xl}'
+      comment: 64px spacer
+    '07':
+      value: '{length.5xl}'
+      comment: 80px spacer
+    '08':
+      value: '{length.6xl}'
+      comment: 96px spacer
+    '09':
+      value: '{length.7xl}'
+      comment: 128px spacer

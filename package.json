@@ -1,0 +1,66 @@
+{
+  "name": "@rhds/tokens",
+  "version": "0.0.0",
+  "description": "Red Hat Design System Tokens",
+  "scripts": {
+    "build": "wireit",
+    "start": "wireit"
+  },
+  "type": "module",
+  "main": "js/tokens.cjs",
+  "module": "js/tokens.js",
+  "exports": {
+    ".": {
+      "import": "build/js/tokens.js",
+      "require": "build/js/tokens.cjs"
+    }
+  },
+  "wireit": {
+    "build": {
+      "command": "node build.js",
+      "files": [
+        "tokens/**/*",
+        "docs/**/*",
+        "build.js"
+      ],
+      "output": [
+        "build/**",
+        "css/**",
+        "editor/**",
+        "js/**",
+        "json/**",
+        "scss/**"
+      ]
+    },
+    "start": {
+      "command": "wds",
+      "dependencies": [
+        "build"
+      ]
+    }
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "css",
+          "scss"
+        ],
+        "path": "./editor/vscode.json"
+      }
+    ]
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.22.0",
+    "@sindresorhus/slugify": "^2.1.0",
+    "@web/dev-server": "^0.1.31",
+    "markdown-it": "^13.0.1",
+    "nunjucks": "^3.2.3",
+    "style-dictionary": "^3.7.0",
+    "wireit": "^0.4.3",
+    "yaml": "^2.1.0"
+  }
+}

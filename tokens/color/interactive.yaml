@@ -1,0 +1,37 @@
+color:
+  interactive:
+    $extensions:
+      com.redhat.ux:
+        order: 30
+        description: >-
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+          architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+          asperiores aliquid distinctio consectetur obcaecati?
+
+    blue:
+      lightest:
+        value: '{color.blue.100}'
+        comment: Inline link hover (dark theme)
+      lighter:
+        value: '{color.blue.200}'
+        comment: Inline link (dark theme)
+      darker:
+        value: '{color.blue.400}'
+        comment: Inline link (light theme)
+      darkest:
+        value: '{color.blue.500}'
+        comment: Inline link hover (light theme)
+
+    purple:
+      lightest:
+        value: '{color.purple.100}'
+        comment: Inline link visited hover (dark theme)
+      lighter:
+        value: '{color.purple.300}'
+        comment: Inline link visited (dark theme)
+      darker:
+        value: '{color.purple.500}'
+        comment: Inline link visited (light theme)
+      darkest:
+        value: '{color.purple.700}'
+        comment: Inline link visited hover (light theme)
