@@ -15,6 +15,13 @@
       "require": "build/js/tokens.cjs"
     }
   },
+  "files": [
+    "css",
+    "editor",
+    "js",
+    "json",
+    "scss"
+  ],
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
