@@ -1,6 +1,7 @@
 node_modules
 build
-editor
+neovim
+vscode
 js
 json
 css

@@ -34,4 +34,25 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - run: npm i -g vsce
+      - run: vsce package
+
+      - name: Upload VSCode Extension to Release
+        id: upload-vsce
+        if: ${{ steps.changesets.outputs.published == 'true' }}
+        uses: actions/github-script@v6
+        with:
+          debug: ${{ secrets.ACTIONS_RUNNER_DEBUG }}
+          script: |
+            try {
+              const tags = JSON.parse('${{ steps.changesets.outputs.publishedPackages }}').map(({ name, version }) => `${name}@${version}`);
+              const result = await ();
+              console.log(result);
+            } catch(error) {
+              console.error(error);
+              core.setFailed(error);
+            }
+
+
+
 

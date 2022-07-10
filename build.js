@@ -12,12 +12,14 @@ import nunjucks from 'nunjucks';
 import slugify from '@sindresorhus/slugify';
 import markdownit from 'markdown-it';
 
+const getRelativePath = urlPath => fileURLToPath(new URL(urlPath, import.meta.url));
+
 const md = markdownit({
   html: true,
   linkify: true,
 });
 
-const env = nunjucks.configure(fileURLToPath(new URL('./docs', import.meta.url)));
+const env = nunjucks.configure(getRelativePath('./docs'));
 
 const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers;
 
@@ -42,7 +44,9 @@ const isFontFamily = token => token.$type === 'fontFamily';
 const isFontWeight = token => token.$type === 'fontWeight';
 const pairAliasWithValue = token => {
   if (typeof token.value === 'string') {
-    const name = token.original?.value?.startsWith('{') ? token.original.value.replace(/\._}$/, '}') : `{${token.path.reduce((a, b) => `${a}.${b}`, '')}}`.replace(/^\{\./, '{');
+    const name =
+        token.original?.value?.startsWith('{') ? token.original.value.replace(/\._}$/, '}')
+      : `{${token.path.reduce((a, b) => `${a}.${b}`, '')}}`.replace(/^\{\./, '{');
     return [ [ name, token.value ] ];
   } else if (token.value) {
     return Object.fromEntries(Object.entries(token.value).map(pairAliasWithValue))
@@ -60,7 +64,7 @@ StyleDictionary.registerFileHeader({ name: 'redhat/legal',
       ...defaultMessage,
       '',
       '@license',
-      ...fs.readFileSync(fileURLToPath(new URL('./LICENSE', import.meta.url)), 'utf8').split('\n'),
+      ...fs.readFileSync(getRelativePath('./LICENSE'), 'utf8').split('\n'),
     ];
   },
 });
@@ -180,7 +184,7 @@ StyleDictionary.registerTransformGroup({ name: 'css', transforms: [
 ] });
 
 /** Transforms to apply to s/css outputs */
-StyleDictionary.registerTransformGroup({ name: '', transforms: [
+StyleDictionary.registerTransformGroup({ name: 'js', transforms: [
   'dtcg/cubic-bezier/css',
   'dtcg/font-family/css',
   'dtcg/font-weight/css',
@@ -212,7 +216,7 @@ export default resetStyles;`,
 /**
  * Exports VSCode style snippets for editor support
  */
-StyleDictionary.registerFormat({ name: 'snippets/vscode',
+StyleDictionary.registerFormat({ name: 'editor/snippets/vscode',
   formatter: ({ dictionary }) =>
     JSON.stringify(Object.fromEntries(
       dictionary.allTokens.map(token => {
@@ -234,7 +238,7 @@ StyleDictionary.registerFormat({ name: 'snippets/vscode',
 /**
  * Exports [vim-hexokinase](https://github.com/RRethy/vim-hexokinase) custom patterns
  */
-StyleDictionary.registerFormat({ name: 'editor/hexokinase',
+StyleDictionary.registerFormat({ name: 'editor/neovim/hexokinase',
   formatter: ({ dictionary }) =>
     JSON.stringify({
       regex_pattern: '\\{color\\.(\\w+)\.(\\d{1,3})\\}',
@@ -275,8 +279,8 @@ StyleDictionary.registerFormat({ name: 'html/docs',
   }
 });
 
-const DOCS_STYLES_IN = fileURLToPath(new URL('./docs/styles.css', import.meta.url));
-const DOCS_STYLES_OUT = fileURLToPath(new URL('./build/styles.css', import.meta.url));
+const DOCS_STYLES_IN = getRelativePath('./docs/styles.css');
+const DOCS_STYLES_OUT = getRelativePath('./build/styles.css');
 
 /** Copy web assets to build dir */
 StyleDictionary.registerAction({ name: 'copyAssets',
@@ -285,6 +289,31 @@ StyleDictionary.registerAction({ name: 'copyAssets',
   },
   undo() {
     fs.rmSync(DOCS_STYLES_OUT, {
+      force: true,
+    });
+  }
+});
+
+const VSCE_MANIFEST_OUT = getRelativePath('./vscode/package.json');
+
+StyleDictionary.registerAction({ name: 'generateVSCEManifest',
+  do() {
+    const { version } = JSON.parse(fs.readFileSync(getRelativePath('./package.json'), 'utf-8'));
+    fs.writeFileSync(VSCE_MANIFEST_OUT, JSON.stringify({
+      name: 'red-hat-design-tokens',
+      version,
+      description: 'Red Hat Design System Tokens',
+      categories: [ 'Snippets' ],
+      contributes: {
+        snippets: [{
+          language: [ 'css', 'scss' ],
+          path: './snippets.json'
+        }]
+      },
+    }, null, 2), 'utf-8');
+  },
+  undo() {
+    fs.rmSync(VSCE_MANIFEST_OUT, {
       force: true,
     });
   }
@@ -410,16 +439,24 @@ StyleDictionary.extend({
       }]
     },
 
-    editor: {
+    vscode: {
       transformGroup: 'css',
-      buildPath: 'editor/',
+      buildPath: 'vscode/',
+      actions: ['generateVSCEManifest'],
       prefix: 'rh',
       files: [{
-        destination: 'vscode.json',
-        format: 'snippets/vscode',
-      }, {
+        destination: 'snippets.json',
+        format: 'editor/snippets/vscode',
+      }]
+    },
+
+    neovim: {
+      transformGroup: 'css',
+      buildPath: 'neovim/',
+      prefix: 'rh',
+      files: [{
         destination: 'hexokinase.json',
-        format: 'editor/hexokinase',
+        format: 'editor/neovim/hexokinase',
       }]
     }
   }
