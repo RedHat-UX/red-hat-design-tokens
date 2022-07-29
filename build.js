@@ -212,7 +212,7 @@ export default resetStyles;`,
 /**
  * Exports VSCode style snippets for editor support
  */
-StyleDictionary.registerFormat({ name: 'snippets/vscode',
+StyleDictionary.registerFormat({ name: 'editor/vscode',
   formatter: ({ dictionary }) =>
     JSON.stringify(Object.fromEntries(
       dictionary.allTokens.map(token => {
@@ -229,6 +229,21 @@ StyleDictionary.registerFormat({ name: 'snippets/vscode',
             },
         ]
       })), null, 2),
+});
+
+/**
+ * Exports TextMate style snippets for editor support
+ * @example ```snippets
+ * snippet --rh-color-blackb
+ *   var(--rh-color-black, #000)
+ * ```
+ */
+StyleDictionary.registerFormat({ name: 'editor/textmate',
+  formatter: ({ dictionary }) => dictionary.allTokens.reduce((snippets, token) => `${snippets}
+snippet --${token.name}
+  var(--${token.name}, ${token.value})${!token.value?.startsWith?.('#') ? '' : `
+snippet ${token.value.replace(/^#/, '')}
+  var(--${token.name}, ${token.value})`}`, ''),
 });
 
 /**
@@ -415,10 +430,13 @@ StyleDictionary.extend({
       buildPath: 'editor/',
       prefix: 'rh',
       files: [{
-        destination: 'vscode.json',
-        format: 'snippets/vscode',
+        destination: 'vscode/snippets.json',
+        format: 'editor/vscode',
       }, {
-        destination: 'hexokinase.json',
+        destination: 'textmate/css.snippets',
+        format: 'editor/textmate',
+      }, {
+        destination: 'neovim/hexokinase.json',
         format: 'editor/hexokinase',
       }]
     }

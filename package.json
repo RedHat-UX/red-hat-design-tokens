@@ -4,43 +4,44 @@
   "description": "Red Hat Design System Tokens",
   "scripts": {
     "build": "wireit",
+    "publish": "wireit",
+    "version": "wireit",
     "start": "wireit"
-  },
-  "type": "module",
-  "main": "js/tokens.cjs",
-  "module": "js/tokens.js",
-  "exports": {
-    ".": {
-      "import": "build/js/tokens.js",
-      "require": "build/js/tokens.cjs"
-    }
-  },
-  "files": [
-    "css",
-    "editor",
-    "js",
-    "json",
-    "scss"
-  ],
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
   },
   "wireit": {
     "build": {
-      "command": "node build.js",
+      "command": "node build.js && node sync.js",
       "files": [
         "tokens/**/*",
         "docs/**/*",
         "build.js"
       ],
       "output": [
-        "build/**",
-        "css/**",
-        "editor/**",
-        "js/**",
-        "json/**",
-        "scss/**"
+        "build/**/*",
+        "css/**/*",
+        "editor/**/*",
+        "js/**/*",
+        "json/**/*",
+        "scss/**/*"
+      ]
+    },
+    "version": {
+      "command": "npx changeset version && node sync.js",
+      "dependencies": [
+        "build"
+      ],
+      "files": [
+        "package.json"
+      ],
+      "output": [
+        "CHANGELOG.md",
+        "editor/vscode/package.json"
+      ]
+    },
+    "publish": {
+      "command": "npx changeset publish",
+      "dependencies": [
+        "version"
       ]
     },
     "start": {
@@ -50,19 +51,26 @@
       ]
     }
   },
-  "categories": [
-    "Snippets"
+  "type": "module",
+  "main": "js/tokens.cjs",
+  "module": "js/tokens.js",
+  "exports": {
+    ".": {
+      "import": "./js/tokens.js",
+      "require": "./js/tokens.cjs"
+    }
+  },
+  "files": [
+    "css",
+    "editor",
+    "editor/vscode/package.json",
+    "js",
+    "json",
+    "scss"
   ],
-  "contributes": {
-    "snippets": [
-      {
-        "language": [
-          "css",
-          "scss"
-        ],
-        "path": "./editor/vscode.json"
-      }
-    ]
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
     "@changesets/cli": "^2.22.0",
@@ -73,5 +81,13 @@
     "style-dictionary": "^3.7.0",
     "wireit": "^0.4.3",
     "yaml": "^2.1.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/redhat-ux/red-hat-design-tokens/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/redhat-ux/red-hat-design-tokens"
+  },
+  "homepage": "https://red-hat-design-tokens.netlify.app"
 }
