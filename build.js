@@ -188,6 +188,23 @@ StyleDictionary.registerTransformGroup({ name: '', transforms: [
   'dtcg/type/color',
   ...StyleDictionary.transformGroup.js] });
 
+/** Transforms to apply to s/css outputs */
+StyleDictionary.registerTransformGroup({ name: 'sketch', transforms: [
+  'dtcg/cubic-bezier/css',
+  'dtcg/font-family/css',
+  'dtcg/font-weight/css',
+  'dtcg/shadow/css',
+  'dtcg/type/color',
+  'attribute/cti',
+  'attribute/color',
+  'name/cti/kebab',
+  'time/seconds',
+  'content/icon',
+  'size/rem',
+  'remToPx/css',
+  'color/sketch',
+] });
+
 /**
  * Lit CSS object
  * @example ```js
@@ -421,6 +438,19 @@ StyleDictionary.extend({
         destination: 'hexokinase.json',
         format: 'editor/hexokinase',
       }]
+    },
+
+    sketch: {
+      transformGroup: 'sketch',
+      buildPath: 'design/',
+      prefix: 'rh',
+      files: [{
+        destination: 'rhds.sketch',
+        format: 'sketch/palette/v2',
+      }, {
+        destination: '../build/rhds.sketch',
+        format: 'sketch/palette/v2',
+      }],
     }
   }
 }).buildAllPlatforms();
