@@ -28,6 +28,16 @@ main {
   padding-inline: var(--rh-length-2xl);
 }
 
+main > aside {
+  float: right;
+  padding-inline: 2em;
+}
+
+main > aside :is(ol, ul) {
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
 h1 {
   display: contents;
 }
@@ -40,7 +50,7 @@ rh-tooltip:not(:defined) {
   display: none;
 }
 
-table { 
+table {
   border-collapse: collapse;
   table-layout: auto;
   width: 100%;
