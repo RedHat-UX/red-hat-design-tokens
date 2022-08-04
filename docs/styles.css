@@ -4,7 +4,7 @@
   font-size: var(--rh-font-size-body-text-lg);
   line-height: 1.6;
 }
-style
+
 html,
 body {
   margin: 0;
@@ -28,6 +28,16 @@ main {
   padding-inline: var(--rh-length-2xl);
 }
 
+main > aside {
+  float: right;
+  padding-inline: 2em;
+}
+
+main > aside :is(ol, ul) {
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
 h1 {
   display: contents;
 }
@@ -36,11 +46,21 @@ h1 svg {
   width: 240px;
 }
 
+:is(h1,h2,h3,h4,h5,h6) a {
+  padding-inline-start: 0.5em;
+  opacity: 0;
+  color: var(--rh-color-border-strong-on-light);
+}
+
+:is(h1,h2,h3,h4,h5,h6):is(:hover, :focus-within) a {
+  opacity: 1;
+}
+
 rh-tooltip:not(:defined) {
   display: none;
 }
 
-table { 
+table {
   border-collapse: collapse;
   table-layout: auto;
   width: 100%;

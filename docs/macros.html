@@ -27,7 +27,7 @@
 {%- endmacro -%}
 
 {%- macro typographyDemo(item) -%}
-  <h4>{{ item.comment }}</h4>
+  <h4 id="typography-{{ item.comment | slugify }}">{{ item.comment }}<a href="#typography-{{ item.comment | slugify }}">#</a></h4>
   <p>The quick brown fox jumped over the lazy dog's back.</p>
   {{ copyButton(item) }}
 {%- endmacro -%}
@@ -184,8 +184,10 @@
 {%- macro category(name, level = 2) -%}
   {%- set collection = tokens[name] -%}
   {%- set docs = collection | getDocs -%}
+  {%- set heading = docs.heading or (name | replace('-', ' ') | capitalize) -%}
+  {%- set slug = heading | slugify | lower -%}
   <section id="{{ name }}">
-    <h{{ level }}>{{ docs.heading or (name | replace('-', ' ') | capitalize) }}</h{{ level }}>
+    <h{{ level }} id="{{ slug }}">{{ heading }}<a href="#{{ slug }}">#</a></h{{ level }}>
     {{- docs | getDescription | safe -}}
     {% if caller %}
       {{ caller() }}
@@ -197,8 +199,9 @@
 
 {%- macro subcategory(collection, rowType = undefined, name = undefined) -%}
   {%- set docs = collection | getDocs -%}
-  <section id="{{ docs.heading | slugify | lower }}">
-    <h3>{{ docs.heading }}</h3>
+  {%- set slug = docs.heading | slugify | lower -%}
+  <section id="{{ slug }}">
+    <h3>{{ docs.heading }}<a href="#{{ slug }}">#</a></h3>
     {{- docs | getDescription | safe -}}
     {% if caller %}
       {{ caller() }}
