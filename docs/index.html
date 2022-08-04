@@ -35,14 +35,30 @@
       </h1>
     </header>
     <main>
+      <aside id="downloads">
+        <nav>
+          <h3>Contents</h3>
+          <ol>
+            <li><a href="#color">Color</a></li>
+            <li><a href="#box-shadow">Box Shadow</a></li>
+            <li><a href="#font">Typography</a></li>
+            <li><a href="#border">Borders</a></li>
+            <li><a href="#opacity">Opacity</a></li>
+            <li><a href="#space">Spacers</a></li>
+            <li><a href="#length">Length</a></li>
+            <li><a href="#icon">Icons</a></li>
+          </ol>
+        </nav>
+      </aside>
+
       <section id="overview">
-        <h2>Overview</h2>
+        <h2>Overview<a href="#overview">#</a></h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, commodi. Minus obcaecati ea aperiam omnis tenetur veniam voluptatem, magni expedita ducimus, est reprehenderit reiciendis nisi.</p>
       </section>
 
       {%- call m.category('color') -%}
         {%- for name, family in allTokens | colors | groupby('attributes.type') | excludekeys('border', 'text', 'icon') | sortColorGroupByOrder -%}
-          <h3>{{ name | capitalize }}</h3>
+        <h3 id="color-{{ name | slugify }}">{{ name | capitalize }}<a href="#color-{{ name | slugify }}">#</a></h3>
           {{- tokens.color[name] | getDocs | getDescription | safe -}}
           {{ m.colorTable(family) }}
         {%- endfor -%}
