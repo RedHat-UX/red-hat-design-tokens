@@ -65,6 +65,11 @@ StyleDictionary.registerFileHeader({ name: 'redhat/legal',
   },
 });
 
+/** Match tokens which contain `-color-` in the css variable name */
+StyleDictionary.registerFilter({ name: 'isColor', matcher(token) {
+  return Object.values(token.attributes).some(x => x === 'color' )
+}});
+
 /**
  * Transform a record or box-shadow properties to a css box-shadow property value
  * @see https://design-tokens.github.io/community-group/format/#shadow
@@ -180,7 +185,7 @@ StyleDictionary.registerTransformGroup({ name: 'css', transforms: [
 ] });
 
 /** Transforms to apply to s/css outputs */
-StyleDictionary.registerTransformGroup({ name: '', transforms: [
+StyleDictionary.registerTransformGroup({ name: 'js', transforms: [
   'dtcg/cubic-bezier/css',
   'dtcg/font-family/css',
   'dtcg/font-weight/css',
@@ -190,18 +195,10 @@ StyleDictionary.registerTransformGroup({ name: '', transforms: [
 
 /** Transforms to apply to s/css outputs */
 StyleDictionary.registerTransformGroup({ name: 'sketch', transforms: [
-  'dtcg/cubic-bezier/css',
-  'dtcg/font-family/css',
-  'dtcg/font-weight/css',
-  'dtcg/shadow/css',
   'dtcg/type/color',
   'attribute/cti',
   'attribute/color',
   'name/cti/kebab',
-  'time/seconds',
-  'content/icon',
-  'size/rem',
-  'remToPx/css',
   'color/sketch',
 ] });
 
@@ -445,11 +442,13 @@ StyleDictionary.extend({
       buildPath: 'design/',
       prefix: 'rh',
       files: [{
-        destination: 'rhds.sketch',
+        destination: 'rhds.sketchpalette',
         format: 'sketch/palette/v2',
+        filter: 'isColor',
       }, {
-        destination: '../build/rhds.sketch',
+        destination: '../build/rhds.sketchpalette',
         format: 'sketch/palette/v2',
+        filter: 'isColor',
       }],
     }
   }
