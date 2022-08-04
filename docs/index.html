@@ -48,6 +48,10 @@
             <li><a href="#length">Length</a></li>
             <li><a href="#icon">Icons</a></li>
           </ol>
+          <h3>Downloads</h3>
+          <ul>
+            <li><a href="rhds.sketchpalette">Sketch Color Palette</a></li>
+          </ul>
         </nav>
       </aside>
 
@@ -58,7 +62,7 @@
 
       {%- call m.category('color') -%}
         {%- for name, family in allTokens | colors | groupby('attributes.type') | excludekeys('border', 'text', 'icon') | sortColorGroupByOrder -%}
-        <h3 id="color-{{ name | slugify }}">{{ name | capitalize }}<a href="#color-{{ name | slugify }}">#</a></h3>
+          <h3 id="color-{{ name | slugify | lower }}">{{ name | capitalize }}<a href="#color-{{ name | slugify | lower }}">#</a></h3>
           {{- tokens.color[name] | getDocs | getDescription | safe -}}
           {{ m.colorTable(family) }}
         {%- endfor -%}
