@@ -4,7 +4,7 @@
   font-size: var(--rh-font-size-body-text-lg);
   line-height: 1.6;
 }
-style
+
 html,
 body {
   margin: 0;
@@ -44,6 +44,16 @@ h1 {
 
 h1 svg {
   width: 240px;
+}
+
+:is(h1,h2,h3,h4,h5,h6) a {
+  padding-inline-start: 0.5em;
+  opacity: 0;
+  color: var(--rh-color-border-strong-on-light);
+}
+
+:is(h1,h2,h3,h4,h5,h6):is(:hover, :focus-within) a {
+  opacity: 1;
 }
 
 rh-tooltip:not(:defined) {
