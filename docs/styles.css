@@ -260,3 +260,18 @@ output.swatch.light {
   display: none;
 }
 
+.btt {
+  text-align: right;
+  display: block;
+}
+
+.language-html .hljs-tag { color: var(--rh-color-blue-500, #004080); }
+.language-html .hljs-name { color: var(--rh-color-brand-red-dark, #be0000); }
+.language-html .hljs-attr { color: var(--rh-color-orange-300, #ec7a08); }
+.language-html .hljs-string { color: var(--rh-color-green-500, #3e8635); }
+
+code[class^="language-"] { 
+  max-width: 100%;
+  display: block;
+  overflow-x: scroll;
+}

@@ -194,6 +194,7 @@
     {% else %}
       {%- call table(collection, output = docs.example, name = name) -%}{%- endcall -%}
     {% endif %}
+    <a class="btt" href="#">Top</a>
   </section>
 {%- endmacro -%}
 
@@ -210,5 +211,6 @@
     {% else %}
       {%- call table(collection, output = docs.example, rowType = rowType, name = name) -%}{%- endcall -%}
     {% endif %}
+    <a class="btt" href="#">Top</a>
   </section>
 {%- endmacro -%}
