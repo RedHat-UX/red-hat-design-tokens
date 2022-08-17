@@ -114,8 +114,8 @@ StyleDictionary.registerTransform({ name: 'dtcg/cubic-bezier/css',
 StyleDictionary.registerTransform({ name: 'dtcg/font-family/css',
   type: 'value',
   matcher: isFontFamily,
-  transformer: ({ value }) =>
-    `${value.join(', ')}`,
+  transformer: /**@param {{value: string[]}} value */({ value }) =>
+    `${value.map(x => x.match(/\s/) ? `"${x}"` : x).join(', ')}`,
 })
 
 /**

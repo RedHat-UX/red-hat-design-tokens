@@ -16,8 +16,18 @@ font:
         com.redhat.ux:
           example: Display
       value:
-        - '"RedHatDisplay"'
-        - '"Overpass"'
+        - RedHatDisplay
+        - Red Hat Display
+        - Noto Sans Arabic
+        - Noto Sans Devanagari
+        - Noto Sans Hebrew
+        - Noto Sans Japanese
+        - Noto Sans Korean
+        - Noto Sans Malayalam
+        - Noto Sans Simplified Chinese
+        - Noto Sans Tamil
+        - Noto Sans Thai
+        - Noto Sans Traditional Chinese
         - Overpass
         - Helvetica
         - Arial
@@ -29,8 +39,14 @@ font:
         com.redhat.ux:
           example: Body text
       value:
-        - '"RedHatText"'
-        - '"Overpass"'
+        - RedHatText
+        - Red Hat Text
+        - Noto Sans Hebrew
+        - Noto Sans Japanese
+        - Noto Sans Korean
+        - Noto Sans Traditional Chinese
+        - Noto Sans Simplified Chinese
+        - Noto Sans Arabic
         - Overpass
         - Helvetica
         - Arial
@@ -42,7 +58,8 @@ font:
         com.redhat.ux:
           example: Code
       value:
-        - '"RedHatMono"'
-        - '"Courier New"'
+        - RedHatMono
+        - Red Hat Mono
+        - Courier New
         - Courier
         - monospace
