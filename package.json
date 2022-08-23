@@ -68,6 +68,7 @@
     "@changesets/cli": "^2.22.0",
     "@sindresorhus/slugify": "^2.1.0",
     "@web/dev-server": "^0.1.31",
+    "highlight.js": "^11.6.0",
     "markdown-it": "^13.0.1",
     "nunjucks": "^3.2.3",
     "style-dictionary": "^3.7.0",

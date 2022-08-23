@@ -11,10 +11,21 @@ import flattenTokens from 'style-dictionary/lib/utils/flattenProperties.js';
 import nunjucks from 'nunjucks';
 import slugify from '@sindresorhus/slugify';
 import markdownit from 'markdown-it';
+import hljs from 'highlight.js';
 
 const md = markdownit({
   html: true,
   linkify: true,
+  highlight(str, language) {
+    if (hljs.getLanguage(language)) {
+      try {
+        return hljs.highlight(str, { language }).value;
+      } catch(e) {
+        console.error(e)
+        return str;
+      }
+    }
+  }
 });
 
 const env = nunjucks.configure(fileURLToPath(new URL('./docs', import.meta.url)));
@@ -114,8 +125,8 @@ StyleDictionary.registerTransform({ name: 'dtcg/cubic-bezier/css',
 StyleDictionary.registerTransform({ name: 'dtcg/font-family/css',
   type: 'value',
   matcher: isFontFamily,
-  transformer: ({ value }) =>
-    `${value.join(', ')}`,
+  transformer: /**@param {{value: string[]}} value */({ value }) =>
+    `${value.map(x => x.match(/\s/) ? `"${x}"` : x).join(', ')}`,
 })
 
 /**
