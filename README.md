@@ -10,6 +10,27 @@ npm i @rhds/tokens
 ## 🎭 Usage
 We use [style-dictionary](https://amzn.github.io/style-dictionary/) to transform our tokens into multiple formats and helpers.
 
+### Stylelint Plugin
+
+Install the stylelint plugin to automatically correct token values in your files.
+
+```yaml
+# .stylelintrc.yml
+extends: stylelint-config-standard
+
+# add the plugin:
+plugins:
+  - ./node_modules/@rhds/tokens/plugins/stylelint.cjs
+
+# Make sure to activate the rule:
+rules:
+  rhds/token-values: true
+```
+
+Be sure to configure your editor to fix stylelint issues on save:
+- [neovim lsp](https://github.com/neovim/nvim-lspconfig/pull/2089)
+- [vscode](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint#editor.codeactionsonsave)
+
 ### Global CSS
 Apply defaults to the document root by importing the global stylesheet:
 ```html
