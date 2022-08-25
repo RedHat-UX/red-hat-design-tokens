@@ -234,6 +234,26 @@ ${formattedVariables({ format: 'css', dictionary, outputReferences: options.outp
 export default resetStyles;`,
 });
 
+const makeEntries = dictionary =>
+  JSON.stringify(dictionary.allTokens.map(x => [`--${x.name}`, x.value]), null, 2);
+
+/**
+ * JavaScript token map
+ * @example ```js
+ * import { tokens } from '@rhds/tokens';
+ *
+ * const fontfamilyCssString = tokens.get('--rh-font-family-body-text');
+ * // e.g. 'RedHatText, "Red Hat Text", Overpass, sans-serif';
+ * ```
+ */
+StyleDictionary.registerFormat({ name: 'javascript/map',
+  formatter: ({ file, dictionary, options }) => `${fileHeader({file})}
+export const tokens = new Map(${makeEntries(dictionary)});`,
+}).registerFormat({ name: 'javascript/map-cjs',
+  formatter: ({ file, dictionary, options }) => `${fileHeader({file})}
+exports.tokens = new Map(${makeEntries(dictionary)});`,
+});
+
 /**
  * Exports VSCode style snippets for editor support
  */
@@ -242,16 +262,16 @@ StyleDictionary.registerFormat({ name: 'snippets/vscode',
     JSON.stringify(Object.fromEntries(
       dictionary.allTokens.map(token => {
         return [
-            token.title ?? token.name,
-            {
-              scope: 'css,scss',
-              prefix: [
-                `--${token.name}`,
-                token.value?.startsWith?.('#') ? token.value.replace(/^#/, '') : null
-              ].filter(Boolean),
-              body: [`var(--${token.name}, ${token.value})`],
-              description: token.comment,
-            },
+          token.title ?? token.name,
+          {
+            scope: 'css,scss',
+            prefix: [
+              `--${token.name}`,
+              token.value?.startsWith?.('#') ? token.value.replace(/^#/, '') : null
+            ].filter(Boolean),
+            body: [`var(--${token.name}, ${token.value})`],
+            description: token.comment,
+          },
         ]
       })), null, 2),
 });
@@ -262,7 +282,7 @@ StyleDictionary.registerFormat({ name: 'snippets/vscode',
 StyleDictionary.registerFormat({ name: 'editor/hexokinase',
   formatter: ({ dictionary }) =>
     JSON.stringify({
-      regex_pattern: '\\{color\\.(\\w+)\.(\\d{1,3})\\}',
+      regex_pattern: '\\{color\\.(\\+)\.(\\d{1,3})\\}',
       colour_table: Object.fromEntries(
       dictionary.allTokens.filter(isColor).flatMap(pairAliasWithValue).sort())
     }, null, 2),
@@ -383,29 +403,42 @@ StyleDictionary.extend({
       }, ]
     },
 
+    map: {
+      transformGroup: 'css',
+      buildPath: 'js/',
+      prefix: 'rh',
+      files: [{
+        destination: 'tokens.js',
+        format: 'javascript/map',
+      }, {
+        destination: 'tokens.cjs',
+        format: 'javascript/map-cjs',
+      }]
+    },
+
     js: {
       transformGroup: 'js',
       buildPath: 'js/',
       files: [{
-        destination: 'rhds.tokens.js',
+        destination: 'tree.js',
         format: 'javascript/es6',
         options: {
           fileHeader: 'redhat/legal',
         },
       }, {
-        destination: 'tokens.d.ts',
+        destination: 'tree.d.ts',
         format: 'typescript/es6-declarations',
         options: {
           fileHeader: 'redhat/legal',
         },
       }, {
-        destination: 'tokens.cjs',
+        destination: 'values.cjs',
         format: 'javascript/module-flat',
         options: {
           fileHeader: 'redhat/legal',
         },
       }, {
-        destination: 'tokens.d.cts',
+        destination: 'values.d.cts',
         format: 'typescript/es6-declarations',
         options: {
           fileHeader: 'redhat/legal',
