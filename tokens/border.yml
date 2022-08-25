@@ -35,7 +35,7 @@ border:
           asperiores aliquid distinctio consectetur obcaecati?
 
     sharp:
-      value: 0.0rem
+      value: 0.0px
       comment: Border radius reset
     default:
       comment: '3px border radius; Example: Card'
