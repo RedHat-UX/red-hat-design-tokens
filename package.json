@@ -13,6 +13,12 @@
     ".": {
       "import": "./js/tokens.js",
       "require": "./js/tokens.cjs"
+    },
+    "./tree.js": {
+      "import": "./js/tree.js"
+    },
+    "./values.js": {
+      "require": "./js/values.cjs"
     }
   },
   "files": [
