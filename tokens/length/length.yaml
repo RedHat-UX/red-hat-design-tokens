@@ -5,44 +5,44 @@ length:
     asperiores aliquid distinctio consectetur obcaecati?
 
   4xs:
-    value: 0.0625rem
+    value: 1px
     comment: 1px length token
   3xs:
-    value: 0.125rem
+    value: 2px
     comment: 2px length token
   2xs:
-    value: 0.1875rem
+    value: 3px
     comment: 3px length token
   xs:
-    value: 0.25rem
+    value: 4px
     comment: 4px length token
   sm:
-    value: 0.375rem
+    value: 6px
     comment: 6px length token
   md:
-    value: 0.5rem
+    value: 8px
     comment: 8px length token
   lg:
-    value: 1.0rem
+    value: 16px
     comment: 16px length token
   xl:
-    value: 1.5rem
+    value: 24px
     comment: 24px length token
   2xl:
-    value: 2.0rem
+    value: 32px
     comment: 32px length token
   3xl:
-    value: 3.0rem
+    value: 48px
     comment: 48px length token
   4xl:
-    value: 4.0rem
+    value: 64px
     comment: 64px length token
   5xl:
-    value: 5.0rem
+    value: 80px
     comment: 80px length token
   6xl:
-    value: 6.0rem
+    value: 96px
     comment: 96px length token
   7xl:
-    value: 8.0rem
+    value: 128px
     comment: 128px length token
