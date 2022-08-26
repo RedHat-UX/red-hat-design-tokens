@@ -18,7 +18,7 @@ size:
       value: '{length.2xl}'
       comment: 32px icon box
     '04':
-      value: 2.5rem
+      value: 40px
       comment: 40px spacer
     '05':
       value: '{length.3xl}'
