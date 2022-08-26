@@ -19,19 +19,19 @@ size:
       comment: 32px icon box
     '04':
       value: 40px
-      comment: 40px spacer
+      comment: 40px icon box
     '05':
       value: '{length.3xl}'
-      comment: 48px spacer
+      comment: 48px icon box
     '06':
       value: '{length.4xl}'
-      comment: 64px spacer
+      comment: 64px icon box
     '07':
       value: '{length.5xl}'
-      comment: 80px spacer
+      comment: 80px icon box
     '08':
       value: '{length.6xl}'
-      comment: 96px spacer
+      comment: 96px icon box
     '09':
       value: '{length.7xl}'
-      comment: 128px spacer
+      comment: 128px icon box
