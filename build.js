@@ -420,18 +420,6 @@ StyleDictionary.extend({
       transformGroup: 'js',
       buildPath: 'js/',
       files: [{
-        destination: 'tree.js',
-        format: 'javascript/es6',
-        options: {
-          fileHeader: 'redhat/legal',
-        },
-      }, {
-        destination: 'tree.d.ts',
-        format: 'typescript/es6-declarations',
-        options: {
-          fileHeader: 'redhat/legal',
-        },
-      }, {
         destination: 'values.cjs',
         format: 'javascript/module-flat',
         options: {
@@ -439,6 +427,18 @@ StyleDictionary.extend({
         },
       }, {
         destination: 'values.d.cts',
+        format: 'typescript/es6-declarations',
+        options: {
+          fileHeader: 'redhat/legal',
+        },
+      }, {
+        destination: 'values.js',
+        format: 'javascript/es6',
+        options: {
+          fileHeader: 'redhat/legal',
+        },
+      }, {
+        destination: 'values.d.ts',
         format: 'typescript/es6-declarations',
         options: {
           fileHeader: 'redhat/legal',
@@ -497,3 +497,7 @@ StyleDictionary.extend({
     }
   }
 }).buildAllPlatforms();
+
+const TOKENS_DECL_CONTENT = 'export declare const tokens: Map<`--rh-${string}`, string|number>;';
+for (const ext of ['ts','cts'])
+  await fs.promises.writeFile(new URL(`./js/tokens.d.${ext}`, import.meta.url), TOKENS_DECL_CONTENT, 'utf8');
