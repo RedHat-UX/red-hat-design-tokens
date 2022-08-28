@@ -14,7 +14,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@300;500;700&family=Noto+Sans+JP:wght@300;500;700&family=Noto+Sans+KR:wght@300;500;700&family=Noto+Sans+Malayalam:wght@300;500;700&family=Noto+Sans+SC:wght@300;500;700&family=Noto+Sans+TC:wght@300;500;700&family=Noto+Sans+Tamil:wght@300;500;700&family=Noto+Sans+Thai:wght@300;500;700&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="rhds.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/@rhds/elements/elements/rh-footer/rh-footer-lightdom.css" />
     <script type="module" src="https://unpkg.com/@rhds/elements/elements/rh-tooltip/rh-tooltip.js?module"></script>
+    <script type="module" src="https://unpkg.com/@rhds/elements/elements/rh-footer/rh-global-footer.js?module"></script>
     <script type="module">
       for (const button of document.querySelectorAll('section button')) {
         button.addEventListener('click', async function(event) {
@@ -103,6 +105,32 @@
       {{ m.subcategory(collection = tokens.size.icon, level = 2, name = 'icon-size') }}
 
     </main>
+    <rh-global-footer>
+      <h3 slot="links-primary" hidden>Red Hat legal and privacy links</h3>
+      <ul slot="links-primary">
+        <li><a href="#">About Red Hat</a></li>
+        <li><a href="#">Jobs</a></li>
+        <li><a href="#">Events</a></li>
+        <li><a href="#">Locations</a></li>
+        <li><a href="#">Contact Red Hat</a></li>
+        <li><a href="#">Red Hat Blog</a></li>
+        <li><a href="#">Cool Stuff Store</a></li>
+        <li><a href="#">Diversity, equity, and inclusion</a></li>
+      </ul>
+      <rh-footer-copyright slot="links-secondary"></rh-footer-copyright>
+      <h3 slot="links-secondary" hidden>Red Hat legal and privacy links</h3>
+      <ul slot="links-secondary">
+        <li><a href="#">Privacy statement</a></li>
+        <li><a href="#">Terms of use</a></li>
+        <li><a href="#">All policies and guidelines</a></li>
+        <li><a href="#">Digital accessibility</a></li>
+        <li><a href="#">Cookie preferences</a></li>
+      </ul>
+      <a href="https://www.redhat.com/en/summit" slot="tertiary">
+        <img src="https://access.redhat.com/chrome_themes/nimbus/img/rh-summit-red-a.svg" alt="Red Hat Summit"
+          width="73px" loading="lazy">
+      </a>
+    </rh-global-footer>
   </body>
 </html>
 
