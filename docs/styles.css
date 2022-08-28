@@ -18,10 +18,16 @@ body {
 header {
   background: var(--rh-color-black-900);
   color: var(--rh-color-text-primary-on-dark);
-  padding: var(--rh-space-xs) var(--rh-space-md);
+  padding: var(--rh-space-xs) var(--rh-space-2xl);
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 72px;
+}
+
+header svg {
+  height: 36px;
+  color: white;
 }
 
 main {
@@ -40,10 +46,6 @@ main > aside :is(ol, ul) {
 
 h1 {
   display: contents;
-}
-
-h1 svg {
-  width: 240px;
 }
 
 :is(h1,h2,h3,h4,h5,h6) a {
@@ -121,11 +123,38 @@ code {
 }
 
 .copy-button {
+  display: inline-flex;
+  align-items: center;
   border-radius: var(--rh-border-radius-default);
   border-width: 0;
   padding: var(--rh-space-xs);
   background: none;
+  cursor: pointer;
   opacity: 0;
+}
+
+.value .copy-button {
+  opacity: 1;
+  background-color: var(--rh-color-surface-lighter);
+  overflow-x: hidden;
+  max-width: 228px;
+  white-space: pre;
+  text-overflow: ellipsis;
+}
+
+.value.color .copy-button {
+  border-radius: var(--rh-border-radius-pill);
+  padding-block: 0;
+}
+
+.value.color .copy-button::after {
+  content: '';
+  display: inline-block;
+  border-radius: 100%;
+  background-color: var(--color);
+  height: .5rem;
+  aspect-ratio: 1;
+  margin-inline-start: .5rem;
 }
 
 .copy-button:is(:focus, :active, :hover) {
