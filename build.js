@@ -190,8 +190,8 @@ StyleDictionary.registerTransformGroup({ name: 'css', transforms: [
   'name/cti/kebab',
   'time/seconds',
   'content/icon',
-  'size/rem',
-  'remToPx/css',
+  // 'size/rem',
+  // 'remToPx/css',
   'color/css',
 ] });
 
