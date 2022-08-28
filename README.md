@@ -57,16 +57,23 @@ export class RhJazzHands extends LitElement {
 ### JavaScript Objects
 Import tokens as JavaScript objects:
 ```js
-import { ColorBlue300 } from '@rhds/tokens';
+import { tokens } from '@rhds/tokens';
+
+html`<span style="color: ${tokens.get('--rh-color-blue-300')}">I'm blue</span>`;
+```
+or for tree-shakable imports:
+```js
+import { ColorBlue300 } from '@rhds/tokens/values.js';
 
 html`<span style="color: ${ColorBlue300}">I'm blue</span>`;
 ```
-**NOTE**: We *strongly* recommend using CSS variables (and accompanying snippets) instead of importing tokens as JavaScript objects.
+**NOTE**: We *strongly* recommend using CSS variables (and accompanying snippets)
+wherever, instead of importing tokens as JavaScript objects.
 
 ### Editor Snippets
 Editor snippets complete prefixes like `--rh-color-brand` to their CSS custom properties, complete with fallback, e.g.
 ```css
-color: var(--rh-color-brand, #e00);
+color: var(--rh-color-brand, #ee0000);
 ```
 
 They also provide reverse lookup, so if you want to choose between _all_ the tokens with value `#e00`, you can do so by completing the prefix `e00`.
