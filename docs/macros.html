@@ -14,14 +14,18 @@
 
 {%- macro aliases(item) -%}
   {% if item | isRef  %}
-    <code>${{ item | deref }}</code>
+  <button class="copy-button name">
+    <code>--{{ item | deref }}</code>
+  </button>
   {% endif %}
 {%- endmacro -%}
 
 {%- macro nameCell(item) -%}
   <td class="item-name">
     <div>
-      <code>${{ item.name }}</code>{{ aliases(item) }}
+      <button class="copy-button name">
+        <code>--{{ item.name }}</code>{{ aliases(item) }}
+      </button>
     </div>
   </td>
 {%- endmacro -%}
@@ -34,9 +38,9 @@
 
 {%- macro lengthCode(item) -%}
 {%- set isRem = item.value.endsWith('rem') or false -%}
-<span class="value {{ isRem and 'rem' or 'px' }}"><button class="copy-button"><code>{{ item.value }}</code></button></span>{%- if isRem and item.attributes.px -%}
+<button class="copy-button value {{ isRem and 'rem' or 'px' }}"><code>{{ item.value }}</code></button>{%- if isRem and item.attributes.px -%}
 <br/>{%- endif -%}{%- if item.attributes.px -%}
-<span class="value px"><button class="copy-button"><code>{{ item.attributes.px }}</code></button></span>{%- endif -%}
+<button class="copy-button value px"><code>{{ item.attributes.px }}</code></button>{%- endif -%}
 </code>
 {%- endmacro -%}
 
@@ -49,9 +53,9 @@
     <td><output class="swatch{{ ' light' if item.attributes.isLight }}" style="background: {{ item.value }}"></output></td>
     {{ nameCell(item) }}
     <td>
-      <span class="value color hex" style="--color: {{ item.value }}"><button class="copy-button"><code>{{ item.value }}</code></button></span>
+      <button class="copy-button value color hex" style="--color: {{ item.value }}"><code>{{ item.value }}</code></button>
       <br/>
-      <span class="value color rgb" style="--color: rgb({{ r }}, {{ g }}, {{ b }})"><button class="copy-button"><code>rgb({{ r }}, {{ g }}, {{ b }})</code></button></span>
+      <button class="copy-button value color rgb" style="--color: rgb({{ r }}, {{ g }}, {{ b }})"><code>rgb({{ r }}, {{ g }}, {{ b }})</code></button>
     </td>
     <td>{{ item.comment }}</td>
     <td class="copy-cell">{{ copyButton(item) }}</td>
@@ -70,10 +74,10 @@
   <tr class="font family">
     <td style="--font-family: {{ item.value }}"><output>{{ item.$extensions['com.redhat.ux'].example }}</output></td>
     {{ nameCell(item) }}
-    <td class="value"><button class="copy-button"><code>{{ item.value }}</button></td>
+    <td><button class="copy-button value"><code>{{ item.value }}</button></td>
     <td>{{ item.comment }}</td>
     <td>{{ copyButton(item) }}</td>
-  </article>
+  </tr>
 {%- endmacro -%}
 
 {%- macro fontSizeRow(item, fontFamily = 'var(--rh-font-family-text)') -%}
@@ -94,9 +98,9 @@
       <output>{{ item.attributes.aliases[0] }}</output>
     </td>
     {{ nameCell(item) }}
-    <td class="value">
-      <span class="numerical"><button class="copy-button"><code>{{ item.value }}</button></span>
-      <span class="common"><button class="copy-button"><code>{{ item.attributes.aliases[0] }}</code></button></span>
+    <td>
+      <button class="copy-button numerical value"><code>{{ item.value }}</button>
+      <button class="copy-button common value"><code>{{ item.attributes.aliases[0] }}</code></button>
     </td>
     <td>{{ item.comment }}</td>
     <td>{{ copyButton(item) }}</td>
@@ -109,7 +113,7 @@
       <output></output>
     </td>
     {{ nameCell(item) }}
-    <td class="value">{{ lengthCode(item) }}</td>
+    <td>{{ lengthCode(item) }}</td>
     <td>{{ item.comment }}</td>
     <td>{{ copyButton(item) }}</td>
   </tr>
@@ -121,7 +125,7 @@
       <output></output>
     </td>
     {{ nameCell(item) }}
-    <td class="value">{{ lengthCode(item) }}</td>
+    <td>{{ lengthCode(item) }}</td>
     <td>{{ item.comment }}</td>
     <td>{{ copyButton(item) }}</td>
   </tr>
@@ -131,7 +135,7 @@
   <table>
     <thead>
       <tr>
-        <th>Example</th>
+        <th><abbr title="Example">Ex.</abbr></th>
         <th>Token name</th>
         <th>Value</th>
         <th>Use case</th>
@@ -156,13 +160,12 @@
                 <output{{((' style="background-color: '+item.$extensions['com.redhat.ux'].color+';"') if name == 'space') | safe}}>{{ output | safe }}</output>
               </td>
               {{ nameCell(item) }}
-              <td class="value">
-                  {%- if item.value and item.value.endsWith and (item.value.endsWith('px') or item.value.endsWith('rem')) -%}
-                    {{ lengthCode(item) }}
-                  {%- else -%}
-                    <button class="copy-button"><code>{{ item.value }}</code></button>
-                  {%- endif -%}
-                </td>
+              <td>
+                {%- if item.value and item.value.endsWith and (item.value.endsWith('px') or item.value.endsWith('rem')) -%}
+                  {{ lengthCode(item) }}
+                {%- else -%}
+                  <button class="copy-button value"><code>{{ item.value }}</code></button>
+                {%- endif -%}
               </td>
               <td>{{ item.comment }}</td>
               <td>{{ copyButton(item) }}</td>

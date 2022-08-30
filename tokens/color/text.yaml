@@ -7,7 +7,7 @@ color:
         description: >-
           Each theme features two shades of gray for text, Primary and Secondary.
 
-          ### Accessibility
+          #### Accessibility
 
           Contrast is important when choosing colors for UI elements for visitors.
           Awareness of standards and best practices is the key to an accessible color palette.
@@ -17,7 +17,7 @@ color:
           color contrast between elements so that visitors with low vision can browse our web
           properties.
 
-          #### Text on backgrounds
+          ##### Text on backgrounds
 
           Black text should be used on light backgrounds and vice versa. If a page features both
           light and dark themes, UI elements and text should be placed on contrasting background
