@@ -132,7 +132,7 @@ code {
   padding: var(--rh-space-xs);
   background: none;
   cursor: pointer;
-  opacity: 0;
+  opacity: 0.2;
 }
 
 .copy-button:is(.value, .name) {
