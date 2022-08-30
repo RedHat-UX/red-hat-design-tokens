@@ -1,0 +1,23 @@
+name: Release
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
+
+      - uses: google/wireit@setup-github-actions-caching/v1
+
+      - run: npm ci --prefer-offline
+      - run: npm test
