@@ -4,9 +4,8 @@ color:
       com.redhat.ux:
         order: 30
         description: >-
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-          architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-          asperiores aliquid distinctio consectetur obcaecati?
+          Each theme features two shades of blue, one for Link and Focus states and one for Hover
+          and Active states.
 
     blue:
       lightest:

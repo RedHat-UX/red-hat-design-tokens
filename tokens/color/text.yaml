@@ -5,9 +5,24 @@ color:
       com.redhat.ux:
         heading: Text color
         description: >-
-          Text Color Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-          architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-          asperiores aliquid distinctio consectetur obcaecati?
+          Each theme features two shades of gray for text, Primary and Secondary.
+
+          ### Accessibility
+
+          Contrast is important when choosing colors for UI elements for visitors.
+          Awareness of standards and best practices is the key to an accessible color palette.
+          We are committed to complying with the
+          [Web Content Accessibility Guidelines AA](https://www.w3.org/WAI/WCAG2AA-Conformance.html)
+          standard contrast ratios. We choose colors that support usability by ensuring sufficient
+          color contrast between elements so that visitors with low vision can browse our web
+          properties.
+
+          #### Text on backgrounds
+
+          Black text should be used on light backgrounds and vice versa. If a page features both
+          light and dark themes, UI elements and text should be placed on contrasting background
+          colors. Layouts with colored backgrounds or a photo changes the rules regarding the
+          placement of text, so use white or black text for body copy applications.
 
     primary:
       on:
