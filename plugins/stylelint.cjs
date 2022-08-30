@@ -29,8 +29,8 @@ const ruleFunction = (_options, _secondaryOptions, ctx) => {
 
     root.walk(node => {
       if (node.type === 'decl') {
-        const value = parser(node.value);
-        value.walk(ch => {
+        const parsedValue = parser(node.value);
+        parsedValue.walk(ch => {
           if (ch.type === 'function' && ch.value === 'var' && ch.nodes.length > 1) {
             const [{ value: name }, , ...values] = ch.nodes ?? [];
             if (tokens.has(name)) {
@@ -38,7 +38,8 @@ const ruleFunction = (_options, _secondaryOptions, ctx) => {
               const expected = tokens.get(name).toString();
               if (expected !== actual) {
                 if (ctx.fix) {
-                  node.value = `var(${name}, ${expected})`;
+                  ch.nodes[2] = parser(expected)
+                  node.value = parser.stringify(parsedValue);
                   return;
                 } else {
                   stylelint.utils.report({
