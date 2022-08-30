@@ -15,15 +15,6 @@
     <link rel="stylesheet" href="rhds.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://unpkg.com/@rhds/elements/elements/rh-footer/rh-footer-lightdom.css" />
-    <script type="module" src="https://unpkg.com/@rhds/elements/elements/rh-tooltip/rh-tooltip.js?module"></script>
-    <script type="module" src="https://unpkg.com/@rhds/elements/elements/rh-footer/rh-global-footer.js?module"></script>
-    <script type="module">
-      for (const button of document.querySelectorAll('section button')) {
-        button.addEventListener('click', async function(event) {
-          await navigator.clipboard.writeText(event.target.closest('[data-variable]').dataset.variable);
-        });
-      }
-    </script>
   </head>
   <body>
     <header>
@@ -168,6 +159,16 @@
           width="73px" loading="lazy">
       </a>
     </rh-global-footer>
+    <script>globalThis.process = { env: {} };</script>
+    <script type="module" src="https://unpkg.com/@rhds/elements/elements/rh-tooltip/rh-tooltip.js?module"></script>
+    <script type="module" src="https://unpkg.com/@rhds/elements/elements/rh-footer/rh-global-footer.js?module"></script>
+    <script type="module">
+      for (const button of document.querySelectorAll('section button')) {
+        button.addEventListener('click', async function(event) {
+          await navigator.clipboard.writeText(event.target.closest('[data-copy]').dataset.copy);
+        });
+      }
+    </script>
   </body>
 </html>
 
