@@ -1,5 +1,11 @@
 # @rhds/tokens
 
+## 1.0.0-beta.3
+
+### Patch Changes
+
+- a2ae38a: Corrected package exports
+
 ## 1.0.0-beta.2
 
 ### Minor Changes
