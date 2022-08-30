@@ -79,7 +79,9 @@ tr {
 
 td.item-name > div {
   display: flex;
-  flex-flow: column;
+  flex-flow: row wrap;
+  max-width: 350px;
+  gap: var(--rh-space-xs);
 }
 
 .hex {
@@ -133,21 +135,21 @@ code {
   opacity: 0;
 }
 
-.value .copy-button {
+.copy-button:is(.value, .name) {
   opacity: 1;
   background-color: var(--rh-color-surface-lighter);
   overflow-x: hidden;
-  max-width: 228px;
+  max-width: 350px;
   white-space: pre;
   text-overflow: ellipsis;
 }
 
-.value.color .copy-button {
+.copy-button.value.color {
   border-radius: var(--rh-border-radius-pill);
   padding-block: 0;
 }
 
-.value.color .copy-button::after {
+.copy-button.value.color::after {
   content: '';
   display: inline-block;
   border-radius: 100%;
@@ -171,13 +173,14 @@ tr:is(:hover, :focus-within) .copy-button {
 }
 
 th, td {
-  padding-block: var(--rh-length-sm);
+  padding-block: var(--rh-space-sm);
+  padding-inline: var(--rh-space-md)
 }
 
-td:nth-child(1) { width: 170px; }
-td:nth-child(2) { width: 360px; }
+/* td:nth-child(1) { width: 170px; } */
+/* td:nth-child(2) { width: 360px; } */
 /* td:nth-child(3) { width: 360px; } */
-td:nth-child(4) { width: 360px; }
+/* td:nth-child(4) { width: 360px; } */
 
 .font output {
   font-size: var(--font-size, var(--rh-font-size-heading-md));
@@ -299,7 +302,7 @@ output.swatch.light {
 .language-html .hljs-attr { color: var(--rh-color-orange-300, #ec7a08); }
 .language-html .hljs-string { color: var(--rh-color-green-500, #3e8635); }
 
-code[class^="language-"] { 
+code[class^="language-"] {
   max-width: 100%;
   display: block;
   overflow-x: scroll;
