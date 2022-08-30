@@ -68,7 +68,42 @@
 
       <section id="overview">
         <h2>Overview<a href="#overview">#</a></h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, commodi. Minus obcaecati ea aperiam omnis tenetur veniam voluptatem, magni expedita ducimus, est reprehenderit reiciendis nisi.</p>
+        <p>
+          Design tokens are a way of naming, defining, categorizing, and sharing <em>values</em>
+          in a design system. Doing so helps us produce <em>uniform user experiences</em> across
+          platforms and teams. Tokens are defined once using a standard syntax, and can be
+          transformed by software into a variety of formats and helpers, for multiple platforms.
+        </p>
+
+        <p>
+          An example token is <code>--rh-color-brand-red-on-dark</code>, the version of
+          “Red Hat red” for use on dark backgrounds. It has the value <code>#FF3333</code>.
+        </p>
+
+        <p>
+          Tokens are for <em>designers</em> and <em>developers</em>. They aid <em>designers</em>
+          by <em>limiting</em> the pool of available style values to the brand standards and by
+          <em>standardizing</em> their names and uses. They aid <em>developers</em> in making it
+          easier to implement the designers’ specification by referencing well-defined token names.
+        </p>
+
+        <p>
+          A designer might access the tokens in an XD template or via a figma plugin.
+          We are researching the best way to make this available across teams and are eager for
+          feedback.
+        </p>
+
+        <p>
+          A developer might use them by referencing preloaded <em>CSS custom properties</em>, using
+          <em>SCSS variables</em>, or by using <em>editor snippets</em> and <em>lint rules</em> to
+          auto-complete variable names in CSS files.
+        </p>
+
+        <p>
+          We want your feedback on our tokens! Are there missing values? Do you have an idea for an
+          output format or tool integration?
+        </p>
+
       </section>
 
       {%- call m.category('color') -%}
