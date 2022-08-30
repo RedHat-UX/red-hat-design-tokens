@@ -3,18 +3,16 @@ color:
     $extensions:
       com.redhat.ux:
         order: 0
-        description: >-
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-          architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-          asperiores aliquid distinctio consectetur obcaecati?
 
     red:
       $extensions:
         com.redhat.ux:
           description: >-
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-            architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-            asperiores aliquid distinctio consectetur obcaecati?
+            The primary brand color is red, it brings boldness and helps guide the eye or highlight
+            important information.
+
+            To learn more about how the red color is used, visit the
+            [Brand standards](https://www.redhat.com/en/about/brand/standards/color) page.
 
       lightest:
         value: '{color.red.100}'

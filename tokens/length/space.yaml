@@ -2,9 +2,10 @@ space:
   $extensions:
     com.redhat.ux:
       description: >-
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-        architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-        asperiores aliquid distinctio consectetur obcaecati?
+        Spacers are visual cues used to define fixed amounts of space between elements.
+        They make it easy for designers to maintain consistent spacing across components and
+        patterns as well as simplify the handoff process between designers and developers.
+        Consistent spacing helps maintain balance and rhythm across the system.
 
   xs:
     value: '{length.xs}'

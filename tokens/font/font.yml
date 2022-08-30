@@ -3,6 +3,5 @@ font:
     com.redhat.ux:
       heading: Typography
       description: >-
-        Typography Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-        architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-        asperiores aliquid distinctio consectetur obcaecati?
+        To learn more about how to use text, visit the
+        [typography page](https://ux.redhat.com/foundations/typography).
