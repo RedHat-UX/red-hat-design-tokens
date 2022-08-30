@@ -49,7 +49,7 @@
   {%- set g = item.attributes.rgb.g -%}
   {%- set b = item.attributes.rgb.b -%}
   {%- set a = item.attributes.rgb.a -%}
-  <tr>
+  <tr id="--{{ item.name }}">
     <td><output class="swatch{{ ' light' if item.attributes.isLight }}" style="background: {{ item.value }}"></output></td>
     {{ nameCell(item) }}
     <td>
@@ -71,7 +71,7 @@
 {%- endmacro -%}
 
 {%- macro fontFamilyRow(item) -%}
-  <tr class="font family">
+  <tr id="{{ item.name }}" class="font family">
     <td style="--font-family: {{ item.value }}"><output>{{ item.$extensions['com.redhat.ux'].example }}</output></td>
     {{ nameCell(item) }}
     <td><button class="copy-button value"><code>{{ item.value }}</button></td>
@@ -81,7 +81,7 @@
 {%- endmacro -%}
 
 {%- macro fontSizeRow(item, fontFamily = 'var(--rh-font-family-text)') -%}
-  <tr class="font size">
+  <tr id="{{ item.name }}" class="font size">
     <td style="--font-size: {{ item.value }}; --font-family: {{ fontFamily }}">
       <output>Aa</output>
     </td>
@@ -93,7 +93,7 @@
 {%- endmacro -%}
 
 {%- macro fontWeightRow(item, fontFamily = 'var(--rh-font-family-text)') -%}
-  <tr class="font weight">
+  <tr id="{{ item.name }}" class="font weight">
     <td style="--font-weight: {{ item.value }}; --font-family: {{ fontFamily }};">
       <output>{{ item.attributes.aliases[0] }}</output>
     </td>
@@ -108,7 +108,7 @@
 {%- endmacro -%}
 
 {%- macro borderRadiusRow(item) -%}
-  <tr class="border radius">
+  <tr id="{{ item.name }}" class="border radius">
     <td style="--border-radius: {{ item.value }};">
       <output></output>
     </td>
@@ -120,7 +120,7 @@
 {%- endmacro -%}
 
 {%- macro borderWidthRow(item) -%}
-  <tr class="border width">
+  <tr id="{{ item.name }}" class="border width">
     <td style="--border-width: {{ item.value }};">
       <output></output>
     </td>
@@ -155,7 +155,7 @@
           {% elif collection.$type == 'fontFamily' %}
             {{ fontFamilyRow(item) }}
           {% else %}
-            <tr class="{{ name }}" data-key="{{ key }}">
+            <tr id="{{ item.name }}" class="{{ name }}" data-key="{{ key }}">
               <td style="--{{ name }}: {{ item.value }};">
                 <output{{((' style="background-color: '+item.$extensions['com.redhat.ux'].color+';"') if name == 'space') | safe}}>{{ output | safe }}</output>
               </td>
