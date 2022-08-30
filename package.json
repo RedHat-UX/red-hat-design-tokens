@@ -4,7 +4,8 @@
   "description": "Red Hat Design System Tokens",
   "scripts": {
     "build": "wireit",
-    "start": "wireit"
+    "start": "wireit",
+    "test": "wireit"
   },
   "type": "module",
   "main": "js/tokens.cjs",
@@ -53,6 +54,12 @@
       "dependencies": [
         "build"
       ]
+    },
+    "test": {
+      "command": "tape-es test/*.js | tap-difflet",
+      "dependencies": [
+        "build"
+      ]
     }
   },
   "categories": [
@@ -78,6 +85,8 @@
     "markdown-it": "^13.0.1",
     "nunjucks": "^3.2.3",
     "style-dictionary": "^3.7.0",
+    "tap-difflet": "^0.7.2",
+    "tape-es": "^1.2.17",
     "wireit": "^0.4.3",
     "yaml": "^2.1.0"
   },
