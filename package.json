@@ -5,6 +5,8 @@
   "scripts": {
     "build": "wireit",
     "start": "wireit",
+    "lint": "wireit",
+    "format": "wireit",
     "test": "wireit"
   },
   "type": "module",
@@ -55,6 +57,12 @@
         "build"
       ]
     },
+    "lint": {
+      "command": "eslint lib plugins test docs"
+    },
+    "format": {
+      "command": "eslint --fix lib plugins test docs"
+    },
     "test": {
       "command": "tape-es test/*.js | tap-difflet",
       "dependencies": [
@@ -78,9 +86,11 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.22.0",
+    "@patternfly/eslint-config-elements": "^0.0.2-next.4",
     "@sindresorhus/slugify": "^2.1.0",
     "@web/dev-server": "^0.1.31",
     "css-tree": "^2.2.1",
+    "eslint": "^8.23.0",
     "highlight.js": "^11.6.0",
     "markdown-it": "^13.0.1",
     "nunjucks": "^3.2.3",

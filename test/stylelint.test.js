@@ -9,7 +9,7 @@ async function getAutofixedCSS(code) {
     code,
     fix: true,
     config: {
-      rules: {'rhds/token-values': true},
+      rules: { 'rhds/token-values': true },
       plugins: ['./plugins/stylelint.cjs'],
     }
   });

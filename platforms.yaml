@@ -1,0 +1,112 @@
+css:
+  transformGroup: css
+  buildPath: css/
+  prefix: rh
+  files:
+    - destination: global.css
+      format: css/variables
+      options:
+        fileHeader: redhat/legal
+        selector: ':root'
+    - destination: shared.css
+      format: css/variables
+      options:
+        fileHeader: redhat/legal
+        selector: ':host'
+    - destination: reset.css.js
+      format: css/lit
+      options:
+        fileHeader: redhat/legal
+        selector: ':host'
+
+scss:
+  transformGroup: css
+  buildPath: scss/
+  prefix: rh
+  files:
+    - destination: _variables.scss
+      format: scss/variables
+      options:
+        fileHeader: redhat/legal
+
+json:
+  transformGroup: css
+  buildPath: json/
+  prefix: rh
+  files:
+    - destination: rhds.tokens.json
+      format: json
+      options:
+        fileHeader: redhat/legal
+        outputReferences: true
+
+map:
+  transformGroup: css
+  buildPath: js/
+  prefix: rh
+  files:
+    - destination: tokens.js
+      format: javascript/map
+    - destination: tokens.cjs
+      format: javascript/map-cjs
+
+js:
+  transformGroup: js
+  buildPath: js/
+  files:
+    - destination: values.cjs
+      format: javascript/module-flat
+      options:
+        fileHeader: redhat/legal
+    - destination: values.d.cts
+      format: typescript/es6-declarations
+      options:
+        fileHeader: redhat/legal
+    - destination: values.js
+      format: javascript/es6
+      options:
+        fileHeader: redhat/legal
+    - destination: values.d.ts
+      format: typescript/es6-declarations
+      options:
+        fileHeader: redhat/legal
+
+html:
+  transformGroup: css
+  buildPath: build/
+  prefix: rh
+  actions:
+    - copyAssets
+  files:
+    - destination: index.html
+      format: html/docs
+      options:
+        fileHeader: redhat/legal
+        outputReferences: true
+    - destination: rhds.css
+      format: css/variables
+      options:
+        fileHeader: redhat/legal
+        selector: ':root'
+
+editor:
+  transformGroup: css
+  buildPath: editor/
+  prefix: rh
+  files:
+    - destination: vscode.json
+      format: snippets/vscode
+    - destination: hexokinase.json
+      format: editor/hexokinase
+
+sketch:
+  transformGroup: sketch
+  buildPath: design/
+  prefix: rh
+  files:
+    - destination: rhds.sketchpalette
+      format: sketch/palette/v2
+      filter: isColor
+    - destination: ../build/rhds.sketchpalette
+      format: sketch/palette/v2
+      filter: isColor
