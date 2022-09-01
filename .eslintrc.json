@@ -1,0 +1,9 @@
+{
+  "env": {
+    "node": true
+  },
+  "globals": {
+    "globalThis": false
+  },
+  "extends": "@patternfly/elements"
+}

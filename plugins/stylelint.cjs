@@ -34,11 +34,11 @@ const ruleFunction = (_options, _secondaryOptions, ctx) => {
           if (ch.type === 'function' && ch.value === 'var' && ch.nodes.length > 1) {
             const [{ value: name }, , ...values] = ch.nodes ?? [];
             if (tokens.has(name)) {
-              const actual = parser.stringify(values)
+              const actual = parser.stringify(values);
               const expected = tokens.get(name).toString();
               if (expected !== actual) {
                 if (ctx.fix) {
-                  ch.nodes[2] = parser(expected)
+                  ch.nodes[2] = parser(expected);
                   node.value = parser.stringify(parsedValue);
                   return;
                 } else {
