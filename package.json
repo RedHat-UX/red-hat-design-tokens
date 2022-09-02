@@ -4,7 +4,9 @@
   "description": "Red Hat Design System Tokens",
   "scripts": {
     "build": "wireit",
+    "style-dictionary": "wireit",
     "start": "wireit",
+    "package": "wireit",
     "lint": "wireit",
     "format": "wireit",
     "test": "wireit"
@@ -35,7 +37,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "wireit": {
-    "build": {
+    "style-dictionary": {
       "command": "node build.js",
       "files": [
         "tokens/**/*",
@@ -54,7 +56,7 @@
     "start": {
       "command": "wds",
       "dependencies": [
-        "build"
+        "style-dictionary"
       ]
     },
     "lint": {
@@ -66,23 +68,24 @@
     "test": {
       "command": "tape-es test/*.js | tap-difflet",
       "dependencies": [
-        "build"
+        "lint",
+        "style-dictionary"
+      ]
+    },
+    "build": {
+      "command": "cd editor/vscode && vsce package",
+      "dependencies": [
+        "lint",
+        "style-dictionary"
+      ],
+      "files": [
+        "editor/vscode/package.json",
+        "editor/vscode/snippets.json"
+      ],
+      "output": [
+        "*.vsix"
       ]
     }
-  },
-  "categories": [
-    "Snippets"
-  ],
-  "contributes": {
-    "snippets": [
-      {
-        "language": [
-          "css",
-          "scss"
-        ],
-        "path": "./editor/vscode.json"
-      }
-    ]
   },
   "devDependencies": {
     "@changesets/cli": "^2.22.0",
@@ -97,6 +100,7 @@
     "style-dictionary": "^3.7.0",
     "tap-difflet": "^0.7.2",
     "tape-es": "^1.2.17",
+    "vsce": "^2.11.0",
     "wireit": "^0.4.3",
     "yaml": "^2.1.0"
   },
