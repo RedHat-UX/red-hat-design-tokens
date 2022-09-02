@@ -22,6 +22,7 @@ jobs:
 
       - run: npm ci --prefer-offline
       - run: npm test # also builds
+      - run: npm run package # also also builds
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
@@ -34,4 +35,77 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      # changesets action outputs `publishedPackages` in the format
+      #   [{"name": "@xx/xx", "version": "1.2.0"}, {"name": "@xx/xy", "version": "0.8.9"}]
+      # The following step converts that list of objects to a list of strings (git tags for github releases)
+      # and joins them with commas, for consumption in the next step
+      #   "@xx/xx@1.2.0, @xx/xy@0.8.9"
+      - name: Transform Tags
+        id: get-tags
+        if: ${{ steps.changesets.outputs.published == 'true' }}
+        run: |
+          tags=$( echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -c 'map([.name,.version]) | map(join("@")) | join(", ")' )
+          echo "$tags"
+          echo "::set-output name=tags::$tags"
 
+      - name: Upload release artifact
+        uses: actions/github-script@v6
+        with:
+          debug: ${{ secrets.ACTIONS_RUNNER_DEBUG }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            // APIs provided by github-script action. See README
+            const { readFile, readdir } = require('fs').promises;
+            const { join } = require('path');
+            const workspace = '${{ github.workspace }}';
+            const owner = 'RedHat-UX';
+            const repo = 'red-hat-design-tokens';
+            const vscodeDir = join(__dirname, 'editor', 'vscode');
+            const tags = ${{ steps.get-tags.outputs.tags }};
+
+            core.debug(workspace);
+            core.debug(owner, repo);
+            core.debug(vscodeDir);
+            core.debug(tags);
+
+            try {
+              const files = await readdir(vscodeDir)
+              core.debug(files);
+              const filename = files.find(file => file.name.endsWith('vsix')));
+              core.debug(filename);
+
+              if (!filename) {
+                throw new Error('Could not find release');
+              }
+
+              for (const tag of tags) {
+                const response = await github.rest.repos.getReleaseByTag({ owner, repo, tag }));
+                const release = response.data
+
+                // Delete any existing asset with that name
+                for (const asset of release.assets ?? []) {
+                  if (asset.name === filename) {
+                    core.info(`Found ${filename} for ${tag}, deleting`);
+                    await github.rest.repos.deleteReleaseAsset({ owner, repo, asset_id: asset.id });
+                  }
+                }
+
+                // Upload the all-repo bundle to the release
+                const data = await readFile(join(vscodeDir, filename));
+                core.info(`Uploading ${filename} to ${tag}`);
+                await github.rest.repos.uploadReleaseAsset({
+                  tag, release_id: release.id,
+                  owner, repo,
+                  name: filename, data,
+                });
+              }
+            } catch(error) {
+              core.error(error);
+            }
+
+      - name: Publish VSCode
+        run: |
+          cd editor/vscode
+          vsce --publish --pre-release
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
