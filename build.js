@@ -11,8 +11,8 @@ import * as Filters from './lib/filters.js';
 
 import { readFile } from 'node:fs/promises';
 
-const platformsYAML =
-  await readFile(new URL('./platforms.yaml', import.meta.url), 'utf8');
+const PLATFORMS_URL = new URL('./platforms.yaml', import.meta.url);
+const platforms = YAML.parse(await readFile(PLATFORMS_URL, 'utf8'));
 
 StyleDictionary
   .registerFileHeader(FileHeaders.legal)
@@ -31,13 +31,15 @@ StyleDictionary
   .registerFormat(Formats.mapEs)
   .registerFormat(Formats.mapCjs)
   .registerFormat(Formats.vscodeSnippets)
+  .registerFormat(Formats.textmateSnippets)
   .registerFormat(Formats.hexokinase)
   .registerFormat(Formats.docsPage)
   .registerAction(Actions.copyAssets)
   .registerAction(Actions.writeEsMapDeclaration)
+  .registerAction(Actions.writeVSIXManifest)
   .extend({
     source: ['tokens/**/*.{yaml,yml}'],
-    platforms: YAML.parse(platformsYAML),
+    platforms,
     parsers: [{
       pattern: /\.ya?ml$/,
       parse({ contents }) {
