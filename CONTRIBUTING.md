@@ -8,6 +8,27 @@ npm ci
 npm run build
 ```
 
+<small>
+
+If you receive an error `Package libsecret-1 was not found in the pkg-config search path.` when
+running `npm ci`, you may need to install `libsecret` sources. This is necessary to package and
+publish VSCode snippets.
+
+Fedora/RHEL:
+```sh
+sudo dnf install libsecret-devel
+```
+Debian/Ubuntu:
+```sh
+sudo apt-get install libsecret-1-dev
+```
+Arch:
+```sh
+sudo pacman -S libsecret
+```
+
+</small>
+
 You should see something like this output:
 ```
 ```css

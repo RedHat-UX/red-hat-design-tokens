@@ -44,6 +44,8 @@ map:
   transformGroup: css
   buildPath: js/
   prefix: rh
+  actions:
+    - writeEsMapDeclaration
   files:
     - destination: tokens.js
       format: javascript/map
@@ -93,20 +95,21 @@ editor:
   transformGroup: css
   buildPath: editor/
   prefix: rh
+  actions:
+    - writeVSIXManifest
   files:
-    - destination: vscode.json
-      format: snippets/vscode
-    - destination: hexokinase.json
+    - destination: vscode/snippets.json
+      format: editor/snippets/vscode
+    - destination: textmate/css.snippets
+      format: editor/snippets/textmate
+    - destination: neovim/hexokinase.json
       format: editor/hexokinase
 
 sketch:
   transformGroup: sketch
-  buildPath: design/
+  buildPath: design/sketch/
   prefix: rh
   files:
     - destination: rhds.sketchpalette
-      format: sketch/palette/v2
-      filter: isColor
-    - destination: ../build/rhds.sketchpalette
       format: sketch/palette/v2
       filter: isColor
