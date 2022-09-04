@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://unpkg.com/@rhds/elements/elements/rh-footer/rh-footer-lightdom.css" />
   </head>
   <body>
-    <header>
+    <header id="main-header">
       <h1>
         <svg version="1.1" x="0" y="0" viewBox="0 0 284 48" style="enable-background:new 0 0 284 48" xml:space="preserve" aria-label="Red Hat Digital Design System">
           <g transform="translate(-20 -16)">
@@ -49,10 +49,12 @@
             <li><a href="#space">Spacers</a></li>
             <li><a href="#length">Length</a></li>
             <li><a href="#icon">Icons</a></li>
+            <li><a href="#breakpoints">Breakpoints</a></li>
           </ol>
           <h3>Downloads</h3>
           <ul>
             <li><a href="rhds.sketchpalette">Sketch Color Palette</a></li>
+            <li><a href="extension.vsix">VSCode Extension</a></li>
           </ul>
         </nav>
       </aside>
@@ -101,7 +103,8 @@
 
       {%- call m.category('color') -%}
         {%- for name, family in allTokens | colors | groupby('attributes.type') | excludekeys('border', 'text', 'icon') | sortColorGroupByOrder -%}
-          <h3 id="color-{{ name | slugify | lower }}">{{ name | capitalize }}<a href="#color-{{ name | slugify | lower }}">#</a></h3>
+          {%- set id = ('color-' + (name | slugify | lower)) -%}
+          <h3 id="{{ id }}">{{ name | capitalize }}<a href="#{{ id }}">#</a></h3>
           {{- tokens.color[name] | getDocs | getDescription | safe -}}
           {{ m.colorTable(family) }}
         {%- endfor -%}
@@ -132,6 +135,12 @@
       {{ m.category('length') }}
       {{ m.subcategory(collection = tokens.size.icon, level = 2, name = 'icon-size') }}
 
+      {%- call m.category('breakpoint') -%}
+        {%- for breakpoint in allTokens | breakpoints -%}
+          {{ m.breakpoint(breakpoint) }}
+        {%- endfor -%}
+      {%- endcall -%}
+
     </main>
     <rh-global-footer>
       <h3 slot="links-primary" hidden>Red Hat legal and privacy links</h3>
@@ -159,8 +168,9 @@
           width="73px" loading="lazy">
       </a>
     </rh-global-footer>
-    <script>globalThis.process = { env: {} };
-</script>
+    <script>
+      globalThis.process = { env: {} };
+    </script>
     <script type="module" src="https://unpkg.com/@rhds/elements/elements/rh-tooltip/rh-tooltip.js?module"></script>
     <script type="module" src="https://unpkg.com/@rhds/elements/elements/rh-footer/rh-global-footer.js?module"></script>
     <script type="module">

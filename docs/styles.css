@@ -15,7 +15,7 @@ body {
   font-family: var(--rh-font-family-heading);
 }
 
-header {
+#main-header {
   background: var(--rh-color-black-900);
   color: var(--rh-color-text-primary-on-dark);
   padding: var(--rh-space-xs) var(--rh-space-2xl);
@@ -306,4 +306,22 @@ code[class^="language-"] {
   max-width: 100%;
   display: block;
   overflow-x: scroll;
+}
+
+#breakpoint {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--rh-space-lg);
+}
+
+#breakpoint > :is(p, h2, .btt) {
+  width: 100%;
+}
+
+.breakpoint { --scale: .25 }
+
+.breakpoint.full { --scale: 1; }
+
+.breakpoint img {
+  width: calc(var(--outer) * var(--scale));
 }

@@ -24,6 +24,7 @@ StyleDictionary
   .registerTransform(DTCGTransforms.fontWeight)
   .registerTransform(Transforms.colorFormats)
   .registerTransform(Transforms.remToPx)
+  .registerTransform(Transforms.pxNumeric)
   .registerTransformGroup(TransformGroups.css)
   .registerTransformGroup(TransformGroups.js)
   .registerTransformGroup(TransformGroups.sketch)

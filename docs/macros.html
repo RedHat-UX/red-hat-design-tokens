@@ -51,6 +51,35 @@
 </code>
 {%- endmacro -%}
 
+{%- macro breakpoint(item) -%}
+{%- set id = ('breakpoint-' + (item.name | slugify | lower)) -%}
+{%- set landscape = item.path.includes('landscape') -%}
+{%- set small = item.path.includes('small') -%}
+{%- if item | isMobile and not landscape -%}
+  {%- set outer = 420 -%}
+{%- elif item | isMobile and landscape -%}
+  {%- set outer = 708 -%}
+{%- elif item | isTablet and not landscape -%}
+  {%- set outer = 868 -%}
+{%- elif item | isTablet and landscape -%}
+  {%- set outer = 1144 -%}
+{%- elif small -%}
+  {%- set outer = 1292 -%}
+{%- else -%}
+  {%- set outer = 1468 -%}
+{%- endif -%}
+{%- set name = item.name | replace('rh-breakpoint-', '') | replace('-', ' ') | capitalize -%}
+<article class="breakpoint" style="--outer: {{ outer }}px;">
+  <header>
+    <h3 id="{{ id }}">{{ name }} <a href="#{{ id }}">#</a></h3>
+    <code>{{ item.value }}</code>
+    {{ copyButton(item) }}
+  </header>
+  {{- item.original | getDocs | getDescription | safe -}}
+  <img src="assets/device-{{item.name}}.svg" alt="{{item.name}}">
+</article>
+{%- endmacro -%}
+
 {%- macro colorRow(item) -%}
   {%- set r = item.attributes.rgb.r -%}
   {%- set g = item.attributes.rgb.g -%}

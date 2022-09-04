@@ -1,0 +1,46 @@
+breakpoint:
+  $type: dimension
+  $extensions:
+    com.redhat.ux:
+      use: breakpoint
+      heading: Breakpoints
+      description: |
+        When layouts reduce in size, visual elements may also reduce in size to compensate for the
+        loss in screen real estate.
+
+  mobile:
+    portrait:
+      $type: dimension
+      value: 320px
+      comment: Mobile portrait max width
+    landscape:
+      $type: dimension
+      value: 576px
+      comment: Mobile landscape max width
+
+  tablet:
+    portrait:
+      $type: dimension
+      value: 768px
+    landscape:
+      $type: dimension
+      value: 992px
+
+  desktop:
+    small:
+      $type: dimension
+      value: 1200px
+    large:
+      $type: dimension
+      value: 1368px
+
+  screen:
+    small:
+      $type: dimension
+      value: 700px
+      comment: ??
+    large:
+      $type: dimension
+      value: 1008px
+      comment: ??
+
