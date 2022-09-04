@@ -53,54 +53,10 @@ jobs:
           debug: ${{ secrets.ACTIONS_RUNNER_DEBUG }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            // APIs provided by github-script action. See README
-            const { readFile, readdir } = require('fs').promises;
-            const { join } = require('path');
             const workspace = '${{ github.workspace }}';
-            const owner = 'RedHat-UX';
-            const repo = 'red-hat-design-tokens';
-            const vscodeDir = join(__dirname, 'editor', 'vscode');
             const tags = ${{ steps.get-tags.outputs.tags }};
-
-            core.debug(workspace);
-            core.debug(owner, repo);
-            core.debug(vscodeDir);
-            core.debug(tags);
-
-            try {
-              const files = await readdir(vscodeDir)
-              core.debug(files);
-              const filename = files.find(file => file.name.endsWith('vsix')));
-              core.debug(filename);
-
-              if (!filename) {
-                throw new Error('Could not find release');
-              }
-
-              for (const tag of tags) {
-                const response = await github.rest.repos.getReleaseByTag({ owner, repo, tag }));
-                const release = response.data
-
-                // Delete any existing asset with that name
-                for (const asset of release.assets ?? []) {
-                  if (asset.name === filename) {
-                    core.info(`Found ${filename} for ${tag}, deleting`);
-                    await github.rest.repos.deleteReleaseAsset({ owner, repo, asset_id: asset.id });
-                  }
-                }
-
-                // Upload the all-repo bundle to the release
-                const data = await readFile(join(vscodeDir, filename));
-                core.info(`Uploading ${filename} to ${tag}`);
-                await github.rest.repos.uploadReleaseAsset({
-                  tag, release_id: release.id,
-                  owner, repo,
-                  name: filename, data,
-                });
-              }
-            } catch(error) {
-              core.error(error);
-            }
+            const { release } = await import('${{ github.workspace }}/lib/release.js');
+            await release({ core, github, tags, workspace });
 
       - name: Publish VSCode
         run: |
