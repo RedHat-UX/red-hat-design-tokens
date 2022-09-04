@@ -55,7 +55,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const workspace = '${{ github.workspace }}';
-            const tags = ${{ steps.get-tags.outputs.tags }};
+            const tags = ${{ steps.get-tags.outputs.tags }}.split(',');
             const { release } = await import('${{ github.workspace }}/lib/release.js');
             await release({ core, github, tags, workspace });
 
