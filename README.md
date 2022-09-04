@@ -79,8 +79,8 @@ color: var(--rh-color-brand, #ee0000);
 They also provide reverse lookup, so if you want to choose between _all_ the tokens with value `#e00`, you can do so by completing the prefix `e00`.
 
 Load snippets in **VSCode**:
-Search for `Red Hat Design System` in the VSCode marketplace, or download the VSIX bundle from
-[the releases page](https://github.com/redhat-ux/red-hat-design-tokens/releases).
+Download the VSIX bundle from [the releases page](https://github.com/redhat-ux/red-hat-design-tokens/releases).
+Or, search the VSCode marketplace for [`Red Hat Design Tokens`](https://marketplace.visualstudio.com/search?term=%40category%3A%22snippets%22%20%22Red%20Hat%20Design%20Tokens%22&target=VSCode&category=All%20categories&sortBy=Relevance)
 
 Load snippets in **neovim** via LuaSnip:
 ```lua
