@@ -49,6 +49,7 @@ jobs:
 
       - name: Upload release artifact
         uses: actions/github-script@v6
+        if: ${{ steps.changesets.outputs.published == 'true' }}
         with:
           debug: ${{ secrets.ACTIONS_RUNNER_DEBUG }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -59,6 +60,7 @@ jobs:
             await release({ core, github, tags, workspace });
 
       - name: Publish VSCode
+        if: ${{ steps.changesets.outputs.published == 'true' }}
         run: |
           cd editor/vscode
           vsce --publish --pre-release
