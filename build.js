@@ -25,6 +25,7 @@ StyleDictionary
   .registerTransform(Transforms.colorFormats)
   .registerTransform(Transforms.remToPx)
   .registerTransform(Transforms.pxNumeric)
+  .registerTransform(Transforms.mediaQuery)
   .registerTransformGroup(TransformGroups.css)
   .registerTransformGroup(TransformGroups.js)
   .registerTransformGroup(TransformGroups.sketch)

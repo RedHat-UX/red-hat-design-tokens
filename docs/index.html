@@ -50,6 +50,7 @@
             <li><a href="#length">Length</a></li>
             <li><a href="#icon">Icons</a></li>
             <li><a href="#breakpoints">Breakpoints</a></li>
+            <li><a href="#media">Media Queries</a></li>
           </ol>
           <h3>Downloads</h3>
           <ul>
@@ -136,9 +137,18 @@
       {{ m.subcategory(collection = tokens.size.icon, level = 2, name = 'icon-size') }}
 
       {%- call m.category('breakpoint') -%}
+      <section id="breakpoints-graphics">
         {%- for breakpoint in allTokens | breakpoints -%}
           {{ m.breakpoint(breakpoint) }}
         {%- endfor -%}
+      </section>
+      {%- endcall -%}
+      
+      {%- call m.category('media') -%}
+      <dl id="media-queries" class="grid">{%- for item in allTokens | mediaQueries -%}
+        <dt>--{{ item.name }}</dt>
+        <dd>{{ item.value }} {{ m.copyButton(item, valueOnly=true) }}</dd>{% endfor %}
+      </dl>
       {%- endcall -%}
 
     </main>

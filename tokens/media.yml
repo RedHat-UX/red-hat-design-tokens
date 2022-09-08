@@ -1,0 +1,54 @@
+media:
+  $extensions:
+    com.redhat.ux:
+      use: breakpoint
+      heading: Media Queries
+      description: |
+        For use in templating systems and JavaScript modules. We recommend against importing these
+        tokens directly into components. These tokens are directly derived from
+        [breakpoints](#breakpoints).
+
+        ```html
+        <link rel="stylesheet"
+              href="large-screen.css"
+              media="%(%%(% tokens.get('--rh-media-desktop-large') %)%%)%"
+        ```
+
+  mobile:
+    portrait:
+      $type: mediaQuery
+      value:
+        max-width: '{breakpoint.mobile.portrait}'
+    landscape:
+      $type: mediaQuery
+      value:
+        min-width: 576px
+        max-width: '{breakpoint.mobile.landscape}'
+
+  tablet:
+    portrait:
+      $type: mediaQuery
+      value:
+        min-width: 768px
+        max-width: '{breakpoint.tablet.portrait}'
+    landscape:
+      $type: mediaQuery
+      value:
+        min-width: 992px
+        max-width: '{breakpoint.tablet.landscape}'
+
+  desktop:
+    small:
+      $type: mediaQuery
+      value:
+        min-width: 1200px
+        max-width: '{breakpoint.desktop.small}'
+    medium:
+      $type: mediaQuery
+      value:
+        min-width: 1440px
+        max-width: '{breakpoint.desktop.medium}'
+    large:
+      $type: mediaQuery
+      value:
+        min-width: 1680px

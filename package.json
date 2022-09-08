@@ -41,6 +41,8 @@
       "files": [
         "tokens/**/*",
         "docs/**/*",
+        "lib/**/*",
+        "platforms.yaml",
         "build.js"
       ],
       "output": [

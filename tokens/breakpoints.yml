@@ -5,42 +5,57 @@ breakpoint:
       use: breakpoint
       heading: Breakpoints
       description: |
-        When layouts reduce in size, visual elements may also reduce in size to compensate for the
-        loss in screen real estate.
+        When layouts reduce in size, visual elements may also reduce in size, hide, or otherwise
+        adapt to compensate for the loss in screen real estate.
+
+        Red Hat's breakpoint tokens refer to the three most common classes of device screens,
+        mobile, tablet, and desktop. The breakpoint values represent the **maximum**
+        [CSS pixel](https://developer.mozilla.org/en-US/docs/Glossary/CSS_pixel) width of a device's
+        screen, corresponding to the `max-width` media query so for example a device with a
+        screen width less than the `--rh-breakpoint-mobile-portrait` token is considered a mobile
+        device in portrait mode, whereas a device with a screen width greater than the
+        `--rh-breakpoint-desktop-medium` token is considered a desktop with a large screen.
+
+        Since CSS currently does not allow custom properties in media queries, these tokens must be
+        uses in preprocessors or templating systems, or imported into JavaScript modules. We
+        recommend against importing these token values directly into components. In Red Hat's
+        Design System, we import them into a
+        [reactive controller](https://lit.dev/docs/composition/controllers/) which exposes
+        information about the screen size through a JavaScript API.
+
+        See also [media queries](#media-queries).
+
+        ```js
+        static styles = css`
+          @media (max-width: $%(%BreakpointMobilePortrait%)%) %(%
+            /* ... mobile portrait styles */
+          %)%
+        `;
+        ```
 
   mobile:
     portrait:
       $type: dimension
-      value: 320px
+      value: 575px
       comment: Mobile portrait max width
     landscape:
       $type: dimension
-      value: 576px
+      value: 767px
       comment: Mobile landscape max width
 
   tablet:
     portrait:
       $type: dimension
-      value: 768px
+      value: 991px
     landscape:
       $type: dimension
-      value: 992px
+      value: 1199px
 
   desktop:
     small:
       $type: dimension
-      value: 1200px
-    large:
+      value: 1439px
+    medium:
       $type: dimension
-      value: 1368px
-
-  screen:
-    small:
-      $type: dimension
-      value: 700px
-      comment: ??
-    large:
-      $type: dimension
-      value: 1008px
-      comment: ??
+      value: 1679px
 

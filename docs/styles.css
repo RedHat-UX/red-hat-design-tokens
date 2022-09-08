@@ -308,14 +308,10 @@ code[class^="language-"] {
   overflow-x: scroll;
 }
 
-#breakpoint {
+#breakpoints-graphics {
   display: flex;
   flex-wrap: wrap;
   gap: var(--rh-space-lg);
-}
-
-#breakpoint > :is(p, h2, .btt) {
-  width: 100%;
 }
 
 .breakpoint { --scale: .25 }
@@ -324,4 +320,30 @@ code[class^="language-"] {
 
 .breakpoint img {
   width: calc(var(--outer) * var(--scale));
+}
+
+dl.grid {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 8px;
+  align-items: center;
+}
+
+dl.grid dt {
+  font-style: italic;
+}
+
+dl.grid dt:after {
+  content: ': ';
+}
+
+dl.grid dt,
+dl.grid dd {
+  margin: 0;
+  padding: 0;
+}
+
+dl.grid dd {
+  display: flex;
+  align-items: center;
 }
