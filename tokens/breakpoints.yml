@@ -26,7 +26,7 @@ breakpoint:
 
         ```js
         static styles = css`
-          @media (max-width: $%(%BreakpointMobilePortrait%)%) %(%
+          @media (max-width: $%(%Breakpoint2xs%)%) %(%
             /* ... mobile portrait styles */
           %)%
         `;
