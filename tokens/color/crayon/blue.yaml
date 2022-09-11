@@ -1,21 +1,21 @@
 color:
   blue:
     50:
-      value: '#e7f1fa'
-      comment: Alert - Info background
+      $value: '#e7f1fa'
+      $description: Alert - Info background
     100:
-      value: '#bee1f4'
-      comment: Label - Filled (Blue) border color
+      $value: '#bee1f4'
+      $description: Label - Filled (Blue) border color
     200:
-      value: '#73bcf7'
+      $value: '#73bcf7'
     250:
-      value: '#2b9af3'
-      comment: Alert - Info accent
+      $value: '#2b9af3'
+      $description: Alert - Info accent
     400:
-      value: '#0066cc'
-      comment: Label - Filled (Blue) accent color
+      $value: '#0066cc'
+      $description: Label - Filled (Blue) accent color
     500:
-      value: '#004080'
+      $value: '#004080'
     600:
-      value: '#002952'
-      comment: Alert - Info title text
+      $value: '#002952'
+      $description: Alert - Info title text

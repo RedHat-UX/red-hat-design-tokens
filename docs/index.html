@@ -54,6 +54,7 @@
           </ol>
           <h3>Downloads</h3>
           <ul>
+            <li><a href="rhds.tokens.json">Tokens JSON</a></li>
             <li><a href="rhds.sketchpalette">Sketch Color Palette</a></li>
             <li><a href="extension.vsix">VSCode Extension</a></li>
           </ul>
@@ -96,14 +97,15 @@
         </p>
 
         <p>
-          We want <a href="https://github.com/RedHat-UX/red-hat-design-tokens/discussions">your feedback</a> on our tokens! Are there missing values? Do you have an idea for an
-          output format or tool integration?
+          We want <a href="https://github.com/RedHat-UX/red-hat-design-tokens/discussions">your feedback</a>
+          on our tokens! Are there missing values? Do you have an idea for an output format or tool
+          integration?
         </p>
 
       </section>
 
       {%- call m.category('color') -%}
-        {%- for name, family in allTokens | colors | groupby('attributes.type') | excludekeys('border', 'text', 'icon') | sortColorGroupByOrder -%}
+        {%- for name, family in colors | groupby('attributes.type') | excludekeys('border', 'text', 'icon') | sortColorGroupByOrder -%}
           {%- set id = ('color-' + (name | slugify | lower)) -%}
           <h3 id="{{ id }}">{{ name | capitalize }}<a href="#{{ id }}">#</a></h3>
           {{- tokens.color[name] | getDocs | getDescription | safe -}}
@@ -118,17 +120,17 @@
         {{ m.subcategory(collection = tokens.font.size.heading, rowType = 'fontSize') }}
         {{ m.subcategory(collection = tokens.font.size['body-text'], rowType = 'fontSize') }}
         {{ m.subcategory(collection = tokens.font.size.code, rowType = 'fontSize') }}
-        {{ m.subcategory(collection = tokens.font.weight.heading) }}
-        {{ m.subcategory(collection = tokens.font.weight['body-text']) }}
-        {{ m.subcategory(collection = tokens.font.weight.code) }}
+        {{ m.subcategory(collection = tokens.font.weight.heading, rowType = 'fontWeight') }}
+        {{ m.subcategory(collection = tokens.font.weight['body-text'], rowType = 'fontWeight') }}
+        {{ m.subcategory(collection = tokens.font.weight.code, rowType = 'fontWeight') }}
         {{ m.subcategory(collection = tokens['line-height']) }}
-        {{ m.subcategory(collection = tokens.color.text) }}
+        {{ m.subcategory(collection = tokens.color.text, rowType = 'color') }}
       {%- endcall -%}
 
       {% call m.category('border') %}
         {{ m.subcategory(collection = tokens.border.radius, rowType = 'borderRadius') }}
         {{ m.subcategory(collection = tokens.border.width, rowType = 'borderWidth') }}
-        {{ m.subcategory(collection = tokens.color.border) }}
+        {{ m.subcategory(collection = tokens.color.border, rowType = 'color') }}
       {% endcall %}
 
       {{ m.category('opacity') }}
@@ -137,17 +139,17 @@
       {{ m.subcategory(collection = tokens.size.icon, level = 2, name = 'icon-size') }}
 
       {%- call m.category('breakpoint') -%}
-      <section id="breakpoints-graphics">
-        {%- for breakpoint in allTokens | breakpoints -%}
+      <section id="breakpoints">
+        {%- for breakpoint in breakpoints -%}
           {{ m.breakpoint(breakpoint) }}
         {%- endfor -%}
       </section>
       {%- endcall -%}
       
       {%- call m.category('media') -%}
-      <dl id="media-queries" class="grid">{%- for item in allTokens | mediaQueries -%}
+      <dl id="media-queries" class="grid">{%- for item in mediaQueries -%}
         <dt>--{{ item.name }}</dt>
-        <dd>{{ item.value }} {{ m.copyButton(item, valueOnly=true) }}</dd>{% endfor %}
+        <dd>{{ item.$value | inlineCss | safe }} {{ m.copyButton(item, valueOnly=true) }}</dd>{% endfor %}
       </dl>
       {%- endcall -%}
 

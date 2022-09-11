@@ -24,12 +24,11 @@ font:
           ```
 
     heading:
-      $type: fontFamily
-      comment: Heading font family
+      $description: Heading font family
       $extensions:
         com.redhat.ux:
           example: Display
-      value:
+      $value:
         - RedHatDisplay
         - Red Hat Display
         - Noto Sans Arabic
@@ -45,12 +44,11 @@ font:
         - Arial
         - sans-serif
     body-text:
-      $type: fontFamily
-      comment: Body text font family
+      $description: Body text font family
       $extensions:
         com.redhat.ux:
           example: Body text
-      value:
+      $value:
         - RedHatText
         - Red Hat Text
         - Noto Sans Arabic
@@ -66,12 +64,11 @@ font:
         - Arial
         - sans-serif
     code:
-      $type: fontFamily
-      comment: Code font family
+      $description: Code font family
       $extensions:
         com.redhat.ux:
           example: Code
-      value:
+      $value:
         - RedHatMono
         - Red Hat Mono
         - Courier New

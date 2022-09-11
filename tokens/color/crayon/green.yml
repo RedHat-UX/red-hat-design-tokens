@@ -1,14 +1,14 @@
 color:
   green:
     50:
-      value: '#f3faf2'
-      comment: alert - success background
+      $value: '#f3faf2'
+      $description: alert - success background
     100:
-      value: '#bde5b8'
-      comment: Label - Filled (Green) border color
+      $value: '#bde5b8'
+      $description: Label - Filled (Green) border color
     500:
-      value: '#3e8635'
-      comment: Alert - Success accent
+      $value: '#3e8635'
+      $description: Alert - Success accent
     600:
-      value: '#1e4f18'
-      comment: Alert - Success title text
+      $value: '#1e4f18'
+      $description: Alert - Success title text

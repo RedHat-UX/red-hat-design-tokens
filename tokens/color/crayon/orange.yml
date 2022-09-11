@@ -1,17 +1,17 @@
 color:
   orange:
     50:
-      value: '#fff6ec'
-      comment: Label - Filled (Orange) background color
+      $value: '#fff6ec'
+      $description: Label - Filled (Orange) background color
     100:
-      value: '#f4b678'
-      comment: Label - Filled (Orange) border color
+      $value: '#f4b678'
+      $description: Label - Filled (Orange) border color
     300:
-      value: '#ec7a08'
-      comment: Label - Filled (Orange) accent color
+      $value: '#ec7a08'
+      $description: Label - Filled (Orange) accent color
     500:
-      value: '#8f4700'
-      comment: Label - Filled (Orange) accent color
+      $value: '#8f4700'
+      $description: Label - Filled (Orange) accent color
     700:
-      value: '#3b1f00'
-      comment: Label - Filled (Orange) text color
+      $value: '#3b1f00'
+      $description: Label - Filled (Orange) text color

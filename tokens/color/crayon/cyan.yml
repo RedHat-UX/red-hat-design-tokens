@@ -1,18 +1,18 @@
 color:
   cyan:
     50:
-      value: '#f2f9f9'
-      comment: Alert - Default background
+      $value: '#f2f9f9'
+      $description: Alert - Default background
     100:
-      value: '#a2d9d9'
-      comment: Label (Cyan) border color
+      $value: '#a2d9d9'
+      $description: Label (Cyan) border color
     300:
-      value: '#009596'
-      comment: Alert - Default accent
+      $value: '#009596'
+      $description: Alert - Default accent
     400:
-      value: '#005f60'
-      comment: Alert - Default accent
+      $value: '#005f60'
+      $description: Alert - Default accent
     500:
-      value: '#003737'
-      comment: Alert - Default title text
+      $value: '#003737'
+      $description: Alert - Default title text
 

@@ -1,4 +1,5 @@
 box-shadow:
+  $type: shadow
   $extensions:
     com.redhat.ux:
       description: >-
@@ -7,36 +8,32 @@ box-shadow:
         asperiores aliquid distinctio consectetur obcaecati?
 
   sm:
-    $type: shadow
-    comment: Small box shadow
-    value:
+    $description: Small box shadow
+    $value:
       offsetX: 0
       offsetY: '{length.3xs}'
       blur: '{length.xs}'
       spread: 0
       color: rgba(21, 21, 21, 0.2)
   md:
-    $type: shadow
-    comment: Medium box shadow
-    value:
+    $description: Medium box shadow
+    $value:
       offsetX: 0
       offsetY: '{length.xs}'
       blur: '{length.sm}'
       spread: '{length.4xs}'
       color: rgba(21, 21, 21, 0.25)
   lg:
-    $type: shadow
-    comment: Large box shadow
-    value:
+    $description: Large box shadow
+    $value:
       offsetX: 0
       offsetY: '{length.sm}'
       blur: '{length.md}'
       spread: '{length.3xs}'
       color: rgba(21, 21, 21, 0.3)
   xl:
-    $type: shadow
-    comment: Extra large box shadow
-    value:
+    $description: Extra large box shadow
+    $value:
       offsetX: 0
       offsetY: '{length.md}'
       blur: '{length.xl}'

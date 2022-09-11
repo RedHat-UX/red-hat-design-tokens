@@ -15,29 +15,29 @@ color:
             [Brand standards](https://www.redhat.com/en/about/brand/standards/color) page.
 
       lightest:
-        value: '{color.red.100}'
-        comment: Lightest brand red
+        $value: '{color.red.100}'
+        $description: Lightest brand red
       lighter:
-        value: '{color.red.200}'
-        comment: lighter brand red
+        $value: '{color.red.200}'
+        $description: lighter brand red
       light:
-        value: '{color.red.300}'
-        comment: Light brand red
+        $value: '{color.red.300}'
+        $description: Light brand red
 
       on:
         dark:
-          value: '{color.red.400}'
-          comment: Brand red on dark background
+          $value: '{color.red.400}'
+          $description: Brand red on dark background
         light:
-          value: '{color.red.500}'
-          comment: Brand red on light background
+          $value: '{color.red.500}'
+          $description: Brand red on light background
 
       dark:
-        value: '{color.red.600}'
-        comment: Dark brand red/Brand red hover
+        $value: '{color.red.600}'
+        $description: Dark brand red/Brand red hover
       darker:
-        value: '{color.red.700}'
-        comment: Darker brand red
+        $value: '{color.red.700}'
+        $description: Darker brand red
       darkest:
-        value: '{color.red.800}'
-        comment: Darkest brand red
+        $value: '{color.red.800}'
+        $description: Darkest brand red

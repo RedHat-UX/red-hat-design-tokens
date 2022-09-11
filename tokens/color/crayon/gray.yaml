@@ -8,54 +8,54 @@ color:
           Be mindful of accessibility when using text or components on top of shades of gray.
 
   white:
-    value: '#ffffff'
-    comment: Primary surface (light theme) or primary text (dark theme)
+    $value: '#ffffff'
+    $description: Primary surface (light theme) or primary text (dark theme)
     attributes:
       type: gray
 
   black:
     150:
-      value: '#f5f5f5'
-      comment: Tertiary surface (light theme)
+      $value: '#f5f5f5'
+      $description: Tertiary surface (light theme)
       attributes:
         type: gray
     200:
-      value: '#f0f0f0'
-      comment: Secondary surface (light theme)
+      $value: '#f0f0f0'
+      $description: Secondary surface (light theme)
       attributes:
         type: gray
     300:
-      value: '#d2d2d2'
-      comment: Borders (light theme) or secondary text (dark theme) 
+      $value: '#d2d2d2'
+      $description: Borders (light theme) or secondary text (dark theme) 
       attributes:
         type: gray
     400:
-      value: '#b8bbbe'
-      comment: Icons or tertiary uses (light theme)
+      $value: '#b8bbbe'
+      $description: Icons or tertiary uses (light theme)
       attributes:
         type: gray
     500:
-      value: '#8a8d90'
-      comment: Icons or tertiary uses (dark theme)
+      $value: '#8a8d90'
+      $description: Icons or tertiary uses (dark theme)
       attributes:
         type: gray
     600:
-      value: '#6a6e73'
-      comment: Borders (dark theme) or secondary text (light theme)
+      $value: '#6a6e73'
+      $description: Borders (dark theme) or secondary text (light theme)
       attributes:
         type: gray
     700:
-      value: '#3c3f42'
-      comment: Secondary surface (dark theme)
+      $value: '#3c3f42'
+      $description: Secondary surface (dark theme)
       attributes:
         type: gray
     800:
-      value: '#212427'
-      comment: Tertiary surface (dark theme)
+      $value: '#212427'
+      $description: Tertiary surface (dark theme)
       attributes:
         type: gray
     900:
-      value: '#151515'
-      comment: Primary surface (dark theme) or primary text (light theme)
+      $value: '#151515'
+      $description: Primary surface (dark theme) or primary text (light theme)
       attributes:
         type: gray

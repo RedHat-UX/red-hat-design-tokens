@@ -1,4 +1,5 @@
 media:
+  $type: mediaQuery
   $extensions:
     com.redhat.ux:
       use: breakpoint
@@ -14,41 +15,54 @@ media:
               media="%(%%(% tokens.get('--rh-media-desktop-large') %)%%)%"
         ```
 
-  mobile:
-    portrait:
-      $type: mediaQuery
-      value:
-        max-width: '{breakpoint.mobile.portrait}'
-    landscape:
-      $type: mediaQuery
-      value:
-        min-width: 576px
-        max-width: '{breakpoint.mobile.landscape}'
-
-  tablet:
-    portrait:
-      $type: mediaQuery
-      value:
-        min-width: 768px
-        max-width: '{breakpoint.tablet.portrait}'
-    landscape:
-      $type: mediaQuery
-      value:
-        min-width: 992px
-        max-width: '{breakpoint.tablet.landscape}'
-
-  desktop:
-    small:
-      $type: mediaQuery
-      value:
-        min-width: 1200px
-        max-width: '{breakpoint.desktop.small}'
-    medium:
-      $type: mediaQuery
-      value:
-        min-width: 1440px
-        max-width: '{breakpoint.desktop.medium}'
-    large:
-      $type: mediaQuery
-      value:
-        min-width: 1680px
+  2xs:
+    $description: Corresponding to mobile portrait
+    $value:
+      max-width: '{breakpoint.2xs}'
+    $extensions:
+      com.redhat.ux:
+        title: XX-Small
+  xs:
+    $description: Corresponding to mobile landscape
+    $value:
+      min-width: 576px
+      max-width: '{breakpoint.xs}'
+    $extensions:
+      com.redhat.ux:
+        title: X-Small
+  sm:
+    $description: Corresponding to table portrait
+    $value:
+      min-width: 768px
+      max-width: '{breakpoint.sm}'
+    $extensions:
+      com.redhat.ux:
+        title: Small
+  md:
+    $description: Corresponding to tablet landscape
+    $value:
+      min-width: 992px
+      max-width: '{breakpoint.md}'
+    $extensions:
+      com.redhat.ux:
+        title: Medium
+  lg:
+    $description: Corresponding to small desktop
+    $value:
+      min-width: 1200px
+      max-width: '{breakpoint.lg}'
+    $extensions:
+      com.redhat.ux:
+        title: Large
+  xl:
+    $description: Corresponding to medium desktop
+    $value:
+      min-width: 1440px
+      max-width: '{breakpoint.xl}'
+    $extensions:
+      com.redhat.ux:
+        title: Extra Large
+  2xl:
+    $description: Corresponding to large desktop
+    $value:
+      min-width: 1680px

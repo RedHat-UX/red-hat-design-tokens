@@ -5,16 +5,15 @@ breakpoint:
       use: breakpoint
       heading: Breakpoints
       description: |
-        When layouts reduce in size, visual elements may also reduce in size, hide, or otherwise
-        adapt to compensate for the loss in screen real estate.
+        When layouts change in size responding to screen size, visual elements may adjust their
+        size, hide, or otherwise adapt to compensate for gains or losses in screen real estate.
 
-        Red Hat's breakpoint tokens refer to the three most common classes of device screens,
-        mobile, tablet, and desktop. The breakpoint values represent the **maximum**
+        Red Hat's breakpoint tokens represent the **maximum**
         [CSS pixel](https://developer.mozilla.org/en-US/docs/Glossary/CSS_pixel) width of a device's
         screen, corresponding to the `max-width` media query so for example a device with a
-        screen width less than the `--rh-breakpoint-mobile-portrait` token is considered a mobile
+        screen width less than the `--rh-breakpoint-xs` token is considered a mobile
         device in portrait mode, whereas a device with a screen width greater than the
-        `--rh-breakpoint-desktop-medium` token is considered a desktop with a large screen.
+        `--rh-breakpoint-xl` token is considered a desktop with a large screen.
 
         Since CSS currently does not allow custom properties in media queries, these tokens must be
         uses in preprocessors or templating systems, or imported into JavaScript modules. We
@@ -33,29 +32,39 @@ breakpoint:
         `;
         ```
 
-  mobile:
-    portrait:
-      $type: dimension
-      value: 575px
-      comment: Mobile portrait max width
-    landscape:
-      $type: dimension
-      value: 767px
-      comment: Mobile landscape max width
-
-  tablet:
-    portrait:
-      $type: dimension
-      value: 991px
-    landscape:
-      $type: dimension
-      value: 1199px
-
-  desktop:
-    small:
-      $type: dimension
-      value: 1439px
-    medium:
-      $type: dimension
-      value: 1679px
-
+  2xs:
+    $value: 575px
+    $description: Corresponding to mobile portrait
+    $extensions:
+      com.redhat.ux:
+        title: Extra Extra Small
+  xs:
+    $value: 767px
+    $description: Corresponding to mobile landscape
+    $extensions:
+      com.redhat.ux:
+        title: Extra Small
+  sm:
+    $value: 991px
+    $description: Corresponding to tablet portrait
+    $extensions:
+      com.redhat.ux:
+        title: Small
+  md:
+    $value: 1199px
+    $description: Corresponding to tablet landscape
+    $extensions:
+      com.redhat.ux:
+        title: Medium
+  lg:
+    $value: 1439px
+    $description: Corresponding to small desktop
+    $extensions:
+      com.redhat.ux:
+        title: Large
+  xl:
+    $value: 1679px
+    $description: Corresponding to medium desktop
+    $extensions:
+      com.redhat.ux:
+        title: Extra Large

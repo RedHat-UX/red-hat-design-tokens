@@ -1,11 +1,11 @@
 color:
   gold:
     50:
-      value: '#fdf7e7'
-      comment: Alert - Warning background
+      $value: '#fdf7e7'
+      $description: Alert - Warning background
     400:
-      value: '#f0ab00'
-      comment: Alert - Warning accent
+      $value: '#f0ab00'
+      $description: Alert - Warning accent
     600:
-      value: '#795600'
-      comment: Alert - Warning title text
+      $value: '#795600'
+      $description: Alert - Warning title text

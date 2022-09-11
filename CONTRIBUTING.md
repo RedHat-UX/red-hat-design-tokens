@@ -75,7 +75,7 @@ npm run start
 Tokens are defined in [YAML](https://yaml.org) files, following the [Design Tokens Draft Community Group Report](https://design-tokens.github.io/community-group/format/).
 
 ### YAML Notes
-YAML strings do not need to be quoted, unless they start with a special character. Therefore, `comment`s should not be quoted, but color values and references should.
+YAML strings do not need to be quoted, unless they start with a special character. Therefore, `$description`s should not be quoted, but color values and references should.
 
 If a token has both a value _and_ nested tokens, e.g. `rh-color-brand-red` and `rh-color-brand-red-lighter`, then the top-level value must be defined under `_`. This is a workaround, and will likely become unnecessary if any when [style-dictionary adopts the draft community group report on token format](https://github.com/amzn/style-dictionary/issues/643#issuecomment-1143493745).
 
@@ -84,47 +84,47 @@ color:
   red:
     # Hex values must be quoted
     50:
-      value: "#faeae8"
+      $value: "#faeae8"
       # Comments should not be quoted
-      comment: Danger Alert background
+      $description: Danger Alert background
     100:
-      value: "#fddbdb"
+      $value: "#fddbdb"
     200:
-      value: "#fab6b6"
+      $value: "#fab6b6"
     300:
-      value: "#f56d6d"
+      $value: "#f56d6d"
     400:
-      value: "#ee0000"
+      $value: "#ee0000"
     500:
-      value: "#be0000"
+      $value: "#be0000"
     600:
-      value: "#8f0000"
+      $value: "#8f0000"
     700:
-      value: "#5f0000"
+      $value: "#5f0000"
 
   brand:
     red:
       # parent values must be defined under `_`
       _:
         # value aliases must be quoted
-        value: "{color.red.400}"
-        comment: Brand red
+        $value: "{color.red.400}"
+        $description: Brand red
       lightest:
-        value: "{color.red.100}"
-        comment: Lightest brand red
+        $value: "{color.red.100}"
+        $description: Lightest brand red
       lighter:
-        value: "{color.red.200}"
-        comment: lighter brand red
+        $value: "{color.red.200}"
+        $description: lighter brand red
       light:
-        value: "{color.red.300}"
-        comment: Light brand red
+        $value: "{color.red.300}"
+        $description: Light brand red
       dark:
-        value: "{color.red.500}"
-        comment: Dark brand red/Brand red hover
+        $value: "{color.red.500}"
+        $description: Dark brand red/Brand red hover
       darker:
-        value: "{color.red.600}"
-        comment: Darker brand red
+        $value: "{color.red.600}"
+        $description: Darker brand red
       darkest:
-        value: "{color.red.700}"
-        comment: Darkest brand red
+        $value: "{color.red.700}"
+        $description: Darkest brand red
 ```

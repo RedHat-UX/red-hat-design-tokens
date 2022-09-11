@@ -1,0 +1,88 @@
+font:
+  size:
+    $type: dimension
+
+    body-text:
+      $extensions:
+        com.redhat.ux:
+          heading: Font size (text)
+          example: Aa
+          description: >-
+            Font Size **Body Text** Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+            architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+            asperiores aliquid distinctio consectetur obcaecati?
+      xs:
+        $value: 0.75rem
+        $description: 12px font size
+      sm:
+        $value: 0.875rem
+        $description: 14px font size
+      md:
+        $value: 1rem
+        $description: 16px font size
+      lg:
+        $value: 1.125rem
+        $description: 18px font size
+      xl:
+        $value: 1.25rem
+        $description: 20px font size
+      2xl:
+        $value: 1.5rem
+        $description: 24px font size
+
+    code:
+      $extensions:
+        com.redhat.ux:
+          heading: Font size (code)
+          fontFamily: var(--rh-font-family-code)
+          description: >-
+            Font Size Headings Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+            architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+            asperiores aliquid distinctio consectetur obcaecati?
+      xs:
+        $value: '{font.size.body-text.xs}'
+        $description: 12px font size
+      sm:
+        $value: '{font.size.body-text.sm}'
+        $description: 14px font size
+      md:
+        $value: '{font.size.body-text.md}'
+        $description: 16px font size
+      lg:
+        $value: '{font.size.body-text.lg}'
+        $description: 18px font size
+      xl:
+        $value: '{font.size.body-text.xl}'
+        $description: 20px font size
+      2xl:
+        $value: '{font.size.body-text.2xl}'
+        $description: 24px font size
+
+    heading:
+      $extensions:
+        com.redhat.ux:
+          heading: Font size (headings)
+          fontFamily: var(--rh-font-family-heading)
+          description: >-
+            Font Size Headings Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+            architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+            asperiores aliquid distinctio consectetur obcaecati?
+      xs:
+        $value: 1.25rem
+        $description: h6 heading font size
+      sm:
+        $value: 1.5rem
+        $description: h5 heading font size
+      md:
+        $value: 1.75rem
+        $description: h4 heading font size
+      lg:
+        $value: 2.25rem
+        $description: h3 heading font size
+      xl:
+        $value: 2.5rem
+        $description: h2 heading font size
+      2xl:
+        $value: 3rem
+        $description: h1 heading font size
+

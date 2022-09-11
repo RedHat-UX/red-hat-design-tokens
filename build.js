@@ -17,7 +17,9 @@ const platforms = YAML.parse(await readFile(PLATFORMS_URL, 'utf8'));
 StyleDictionary
   .registerFileHeader(FileHeaders.legal)
   .registerFilter(Filters.isColor)
-  .registerTransform(DTCGTransforms.typeColor)
+  .registerTransform(DTCGTransforms.value)
+  .registerTransform(DTCGTransforms.description)
+  .registerTransform(DTCGTransforms.typeNested)
   .registerTransform(DTCGTransforms.shadow)
   .registerTransform(DTCGTransforms.cubicBezier)
   .registerTransform(DTCGTransforms.fontFamily)
@@ -45,7 +47,17 @@ StyleDictionary
     parsers: [{
       pattern: /\.ya?ml$/,
       parse({ contents }) {
-        return YAML.parse(contents);
+        return YAML.parse(contents,
+          /**
+           * Transform `$value` (DTCG syntax) to `value` (style-dictionary syntax)
+           * @this {*}
+           */
+          function(_, value) {
+            if ('$value' in this) {
+              this.value = this.$value;
+            }
+            return value;
+          });
       }
     }],
   })

@@ -1,11 +1,11 @@
 {%- macro variable(item) -%}
-  var(--{{ item.name }}, {{ item.value }})
+  var(--{{ item.name }}, {{ item.$value }})
 {%- endmacro -%}
 
 {%- macro copyButton(item, valueOnly=false) -%}
   <rh-tooltip position="top-start">
-    <code slot="content">{{ item.value if valueOnly else variable(item) }}</code>
-    <button class="copy-button" data-copy="{{ item.value if valueOnly else variable(item) }}">
+    <code slot="content">{{ item.$value if valueOnly else variable(item) }}</code>
+    <button class="copy-button" data-copy="{{ item.$value if valueOnly else variable(item) }}">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
         <path d="M30.286 6.857q.714 0 1.214.5t.5 1.214v21.714q0 .714-.5 1.214t-1.214.5H13.143q-.714 0-1.214-.5t-.5-1.214v-5.143H1.715q-.714 0-1.214-.5t-.5-1.214v-12q0-.714.357-1.571T1.215 8.5l7.286-7.286q.5-.5 1.357-.857T11.429 0h7.429q.714 0 1.214.5t.5 1.214v5.857q1.214-.714 2.286-.714h7.429zm-9.715 3.804L15.232 16h5.339v-5.339zM9.143 3.804 3.804 9.143h5.339V3.804zm3.5 11.553 5.643-5.643V2.285h-6.857v7.429q0 .714-.5 1.214t-1.214.5H2.286v11.429h9.143v-4.571q0-.714.357-1.571t.857-1.357zm17.071 14.357V9.143h-6.857v7.429q0 .714-.5 1.214t-1.214.5h-7.429v11.429h16z"/>
       </svg>
@@ -38,14 +38,14 @@
 {%- endmacro -%}
 
 {%- macro typographyDemo(item) -%}
-  <h4 id="typography-{{ item.comment | slugify }}">{{ item.comment }}<a href="#typography-{{ item.comment | slugify }}">#</a></h4>
+  <h4 id="typography-{{ item.$description | slugify }}">{{ item.$description }}<a href="#typography-{{ item.$description | slugify }}">#</a></h4>
   <p>The quick brown fox jumped over the lazy dog's back.</p>
   {{ copyButton(item) }}
 {%- endmacro -%}
 
 {%- macro lengthCode(item) -%}
-{%- set isRem = item.value.endsWith('rem') or false -%}
-<button class="copy-button value {{ isRem and 'rem' or 'px' }}"><code>{{ item.value }}</code></button>{%- if isRem and item.attributes.px -%}
+{%- set isRem = item.$value and item.$value.endsWith and item.$value.endsWith('rem') or false -%}
+<button class="copy-button value {{ isRem and 'rem' or 'px' }}"><code>{{ item.$value }}</code></button>{%- if isRem and item.attributes.px -%}
 <br/>{%- endif -%}{%- if item.attributes.px -%}
 <button class="copy-button value px"><code>{{ item.attributes.px }}</code></button>{%- endif -%}
 </code>
@@ -68,15 +68,15 @@
 {%- else -%}
   {%- set outer = 1468 -%}
 {%- endif -%}
-{%- set name = item.name | replace('rh-breakpoint-', '') | replace('-', ' ') | capitalize -%}
+{%- set name = item.$extensions['com.redhat.ux'].title  -%}
+{{item | log}}
 <article class="breakpoint" style="--outer: {{ outer }}px;">
   <header>
     <h3 id="{{ id }}">{{ name }} <a href="#{{ id }}">#</a></h3>
-    <code>{{ item.value }}</code>
+    <code>{{ item.$value }}</code>
     {{ copyButton(item) }}
   </header>
   {{- item.original | getDocs | getDescription | safe -}}
-  <img src="assets/device-{{item.name}}.svg" alt="{{item.name}}">
 </article>
 {%- endmacro -%}
 
@@ -86,14 +86,14 @@
   {%- set b = item.attributes.rgb.b -%}
   {%- set a = item.attributes.rgb.a -%}
   <tr id="--{{ item.name }}">
-    <td><output class="swatch{{ ' light' if item.attributes.isLight }}" style="background: {{ item.value }}"></output></td>
+    <td><output class="swatch{{ ' light' if item.attributes.isLight }}" style="background: {{ item.$value }}"></output></td>
     {{ nameCell(item) }}
     <td>
-      <button class="copy-button value color hex" style="--color: {{ item.value }}"><code>{{ item.value }}</code></button>
+      <button class="copy-button value color hex" style="--color: {{ item.$value }}"><code>{{ item.$value }}</code></button>
       <br/>
       <button class="copy-button value color rgb" style="--color: rgb({{ r }}, {{ g }}, {{ b }})"><code>rgb({{ r }}, {{ g }}, {{ b }})</code></button>
     </td>
-    <td>{{ item.comment }}</td>
+    <td>{{ item.$description }}</td>
     <td class="copy-cell">{{ copyButton(item) }}</td>
   </tr>
 {%- endmacro -%}
@@ -108,66 +108,67 @@
 
 {%- macro fontFamilyRow(item) -%}
   <tr id="{{ item.name }}" class="font family">
-    <td style="--font-family: {{ item.value }}"><output>{{ item.$extensions['com.redhat.ux'].example }}</output></td>
+    <td style="--font-family: {{ item.$value }}"><output>{{ item.$extensions['com.redhat.ux'].example }}</output></td>
     {{ nameCell(item) }}
-    <td><button class="copy-button value"><code>{{ item.value }}</button></td>
-    <td>{{ item.comment }}</td>
+    <td><button class="copy-button value"><code>{{ item.$value }}</button></td>
+    <td>{{ item.$description }}</td>
     <td>{{ copyButton(item) }}</td>
   </tr>
 {%- endmacro -%}
 
 {%- macro fontSizeRow(item, fontFamily = 'var(--rh-font-family-text)') -%}
   <tr id="{{ item.name }}" class="font size">
-    <td style="--font-size: {{ item.value }}; --font-family: {{ fontFamily }}">
+    <td style="--font-size: {{ item.$value }}; --font-family: {{ fontFamily }}">
       <output>Aa</output>
     </td>
     {{ nameCell(item) }}
     <td>{{ lengthCode(item) }}</td>
-    <td>{{ item.comment }}</td>
+    <td>{{ item.$description }}</td>
     <td>{{ copyButton(item) }}</td>
   </tr>
 {%- endmacro -%}
 
 {%- macro fontWeightRow(item, fontFamily = 'var(--rh-font-family-text)') -%}
   <tr id="{{ item.name }}" class="font weight">
-    <td style="--font-weight: {{ item.value }}; --font-family: {{ fontFamily }};">
+    <td style="--font-weight: {{ item.$value }}; --font-family: {{ fontFamily }};">
       <output>{{ item.attributes.aliases[0] }}</output>
     </td>
     {{ nameCell(item) }}
     <td>
-      <button class="copy-button numerical value"><code>{{ item.value }}</button>
+      <button class="copy-button numerical value"><code>{{ item.$value }}</button>
       <button class="copy-button common value"><code>{{ item.attributes.aliases[0] }}</code></button>
     </td>
-    <td>{{ item.comment }}</td>
+    <td>{{ item.$description }}</td>
     <td>{{ copyButton(item) }}</td>
   </tr>
 {%- endmacro -%}
 
 {%- macro borderRadiusRow(item) -%}
   <tr id="{{ item.name }}" class="border radius">
-    <td style="--border-radius: {{ item.value }};">
+    <td style="--border-radius: {{ item.$value }};">
       <output></output>
     </td>
     {{ nameCell(item) }}
     <td>{{ lengthCode(item) }}</td>
-    <td>{{ item.comment }}</td>
+    <td>{{ item.$description }}</td>
     <td>{{ copyButton(item) }}</td>
   </tr>
 {%- endmacro -%}
 
 {%- macro borderWidthRow(item) -%}
   <tr id="{{ item.name }}" class="border width">
-    <td style="--border-width: {{ item.value }};">
+    <td style="--border-width: {{ item.$value }};">
       <output></output>
     </td>
     {{ nameCell(item) }}
     <td>{{ lengthCode(item) }}</td>
-    <td>{{ item.comment }}</td>
+    <td>{{ item.$description }}</td>
     <td>{{ copyButton(item) }}</td>
   </tr>
 {%- endmacro -%}
 
 {%- macro table(collection, output = '', name = '', rowType = undefined) -%}
+  {% set rowType = rowType or (collection.$type) %}
   <table>
     <thead>
       <tr>
@@ -186,24 +187,24 @@
             {{ borderRadiusRow(item) }}
           {% elif rowType == 'borderWidth' %}
             {{ borderWidthRow(item) }}
-          {% elif collection.$type == 'fontWeight' %}
+          {% elif rowType == 'fontWeight' %}
             {{ fontWeightRow(item, fontFamily = (collection | getDocs).fontFamily) }}
-          {% elif collection.$type == 'fontFamily' %}
+          {% elif rowType == 'fontFamily' %}
             {{ fontFamilyRow(item) }}
           {% else %}
             <tr id="{{ item.name }}" class="{{ name }}" data-key="{{ key }}">
-              <td style="--{{ name }}: {{ item.value }};">
+              <td style="--{{ name }}: {{ item.$value }};">
                 <output{{((' style="background-color: '+item.$extensions['com.redhat.ux'].color+';"') if name == 'space') | safe}}>{{ output | safe }}</output>
               </td>
               {{ nameCell(item) }}
               <td>
-                {%- if item.value and item.value.endsWith and (item.value.endsWith('px') or item.value.endsWith('rem')) -%}
+                {%- if item.$type == 'dimension' -%}
                   {{ lengthCode(item) }}
                 {%- else -%}
-                  <button class="copy-button value"><code>{{ item.value }}</code></button>
+                  <button class="copy-button value"><code>{{ item.$value }}</code></button>
                 {%- endif -%}
               </td>
-              <td>{{ item.comment }}</td>
+              <td>{{ item.$description }}</td>
               <td>{{ copyButton(item) }}</td>
             </tr>
           {% endif %}
@@ -240,10 +241,13 @@
     {{- docs | getDescription | safe -}}
     {% if caller %}
       {{ caller() }}
-    {% elif collection.$type == 'color' %}
+    {% elif (rowType or collection.$type) == 'color' %}
       {{ colorTable(collection | flattenTokens) }}
     {% else %}
-      {%- call table(collection, output = docs.example, rowType = rowType, name = name) -%}{%- endcall -%}
+      {%- call table(collection,
+                     output = docs.example,
+                     rowType = rowType,
+                     name = name) -%}{%- endcall -%}
     {% endif %}
     <a class="btt" href="#">Top</a>
   </section>
