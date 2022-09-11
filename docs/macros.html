@@ -44,40 +44,10 @@
 {%- endmacro -%}
 
 {%- macro lengthCode(item) -%}
-{%- set isRem = item.$value and item.$value.endsWith and item.$value.endsWith('rem') or false -%}
-<button class="copy-button value {{ isRem and 'rem' or 'px' }}"><code>{{ item.$value }}</code></button>{%- if isRem and item.attributes.px -%}
-<br/>{%- endif -%}{%- if item.attributes.px -%}
-<button class="copy-button value px"><code>{{ item.attributes.px }}</code></button>{%- endif -%}
-</code>
-{%- endmacro -%}
-
-{%- macro breakpoint(item) -%}
-{%- set id = ('breakpoint-' + (item.name | slugify | lower)) -%}
-{%- set landscape = item.path.includes('landscape') -%}
-{%- set small = item.path.includes('small') -%}
-{%- if item | isMobile and not landscape -%}
-  {%- set outer = 420 -%}
-{%- elif item | isMobile and landscape -%}
-  {%- set outer = 708 -%}
-{%- elif item | isTablet and not landscape -%}
-  {%- set outer = 868 -%}
-{%- elif item | isTablet and landscape -%}
-  {%- set outer = 1144 -%}
-{%- elif small -%}
-  {%- set outer = 1292 -%}
-{%- else -%}
-  {%- set outer = 1468 -%}
-{%- endif -%}
-{%- set name = item.$extensions['com.redhat.ux'].title  -%}
-{{item | log}}
-<article class="breakpoint" style="--outer: {{ outer }}px;">
-  <header>
-    <h3 id="{{ id }}">{{ name }} <a href="#{{ id }}">#</a></h3>
-    <code>{{ item.$value }}</code>
-    {{ copyButton(item) }}
-  </header>
-  {{- item.original | getDocs | getDescription | safe -}}
-</article>
+{%- set isRem = item.$value.endsWith('rem') or false -%}
+<button class="copy-button value {{ 'rem' if isRem else 'px' }}">
+  <code>{{ item.$value }}</code>
+</button>
 {%- endmacro -%}
 
 {%- macro colorRow(item) -%}
@@ -192,9 +162,14 @@
           {% elif rowType == 'fontFamily' %}
             {{ fontFamilyRow(item) }}
           {% else %}
+            {% set color = item.$extensions['com.redhat.ux'].color %}
+            {% set outputattrs = ((' style="background-color: '+ color +';"') if name == 'space') %}
             <tr id="{{ item.name }}" class="{{ name }}" data-key="{{ key }}">
               <td style="--{{ name }}: {{ item.$value }};">
-                <output{{((' style="background-color: '+item.$extensions['com.redhat.ux'].color+';"') if name == 'space') | safe}}>{{ output | safe }}</output>
+                <output{{ outputattrs | safe }}>{% if name == 'breakpoint' %}
+                  <img src="assets/device-{{item.name}}.svg" role="presentation">{%else%}
+                  {{ output | safe }}{%endif%}
+                </output>
               </td>
               {{ nameCell(item) }}
               <td>
@@ -233,7 +208,7 @@
   </section>
 {%- endmacro -%}
 
-{%- macro subcategory(collection, rowType = undefined, name = undefined) -%}
+{%- macro subcategory(collection, rowType = undefined, name = undefined, btt = true) -%}
   {%- set docs = collection | getDocs -%}
   {%- set slug = docs.heading | slugify | lower -%}
   <section id="{{ slug }}">
@@ -248,7 +223,7 @@
                      output = docs.example,
                      rowType = rowType,
                      name = name) -%}{%- endcall -%}
-    {% endif %}
-    <a class="btt" href="#">Top</a>
+    {% endif %}{% if btt %}
+    <a class="btt" href="#">Top</a>{% endif %}
   </section>
 {%- endmacro -%}

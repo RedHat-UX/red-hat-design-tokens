@@ -124,13 +124,13 @@
         {{ m.subcategory(collection = tokens.font.weight['body-text'], rowType = 'fontWeight') }}
         {{ m.subcategory(collection = tokens.font.weight.code, rowType = 'fontWeight') }}
         {{ m.subcategory(collection = tokens['line-height']) }}
-        {{ m.subcategory(collection = tokens.color.text, rowType = 'color') }}
+        {{ m.subcategory(collection = tokens.color.text, rowType = 'color', btt=false) }}
       {%- endcall -%}
 
       {% call m.category('border') %}
         {{ m.subcategory(collection = tokens.border.radius, rowType = 'borderRadius') }}
         {{ m.subcategory(collection = tokens.border.width, rowType = 'borderWidth') }}
-        {{ m.subcategory(collection = tokens.color.border, rowType = 'color') }}
+        {{ m.subcategory(collection = tokens.color.border, rowType = 'color', btt=false) }}
       {% endcall %}
 
       {{ m.category('opacity') }}
@@ -138,13 +138,7 @@
       {{ m.category('length') }}
       {{ m.subcategory(collection = tokens.size.icon, level = 2, name = 'icon-size') }}
 
-      {%- call m.category('breakpoint') -%}
-      <section id="breakpoints">
-        {%- for breakpoint in breakpoints -%}
-          {{ m.breakpoint(breakpoint) }}
-        {%- endfor -%}
-      </section>
-      {%- endcall -%}
+      {{ m.category('breakpoint') }}
       
       {%- call m.category('media') -%}
       <dl id="media-queries" class="grid">{%- for item in mediaQueries -%}

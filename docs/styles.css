@@ -308,18 +308,8 @@ code[class^="language-"] {
   overflow-x: scroll;
 }
 
-#breakpoints-graphics {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--rh-space-lg);
-}
-
-.breakpoint { --scale: .25 }
-
-.breakpoint.full { --scale: 1; }
-
 .breakpoint img {
-  width: calc(var(--outer) * var(--scale));
+  max-height: var(--rh-length-3xl);
 }
 
 dl.grid {
@@ -347,3 +337,4 @@ dl.grid dd {
   display: flex;
   align-items: center;
 }
+
