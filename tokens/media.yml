@@ -11,57 +11,48 @@ media:
         ```html
         <link rel="stylesheet"
               href="large-screen.css"
-              media="%(%%(% tokens.get('--rh-media-2xl') %)%%)%"
+              media="%(%%(% tokens.get('--rh-media-lg') %)%%)%"
         ```
 
-  2xs:
-    $description: Corresponding to mobile portrait
-    $value:
-      max-width: '{breakpoint.2xs}'
-    $extensions:
-      com.redhat.ux:
-        title: XX-Small
   xs:
-    $description: Corresponding to mobile landscape
+    $description: Mobile portrait
     $value:
-      min-width: 576px
-      max-width: '{breakpoint.xs}'
+      min-width: '{breakpoint.xs}'
     $extensions:
       com.redhat.ux:
-        title: X-Small
+        title: Extra Small
   sm:
-    $description: Corresponding to table portrait
+    $description: Mobile landscape
     $value:
-      min-width: 768px
-      max-width: '{breakpoint.sm}'
+      min-width: '{breakpoint.sm}'
     $extensions:
       com.redhat.ux:
         title: Small
   md:
-    $description: Corresponding to tablet landscape
+    $description: Tablet portrait
     $value:
-      min-width: 992px
-      max-width: '{breakpoint.md}'
+      min-width: '{breakpoint.md}'
     $extensions:
       com.redhat.ux:
         title: Medium
   lg:
-    $description: Corresponding to small desktop
+    $description: Tablet landscape
     $value:
-      min-width: 1200px
-      max-width: '{breakpoint.lg}'
+      min-width: '{breakpoint.lg}'
     $extensions:
       com.redhat.ux:
         title: Large
   xl:
-    $description: Corresponding to medium desktop
+    $description: Desktop small
     $value:
-      min-width: 1440px
-      max-width: '{breakpoint.xl}'
+      min-width: '{breakpoint.xl}'
     $extensions:
       com.redhat.ux:
         title: Extra Large
   2xl:
-    $description: Corresponding to large desktop
+    $description: Desktop Large
     $value:
-      min-width: 1680px
+      min-width: '{breakpoint.2xl}'
+    $extensions:
+      com.redhat.ux:
+        title: Extra Extra Large
