@@ -1,5 +1,11 @@
 # @rhds/tokens
 
+## 1.0.0-beta.6
+
+### Patch Changes
+
+- c0abeff: Add VSCode bundle to GitHub release
+
 ## 1.0.0-beta.5
 
 ### Minor Changes
