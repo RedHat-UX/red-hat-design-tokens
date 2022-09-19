@@ -1,5 +1,11 @@
 # @rhds/tokens
 
+## 1.0.0-beta.9
+
+### Patch Changes
+
+- 1a18fab: More CI debugging
+
 ## 1.0.0-beta.8
 
 ### Patch Changes
