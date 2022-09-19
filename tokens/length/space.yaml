@@ -1,4 +1,5 @@
 space:
+  $type: dimension
   $extensions:
     com.redhat.ux:
       description: >-
@@ -8,68 +9,68 @@ space:
         Consistent spacing helps maintain balance and rhythm across the system.
 
   xs:
-    value: '{length.xs}'
-    comment: 4px spacer
+    $value: '{length.xs}'
+    $description: 4px spacer
     $extensions:
       com.redhat.ux:
         color: '#ec861b'
   sm:
-    value: '{length.sm}'
-    comment: 6px spacer
+    $value: '{length.sm}'
+    $description: 6px spacer
     $extensions:
       com.redhat.ux:
         color: '#f3d53c'
   md:
-    value: '{length.md}'
-    comment: 8px spacer
+    $value: '{length.md}'
+    $description: 8px spacer
     $extensions:
       com.redhat.ux:
         color: '#9bd917'
   lg:
-    value: '{length.lg}'
-    comment: 16px spacer
+    $value: '{length.lg}'
+    $description: 16px spacer
     $extensions:
       com.redhat.ux:
         color: '#51a549'
   xl:
-    value: '{length.xl}'
-    comment: 24px spacer
+    $value: '{length.xl}'
+    $description: 24px spacer
     $extensions:
       com.redhat.ux:
         color: '#1b8793'
   2xl:
-    value: '{length.2xl}'
-    comment: 32px spacer
+    $value: '{length.2xl}'
+    $description: 32px spacer
     $extensions:
       com.redhat.ux:
         color: '#1893d2'
   3xl:
-    value: '{length.3xl}'
-    comment: 48px spacer
+    $value: '{length.3xl}'
+    $description: 48px spacer
     $extensions:
       com.redhat.ux:
         color: '#6743c6'
   4xl:
-    value: '{length.4xl}'
-    comment: 64px spacer
+    $value: '{length.4xl}'
+    $description: 64px spacer
     $extensions:
       com.redhat.ux:
         color: '#341974'
   5xl:
-    value: '{length.5xl}'
-    comment: 80px spacer
+    $value: '{length.5xl}'
+    $description: 80px spacer
     $extensions:
       com.redhat.ux:
         color: '#b300b3'
   6xl:
-    value: '{length.6xl}'
-    comment: 96px spacer
+    $value: '{length.6xl}'
+    $description: 96px spacer
     $extensions:
       com.redhat.ux:
         color: '#f279a1'
   7xl:
-    value: '{length.7xl}'
-    comment: 128px spacer
+    $value: '{length.7xl}'
+    $description: 128px spacer
     $extensions:
       com.redhat.ux:
         color: '#bf1d1d'

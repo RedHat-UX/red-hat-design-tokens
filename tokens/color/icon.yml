@@ -1,6 +1,5 @@
 color:
   icon:
-    $type: color # we must make this explicit because style-dictionary v3 does not implement the dtcg grouping algorithm
     $extensions:
       com.redhat.ux:
         category: icon
@@ -13,21 +12,21 @@ color:
     primary:
       on:
         light:
-          value: '{color.brand.red.on.light}'
+          $value: '{color.brand.red.on.light}'
         dark:
-          value: '{color.brand.red.on.dark}'
+          $value: '{color.brand.red.on.dark}'
 
     secondary:
       on:
         light:
-          value: '{color.black.900}'
+          $value: '{color.black.900}'
         dark:
-          value: '{color.white}'
+          $value: '{color.white}'
 
     subtle:
       # @see https://github.com/amzn/style-dictionary/issues/716#issuecomment-943673202
       _:
-        value: '{color.black.500}'
+        $value: '{color.black.500}'
       hover:
-        value: '{color.black.400}'
+        $value: '{color.black.400}'
 

@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://unpkg.com/@rhds/elements/elements/rh-footer/rh-footer-lightdom.css" />
   </head>
   <body>
-    <header>
+    <header id="main-header">
       <h1>
         <svg version="1.1" x="0" y="0" viewBox="0 0 284 48" style="enable-background:new 0 0 284 48" xml:space="preserve" aria-label="Red Hat Digital Design System">
           <g transform="translate(-20 -16)">
@@ -49,10 +49,14 @@
             <li><a href="#space">Spacers</a></li>
             <li><a href="#length">Length</a></li>
             <li><a href="#icon">Icons</a></li>
+            <li><a href="#breakpoints">Breakpoints</a></li>
+            <li><a href="#media">Media Queries</a></li>
           </ol>
           <h3>Downloads</h3>
           <ul>
+            <li><a href="rhds.tokens.json">Tokens JSON</a></li>
             <li><a href="rhds.sketchpalette">Sketch Color Palette</a></li>
+            <li><a href="extension.vsix">VSCode Extension</a></li>
           </ul>
         </nav>
       </aside>
@@ -93,15 +97,17 @@
         </p>
 
         <p>
-          We want <a href="https://github.com/RedHat-UX/red-hat-design-tokens/discussions">your feedback</a> on our tokens! Are there missing values? Do you have an idea for an
-          output format or tool integration?
+          We want <a href="https://github.com/RedHat-UX/red-hat-design-tokens/discussions">your feedback</a>
+          on our tokens! Are there missing values? Do you have an idea for an output format or tool
+          integration?
         </p>
 
       </section>
 
       {%- call m.category('color') -%}
-        {%- for name, family in allTokens | colors | groupby('attributes.type') | excludekeys('border', 'text', 'icon') | sortColorGroupByOrder -%}
-          <h3 id="color-{{ name | slugify | lower }}">{{ name | capitalize }}<a href="#color-{{ name | slugify | lower }}">#</a></h3>
+        {%- for name, family in colors | groupby('attributes.type') | excludekeys('border', 'text', 'icon') | sortColorGroupByOrder -%}
+          {%- set id = ('color-' + (name | slugify | lower)) -%}
+          <h3 id="{{ id }}">{{ name | capitalize }}<a href="#{{ id }}">#</a></h3>
           {{- tokens.color[name] | getDocs | getDescription | safe -}}
           {{ m.colorTable(family) }}
         {%- endfor -%}
@@ -114,23 +120,32 @@
         {{ m.subcategory(collection = tokens.font.size.heading, rowType = 'fontSize') }}
         {{ m.subcategory(collection = tokens.font.size['body-text'], rowType = 'fontSize') }}
         {{ m.subcategory(collection = tokens.font.size.code, rowType = 'fontSize') }}
-        {{ m.subcategory(collection = tokens.font.weight.heading) }}
-        {{ m.subcategory(collection = tokens.font.weight['body-text']) }}
-        {{ m.subcategory(collection = tokens.font.weight.code) }}
+        {{ m.subcategory(collection = tokens.font.weight.heading, rowType = 'fontWeight') }}
+        {{ m.subcategory(collection = tokens.font.weight['body-text'], rowType = 'fontWeight') }}
+        {{ m.subcategory(collection = tokens.font.weight.code, rowType = 'fontWeight') }}
         {{ m.subcategory(collection = tokens['line-height']) }}
-        {{ m.subcategory(collection = tokens.color.text) }}
+        {{ m.subcategory(collection = tokens.color.text, rowType = 'color', btt=false) }}
       {%- endcall -%}
 
       {% call m.category('border') %}
         {{ m.subcategory(collection = tokens.border.radius, rowType = 'borderRadius') }}
         {{ m.subcategory(collection = tokens.border.width, rowType = 'borderWidth') }}
-        {{ m.subcategory(collection = tokens.color.border) }}
+        {{ m.subcategory(collection = tokens.color.border, rowType = 'color', btt=false) }}
       {% endcall %}
 
       {{ m.category('opacity') }}
       {{ m.category('space') }}
       {{ m.category('length') }}
       {{ m.subcategory(collection = tokens.size.icon, level = 2, name = 'icon-size') }}
+
+      {{ m.category('breakpoint') }}
+      
+      {%- call m.category('media') -%}
+      <dl id="media-queries" class="grid">{%- for item in mediaQueries -%}
+        <dt>--{{ item.name }}</dt>
+        <dd>{{ item.$value | inlineCss | safe }} {{ m.copyButton(item, valueOnly=true) }}</dd>{% endfor %}
+      </dl>
+      {%- endcall -%}
 
     </main>
     <rh-global-footer>
@@ -159,8 +174,9 @@
           width="73px" loading="lazy">
       </a>
     </rh-global-footer>
-    <script>globalThis.process = { env: {} };
-</script>
+    <script>
+      globalThis.process = { env: {} };
+    </script>
     <script type="module" src="https://unpkg.com/@rhds/elements/elements/rh-tooltip/rh-tooltip.js?module"></script>
     <script type="module" src="https://unpkg.com/@rhds/elements/elements/rh-footer/rh-global-footer.js?module"></script>
     <script type="module">

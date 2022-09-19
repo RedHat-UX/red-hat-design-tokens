@@ -7,6 +7,7 @@ border:
         asperiores aliquid distinctio consectetur obcaecati?
 
   width:
+    $type: dimension
     $extensions:
       com.redhat.ux:
         heading: Width
@@ -16,14 +17,14 @@ border:
           asperiores aliquid distinctio consectetur obcaecati?
 
     sm:
-      value: '{length.4xs}'
-      comment: '1px border width; Example: Secondary CTA or Button'
+      $value: '{length.4xs}'
+      $description: '1px border width; Example: Secondary CTA or Button'
     md:
-      value: '{length.3xs}'
-      comment: '2px border width: Example: Alert'
+      $value: '{length.3xs}'
+      $description: '2px border width: Example: Alert'
     lg:
-      value: '{length.2xs}'
-      comment: '3px border width: Example: Expanded Accordion panel'
+      $value: '{length.2xs}'
+      $description: '3px border width: Example: Expanded Accordion panel'
 
   radius:
     $extensions:
@@ -35,12 +36,12 @@ border:
           asperiores aliquid distinctio consectetur obcaecati?
 
     sharp:
-      value: 0.0px
-      comment: Border radius reset
+      $value: 0.0px
+      $description: Border radius reset
     default:
-      comment: '3px border radius; Example: Card'
-      value: '{length.2xs}'
+      $description: '3px border radius; Example: Card'
+      $value: '{length.2xs}'
     pill:
-      value: '{length.4xl}'
-      comment: 'Pill border radius; Example: Label'
+      $value: '{length.4xl}'
+      $description: 'Pill border radius; Example: Label'
 

@@ -1,29 +1,29 @@
 color:
   red:
     50:
-      value: '#faeae8'
-      comment: Alert - Critical background
+      $value: '#faeae8'
+      $description: Alert - Critical background
     100:
-      value: '#fddbdb'
-      comment: Lightest red
+      $value: '#fddbdb'
+      $description: Lightest red
     200:
-      value: '#fab6b6'
-      comment: Lighter red
+      $value: '#fab6b6'
+      $description: Lighter red
     300:
-      value: '#f56d6d'
-      comment: Light red
+      $value: '#f56d6d'
+      $description: Light red
     400:
-      value: '#ff3333'
-      comment: Brand red (dark theme)
+      $value: '#ff3333'
+      $description: Brand red (dark theme)
     500:
-      value: '#ee0000'
-      comment: Brand red (light theme)
+      $value: '#ee0000'
+      $description: Brand red (light theme)
     600:
-      value: '#be0000'
-      comment: Dark red or brand red hover
+      $value: '#be0000'
+      $description: Dark red or brand red hover
     700:
-      value: '#8f0000'
-      comment: Darker red
+      $value: '#8f0000'
+      $description: Darker red
     800:
-      value: '#5f0000'
-      comment: Darkest red
+      $value: '#5f0000'
+      $description: Darkest red

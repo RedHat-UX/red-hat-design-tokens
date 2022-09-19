@@ -1,0 +1,105 @@
+breakpoint:
+  $type: dimension
+  $extensions:
+    com.redhat.ux:
+      use: breakpoint
+      heading: Breakpoints
+      description: |
+        When layouts change in size responding to screen size, visual elements may adjust their
+        size, hide, or otherwise adapt to compensate for gains or losses in screen real estate.
+
+        Red Hat's breakpoint tokens represent the **minimum**
+        [CSS pixel](https://developer.mozilla.org/en-US/docs/Glossary/CSS_pixel) width of a device's
+        screen, corresponding to the `min-width` media query so for example a device with a
+        screen width less than the `--rh-breakpoint-xs` token is considered a mobile
+        device in portrait mode, whereas a device with a screen width greater than the
+        `--rh-breakpoint-xl` token is considered a desktop with a large screen.
+
+        Since CSS currently does not allow custom properties in media queries, these tokens must be
+        uses in preprocessors or templating systems, or imported into JavaScript modules. We
+        recommend against importing these token values directly into components. In Red Hat's
+        Design System, we import them into a
+        [reactive controller](https://lit.dev/docs/composition/controllers/) which exposes
+        information about the screen size through a JavaScript API.
+
+        See also [media queries](#media-queries).
+
+        ```js
+        static styles = css`
+          @media (max-width: $%(%Breakpointxs%)%) %(%
+            /* ... mobile portrait styles */
+          %)%
+        `;
+        ```
+  2xsMax:
+    $value: 575px
+    $description: Mobile portrait (max-width)
+    $extensions:
+      com.redhat.ux:
+        title: Extra Extra Small (max-width)
+  xs:
+    $value: 576px
+    $description: Mobile portrait
+    $extensions:
+      com.redhat.ux:
+        title: Extra Small
+  xsMax:
+    $value: 767px
+    $description: Mobile landscape (max-width)
+    $extensions:
+      com.redhat.ux:
+        title: Extra Small (max-width)
+  sm:
+    $value: 768px
+    $description: Mobile landscape
+    $extensions:
+      com.redhat.ux:
+        title: Small
+  smMax:
+    $value: 991px
+    $description: Mobile landscape (max-width)
+    $extensions:
+      com.redhat.ux:
+        title: Small (max-width)
+  md:
+    $value: 992px
+    $description: Tablet portrait
+    $extensions:
+      com.redhat.ux:
+        title: Medium
+  mdMax:
+    $value: 1199px
+    $description: Tablet portrait (max-width)
+    $extensions:
+      com.redhat.ux:
+        title: Medium (max-width)
+  lg:
+    $value: 1200px
+    $description: Tablet landscape
+    $extensions:
+      com.redhat.ux:
+        title: Large
+  lgMax:
+    $value: 1439px
+    $description: Tablet landscape (max-width)
+    $extensions:
+      com.redhat.ux:
+        title: Large (max-width)
+  xl:
+    $value: 1440px
+    $description: Desktop small
+    $extensions:
+      com.redhat.ux:
+        title: Extra Large
+  xlMax:
+    $value: 1679px
+    $description: Desktop small (max-width)
+    $extensions:
+      com.redhat.ux:
+        title: Extra Large (max-width)
+  2xl:
+    $value: 1680px
+    $description: Desktop large
+    $extensions:
+      com.redhat.ux:
+        title: Extra Extra Large

@@ -1,6 +1,5 @@
 color:
   border:
-    $type: color # we must make this explicit because style-dictionary v3 does not implement the dtcg grouping algorithm
     $extensions:
       com.redhat.ux:
         category: border
@@ -13,35 +12,35 @@ color:
     strong:
       on:
         light:
-          value: '{color.black.900}'
-          comment: Strong border color (light theme)
+          $value: '{color.black.900}'
+          $description: Strong border color (light theme)
         dark:
-          value: '{color.white}'
-          comment: Strong border color (dark theme)
+          $value: '{color.white}'
+          $description: Strong border color (dark theme)
 
     subtle:
       on:
         light:
-          value: '{color.black.300}'
-          comment: Subtle border color (light theme)
+          $value: '{color.black.300}'
+          $description: Subtle border color (light theme)
         dark:
-          value: '{color.black.600}'
-          comment: Subtle border color (light theme)
+          $value: '{color.black.600}'
+          $description: Subtle border color (light theme)
 
     interactive:
       on:
         light:
-          value: '{color.blue.400}'
-          comment: Interactive border color (light theme)
+          $value: '{color.blue.400}'
+          $description: Interactive border color (light theme)
         dark:
-          value: '{color.blue.200}'
-          comment: Interactive border color (light theme)
+          $value: '{color.blue.200}'
+          $description: Interactive border color (light theme)
 
     danger:
       on:
         light:
-          value: '{color.red.500}'
-          comment: Danger border color (light theme)
+          $value: '{color.red.500}'
+          $description: Danger border color (light theme)
         dark:
-          value: '{color.red.400}'
-          comment: Danger border color (light theme)
+          $value: '{color.red.400}'
+          $description: Danger border color (light theme)

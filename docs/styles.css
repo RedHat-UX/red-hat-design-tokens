@@ -15,7 +15,7 @@ body {
   font-family: var(--rh-font-family-heading);
 }
 
-header {
+#main-header {
   background: var(--rh-color-black-900);
   color: var(--rh-color-text-primary-on-dark);
   padding: var(--rh-space-xs) var(--rh-space-2xl);
@@ -307,3 +307,34 @@ code[class^="language-"] {
   display: block;
   overflow-x: scroll;
 }
+
+.breakpoint img {
+  max-height: var(--rh-length-3xl);
+}
+
+dl.grid {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 8px;
+  align-items: center;
+}
+
+dl.grid dt {
+  font-style: italic;
+}
+
+dl.grid dt:after {
+  content: ': ';
+}
+
+dl.grid dt,
+dl.grid dd {
+  margin: 0;
+  padding: 0;
+}
+
+dl.grid dd {
+  display: flex;
+  align-items: center;
+}
+

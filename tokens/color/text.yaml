@@ -1,6 +1,5 @@
 color:
   text:
-    $type: color # we must make this explicit because style-dictionary v3 does not implement the dtcg grouping algorithm
     $extensions:
       com.redhat.ux:
         heading: Text color
@@ -27,24 +26,24 @@ color:
     primary:
       on:
         light:
-          value: '{color.black.900}'
-          comment: Primary text color for light theme
+          $value: '{color.black.900}'
+          $description: Primary text color for light theme
         dark:
-          value: '{color.white}'
-          comment: Primary text color for dark theme
+          $value: '{color.white}'
+          $description: Primary text color for dark theme
     secondary:
       on:
         light:
-          value: '{color.black.600}'
-          comment: Secondary text color for light theme
+          $value: '{color.black.600}'
+          $description: Secondary text color for light theme
         dark:
-          value: '{color.black.300}'
-          comment: Secondary text color for dark theme
+          $value: '{color.black.300}'
+          $description: Secondary text color for dark theme
     brand:
       on:
         light:
-          value: '{color.red.500}'
-          comment: Brand text color for light theme
+          $value: '{color.red.500}'
+          $description: Brand text color for light theme
         dark:
-          value: '{color.red.400}'
-          comment: Brand text color for dark theme
+          $value: '{color.red.400}'
+          $description: Brand text color for dark theme

@@ -8,11 +8,11 @@ context:
     decoration:
       # @see https://github.com/amzn/style-dictionary/issues/716#issuecomment-943673202
       _:
-        value: none
+        $value: none
       hover:
-        value: underline
+        $value: underline
       focus:
-        value: underline
+        $value: underline
       visited:
-        value: none
+        $value: none
 

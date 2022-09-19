@@ -8,3 +8,54 @@ font:
           Font Weight Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
           architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
           asperiores aliquid distinctio consectetur obcaecati?
+
+    body-text:
+      $extensions:
+        com.redhat.ux:
+          heading: Font weights (body)
+          description: >-
+            **Font Weight body-text** Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+            architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+            asperiores aliquid distinctio consectetur obcaecati?
+      regular:
+        $description: Regular font weight
+        $value: 400
+      medium:
+        $description: Medium font weight
+        $value: 500
+
+    code:
+      $extensions:
+        com.redhat.ux:
+          heading: Font weights (code)
+          fontFamily: var(--rh-font-family-code)
+          description: >-
+            **Font Weight code** Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+            architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+            asperiores aliquid distinctio consectetur obcaecati?
+      regular:
+        $description: Regular font weight
+        $value: 400
+      medium:
+        $description: Medium font weight
+        $value: 500
+
+    heading:
+      $extensions:
+        com.redhat.ux:
+          heading: Font weights (headings)
+          fontFamily: var(--rh-font-family-heading)
+          description: >-
+            **Font Weight heading** Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+            architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+            asperiores aliquid distinctio consectetur obcaecati?
+
+      regular:
+        $description: Regular font weight for headings
+        $value: 300
+      medium:
+        $description: Medium font weight for headings
+        $value: 500
+      bold:
+        $description: Bold font weight for headings
+        $value: 700

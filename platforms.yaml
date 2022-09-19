@@ -39,6 +39,11 @@ json:
       options:
         fileHeader: redhat/legal
         outputReferences: true
+    - destination: ../build/rhds.tokens.json
+      format: json
+      options:
+        fileHeader: redhat/legal
+        outputReferences: true
 
 map:
   transformGroup: css

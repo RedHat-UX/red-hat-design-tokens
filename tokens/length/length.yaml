@@ -1,48 +1,51 @@
 length:
-  comment: >-
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-    architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-    asperiores aliquid distinctio consectetur obcaecati?
+  $type: dimension
+  $extentions:
+    com.redhat.ux:
+      description: >-
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
+        architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
+        asperiores aliquid distinctio consectetur obcaecati?
 
   4xs:
-    value: 1px
-    comment: 1px length token
+    $value: 1px
+    $description: 1px length token
   3xs:
-    value: 2px
-    comment: 2px length token
+    $value: 2px
+    $description: 2px length token
   2xs:
-    value: 3px
-    comment: 3px length token
+    $value: 3px
+    $description: 3px length token
   xs:
-    value: 4px
-    comment: 4px length token
+    $value: 4px
+    $description: 4px length token
   sm:
-    value: 6px
-    comment: 6px length token
+    $value: 6px
+    $description: 6px length token
   md:
-    value: 8px
-    comment: 8px length token
+    $value: 8px
+    $description: 8px length token
   lg:
-    value: 16px
-    comment: 16px length token
+    $value: 16px
+    $description: 16px length token
   xl:
-    value: 24px
-    comment: 24px length token
+    $value: 24px
+    $description: 24px length token
   2xl:
-    value: 32px
-    comment: 32px length token
+    $value: 32px
+    $description: 32px length token
   3xl:
-    value: 48px
-    comment: 48px length token
+    $value: 48px
+    $description: 48px length token
   4xl:
-    value: 64px
-    comment: 64px length token
+    $value: 64px
+    $description: 64px length token
   5xl:
-    value: 80px
-    comment: 80px length token
+    $value: 80px
+    $description: 80px length token
   6xl:
-    value: 96px
-    comment: 96px length token
+    $value: 96px
+    $description: 96px length token
   7xl:
-    value: 128px
-    comment: 128px length token
+    $value: 128px
+    $description: 128px length token
