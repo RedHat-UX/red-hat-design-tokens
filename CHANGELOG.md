@@ -1,5 +1,11 @@
 # @rhds/tokens
 
+## 1.0.0-beta.7
+
+### Patch Changes
+
+- a33f75c: One more release ci fix for good measure
+
 ## 1.0.0-beta.6
 
 ### Patch Changes
