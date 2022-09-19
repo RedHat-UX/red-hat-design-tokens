@@ -5,17 +5,7 @@
 ### Patch Changes
 
 - 1a18fab: More CI debugging
-
-## 1.0.0-beta.8
-
-### Patch Changes
-
 - 2f6494e: More CI debugging
-
-## 1.0.0-beta.6, 1.0.0-beta.7
-
-### Patch Changes
-
 - a33f75c: One more release ci fix for good measure
 - c0abeff: Add VSCode bundle to GitHub release
 
