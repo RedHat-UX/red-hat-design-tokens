@@ -63,6 +63,6 @@ jobs:
         if: ${{ steps.changesets.outputs.published == 'true' }}
         run: |
           cd editor/vscode
-          npx vsce --publish --pre-release
+          npx vsce publish --pre-release
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
