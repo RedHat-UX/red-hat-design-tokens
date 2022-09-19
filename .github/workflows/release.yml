@@ -36,16 +36,14 @@ jobs:
 
       # changesets action outputs `publishedPackages` in the format
       #   [{"name": "@xx/xx", "version": "1.2.0"}, {"name": "@xx/xy", "version": "0.8.9"}]
-      # The following step converts that list of objects to a list of strings (git tags for github releases)
-      # and joins them with commas, for consumption in the next step
-      #   "@xx/xx@1.2.0, @xx/xy@0.8.9"
+      # The following step converts that list of objects to a single string of form "1.0.0-beta.0"
       - name: Transform Tags
-        id: get-tags
+        id: get-tag
         if: ${{ steps.changesets.outputs.published == 'true' }}
         run: |
-          tags=$( echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -c 'map([.name,.version]) | map(join("@")) | join(", ")' )
-          echo "$tags"
-          echo "::set-output name=tags::$tags"
+          tag=$(echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -c '.[0].version')
+          echo "$tag"
+          echo "::set-output name=tag::$tag"
 
       - name: Upload release artifact
         uses: actions/github-script@v6
@@ -55,9 +53,9 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const workspace = '${{ github.workspace }}';
-            const tags = ${{ steps.get-tags.outputs.tags }}.split(',');
+            const tag = 'v' + ${{ steps.get-tag.outputs.tag }};
             const { release } = await import('${{ github.workspace }}/lib/release.js');
-            await release({ core, github, tags, workspace });
+            await release({ core, github, tag, workspace });
 
       - name: Publish VSCode
         if: ${{ steps.changesets.outputs.published == 'true' }}
