@@ -5,7 +5,7 @@ Contributions to Red Hat's design tokens are welcome, and must abide by our [cod
 
 ```sh
 npm ci
-npm run build
+npm run style-dictionary
 ```
 
 <small>
