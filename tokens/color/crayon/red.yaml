@@ -13,7 +13,7 @@ color:
       $value: '#f56d6d'
       $description: Light red
     400:
-      $value: '#ff3333'
+      $value: '#ff442b'
       $description: Brand red (dark theme)
     500:
       $value: '#ee0000'
