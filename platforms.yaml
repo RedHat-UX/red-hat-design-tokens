@@ -78,23 +78,23 @@ js:
       options:
         fileHeader: redhat/legal
 
-html:
-  transformGroup: css
-  buildPath: build/
-  prefix: rh
-  actions:
-    - copyAssets
-  files:
-    - destination: index.html
-      format: html/docs
-      options:
-        fileHeader: redhat/legal
-        outputReferences: true
-    - destination: rhds.css
-      format: css/variables
-      options:
-        fileHeader: redhat/legal
-        selector: ':root'
+# html:
+#   transformGroup: css
+#   buildPath: build/
+#   prefix: rh
+#   actions:
+#     - copyAssets
+#   files:
+#     - destination: index.html
+#       format: html/docs
+#       options:
+#         fileHeader: redhat/legal
+#         outputReferences: true
+#     - destination: rhds.css
+#       format: css/variables
+#       options:
+#         fileHeader: redhat/legal
+#         selector: ':root'
 
 editor:
   transformGroup: css

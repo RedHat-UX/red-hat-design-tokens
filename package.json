@@ -3,6 +3,7 @@
   "version": "1.0.0-beta.11",
   "description": "Red Hat Design System Tokens",
   "scripts": {
+    "11ty": "wireit",
     "package": "wireit",
     "style-dictionary": "wireit",
     "build": "wireit",
@@ -22,7 +23,12 @@
     "./values.js": {
       "import": "./js/values.js",
       "require": "./js/values.cjs"
-    }
+    },
+    "./json/*": {
+      "require": "./json/*"
+    },
+    "./plugins/11ty.cjs": "./plugins/11ty.cjs",
+    "./plugins/stylelint.cjs": "./plugins/stylelint.cjs"
   },
   "files": [
     "css",
@@ -55,10 +61,14 @@
         "scss/**"
       ]
     },
+    "11ty": {
+      "command": "eleventy"
+    },
     "start": {
       "command": "wds",
       "dependencies": [
-        "style-dictionary"
+        "style-dictionary",
+        "11ty"
       ]
     },
     "lint": {
@@ -95,6 +105,7 @@
     }
   },
   "devDependencies": {
+    "@11ty/eleventy": "^2.0.0-canary.25",
     "@changesets/cli": "^2.22.0",
     "@patternfly/eslint-config-elements": "^0.0.2-next.4",
     "@sindresorhus/slugify": "^2.1.0",
@@ -103,7 +114,6 @@
     "eslint": "^8.23.0",
     "highlight.js": "^11.6.0",
     "markdown-it": "^13.0.1",
-    "nunjucks": "^3.2.3",
     "style-dictionary": "^3.7.0",
     "tap-difflet": "^0.7.2",
     "tape-es": "^1.2.17",
