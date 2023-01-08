@@ -4,6 +4,7 @@ font:
     $extensions:
       com.redhat.ux:
         heading: Font family
+        classes: family
         description: |-
           [Red Hat Fonts](https://github.com/RedHatOfficial/RedHatFont), designed by Jeremy Mickel
           and released under Open Font License, form the typographic basis for the Red Hat Design
@@ -28,6 +29,7 @@ font:
       $extensions:
         com.redhat.ux:
           example: Display
+          classes: family
       $value:
         - RedHatDisplay
         - Red Hat Display
@@ -47,6 +49,7 @@ font:
       $extensions:
         com.redhat.ux:
           example: Body text
+          classes: family
       $value:
         - RedHatText
         - Red Hat Text
@@ -66,6 +69,7 @@ font:
       $extensions:
         com.redhat.ux:
           example: Code
+          classes: family
       $value:
         - RedHatMono
         - Red Hat Mono

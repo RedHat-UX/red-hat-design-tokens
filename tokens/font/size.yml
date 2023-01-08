@@ -7,6 +7,7 @@ font:
         com.redhat.ux:
           heading: Font size (text)
           example: Aa
+          classes: size
           description: >-
             Font Size **Body Text** Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
             architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
@@ -35,6 +36,7 @@ font:
         com.redhat.ux:
           heading: Font size (code)
           fontFamily: var(--rh-font-family-code)
+          classes: size
           description: >-
             Font Size Headings Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
             architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
@@ -63,6 +65,7 @@ font:
         com.redhat.ux:
           heading: Font size (headings)
           fontFamily: var(--rh-font-family-heading)
+          classes: size
           description: >-
             Font Size Headings Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
             architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam

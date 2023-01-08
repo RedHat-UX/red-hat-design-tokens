@@ -32,9 +32,6 @@ function copyButton(item, { valueOnly = false } = {}) {
 }
 
 function nameCell(item) {
-  if (!item.name) {
-    console.log(item);
-  }
   return `
     <td class="item-name">
       <div>
@@ -57,13 +54,12 @@ function lengthCode(item) {
   `;
 }
 
-function table(collection, { output = '', name = '', rowType } = {}) {
-  const entries = Object.entries(collection);
-  if (!entries.length || name.startsWith('$')) {
+function table(collection, { output = '', name = '', rowType, docs } = {}) {
+  const values = Object.values(collection);
+  if (!values.length || name.startsWith('$')) {
     return '';
   }
-  rowType ??= getDocs(collection)?.render;
-  console.log({ name, rowType });
+  const classes = docs?.classes;
   return `
   <table>
     <thead>
@@ -74,16 +70,7 @@ function table(collection, { output = '', name = '', rowType } = {}) {
         <th>Use case</th>
       </tr>
     </thead>
-    <tbody>${entries.map(([key, item]) => rowType === 'fontSize' ? `
-      <tr id="${item.name}" class="font size">
-        <td style="--font-size: ${item.$value}; --font-family: ${getDocs(collection).fontFamily ?? 'var(--rh-font-family-text)'}">
-          <output>Aa</output>
-        </td>
-        ${nameCell(item)}
-        <td>${lengthCode(item)}</td>
-        <td>${item.$description}</td>
-        <td>${copyButton(item)}</td>
-      </tr>` : rowType === 'borderRadius' ? `
+    <tbody>${values.map(item => rowType === 'borderRadius' ? `
       <tr id="${item.name}" class="border radius">
         <td style="--border-radius: ${item.$value};">
           <output></output>
@@ -118,23 +105,20 @@ function table(collection, { output = '', name = '', rowType } = {}) {
         </td>
         <td>${item.$description}</td>
         <td class="copy-cell">${copyButton(item)}</td>
-      </tr>`) : rowType === 'fontWeight' ? `
-      <tr id="${item.name}" class="font weight">
-        <td style="--font-weight: ${item.$value}; --font-family: ${getDocs(collection).fontFamily ?? 'var(--rh-font-family-text)'};">
-          <output>${item.attributes.aliases[0]}</output>
+      </tr>`) : rowType === 'font' ? `
+      <tr id="${item.name}" class="font ${classes}">
+        <td style="
+            --font-size: ${classes?.includes('size') ? item.$value?.toString().replace('"', '\\"') : 'var(--rh-font-size-body-text-md)'};
+            --font-weight: ${classes?.includes('weight') ? item.$value?.toString().replace('"', '\\"') : 'var(--rh-font-weight-body-text-regular)'};
+            --font-family: ${classes?.includes('family') ? item.$value?.toString().replace('"', '\\"') : getDocs(collection)?.fontFamily ?? 'var(--rh-font-family-text)'};">
+          <output>${item.$extensions?.['com.redhat.ux']?.example ?? item.attributes?.aliases?.[0] ?? 'Aa'}</output>
         </td>
         ${nameCell(item)}
-        <td>
+        <td>${classes?.includes('weight') ? `` : `
           <button class="copy-button numerical value"><code>${item.$value}</button>
-          <button class="copy-button common value"><code>${item.attributes.aliases[0]}</code></button>
+          <button class="copy-button common value"><code>${item.attributes?.aliases?.[0]}</code></button>
+          <button class="copy-button value"><code>${item.$value}</button>`}
         </td>
-        <td>${item.$description}</td>
-        <td>${copyButton(item)}</td>
-      </tr> ` : rowType === 'fontFamily' ? `
-      <tr id="${item.name}" class="font family">
-        <td style="--font-family: ${item.$value}"><output>${item.$extensions['com.redhat.ux'].example}</output></td>
-        ${nameCell(item)}
-        <td><button class="copy-button value"><code>${item.$value}</button></td>
         <td>${item.$description}</td>
         <td>${copyButton(item)}</td>
       </tr> ` : `
@@ -185,9 +169,13 @@ module.exports = function RHDSPlugin(eleventyConfig) {
   }
 
   function category(content, name, kwargs = {}) {
-    const { level = 2, parent = tokens, rowType = getDocs(parent[name])?.render } = kwargs
+    const {
+      level = 2,
+      parent = tokens,
+      rowType = getDocs(parent[name])?.render
+    } = kwargs
     const collection = (parent[name]);
-    const docs = getDocs(collection);
+    const docs = getDocs(collection) ?? getDocs(parent);
     const heading = docs?.heading ?? capitalize(name.replace('-', ' '));
     const slug = slugify(heading).toLowerCase();
 
@@ -212,8 +200,12 @@ module.exports = function RHDSPlugin(eleventyConfig) {
       <section id="${name}">
         <h${level} id="${slug}">${heading}<a href="#${slug}">#</a></h${level}>
         ${getDescription(docs) /* TODO: Markdown */}
-        ${table(values, { output: docs?.example, name, rowType })}
-        ${Object.keys(children).map(key => category('', key, { parent: collection, level: level + 1, rowType })).join('\n')}
+        ${table(values, { output: docs?.example, name, rowType, docs })}
+        ${Object.keys(children).map(key => category('', key, {
+          parent: collection,
+          level: level + 1,
+          rowType,
+        })).join('\n')}
         <a class="btt" href="#">Top</a>
       </section>`;
   }

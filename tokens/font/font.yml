@@ -2,7 +2,6 @@ font:
   $extensions:
     com.redhat.ux:
       heading: Typography
-      render: typography
       description: >-
         To learn more about how to use text, visit the
         [typography page](https://ux.redhat.com/foundations/typography).
