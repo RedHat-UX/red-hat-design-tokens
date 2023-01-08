@@ -2,6 +2,7 @@ color:
   $type: color
   $extensions:
     com.redhat.ux:
+      render: color
       heading: Global color
       description: >-
         Color helps create consistent experiences across web properties. Various colors are

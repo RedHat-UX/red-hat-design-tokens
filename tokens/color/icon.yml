@@ -10,18 +10,16 @@ color:
           asperiores aliquid distinctio consectetur obcaecati?
 
     primary:
-      on:
-        light:
-          $value: '{color.brand.red.on.light}'
-        dark:
-          $value: '{color.brand.red.on.dark}'
+      on-light:
+        $value: '{color.brand.red.on-light}'
+      on-dark:
+        $value: '{color.brand.red.on-dark}'
 
     secondary:
-      on:
-        light:
-          $value: '{color.black.900}'
-        dark:
-          $value: '{color.white}'
+      on-light:
+        $value: '{color.black.900}'
+      on-dark:
+        $value: '{color.white}'
 
     subtle:
       # @see https://github.com/amzn/style-dictionary/issues/716#issuecomment-943673202

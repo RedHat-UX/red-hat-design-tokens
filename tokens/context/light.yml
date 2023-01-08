@@ -7,9 +7,9 @@ context:
       text:
         # @see https://github.com/amzn/style-dictionary/issues/716#issuecomment-943673202
         _:
-          $value: '{color.text.primary.on.light}'
+          $value: '{color.text.primary.on-light}'
         muted:
-          $value: '{color.text.secondary.on.light}'
+          $value: '{color.text.secondary.on-light}'
         link:
           _:
             $value: '{color.interactive.blue.darker}'
