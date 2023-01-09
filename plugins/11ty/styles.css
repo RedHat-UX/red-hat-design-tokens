@@ -86,7 +86,16 @@ tr.on-dark {
   color: var(--rh-color-text-primary-on-dark, #ffffff);
 }
 
-td.item-name > div {
+th, td {
+  padding-block: var(--rh-space-sm);
+  padding-inline: var(--rh-space-md);
+}
+
+td:first-child {
+  padding-inline-start: var(--rh-space-lg, 16px);
+}
+
+td.token > div {
   display: flex;
   flex-flow: row wrap;
   max-width: 350px;
@@ -190,11 +199,6 @@ tr:is(:hover, :focus-within) .copy-button {
   opacity: 1;
 }
 
-th, td {
-  padding-block: var(--rh-space-sm);
-  padding-inline: var(--rh-space-md)
-}
-
 .font samp {
   font-size: var(--font-size, var(--rh-font-size-heading-md));
   font-family: var(--font-family, var(--rh-font-family-body-text));
@@ -210,6 +214,10 @@ th, td {
 }
 
 .color samp {
+  color: var(--color);
+}
+
+.color:not(.border, .text) samp {
   aspect-ratio: 1;
   height: var(--rh-length-xl);
   display: block;
@@ -218,7 +226,7 @@ th, td {
   background: var(--color);
 }
 
-.color.light samp {
+.color:not(.border, .text).light samp {
   border-color: var(--rh-color-black-900);
 }
 
@@ -239,8 +247,8 @@ th, td {
   aspect-ratio: 2;
   display: block;
   border-style: solid;
-  border-width: var(--border-width, var(--rh-border-width-sm));
-  border-color: var(--border-color, var(--rh-color-border-strong-on-light));
+  border-width: var(--width, var(--rh-border-width-sm));
+  border-color: var(--color, var(--rh-color-border-strong-on-light));
   border-radius: var(--border-radius, var(--rh-border-radius-default));
 }
 
