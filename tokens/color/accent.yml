@@ -3,6 +3,7 @@ color:
     $extensions:
       com.redhat.ux:
         order: 10
+        collapse: true
         description: >-
           Color Accent Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
           architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam

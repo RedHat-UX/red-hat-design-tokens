@@ -3,6 +3,7 @@ color:
     $extensions:
       com.redhat.ux:
         category: border
+        collapse: true
         heading: Color
         description: >-
           Border Color Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem

@@ -1,6 +1,6 @@
 length:
   $type: dimension
-  $extentions:
+  $extensions:
     com.redhat.ux:
       description: >-
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem

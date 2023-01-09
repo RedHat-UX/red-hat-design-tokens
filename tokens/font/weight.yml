@@ -4,7 +4,6 @@ font:
     $extensions:
       com.redhat.ux:
         heading: Font weights
-        classes: weight
         description: >-
           Font Weight Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
           architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
@@ -14,7 +13,6 @@ font:
       $extensions:
         com.redhat.ux:
           heading: Font weights (body)
-          classes: weight
           description: >-
             **Font Weight body-text** Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
             architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
@@ -31,7 +29,6 @@ font:
         com.redhat.ux:
           heading: Font weights (code)
           fontFamily: var(--rh-font-family-code)
-          classes: weight
           description: >-
             **Font Weight code** Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
             architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
@@ -48,7 +45,6 @@ font:
         com.redhat.ux:
           heading: Font weights (headings)
           fontFamily: var(--rh-font-family-heading)
-          classes: weight
           description: >-
             **Font Weight heading** Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
             architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
