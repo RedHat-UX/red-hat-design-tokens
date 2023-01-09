@@ -1,19 +1,19 @@
-const flattenTokens = require('style-dictionary/lib/utils/flattenProperties.js');
-
 const getDocs = x => x?.$extensions?.['com.redhat.ux'];
-const filterEntries = (p, x) => Object.fromEntries(Object.entries(x).filter(p));
-const sortEntries = (p, x) => Object.fromEntries(Object.entries(x).sort(p));
-const entryHasValue = ([, v]) => typeof v === 'object' && '$value' in v;
-const capitalize = x => x; // TODO
+const capitalize = x => `${x.at(0).toUpperCase()}${x.slice(1)}`;
 const isRef = x => x?.original?.$value?.startsWith?.('{') ?? false;
 const deref = x => `rh-${x.original.$value.replace(/[{}]/g, '').split('.').join('-')}`;
 
+function dedent(str) {
+  const stripped = str.replace(/^\n/, '');
+  const match = stripped.match(/^\s+/);
+  return match ? stripped.replace(new RegExp(`^${match[0]}`, 'gm'), '') : str;
+}
 function variable(item) {
-  return `var(--${item.name}, ${item.$value})`;
+  return /* css */`var(--${item.name}, ${item.$value})`;
 }
 
 function copyButton(item, { valueOnly = false } = {}) {
-  return `
+  return dedent(/* html */`
     <rh-tooltip position="top-start">
       <code slot="content">${valueOnly ? item.$value : variable(item)}</code>
       <button class="copy-button" data-copy="${valueOnly ? item.$value : variable(item)}">
@@ -25,14 +25,17 @@ function copyButton(item, { valueOnly = false } = {}) {
     <rh-tooltip position="top-start">
       <span slot="content">Copy Link</span>
       <button class="copy-button" data-copy="https://red-hat-design-tokens.netlify.app/#--${item.name}">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+        <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+          <path d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/>
+        </svg>
       </button>
     </rh-tooltip>`}
-  `;
+  `).trim();
 }
 
 function nameCell(item) {
-  return `
+  return dedent(/* html */`
     <td class="item-name">
       <div>
         <button class="copy-button name">
@@ -43,15 +46,19 @@ function nameCell(item) {
         </button>
       </div>
     </td>
-  `;
+  `).trim();
 }
 
 function lengthCode(item) {
-  return `
+  return dedent(/* html */`
     <button class="copy-button value ${item.$value.endsWith('rem') ? 'rem' : 'px'}">
       <code>${item.$value}</code>
     </button>
-  `;
+  `).trim();
+}
+
+function styleMap(objt) {
+  return Object.entries(objt).map(([k, v]) => `${k}: ${v?.toString().replaceAll('"', '\'')}`).join(';');
 }
 
 function table(collection, { output = '', name = '', rowType, docs } = {}) {
@@ -60,7 +67,7 @@ function table(collection, { output = '', name = '', rowType, docs } = {}) {
     return '';
   }
   const classes = docs?.classes;
-  return `
+  return dedent(/* html */`
   <table>
     <thead>
       <tr>
@@ -70,75 +77,89 @@ function table(collection, { output = '', name = '', rowType, docs } = {}) {
         <th>Use case</th>
       </tr>
     </thead>
-    <tbody>${values.map(item => rowType === 'borderRadius' ? `
-      <tr id="${item.name}" class="border radius">
-        <td style="--border-radius: ${item.$value};">
-          <output></output>
+    <tbody>${values.map(token => {
+    const { r, g, b, a } = token.attributes?.rgb ?? {};
+    const isWeight = !!classes?.includes('weight');
+    const isRadius = !!classes?.includes('radius');
+    const isWidth = !!classes?.includes('width');
+    const isFamily = !!classes?.includes('family');
+    const isSize = !!classes?.includes('size');
+    const isColor = !!token.path.includes('color');
+    return rowType === 'border' ? /* html */`
+      <tr id="${token.name}" class="${classes ?? ''} ${token.path.join(' ')}">
+        <td style="${styleMap({
+      '--border-radius': isRadius ? token.$value : 'initial',
+      '--border-width': isWidth ? token.$value : 'initial',
+      '--border-color': isColor ? token.$value : 'initial',
+    })}">
+          <samp></samp>
         </td>
-        ${nameCell(item)}
-        <td>${lengthCode(item)}</td>
-        <td>${item.$description}</td>
-        <td>${copyButton(item)}</td>
-      </tr>` : rowType === 'borderWidth' ? `
-      <tr id="${item.name}" class="border width">
-        <td style="--border-width: ${item.$value};">
-          <output></output>
-        </td>
-        ${nameCell(item)}
-        <td>${lengthCode(item)}</td>
-        <td>${item.$description}</td>
-        <td>${copyButton(item)}</td>
-      </tr> ` : rowType === 'color' ? ({ r, g, b, a } = item.attributes.rgb, `
-      <tr id="--${item.name}">
+        ${nameCell(token)}
+        <td>${lengthCode(token)}</td>
+        <td>${token.$description ?? ''}</td>
+        <td>${copyButton(token)}</td>
+      </tr>` : rowType === 'color' ? (`
+      <tr id="--${token.name}"
+          class="${token.path.join(' ')} ${token.attributes.isLight ? 'light' : ''}"
+          style="--color: ${isColor ? token.$value : 'initial'}">
         <td>
-          <output class="swatch ${item.attributes.isLight ? 'light' : ''}" style="background: ${item.$value$}"></output>
+          <samp></samp>
         </td>
-        ${nameCell(item)}
+        ${nameCell(token)}
         <td>
-          <button class="copy-button value color hex" style="--color: ${item.$value}">
-            <code>${item.$value}</code>
+          <button class="copy-button value color hex" style="--color: ${token.$value}">
+            <code>${token.$value}</code>
           </button>
           <br/>
           <button class="copy-button value color rgb" style="--color: rgb(${r}, ${g}, ${b})">
             <code>rgb(${r}, ${g}, ${b})</code>
           </button>
         </td>
-        <td>${item.$description}</td>
-        <td class="copy-cell">${copyButton(item)}</td>
+        <td>${token.$description ?? ''}</td>
+        <td class="copy-cell">${copyButton(token)}</td>
       </tr>`) : rowType === 'font' ? `
-      <tr id="${item.name}" class="font ${classes}">
-        <td style="
-            --font-size: ${classes?.includes('size') ? item.$value?.toString().replace('"', '\\"') : 'var(--rh-font-size-body-text-md)'};
-            --font-weight: ${classes?.includes('weight') ? item.$value?.toString().replace('"', '\\"') : 'var(--rh-font-weight-body-text-regular)'};
-            --font-family: ${classes?.includes('family') ? item.$value?.toString().replace('"', '\\"') : getDocs(collection)?.fontFamily ?? 'var(--rh-font-family-text)'};">
-          <output>${item.$extensions?.['com.redhat.ux']?.example ?? item.attributes?.aliases?.[0] ?? 'Aa'}</output>
-        </td>
-        ${nameCell(item)}
-        <td>${classes?.includes('weight') ? `` : `
-          <button class="copy-button numerical value"><code>${item.$value}</button>
-          <button class="copy-button common value"><code>${item.attributes?.aliases?.[0]}</code></button>
-          <button class="copy-button value"><code>${item.$value}</button>`}
-        </td>
-        <td>${item.$description}</td>
-        <td>${copyButton(item)}</td>
-      </tr> ` : `
-      <tr id="${item.name}" class="${name}">
-        <td style="--${name}: ${item.$value};">
-          <output${name === 'space' ? ` style="background-color: ${item.$extensions?.['com.redhat.ux']?.color ?? ''};"` : ''}>${name === 'breakpoint' ?
-            `<img src="assets/device-${item.name}.svg" role="presentation">`
-            : output}
-          </output>
-        </td>
-        ${nameCell(item)}
+      <tr id="${token.name}" class="${classes ?? ''} ${token.path.join(' ')}" style="${styleMap({
+      '--font-family': isFamily ? token.$value : 'var(--rh-font-family-body-text)',
+      '--font-size': isSize ? token.$value : 'var(--rh-font-size-heading-md)',
+      '--font-weight': isWeight ? token.$value : 'var(--rh-font-weight-body-text-regular)',
+      '--color': isColor ? token.$value : 'initial',
+    })}">
         <td>
-          ${item.$type === 'dimension' ? lengthCode(item)
-          : `<button class="copy-button value"><code>${item.$value}</code></button>`}
+          <samp>${getDocs(token)?.example ?? token.attributes?.aliases?.[0] ?? 'Aa'}</samp>
         </td>
-        <td>${item.$description}</td>
-        <td>${copyButton(item)}</td>
-      </tr>`).join('\n')}
+        ${nameCell(token)}
+        <td>${isWeight ? `
+          <button class="copy-button numerical value"><code>${token.$value}</button>
+          <button class="copy-button common value"><code>${token.attributes?.aliases?.[0] ?? ''}</code></button>` : `
+          <button class="copy-button value"><code>${token.$value}</button>`}
+        </td>
+        <td>${token.$description ?? ''}</td>
+        <td>${copyButton(token)}</td>
+      </tr> ` : `
+      <tr id="${token.name}" class="${token.path.join(' ')} ${name}" style="${styleMap({
+      '--font-family': isFamily ? token.$value : 'var(--rh-font-family-body-text)',
+      '--font-size': isSize ? token.$value : 'var(--rh-font-size-heading-md)',
+      '--font-weight': isWeight ? token.$value : 'var(--rh-font-weight-body-text-regular)',
+      '--color': isColor ? token.$value : 'initial',
+      [`--${token.attributes.type === 'icon' && token.$type === 'dimension' ? `${name}-size` : name}`]: token.$value,
+    })}">
+        <td>
+          <samp${name === 'space' ? ` style="background-color: ${getDocs(token)?.color ?? ''};"` : ''}>${name === 'breakpoint' ?
+            `<img src="assets/device-${token.name}.svg" role="presentation">`
+            : output}
+          </samp>
+        </td>
+        ${nameCell(token)}
+        <td>
+          ${token.$type === 'dimension' ? lengthCode(token)
+          : `<button class="copy-button value"><code>${token.$value}</code></button>`}
+        </td>
+        <td>${token.$description ?? ''}</td>
+        <td>${copyButton(token)}</td>
+      </tr>`;
+  }).map(dedent).join('\n')}
     </tbody>
-  </table>`;
+  </table>`).trim();
 }
 
 module.exports = function RHDSPlugin(eleventyConfig) {
@@ -151,6 +172,7 @@ module.exports = function RHDSPlugin(eleventyConfig) {
     const assetsDir = `${__dirname}/../build/assets`;
     await mkdir(assetsDir, { recursive: true });
     await cp(`${__dirname}/../css/global.css`, `${assetsDir}/rhds.css`);
+    await cp(`${__dirname}/11ty/styles.css`, `${assetsDir}/styles.css`);
   });
 
   eleventyConfig.addPassthroughCopy('docs/assets');
@@ -160,58 +182,74 @@ module.exports = function RHDSPlugin(eleventyConfig) {
     return (x?.description ?? '').replaceAll('%(%', '{').replaceAll('%)%', '}');
   }
 
-  function typographyDemo(item) {
-    return `
-      <h4 id="typography-${slugify(item.$description)}">${item.$description}<a href="#typography-${slugify(item.$description)}">#</a></h4>
-      <p>The quick brown fox jumped over the lazy dog's back.</p>
-      ${copyButton(item)}
-    `;
-  }
-
-  function category(content, name, kwargs = {}) {
+  /**
+   * 0. render the description
+   * 1. get all the top-level $value-bearing objects and render them
+   * 2. for each remaining object, recurse
+   */
+  function category(kwargs = {}) {
     const {
+      isLast,
+      path,
+      exclude = [],
+      include = [],
       level = 2,
-      parent = tokens,
-      rowType = getDocs(parent[name])?.render
-    } = kwargs
-    const collection = (parent[name]);
-    const docs = getDocs(collection) ?? getDocs(parent);
-    const heading = docs?.heading ?? capitalize(name.replace('-', ' '));
-    const slug = slugify(heading).toLowerCase();
+      parentName = '',
+    } = kwargs;
+
+    let parent = kwargs.parent ?? tokens;
+
+    let collection;
+
+    path.split('.').forEach((part, i, a) => {
+      collection = parent[part];
+      if (a[i + 1]) {
+        parent = collection;
+      }
+    });
+
+    const name = kwargs.name ?? path.split('.').pop();
+    const rowType = kwargs.rowType ?? name;
+    const docs = getDocs(collection);
+    const heading = (docs?.heading ?? capitalize(name.replace('-', ' ')));
+    const slug = slugify(`${parentName} ${name}`.trim()).toLowerCase();
 
     const children = {};
     const values = {};
 
     for (const [key, value] of Object.entries(collection)) {
-      if (key === '$extensions') {
+      if (key === '$extensions' || typeof value !== 'object' || exclude.includes(key)) {
         continue;
       } else if (value.$value) {
         values[key] = value;
-      } else if (typeof value === 'object') {
+      } else {
         children[key] = value;
       }
     }
 
-    // 0. render the description
-    // 1. get all the top-level $value-bearing objects and render them
-    // 2. for each remaining object
-    //    recurse
-    return `
+    const kids = Object.keys(children).map((key, i, a) => category({
+      path: key,
+      parent: collection,
+      level: level + 1,
+      rowType,
+      parentName: `${parentName} ${name}`.trim(),
+      isLast: !a[i + 1],
+    }));
+
+    const md = require('markdown-it')({
+      html: true,
+    });
+
+    return dedent(/* html */`
       <section id="${name}">
         <h${level} id="${slug}">${heading}<a href="#${slug}">#</a></h${level}>
-        ${getDescription(docs) /* TODO: Markdown */}
+        ${md.render(dedent(getDescription(docs)))}
         ${table(values, { output: docs?.example, name, rowType, docs })}
-        ${Object.keys(children).map(key => category('', key, {
-          parent: collection,
-          level: level + 1,
-          rowType,
-        })).join('\n')}
-        <a class="btt" href="#">Top</a>
-      </section>`;
+        ${kids.join('\n')}
+        ${include.map((path, i, a) => category({ path, level: level + 1, isLast: !a[i + 1] })).join('\n')}${!isLast ? `
+        <a class="btt" href="#">Top</a>` : ''}
+      </section>`);
   }
-  eleventyConfig.addPairedShortcode('category', category);
 
-  eleventyConfig.addPairedShortcode('subcategory', function(content, kwargs) {
-    return '';
-  });
+  eleventyConfig.addShortcode('category', category);
 };

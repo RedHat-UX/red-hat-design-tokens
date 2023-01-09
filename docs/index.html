@@ -103,23 +103,21 @@
 
       </section>
 
-      {% category 'color', rowType = 'color' %}{% endcategory %}
-      {% category 'box-shadow', rowType = 'box-shadow' %}{% endcategory %}
-      {% category 'font', rowType = 'font' %}{% endcategory %}
-      {% category 'border' %}{% endcategory %}
-      {% category 'opacity' %}{% endcategory %}
-      {% category 'space' %}{% endcategory %}
-      {% category 'length' %}{% endcategory %}
-      {% subcategory collection = tokens.size.icon, level = 2, name = 'iconsize' %}{% endsubcategory %}
-
-      {% category 'breakpoint' %}{% endcategory %}
-
-      {%- category 'media' -%}
-      <dl id="media-queries" class="grid">{%- for item in mediaQueries -%}
-        <dt>--{{ item.name }}</dt>
-        <dd>{{ item.$value | inlineCss | safe }} {{ copyButton(item, valueOnly=true) }}</dd>{% endfor %}
-      </dl>
-      {%- endcategory -%}
+      {% category path = 'color',
+                  exclude = ['border', 'text', 'icon'] %}
+      {% category path = 'box-shadow' %}
+      {% category path = 'font',
+                  include = ['color.text'] %}
+      {% category path = 'border',
+                  include = ['color.border'] %}
+      {% category path = 'opacity' %}
+      {% category path = 'space' %}
+      {% category path = 'length' %}
+      {% category path = 'size.icon',
+                  name = 'icon',
+                  include = ['color.icon'] %}
+      {% category path = 'breakpoint' %}
+      {% category path = 'media' %}
 
     </main>
     <rh-global-footer>
