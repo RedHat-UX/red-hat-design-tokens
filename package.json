@@ -65,7 +65,8 @@
       "command": "eleventy"
     },
     "start": {
-      "command": "wds",
+      "command": "eleventy --serve",
+      "service": true,
       "dependencies": [
         "style-dictionary",
         "11ty"
@@ -106,23 +107,22 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.0-canary.25",
-    "@changesets/cli": "^2.22.0",
+    "@changesets/cli": "^2.26.0",
     "@patternfly/eslint-config-elements": "^0.0.2-next.4",
-    "@sindresorhus/slugify": "^2.1.0",
-    "@web/dev-server": "^0.1.31",
-    "css-tree": "^2.2.1",
-    "eslint": "^8.23.0",
-    "highlight.js": "^11.6.0",
+    "css-tree": "^2.3.1",
+    "deepmerge": "^4.2.2",
+    "eslint": "^8.31.0",
     "markdown-it": "^13.0.1",
-    "style-dictionary": "^3.7.0",
+    "style-dictionary": "^3.7.2",
     "tap-difflet": "^0.7.2",
     "tape-es": "^1.2.17",
-    "vsce": "^2.11.0",
-    "wireit": "^0.4.3",
-    "yaml": "^2.1.0"
+    "vsce": "^2.15.0",
+    "wireit": "^0.9.3",
+    "yaml": "^2.2.1"
   },
   "dependencies": {
+    "highlight.js": "^11.7.0",
     "postcss-value-parser": "^4.2.0",
-    "stylelint": "^14.11.0"
+    "stylelint": "^14.16.1"
   }
 }
