@@ -247,9 +247,9 @@ tr:is(:hover, :focus-within) .copy-button {
   aspect-ratio: 2;
   display: block;
   border-style: solid;
-  border-width: var(--width, var(--rh-border-width-sm));
+  border-width: var(--width, var(--rh-border-width-md));
   border-color: var(--color, var(--rh-color-border-strong-on-light));
-  border-radius: var(--border-radius, var(--rh-border-radius-default));
+  border-radius: var(--radius, var(--rh-border-radius-default));
 }
 
 .opacity samp {

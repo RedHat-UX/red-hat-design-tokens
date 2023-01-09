@@ -120,10 +120,27 @@ function table({ tokens, name = '', docs } = {}) {
   /* eslint-enable indent */
 }
 
+
 module.exports = function RHDSPlugin(eleventyConfig) {
   const tokens = require('../json/rhds.tokens.json');
 
   const slugify = eleventyConfig.getFilter('slugify');
+
+  function getParentCollection(kwargs) {
+    let parent = kwargs.parent ?? tokens;
+
+    let collection;
+
+    const key = kwargs.path.split('.').pop();
+    kwargs.path.split('.').forEach((part, i, a) => {
+      collection = parent[part];
+      if (a[i + 1]) {
+        parent = collection;
+      }
+    });
+
+    return { parent, key };
+  }
 
   eleventyConfig.on('eleventy.before', async function() {
     const { cp, mkdir } = await import('node:fs/promises');
@@ -146,59 +163,35 @@ module.exports = function RHDSPlugin(eleventyConfig) {
    * 2. for each remaining object, recurse
    */
   function category(kwargs = {}) {
-    const {
-      isLast,
-      path,
-      exclude = [],
-      level = 2,
-      parentName = '',
-    } = kwargs;
-
+    const isLast = kwargs.isLast ?? false;
+    const path = kwargs.path ?? '.';
+    const exclude = kwargs.exclude ?? [];
+    const level = kwargs.level ?? 2;
+    const parentName = kwargs.parentName ?? '';
     const include = Array.isArray(kwargs.include) ? kwargs.include : [kwargs.include].filter(Boolean);
-
-    let parent = kwargs.parent ?? tokens;
-
-    let collection;
-
-    path.split('.').forEach((part, i, a) => {
-      collection = parent[part];
-      if (a[i + 1]) {
-        parent = collection;
-      }
-    });
-
     const name = kwargs.name ?? path.split('.').pop();
+    const { parent, key } = getParentCollection(kwargs);
+    const collection = parent[key];
     const docs = getDocs(collection);
-    const heading = (docs?.heading ?? capitalize(name.replace('-', ' ')));
+    const heading = docs?.heading ?? capitalize(name.replace('-', ' '));
     const slug = slugify(`${parentName} ${name}`.trim()).toLowerCase();
 
-    const children = {};
-    const values = {};
-
-    for (const [key, value] of Object.entries(collection)) {
-      if (key.startsWith('$') || typeof value !== 'object' || exclude.includes(key)) {
-        continue;
-      } else if (value.$value) {
-        values[key] = value;
-      } else {
-        children[key] = value;
-      }
-    }
-
-    const kids = Object.keys(children).map((key, i, a) => category({
-      path: key,
-      parent: collection,
-      level: level + 1,
-      parentName: `${parentName} ${name}`.trim(),
-      isLast: !a[i + 1],
-    }));
+    const children = Object.entries(collection)
+      .filter(([key, value]) => !(key.startsWith('$') || typeof value !== 'object' || exclude.includes(key)) && !value.$value)
+      .map(([key], i, a) => category({
+        path: key,
+        parent: collection,
+        level: level + 1,
+        parentName: `${parentName} ${name}`.trim(),
+        isLast: !a[i + 1],
+      }));
 
     return dedent(/* html */`
       <section id="${name}">
         <h${level} id="${slug}">${heading}<a href="#${slug}">#</a></h${level}>
         ${md.render(dedent(getDescription(docs)))}
         ${table({ tokens: Object.values(collection).filter(x => x.$value), name, docs })}
-        ${kids.join('\n')}
+        ${children.join('\n')}
         ${include.map((path, i, a) => category({ path, level: level + 1, isLast: !a[i + 1] })).join('\n')}${!isLast ? `
         <a class="btt" href="#">Top</a>` : ''}
       </section>`);
