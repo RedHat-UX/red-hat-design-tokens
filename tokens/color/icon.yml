@@ -4,10 +4,6 @@ color:
       com.redhat.ux:
         category: icon
         heading: Color
-        description: >-
-          **Icon Color** Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-          architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-          asperiores aliquid distinctio consectetur obcaecati?
 
     primary:
       on-light:

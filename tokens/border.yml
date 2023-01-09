@@ -1,24 +1,9 @@
 border:
-  $extensions:
-    com.redhat.ux:
-      description: >-
-        Border Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-        architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-        asperiores aliquid distinctio consectetur obcaecati?
-
   width:
     $type: dimension
     $extensions:
       com.redhat.ux:
         heading: Width
-        description: >-
-          Border Width Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-          architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-          asperiores aliquid distinctio consectetur obcaecati?
-
-    sm:
-      $value: '{length.4xs}'
-      $description: '1px border width; Example: Secondary CTA or Button'
     md:
       $value: '{length.3xs}'
       $description: '2px border width: Example: Alert'
@@ -30,10 +15,6 @@ border:
     $extensions:
       com.redhat.ux:
         heading: Radius
-        description: >-
-          Border Radius Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-          architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-          asperiores aliquid distinctio consectetur obcaecati?
 
     sharp:
       $value: 0.0px

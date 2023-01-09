@@ -7,10 +7,6 @@ font:
         com.redhat.ux:
           heading: Font size (text)
           example: Aa
-          description: >-
-            Font Size **Body Text** Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-            architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-            asperiores aliquid distinctio consectetur obcaecati?
       xs:
         $value: 0.75rem
         $description: 12px font size
@@ -35,10 +31,6 @@ font:
         com.redhat.ux:
           heading: Font size (code)
           fontFamily: var(--rh-font-family-code)
-          description: >-
-            Font Size Headings Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-            architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-            asperiores aliquid distinctio consectetur obcaecati?
       xs:
         $value: '{font.size.body-text.xs}'
         $description: 12px font size
@@ -63,10 +55,6 @@ font:
         com.redhat.ux:
           heading: Font size (headings)
           fontFamily: var(--rh-font-family-heading)
-          description: >-
-            Font Size Headings Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-            architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-            asperiores aliquid distinctio consectetur obcaecati?
       xs:
         $value: 1.25rem
         $description: h6 heading font size
