@@ -108,6 +108,7 @@
   "devDependencies": {
     "@11ty/eleventy": "^2.0.0-canary.25",
     "@changesets/cli": "^2.26.0",
+    "@jspm/generator": "^1.0.0",
     "@patternfly/eslint-config-elements": "^0.0.2-next.4",
     "css-tree": "^2.3.1",
     "deepmerge": "^4.2.2",
@@ -121,6 +122,7 @@
     "yaml": "^2.2.1"
   },
   "dependencies": {
+    "@11ty/eleventy-plugin-syntaxhighlight": "^4.2.0",
     "highlight.js": "^11.7.0",
     "postcss-value-parser": "^4.2.0",
     "stylelint": "^14.16.1"

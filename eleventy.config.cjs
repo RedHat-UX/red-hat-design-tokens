@@ -1,8 +1,7 @@
+// @ts-check
 const TokensPlugin = require('./plugins/11ty.cjs');
 
 module.exports = function(eleventyConfig) {
-  eleventyConfig.addPlugin(TokensPlugin);
-
   eleventyConfig.on('eleventy.before', async function() {
     const { cp, mkdir } = await import('node:fs/promises');
     const assetsDir = `${__dirname}/build/assets`;
@@ -12,6 +11,19 @@ module.exports = function(eleventyConfig) {
   });
 
   eleventyConfig.addPassthroughCopy('docs/assets');
+
+  eleventyConfig.addGlobalData('importMap', async function() {
+    const { Generator } = await import('@jspm/generator');
+    const generator = new Generator();
+    await generator.install([
+      '@rhds/elements',
+      '@rhds/elements/rh-footer/rh-global-footer.js',
+      '@rhds/elements/rh-tooltip/rh-tooltip.js',
+    ]);
+    return generator.getMap();
+  });
+
+  eleventyConfig.addPlugin(TokensPlugin);
 
   return {
     htmlTemplateEngine: 'njk',

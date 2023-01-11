@@ -7,13 +7,30 @@
     <link rel="shortcut icon" href="https://www.redhat.com/misc/favicon.ico" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://static.redhat.com">
+    <link rel="preconnect" href="https://ga.jspm.io">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link rel="stylesheet" href="https://static.redhat.com/libs/redhat/redhat-font/4/webfonts/red-hat-font.min.css">
     <link rel="stylesheet" href="https://static.redhat.com/libs/redhat/redhat-theme/4/advanced-theme.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@300;500;700&family=Noto+Sans+JP:wght@300;500;700&family=Noto+Sans+KR:wght@300;500;700&family=Noto+Sans+Malayalam:wght@300;500;700&family=Noto+Sans+SC:wght@300;500;700&family=Noto+Sans+TC:wght@300;500;700&family=Noto+Sans+Tamil:wght@300;500;700&family=Noto+Sans+Thai:wght@300;500;700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@300;500;700&family=Noto+Sans+JP:wght@300;500;700&family=Noto+Sans+KR:wght@300;500;700&family=Noto+Sans+Malayalam:wght@300;500;700&family=Noto+Sans+SC:wght@300;500;700&family=Noto+Sans+TC:wght@300;500;700&family=Noto+Sans+Tamil:wght@300;500;700&family=Noto+Sans+Thai:wght@300;500;700&display=swap"> 
+    <link rel="stylesheet" href="https://ga.jspm.io/npm:@rhds/elements@1.0.0-beta.27/elements/rh-footer/rh-footer-lightdom.css">
     <link rel="stylesheet" href="/assets/rhds.css">
     <link rel="stylesheet" href="/assets/styles.css">
-    <link rel="stylesheet" href="https://unpkg.com/@rhds/elements/elements/rh-footer/rh-footer-lightdom.css" />
+
+    <script type="importmap">{{ importMap | dump | safe }}</script>
+
+    <!-- ES Module Shims: Import maps polyfill for modules browsers without import maps support (all except Chrome 89+) -->
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.5.1/dist/es-module-shims.js" crossorigin="anonymous"></script>
+
+    <script type="module">
+      import '@rhds/elements/rh-tooltip/rh-tooltip.js';
+      import '@rhds/elements/rh-footer/rh-global-footer.js';
+      for (const button of document.querySelectorAll('.copy-button')) {
+        button.addEventListener('click', async function(event) {
+          await navigator.clipboard.writeText(event.target.closest('[data-copy]').dataset.copy);
+        });
+      }
+    </script>
   </head>
   <body>
     <header id="main-header">
@@ -146,18 +163,6 @@
           width="73px" loading="lazy">
       </a>
     </rh-global-footer>
-    <script>
-      globalThis.process = { env: {} };
-    </script>
-    <script type="module" src="https://unpkg.com/@rhds/elements/elements/rh-tooltip/rh-tooltip.js?module"></script>
-    <script type="module" src="https://unpkg.com/@rhds/elements/elements/rh-footer/rh-global-footer.js?module"></script>
-    <script type="module">
-      for (const button of document.querySelectorAll('section button')) {
-        button.addEventListener('click', async function(event) {
-          await navigator.clipboard.writeText(event.target.closest('[data-copy]').dataset.copy);
-        });
-      }
-    </script>
   </body>
 </html>
 
