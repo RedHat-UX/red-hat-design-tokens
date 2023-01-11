@@ -70,7 +70,10 @@
       ]
     },
     "11ty": {
-      "command": "eleventy"
+      "command": "eleventy",
+      "dependencies": [
+        "style-dictionary"
+      ]
     },
     "start": {
       "command": "eleventy --serve",
