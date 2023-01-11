@@ -1,0 +1,6 @@
+#syntax .description {
+  padding: var(--rh-space-lg, 16px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--rh-space-lg, 16px);
+}

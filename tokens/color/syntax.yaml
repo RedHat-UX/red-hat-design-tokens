@@ -1,0 +1,127 @@
+color:
+  syntax:
+    $extensions:
+      com.redhat.ux:
+        heading: Syntax Highlighting
+        descriptionFile: syntax.md
+
+    # atrule:
+    #   on-light:
+    #     $value: '{color.}'
+
+    attr-name:
+      on-light:
+        $value: '{color.orange.500}'
+
+    attr-value:
+      on-light:
+        $value: '{color.orange.500}'
+
+    boolean:
+      on-light:
+        $value: '{color.orange.500}'
+
+    # builtin:
+    #   on-light:
+    #     $value: '{color.}'
+
+    # cdata:
+    #   on-light:
+    #     $value: '{color.}'
+
+    # char:
+    #   on-light:
+    #     $value: '{color.}'
+
+    class-name:
+      on-light:
+        $value: '{color.green.600}'
+
+    comment:
+      on-light:
+        $value: '{color.black.500}'
+
+    constant:
+      on-light:
+        $value: '{color.purple.500}'
+
+    # deleted:
+    #   on-light:
+    #     $value: '{color.}'
+
+    # doctype:
+    #   on-light:
+    #     $value: '{color.}'
+
+    # entity:
+    #   on-light:
+    #     $value: '{color.}'
+
+    function:
+      on-light:
+        $value: '{color.red.500}'
+
+    # important:
+    #   on-light:
+    #     $value: '{color.}'
+
+    # inserted:
+    #   on-light:
+    #     $value: '{color.}'
+
+    keyword:
+      on-light:
+        $value: '{color.purple.500}'
+
+    # namespace:
+    #   on-light:
+    #     $value: '{color.}'
+
+    number:
+      on-light:
+        $value: '{color.orange.500}'
+
+    operator:
+      on-light:
+        $value: '{color.cyan.500}'
+
+    # prolog:
+    #   on-light:
+    #     $value: '{color.}'
+
+    property:
+      on-light:
+        $value: '{color.blue.500}'
+
+    punctuation:
+      on-light:
+        $value: '{color.blue.500}'
+
+    regex:
+      on-light:
+        $value: '{color.red.500}'
+
+    # selector:
+    #   on-light:
+    #     $value: '{color.}'
+
+    string:
+      on-light:
+        $value: '{color.green.500}'
+
+    symbol:
+      on-light:
+        $value: '{color.green.500}'
+
+    tag:
+      on-light:
+        $value: '{color.orange.500}'
+
+    # url:
+    #   on-light:
+    #     $value: '{color.}'
+
+    variable:
+      on-light:
+        $value: '{color.purple.500}'
+

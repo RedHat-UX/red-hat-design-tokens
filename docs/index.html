@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/assets/rhds.css">
     <link rel="stylesheet" href="/assets/styles.css">
     <link rel="stylesheet" href="/assets/11ty.css">
+    <link rel="stylesheet" href="/assets/prism.css">
 
     <script type="importmap">{{ importMap | dump | safe }}</script>
 
@@ -62,6 +63,7 @@
             <li><a href="#color">Color</a></li>
             <li><a href="#box-shadow">Box Shadow</a></li>
             <li><a href="#font">Typography</a></li>
+            <li><a href="#syntax">Syntax</a></li>
             <li><a href="#border">Borders</a></li>
             <li><a href="#opacity">Opacity</a></li>
             <li><a href="#space">Spacers</a></li>
@@ -123,10 +125,11 @@
       </section>
 
       {% category path = 'color',
-                  exclude = ['border', 'text', 'icon'] %}
+                  exclude = ['border', 'text', 'icon', 'syntax'] %}
       {% category path = 'box-shadow' %}
       {% category path = 'font',
                   include = 'color.text' %}
+      {% category path = 'color.syntax' %}
       {% category path = 'border',
                   include = 'color.border' %}
       {% category path = 'opacity' %}
