@@ -3,6 +3,7 @@
   "version": "1.0.0-beta.11",
   "description": "Red Hat Design System Tokens",
   "scripts": {
+    "build": "wireit",
     "11ty": "wireit",
     "package": "wireit",
     "style-dictionary": "wireit",
@@ -43,6 +44,13 @@
     "registry": "https://registry.npmjs.org/"
   },
   "wireit": {
+    "build": {
+      "dependencies": [
+        "style-dictionary",
+        "package",
+        "11ty"
+      ]
+    },
     "style-dictionary": {
       "command": "node build.js",
       "files": [
