@@ -14,12 +14,12 @@ function styleMap(objt) {
   return Object.entries(objt).map(([k, v]) => `${k}: ${v?.toString().replaceAll('"', '\'')}`).join(';');
 }
 
-module.exports = function RHDSPlugin(eleventyConfig, options = {}) {
+module.exports = function RHDSPlugin(eleventyConfig, pluginOptions = {}) {
   const tokens = require('../json/rhds.tokens.json');
 
   const md = require('markdown-it')({
     html: true,
-    highlight: markdownSyntaxHighlightOptions(options),
+    highlight: markdownSyntaxHighlightOptions(pluginOptions),
   });
 
   const slugify = eleventyConfig.getFilter('slugify');
@@ -126,19 +126,22 @@ module.exports = function RHDSPlugin(eleventyConfig, options = {}) {
     /* eslint-enable indent */
   }
 
-  function getParentCollection(kwargs) {
-    let parent = kwargs.parent ?? tokens;
+  function getParentCollection(options) {
+    let parent = options.parent ?? tokens;
 
     let collection;
 
-    const key = kwargs.path.split('.').pop();
-    kwargs.path.split('.').forEach((part, i, a) => {
+    const key = options.path.split('.').pop();
+    options.path.split('.').forEach((part, i, a) => {
       collection = parent[part];
       if (a[i + 1]) {
         parent = collection;
       }
     });
 
+    if (!parent[key]) {
+      console.log(key);
+    }
     return { parent, key };
   }
 
@@ -189,7 +192,7 @@ module.exports = function RHDSPlugin(eleventyConfig, options = {}) {
       return dedent(/* html */`
         <section id="${name}" class="token-category level-${level - 1}">
           <h${level} id="${slug}">${heading}<a href="#${slug}">#</a></h${level}>
-          ${md.render(dedent(getDescription(docs)))}
+          <div class="description">${md.render(dedent(getDescription(docs)))}</div>
           ${table({ tokens: Object.values(collection).filter(x => x.$value), name, docs })}
           ${children.map(category).join('\n')}
           ${include.map((path, i, a) => category({ path, level: level + 1, isLast: !a[i + 1] })).join('\n')}${isLast ? '' : `
