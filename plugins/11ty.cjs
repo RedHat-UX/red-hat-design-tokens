@@ -139,9 +139,6 @@ module.exports = function RHDSPlugin(eleventyConfig, pluginOptions = {}) {
       }
     });
 
-    if (!parent[key]) {
-      console.log(key);
-    }
     return { parent, key };
   }
 
