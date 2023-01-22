@@ -9,8 +9,9 @@ import * as TransformGroups from './lib/transform-groups.js';
 import * as Actions from './lib/actions.js';
 import * as Filters from './lib/filters.js';
 
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 
+const CRAYONS = new Set((await readdir(new URL('./tokens/color/crayon', import.meta.url))).map(x => x.replace(/\.ya?ml/, '')));
 const PLATFORMS_URL = new URL('./platforms.yaml', import.meta.url);
 const platforms = YAML.parse(await readFile(PLATFORMS_URL, 'utf8'));
 
@@ -26,6 +27,7 @@ StyleDictionary
   .registerTransform(DTCGTransforms.fontWeight)
   .registerTransform(Transforms.colorFormats)
   .registerTransform(Transforms.hslValue)
+  .registerTransform(Transforms.rgbValue)
   .registerTransform(Transforms.remToPx)
   .registerTransform(Transforms.pxNumeric)
   .registerTransform(Transforms.mediaQuery)
@@ -47,18 +49,42 @@ StyleDictionary
     platforms,
     parsers: [{
       pattern: /\.ya?ml$/,
-      parse({ contents }) {
-        return YAML.parse(contents,
+      parse({ contents, filePath }) {
+        const isCrayon = filePath.split('/').includes('crayon');
+        const p = YAML.parse(contents,
+
           /**
            * Transform `$value` (DTCG syntax) to `value` (style-dictionary syntax)
            * @this {*}
            */
-          function(_, value) {
+
+          function(key, value) {
             if ('$value' in this) {
               this.value = this.$value;
             }
+
+            if (isCrayon && key === 'color') {
+              return Object.fromEntries(Object.entries(value).map(([color, tones]) => {
+                if (!CRAYONS.has(color)) {
+                  return [color, tones];
+                } else {
+                  const all = Object.keys(tones)
+                    .flatMap(tone => {
+                      const $value = `{color.${color}.${tone}}`;
+                      const $type = 'color';
+                      return [
+                        [tone, tones[tone]],
+                        ...['hsl', 'rgb'].map(x => [`${tone}-${x}`, { $type, $value, value: $value }])
+                      ];
+                    });
+                  return [color, Object.fromEntries(all)];
+                }
+              }));
+            }
+
             return value;
           });
+        return p;
       }
     }],
   })

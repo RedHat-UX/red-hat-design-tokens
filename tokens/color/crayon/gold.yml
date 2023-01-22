@@ -9,8 +9,3 @@ color:
     600:
       $value: '#795600'
       $description: Alert - Warning title text
-
-    # @UNTIL https://github.com/amzn/style-dictionary/issues/695#issuecomment-1378374851
-    50-hsl: { $value: '{color.gold.50}' }
-    400-hsl: { $value: '{color.gold.400}' }
-    600-hsl: { $value: '{color.gold.600}' }

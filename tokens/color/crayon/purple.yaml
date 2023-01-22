@@ -11,10 +11,3 @@ color:
       $value: '#6753ac'
     700:
       $value: '#1f0066'
-
-    # @UNTIL https://github.com/amzn/style-dictionary/issues/695#issuecomment-1378374851
-    50-hsl: { $value: '{color.purple.50}' }
-    100-hsl: { $value: '{color.purple.100}' }
-    300-hsl: { $value: '{color.purple.300}' }
-    500-hsl: { $value: '{color.purple.500}' }
-    700-hsl: { $value: '{color.purple.700}' }
