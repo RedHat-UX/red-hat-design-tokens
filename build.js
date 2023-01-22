@@ -12,6 +12,8 @@ import * as Filters from './lib/filters.js';
 import { readFile, readdir } from 'node:fs/promises';
 
 const CRAYONS = new Set((await readdir(new URL('./tokens/color/crayon', import.meta.url))).map(x => x.replace(/\.ya?ml/, '')));
+CRAYONS.add('white');
+CRAYONS.add('black');
 const PLATFORMS_URL = new URL('./platforms.yaml', import.meta.url);
 const platforms = YAML.parse(await readFile(PLATFORMS_URL, 'utf8'));
 
