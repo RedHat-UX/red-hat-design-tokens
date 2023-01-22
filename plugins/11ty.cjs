@@ -40,6 +40,7 @@ module.exports = function RHDSPlugin(eleventyConfig, pluginOptions = {}) {
       </thead>
       <tbody>${tokens.map(token => { /* eslint-disable indent */
         const { r, g, b } = token.attributes?.rgb ?? {};
+        const { h, s, l } = token.attributes?.hsl ?? {};
         const isWeight = !!token.path.includes('weight');
         const isRadius = !!token.path.includes('radius');
         const isWidth = !!token.path.includes('width');
@@ -85,13 +86,17 @@ module.exports = function RHDSPlugin(eleventyConfig, pluginOptions = {}) {
             <button class="copy-button value ${token.$value.endsWith('rem') ? 'rem' : 'px'}">
               <code>${token.$value}</code>
             </button>`
-          : isColor ? `
+          : isColor && !token.name.match(/(hsl|rgb)$/) ? `
             <button class="copy-button value color hex" style="--color: ${token.$value}">
               <code>${token.$value}</code>
             </button>
             <br/>
             <button class="copy-button value color rgb" style="--color: rgb(${r}, ${g}, ${b})">
               <code>rgb(${r}, ${g}, ${b})</code>
+            </button>
+            <br/>
+            <button class="copy-button value color hsl" style="--color: hsl(${h} ${s}% ${l}%)">
+              <code>hsl(${h} ${s}% ${l}%)</code>
             </button>`
           : isWeight ? `
             <button class="copy-button numerical value"><code>${token.$value}</button>
