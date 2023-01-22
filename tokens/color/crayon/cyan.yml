@@ -16,3 +16,9 @@ color:
       $value: '#003737'
       $description: Alert - Default title text
 
+    # @UNTIL https://github.com/amzn/style-dictionary/issues/695#issuecomment-1378374851
+    50-hsl: { $value: '{color.cyan.50}' }
+    100-hsl: { $value: '{color.cyan.100}' }
+    300-hsl: { $value: '{color.cyan.300}' }
+    400-hsl: { $value: '{color.cyan.400}' }
+    500-hsl: { $value: '{color.cyan.500}' }

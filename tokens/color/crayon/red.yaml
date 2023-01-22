@@ -27,3 +27,14 @@ color:
     800:
       $value: '#5f0000'
       $description: Darkest red
+
+    # @UNTIL https://github.com/amzn/style-dictionary/issues/695#issuecomment-1378374851
+    50-hsl: { $value: '{color.red.50}' }
+    100-hsl: { $value: '{color.red.100}' }
+    200-hsl: { $value: '{color.red.200}' }
+    300-hsl: { $value: '{color.red.300}' }
+    400-hsl: { $value: '{color.red.400}' }
+    500-hsl: { $value: '{color.red.500}' }
+    600-hsl: { $value: '{color.red.600}' }
+    700-hsl: { $value: '{color.red.700}' }
+    800-hsl: { $value: '{color.red.800}' }

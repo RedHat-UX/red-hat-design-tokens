@@ -59,3 +59,14 @@ color:
       $description: Primary surface (dark theme) or primary text (light theme)
       attributes:
         type: gray
+
+    # @UNTIL https://github.com/amzn/style-dictionary/issues/695#issuecomment-1378374851
+    150-hsl: { $value: '{color.black.150}' }
+    200-hsl: { $value: '{color.black.200}' }
+    300-hsl: { $value: '{color.black.300}' }
+    400-hsl: { $value: '{color.black.400}' }
+    500-hsl: { $value: '{color.black.500}' }
+    600-hsl: { $value: '{color.black.600}' }
+    700-hsl: { $value: '{color.black.700}' }
+    800-hsl: { $value: '{color.black.800}' }
+    900-hsl: { $value: '{color.black.900}' }
