@@ -53,7 +53,7 @@ StyleDictionary
       pattern: /\.ya?ml$/,
       parse({ contents, filePath }) {
         const isCrayon = filePath.split('/').includes('crayon');
-        const p = YAML.parse(contents,
+        return YAML.parse(contents,
 
           /**
            * Transform `$value` (DTCG syntax) to `value` (style-dictionary syntax)
@@ -65,6 +65,9 @@ StyleDictionary
               this.value = this.$value;
             }
 
+            // TODO: until https://github.com/amzn/style-dictionary/issues/695#issuecomment-1378374851 lands,
+            // we pre-process our YAML sources to make it appear they contain `color.${crayonName}.${tone}.${'rgb'|'hsl'}` tokens,
+            // which alias to the token values.
             if (isCrayon && key === 'color') {
               return Object.fromEntries(Object.entries(value).map(([color, tones]) => {
                 if (!CRAYONS.has(color)) {
@@ -76,7 +79,8 @@ StyleDictionary
                       const $type = 'color';
                       return [
                         [tone, tones[tone]],
-                        ...['hsl', 'rgb'].map(x => [`${tone}-${x}`, { $type, $value, value: $value }])
+                        [`${tone}-hsl`, { $type, $value, value: $value }],
+                        [`${tone}-rgb`, { $type, $value, value: $value }],
                       ];
                     });
                   return [color, Object.fromEntries(all)];
@@ -86,7 +90,6 @@ StyleDictionary
 
             return value;
           });
-        return p;
       }
     }],
   })
