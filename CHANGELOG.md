@@ -1,5 +1,11 @@
 # @rhds/tokens
 
+## 1.0.0-beta.11
+
+### Patch Changes
+
+- 3bf26ab: Fixed missing rgb and hsl values for grey colours
+
 ## 1.0.0-beta.10
 
 ### Minor Changes
