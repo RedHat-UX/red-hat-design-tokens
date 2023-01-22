@@ -25,6 +25,7 @@ StyleDictionary
   .registerTransform(DTCGTransforms.fontFamily)
   .registerTransform(DTCGTransforms.fontWeight)
   .registerTransform(Transforms.colorFormats)
+  .registerTransform(Transforms.hslValue)
   .registerTransform(Transforms.remToPx)
   .registerTransform(Transforms.pxNumeric)
   .registerTransform(Transforms.mediaQuery)
