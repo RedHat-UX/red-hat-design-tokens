@@ -5,6 +5,7 @@
   "scripts": {
     "package": "wireit",
     "style-dictionary": "wireit",
+    "build": "wireit",
     "start": "wireit",
     "lint": "wireit",
     "format": "wireit",
@@ -84,6 +85,12 @@
       ],
       "output": [
         "*.vsix"
+      ]
+    },
+    "build": {
+      "dependencies": [
+        "style-dictionary",
+        "package"
       ]
     }
   },
