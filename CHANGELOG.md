@@ -1,5 +1,19 @@
 # @rhds/tokens
 
+## 1.0.0-beta.10
+
+### Minor Changes
+
+- 20b5fc0: Added `-hsl` and `-rgb` variants of crayon colours
+
+  ```css
+  background: rgb(var(--rh-color-red-100-rgb) / var(--rh-opacity-80));
+  ```
+
+### Patch Changes
+
+- 2541aeb: Removing Overpass from font stacks
+
 ## 1.0.0-beta.9
 
 ### Patch Changes
