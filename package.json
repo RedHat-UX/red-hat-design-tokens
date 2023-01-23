@@ -108,12 +108,6 @@
       "output": [
         "*.vsix"
       ]
-    },
-    "build": {
-      "dependencies": [
-        "style-dictionary",
-        "package"
-      ]
     }
   },
   "devDependencies": {
