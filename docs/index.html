@@ -122,11 +122,10 @@
       </section>
 
       {% category path = 'color',
-                  exclude = ['border', 'text', 'icon', 'syntax'] %}
+                  exclude = ['border', 'text', 'icon'] %}
       {% category path = 'box-shadow' %}
       {% category path = 'font',
                   include = 'color.text' %}
-      {% category path = 'color.syntax' %}
       {% category path = 'border',
                   include = 'color.border' %}
       {% category path = 'opacity' %}
