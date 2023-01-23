@@ -48,9 +48,11 @@ module.exports = function RHDSPlugin(eleventyConfig, pluginOptions = {}) {
         const isFamily = !!token.path.includes('family');
         const isSize = !!token.path.includes('size');
         const isColor = !!token.path.includes('color');
+        const isCrayon = isColor && token.name.match(/0$/);
+        const isHSLorRGB = !!token.name.match(/(hsl|rgb)$/);
         const variable = `var(--${token.name}, ${token.$value})`;
 
-        return /* html */`
+        return isHSLorRGB ? '' : /* html */`
         <tr id="${token.name}"
             class="${token.path.join(' ')}${token.attributes.isLight ? ' light' : ''}"
             style="${styleMap({
@@ -74,11 +76,19 @@ module.exports = function RHDSPlugin(eleventyConfig, pluginOptions = {}) {
           <td class="token-name">
             <div>
               <button class="copy-button name">
-                <code>--${token.name}</code>${!isRef(token) ? '' : `
-                <button class="copy-button name">
-                  <code>--${deref(token)}</code>
-                </button>`}
+                <code>--${token.name}</code>
+              </button>${!isCrayon ? '' : `
+              <br>
+              <button class="copy-button name">
+                <code>--${token.name}-rgb</code>
               </button>
+              <br>
+              <button class="copy-button name">
+                <code>--${token.name}-hsl</code>
+              </button>`}${!isRef(token) ? '' : `
+              <button class="copy-button name">
+                <code>--${deref(token)}</code>
+              </button>`}
             </div>
           </td>
           <td>${(
@@ -86,7 +96,7 @@ module.exports = function RHDSPlugin(eleventyConfig, pluginOptions = {}) {
             <button class="copy-button value ${token.$value.endsWith('rem') ? 'rem' : 'px'}">
               <code>${token.$value}</code>
             </button>`
-          : isColor && !token.name.match(/(hsl|rgb)$/) ? `
+          : isColor ? `
             <button class="copy-button value color hex" style="--color: ${token.$value}">
               <code>${token.$value}</code>
             </button>
