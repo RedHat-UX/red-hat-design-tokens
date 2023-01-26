@@ -3,10 +3,6 @@ line-height:
     com.redhat.ux:
       heading: Line height
       example: Line<br/>height
-      description: >-
-        Line height Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-        architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-        asperiores aliquid distinctio consectetur obcaecati?
 
   heading:
     $value: 1.3

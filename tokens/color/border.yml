@@ -3,44 +3,37 @@ color:
     $extensions:
       com.redhat.ux:
         category: border
+        collapse: true
         heading: Color
-        description: >-
-          Border Color Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-          architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-          asperiores aliquid distinctio consectetur obcaecati?
 
     strong:
-      on:
-        light:
-          $value: '{color.black.900}'
-          $description: Strong border color (light theme)
-        dark:
-          $value: '{color.white}'
-          $description: Strong border color (dark theme)
+      on-light:
+        $value: '{color.black.900}'
+        $description: Strong border color (light theme)
+      on-dark:
+        $value: '{color.white}'
+        $description: Strong border color (dark theme)
 
     subtle:
-      on:
-        light:
-          $value: '{color.black.300}'
-          $description: Subtle border color (light theme)
-        dark:
-          $value: '{color.black.600}'
-          $description: Subtle border color (light theme)
+      on-light:
+        $value: '{color.black.300}'
+        $description: Subtle border color (light theme)
+      on-dark:
+        $value: '{color.black.600}'
+        $description: Subtle border color (light theme)
 
     interactive:
-      on:
-        light:
-          $value: '{color.blue.400}'
-          $description: Interactive border color (light theme)
-        dark:
-          $value: '{color.blue.200}'
-          $description: Interactive border color (light theme)
+      on-light:
+        $value: '{color.blue.400}'
+        $description: Interactive border color (light theme)
+      on-dark:
+        $value: '{color.blue.200}'
+        $description: Interactive border color (light theme)
 
     danger:
-      on:
-        light:
-          $value: '{color.red.500}'
-          $description: Danger border color (light theme)
-        dark:
-          $value: '{color.red.400}'
-          $description: Danger border color (light theme)
+      on-light:
+        $value: '{color.red.500}'
+        $description: Danger border color (light theme)
+      on-dark:
+        $value: '{color.red.400}'
+        $description: Danger border color (light theme)

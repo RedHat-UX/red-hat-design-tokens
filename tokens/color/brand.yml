@@ -24,14 +24,6 @@ color:
         $value: '{color.red.300}'
         $description: Light brand red
 
-      on:
-        dark:
-          $value: '{color.red.400}'
-          $description: Brand red on dark background
-        light:
-          $value: '{color.red.500}'
-          $description: Brand red on light background
-
       dark:
         $value: '{color.red.600}'
         $description: Dark brand red/Brand red hover
@@ -41,3 +33,11 @@ color:
       darkest:
         $value: '{color.red.800}'
         $description: Darkest brand red
+
+      on-dark:
+        $value: '{color.red.400}'
+        $description: Brand red on dark background
+      on-light:
+        $value: '{color.red.500}'
+        $description: Brand red on light background
+

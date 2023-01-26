@@ -3,6 +3,7 @@ color:
     $extensions:
       com.redhat.ux:
         heading: Text color
+        collapse: true
         description: >-
           Each theme features two shades of gray for text, Primary and Secondary.
 
@@ -10,8 +11,7 @@ color:
 
           Contrast is important when choosing colors for UI elements for visitors.
           Awareness of standards and best practices is the key to an accessible color palette.
-          We are committed to complying with the
-          [Web Content Accessibility Guidelines AA](https://www.w3.org/WAI/WCAG2AA-Conformance.html)
+          We are committed to complying with the [Web Content Accessibility Guidelines AA][wcag]
           standard contrast ratios. We choose colors that support usability by ensuring sufficient
           color contrast between elements so that visitors with low vision can browse our web
           properties.
@@ -23,27 +23,26 @@ color:
           colors. Layouts with colored backgrounds or a photo changes the rules regarding the
           placement of text, so use white or black text for body copy applications.
 
+          [wcag]: https://www.w3.org/WAI/WCAG2AA-Conformance.html
+
     primary:
-      on:
-        light:
-          $value: '{color.black.900}'
-          $description: Primary text color for light theme
-        dark:
-          $value: '{color.white}'
-          $description: Primary text color for dark theme
+      on-light:
+        $value: '{color.black.900}'
+        $description: Primary text color for light theme
+      on-dark:
+        $value: '{color.white}'
+        $description: Primary text color for dark theme
     secondary:
-      on:
-        light:
-          $value: '{color.black.600}'
-          $description: Secondary text color for light theme
-        dark:
-          $value: '{color.black.300}'
-          $description: Secondary text color for dark theme
+      on-light:
+        $value: '{color.black.600}'
+        $description: Secondary text color for light theme
+      on-dark:
+        $value: '{color.black.300}'
+        $description: Secondary text color for dark theme
     brand:
-      on:
-        light:
-          $value: '{color.red.500}'
-          $description: Brand text color for light theme
-        dark:
-          $value: '{color.red.400}'
-          $description: Brand text color for dark theme
+      on-light:
+        $value: '{color.red.500}'
+        $description: Brand text color for light theme
+      on-dark:
+        $value: '{color.red.400}'
+        $description: Brand text color for dark theme

@@ -69,6 +69,10 @@ table {
   text-align: start;
 }
 
+#media table :is(td,th):first-child {
+  display: none;
+}
+
 th {
   text-align: start;
 }
@@ -77,7 +81,21 @@ tr {
   border-bottom: 1px solid var(--rh-color-border-subtle-on-light);
 }
 
-td.item-name > div {
+tr.on-dark {
+  background-color: var(--rh-color-surface-darkest, #151515);
+  color: var(--rh-color-text-primary-on-dark, #ffffff);
+}
+
+th, td {
+  padding-block: var(--rh-space-sm);
+  padding-inline: var(--rh-space-md);
+}
+
+td:first-child {
+  padding-inline-start: var(--rh-space-lg, 16px);
+}
+
+td.token > div {
   display: flex;
   flex-flow: row wrap;
   max-width: 350px;
@@ -127,6 +145,7 @@ code {
 .copy-button {
   display: inline-flex;
   align-items: center;
+  color: inherit;
   border-radius: var(--rh-border-radius-default);
   border-width: 0;
   padding: var(--rh-space-xs);
@@ -164,6 +183,14 @@ code {
   opacity: 1;
 }
 
+.on-dark .copy-button:is(.value, .name) {
+  background-color: var(--rh-color-surface-darker);
+}
+
+.on-dark .copy-button:is(:focus, :active, :hover) {
+  background: var(--rh-color-interactive-blue-darker);
+}
+
 .copy-button svg {
   width: 24px;
 }
@@ -172,17 +199,7 @@ tr:is(:hover, :focus-within) .copy-button {
   opacity: 1;
 }
 
-th, td {
-  padding-block: var(--rh-space-sm);
-  padding-inline: var(--rh-space-md)
-}
-
-/* td:nth-child(1) { width: 170px; } */
-/* td:nth-child(2) { width: 360px; } */
-/* td:nth-child(3) { width: 360px; } */
-/* td:nth-child(4) { width: 360px; } */
-
-.font output {
+.font samp {
   font-size: var(--font-size, var(--rh-font-size-heading-md));
   font-family: var(--font-family, var(--rh-font-family-body-text));
   font-weight: var(--font-weight, var(--rh-font-weight-body-text-regular));
@@ -192,29 +209,32 @@ th, td {
   align-content: center;
 }
 
-.font :is(output, .common) {
+.font :is(samp, .common) {
   text-transform: capitalize;
 }
 
-output.swatch {
-  /* width: var(--swatch-size); */
-  /* aspect-ratio: 2; */
+.color samp {
+  color: var(--color);
+}
+
+.color:not(.border, .text) samp {
   aspect-ratio: 1;
   height: var(--rh-length-xl);
   display: block;
   border-radius: 100%;
   border: 1px solid transparent;
+  background: var(--color);
 }
 
-output.swatch.light {
+.color:not(.border, .text).light samp {
   border-color: var(--rh-color-black-900);
 }
 
-.line-height output {
+.line-height samp {
   line-height: var(--line-height);
 }
 
-.box-shadow output {
+.box-shadow samp {
   height: var(--rh-length-2xl);
   aspect-ratio: 1;
   border-radius: var(--rh-border-radius-default);
@@ -222,17 +242,17 @@ output.swatch.light {
   display: block;
 }
 
-.border output {
+.border samp {
   width: var(--rh-length-2xl);
   aspect-ratio: 2;
   display: block;
   border-style: solid;
-  border-width: var(--border-width, var(--rh-border-width-sm));
-  border-color: var(--border-color, var(--rh-color-border-strong-on-light));
-  border-radius: var(--border-radius, var(--rh-border-radius-default));
+  border-width: var(--width, var(--rh-border-width-md));
+  border-color: var(--color, var(--rh-color-border-strong-on-light));
+  border-radius: var(--radius, var(--rh-border-radius-default));
 }
 
-.opacity output {
+.opacity samp {
   opacity: var(--opacity);
   background-color: black;
   display: block;
@@ -240,7 +260,7 @@ output.swatch.light {
   aspect-ratio: 1;
 }
 
-.space output {
+.space samp {
   width: var(--space);
   background-color: black;
   opacity: var(--rh-opacity-60);
@@ -248,7 +268,7 @@ output.swatch.light {
   aspect-ratio: 1;
 }
 
-.length output {
+.length samp {
   width: var(--length);
   background-color: black;
   opacity: var(--rh-opacity-60);
@@ -257,7 +277,8 @@ output.swatch.light {
   position: relative;
 }
 
-.length output::before, .length output::after {
+.length samp::before,
+.length samp::after {
   content: '';
   position: absolute;
   display: block;
@@ -269,15 +290,15 @@ output.swatch.light {
   border-color: var(--rh-color-border-interactive-on-light);
 }
 
-.length output::before {
+.length samp::before {
   inset-inline: -2px 100%;
 }
 
-.length output::after {
+.length samp::after {
   inset-inline: 100% 2px;
 }
 
-.icon-size output {
+.icon:not(.color) samp {
   aspect-ratio: 1;
   display: block;
   width: var(--icon-size);

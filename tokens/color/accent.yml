@@ -3,24 +3,19 @@ color:
     $extensions:
       com.redhat.ux:
         order: 10
-        description: >-
-          Color Accent Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ad repellendus eius autem
-          architecto, sapiente error ratione ab. Labore, enim blanditiis quam veniam sint totam
-          asperiores aliquid distinctio consectetur obcaecati?
+        collapse: true
 
     base:
-      on:
-        light:
-          $value: '{color.blue.400}'
-          $description: Inline link (light theme)
-        dark:
-          $value: '{color.blue.200}'
-          $description: Inline link (dark theme)
+      on-light:
+        $value: '{color.blue.400}'
+        $description: Inline link (light theme)
+      on-dark:
+        $value: '{color.blue.200}'
+        $description: Inline link (dark theme)
     brand:
-      on:
-        light:
-          $value: '{color.red.500}'
-          $description: Brand red (light theme)
-        dark:
-          $value: '{color.red.400}'
-          $description: Brand red (dark theme)
+      on-light:
+        $value: '{color.red.500}'
+        $description: Brand red (light theme)
+      on-dark:
+        $value: '{color.red.400}'
+        $description: Brand red (dark theme)
