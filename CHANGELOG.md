@@ -1,5 +1,15 @@
 # @rhds/tokens
 
+## 1.0.0-beta.14
+
+### Minor Changes
+
+- 1596d5d: Allows for markdown files as collection description
+
+### Patch Changes
+
+- 7e3e976: Fixed a race condition in the 11ty plugin
+
 ## 1.0.0-beta.13
 
 ### Patch Changes
