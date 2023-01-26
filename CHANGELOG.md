@@ -1,5 +1,11 @@
 # @rhds/tokens
 
+## 1.0.0-beta.15
+
+### Patch Changes
+
+- b358a5d: Automatically add description from files
+
 ## 1.0.0-beta.14
 
 ### Minor Changes
