@@ -17,21 +17,50 @@ function styleMap(objt) {
   return Object.entries(objt).map(([k, v]) => `${k}: ${v?.toString().replaceAll('"', '\'')}`).join(';');
 }
 
-module.exports = function RHDSPlugin(eleventyConfig, pluginOptions = {}) {
-  const tokens = require('../json/rhds.tokens.json');
+function getParentCollection(options, tokens) {
+  let parent = options.parent ?? tokens;
 
-  const md = require('markdown-it')({
-    html: true,
-    highlight: markdownSyntaxHighlightOptions(pluginOptions),
+  let collection;
+
+  const key = options.path.split('.').pop();
+  options.path.split('.').forEach((part, i, a) => {
+    collection = parent[part];
+    if (a[i + 1]) {
+      parent = collection;
+    }
   });
 
-  const slugify = eleventyConfig.getFilter('slugify');
+  return { parent, key };
+}
 
-  function table({ tokens, name = '', docs } = {}) {
-    if (!tokens.length || name.startsWith('$')) {
-      return '';
-    }
-    return dedent(/* html */`
+function getFilePathGuess(collection) {
+  return Object.values(collection).reduce((path, val) =>
+      path || typeof val !== 'object' ? path
+            : '$value' in val ? val.filePath
+            : getFilePathGuess(val), '');
+}
+
+function getDescription(collection) {
+  const {
+    filePath = getFilePathGuess(collection),
+    description = '',
+    descriptionFile
+  } = getDocs(collection) ?? {};
+
+  if (description) {
+    return description;
+  } else if (descriptionFile) {
+    return readFile(join(process.cwd(), filePath, '..', descriptionFile), 'utf-8');
+  } else {
+    return '';
+  }
+}
+
+function table({ tokens, name = '', docs } = {}) {
+  if (!tokens.length || name.startsWith('$')) {
+    return '';
+  }
+  return dedent(/* html */`
     <table>
       <thead>
         <tr>
@@ -142,49 +171,20 @@ module.exports = function RHDSPlugin(eleventyConfig, pluginOptions = {}) {
       </tbody>
     </table>`).trim();
     /* eslint-enable indent */
-  }
+}
 
-  function getParentCollection(options) {
-    let parent = options.parent ?? tokens;
+module.exports = function RHDSPlugin(eleventyConfig, pluginOptions = {}) {
+  const md = require('markdown-it')({
+    html: true,
+    highlight: markdownSyntaxHighlightOptions(pluginOptions),
+  });
 
-    let collection;
-
-    const key = options.path.split('.').pop();
-    options.path.split('.').forEach((part, i, a) => {
-      collection = parent[part];
-      if (a[i + 1]) {
-        parent = collection;
-      }
-    });
-
-    return { parent, key };
-  }
-
-  function getFilePathGuess(collection) {
-    return Object.values(collection).reduce((path, val) =>
-      path || typeof val !== 'object' ? path
-            : '$value' in val ? val.filePath
-            : getFilePathGuess(val), '');
-  }
-
-  function getDescription(collection) {
-    const {
-      filePath = getFilePathGuess(collection),
-      description = '',
-      descriptionFile
-    } = getDocs(collection) ?? {};
-
-    if (description) {
-      return description;
-    } else if (descriptionFile) {
-      return readFile(join(process.cwd(), filePath, '..', descriptionFile), 'utf-8');
-    } else {
-      return '';
-    }
-  }
+  const slugify = eleventyConfig.getFilter('slugify');
 
   eleventyConfig.addShortcode('category',
     async function category(options = {}) {
+      const tokens = require('../json/rhds.tokens.json');
+
       const isLast = options.isLast ?? false;
       const parentName = options.parentName ?? '';
 
@@ -194,7 +194,7 @@ module.exports = function RHDSPlugin(eleventyConfig, pluginOptions = {}) {
       const include = Array.isArray(options.include) ? options.include : [options.include].filter(Boolean);
 
       const name = options.name ?? path.split('.').pop();
-      const { parent, key } = getParentCollection(options);
+      const { parent, key } = getParentCollection(options, tokens);
       const collection = parent[key];
       const docs = getDocs(collection);
       const heading = docs?.heading ?? capitalize(name.replace('-', ' '));

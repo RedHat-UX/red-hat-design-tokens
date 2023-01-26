@@ -1,11 +1,9 @@
 // @ts-check
 const TokensPlugin = require('./plugins/11ty.cjs');
-const { cp } = require('node:fs/promises');
 
-module.exports =
-/** @param {import('@11ty/eleventy/src/UserConfig.js').UserConfig} eleventyConfig */
-function(eleventyConfig) {
-  eleventyConfig.on('eleventy.before', () => import('./build.js').then(m => m.build()));
+/** @param {import('@11ty/eleventy/src/UserConfig')} eleventyConfig */
+module.exports = function(eleventyConfig) {
+  eleventyConfig.on('eleventy.before', () => import('./build.js').then(m => new Promise(r => (m.build(), setTimeout(r, 50)))));
   eleventyConfig.setServerPassthroughCopyBehavior('passthrough');
   eleventyConfig.addWatchTarget('lib/**/*.js');
   eleventyConfig.addWatchTarget('tokens/**/*.yaml');
