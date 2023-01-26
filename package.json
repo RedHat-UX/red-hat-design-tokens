@@ -4,12 +4,12 @@
   "description": "Red Hat Design System Tokens",
   "scripts": {
     "build": "wireit",
-    "11ty": "wireit",
+    "11ty": "eleventy",
     "package": "wireit",
     "style-dictionary": "wireit",
     "start": "wireit",
-    "lint": "wireit",
-    "format": "wireit",
+    "lint": "eslint lib plugins test docs",
+    "format": "eslint --fix lib plugins test docs",
     "test": "wireit"
   },
   "type": "module",
@@ -68,25 +68,9 @@
         "scss/**"
       ]
     },
-    "11ty": {
-      "command": "eleventy",
-      "dependencies": [
-        "style-dictionary"
-      ]
-    },
     "start": {
       "command": "eleventy --serve",
-      "service": true,
-      "dependencies": [
-        "style-dictionary",
-        "11ty"
-      ]
-    },
-    "lint": {
-      "command": "eslint lib plugins test docs"
-    },
-    "format": {
-      "command": "eslint --fix lib plugins test docs"
+      "service": true
     },
     "test": {
       "command": "tape-es test/*.js | tap-difflet",

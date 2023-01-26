@@ -1,3 +1,6 @@
+const { readFile } = require('node:fs/promises');
+const { join } = require('node:path');
+
 const getDocs = x => x?.$extensions?.['com.redhat.ux'];
 const capitalize = x => `${x.at(0).toUpperCase()}${x.slice(1)}`;
 const isRef = x => x?.original?.$value?.startsWith?.('{') ?? false;
@@ -157,12 +160,31 @@ module.exports = function RHDSPlugin(eleventyConfig, pluginOptions = {}) {
     return { parent, key };
   }
 
-  function getDescription(x) {
-    return (x?.description ?? '').replaceAll('%(%', '{').replaceAll('%)%', '}');
+  function getFilePathGuess(collection) {
+    return Object.values(collection).reduce((path, val) =>
+      path || typeof val !== 'object' ? path
+            : '$value' in val ? val.filePath
+            : getFilePathGuess(val), '');
+  }
+
+  function getDescription(collection) {
+    const {
+      filePath = getFilePathGuess(collection),
+      description = '',
+      descriptionFile
+    } = getDocs(collection) ?? {};
+
+    if (description) {
+      return description;
+    } else if (descriptionFile) {
+      return readFile(join(process.cwd(), filePath, '..', descriptionFile), 'utf-8');
+    } else {
+      return '';
+    }
   }
 
   eleventyConfig.addShortcode('category',
-    function category(options = {}) {
+    async function category(options = {}) {
       const isLast = options.isLast ?? false;
       const parentName = options.parentName ?? '';
 
@@ -204,10 +226,10 @@ module.exports = function RHDSPlugin(eleventyConfig, pluginOptions = {}) {
       return dedent(/* html */`
         <section id="${name}" class="token-category level-${level - 1}">
           <h${level} id="${slug}">${heading}<a href="#${slug}">#</a></h${level}>
-          <div class="description">${md.render(dedent(getDescription(docs)))}</div>
+          <div class="description">${md.render(dedent(await getDescription(collection)))}</div>
           ${table({ tokens: Object.values(collection).filter(x => x.$value), name, docs })}
-          ${children.map(category).join('\n')}
-          ${include.map((path, i, a) => category({ path, level: level + 1, isLast: !a[i + 1] })).join('\n')}${isLast ? '' : `
+          ${(await Promise.all(children.map(category))).join('\n')}
+          ${(await Promise.all(include.map((path, i, a) => category({ path, level: level + 1, isLast: !a[i + 1] })))).join('\n')}${isLast ? '' : `
           <a class="btt" href="#">Top</a>`}
         </section>`);
     });

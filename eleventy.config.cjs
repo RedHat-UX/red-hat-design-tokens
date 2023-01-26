@@ -1,17 +1,20 @@
 // @ts-check
 const TokensPlugin = require('./plugins/11ty.cjs');
+const { cp } = require('node:fs/promises');
 
-module.exports = function(eleventyConfig) {
-  eleventyConfig.on('eleventy.before', async function() {
-    const { cp, mkdir } = await import('node:fs/promises');
-    const assetsDir = `${__dirname}/build/assets`;
-    await mkdir(assetsDir, { recursive: true });
-    await cp(`${__dirname}/css/global.css`, `${assetsDir}/rhds.css`);
-    await cp(`${__dirname}/plugins/11ty/styles.css`, `${assetsDir}/styles.css`);
-  });
-
-  eleventyConfig.addPassthroughCopy('docs/assets');
-
+module.exports =
+/** @param {import('@11ty/eleventy/src/UserConfig.js').UserConfig} eleventyConfig */
+function(eleventyConfig) {
+  eleventyConfig.on('eleventy.before', () => import('./build.js').then(m => m.build()));
+  eleventyConfig.setServerPassthroughCopyBehavior('passthrough');
+  eleventyConfig.addWatchTarget('lib/**/*.js');
+  eleventyConfig.addWatchTarget('tokens/**/*.yaml');
+  eleventyConfig.addWatchTarget('plugins/**/*.js');
+  eleventyConfig.addPlugin(TokensPlugin);
+  eleventyConfig.addPassthroughCopy({ 'docs/assets': 'assets' });
+  eleventyConfig.addPassthroughCopy({ 'css/global.css': 'assets/rhds.css' });
+  eleventyConfig.addPassthroughCopy({ 'css/prism.css': 'assets/prism.css' });
+  eleventyConfig.addPassthroughCopy({ 'plugins/11ty/styles.css': 'assets/11ty.css' });
   eleventyConfig.addGlobalData('importMap', async function() {
     const { Generator } = await import('@jspm/generator');
     const generator = new Generator();
@@ -22,8 +25,6 @@ module.exports = function(eleventyConfig) {
     ]);
     return generator.getMap();
   });
-
-  eleventyConfig.addPlugin(TokensPlugin);
 
   return {
     htmlTemplateEngine: 'njk',
