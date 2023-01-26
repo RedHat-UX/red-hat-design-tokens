@@ -1,5 +1,11 @@
 # @rhds/tokens
 
+## 1.0.0-beta.12
+
+### Minor Changes
+
+- b74a17a: Added experimental 11ty plugin
+
 ## 1.0.0-beta.11
 
 ### Patch Changes
@@ -39,20 +45,18 @@
   `ScreenSizeController` from `@rhds/elements`
 
   ```ts
-  import { LitElement, html } from 'lit';
-  import { classMap } from 'lit/directives/class-map.js';
-  import { ScreenSizeController } from '@rhds/elements/lib/controllers/ScreenSizeController.js';
+  import { LitElement, html } from "lit";
+  import { classMap } from "lit/directives/class-map.js";
+  import { ScreenSizeController } from "@rhds/elements/lib/controllers/ScreenSizeController.js";
 
-  @customElement('responsive-element')
+  @customElement("responsive-element")
   class ResponsiveElement extends LitElement {
     #screenSize = new ScreenSizeController(this);
 
     render() {
-      const isMobilePortrait = this.#screenSize.has('mobile-portrait');
+      const isMobilePortrait = this.#screenSize.has("mobile-portrait");
       return html`
-        <div id="#container" class="${classMap({ isMobilePortrait })}">
-          ...
-        </div>
+        <div id="#container" class="${classMap({ isMobilePortrait })}">...</div>
       `;
     }
   }
