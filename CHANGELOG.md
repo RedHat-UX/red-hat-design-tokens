@@ -1,5 +1,11 @@
 # @rhds/tokens
 
+## 1.0.0-beta.13
+
+### Patch Changes
+
+- 2feacb7: Fixed VSIX build script for VSCode
+
 ## 1.0.0-beta.12
 
 ### Minor Changes
