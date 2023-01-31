@@ -2,4 +2,4 @@
 "@rhds/tokens": patch
 ---
 
-Reverted removeal of `--rh-border-width-sm` token
+Reverted removal of `--rh-border-width-sm` token
