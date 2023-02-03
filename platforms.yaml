@@ -37,6 +37,8 @@ json:
   transformGroup: css
   buildPath: json/
   prefix: rh
+  actions:
+    - descriptionFile
   files:
     - destination: rhds.tokens.json
       format: json

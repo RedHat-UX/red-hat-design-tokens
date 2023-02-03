@@ -48,6 +48,7 @@ export function build() {
     .registerAction(Actions.copyAssets)
     .registerAction(Actions.writeEsMapDeclaration)
     .registerAction(Actions.writeVSIXManifest)
+    .registerAction(Actions.descriptionFile)
     .extend({
       source: ['tokens/**/*.{yaml,yml}'],
       platforms,
