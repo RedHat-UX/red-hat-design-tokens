@@ -6,7 +6,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.on('eleventy.before', () => import('./build.js').then(m => new Promise(r => (m.build(), setTimeout(r, 50)))));
   eleventyConfig.setServerPassthroughCopyBehavior('passthrough');
   eleventyConfig.addWatchTarget('lib/**/*.js');
-  eleventyConfig.addWatchTarget('tokens/**/*.yaml');
+  eleventyConfig.addWatchTarget('tokens/**/*.{yml,yaml}');
   eleventyConfig.addWatchTarget('plugins/**/*.js');
   eleventyConfig.addPlugin(TokensPlugin);
   eleventyConfig.addPassthroughCopy({ 'docs/assets': 'assets' });
