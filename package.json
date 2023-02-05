@@ -69,11 +69,18 @@
       ]
     },
     "start": {
-      "command": "eleventy --serve",
+      "command": "eleventy --incremental --serve",
       "service": true
     },
     "test": {
       "command": "tape-es test/*.js | tap-difflet",
+      "files": [
+        "test/**/*.js",
+        "test/**/*.cjs",
+        "plugins/**/*.cjs",
+        "plugins/**/*.js",
+        "tokens/**/*.ya?ml"
+      ],
       "dependencies": [
         "lint",
         "style-dictionary"
