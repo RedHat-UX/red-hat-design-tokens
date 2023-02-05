@@ -27,7 +27,7 @@ async function getAutofixedCSS(code) {
   return output;
 }
 
-describe('no-unknown-token-value', test => {
+describe('no-unknown-token-name', test => {
   test('simple list with typo in one name', async t => {
     t.plan(3);
     const { errored, results: [{ warnings: [warning, ...rest] }] } =

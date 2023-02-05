@@ -73,7 +73,7 @@
       "service": true
     },
     "test": {
-      "command": "tape-es test/*.js | tap-difflet",
+      "command": "tape-es 'test/*.js' | tap-difflet",
       "files": [
         "test/**/*.js",
         "test/**/*.cjs",

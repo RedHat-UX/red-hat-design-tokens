@@ -17,6 +17,16 @@ async function getAutofixedCSS(code) {
 }
 
 describe('token-values', test => {
+  test('simple value', async t => {
+    t.plan(1);
+    const xl = tokens.get('--rh-space-xl');
+    const lg = tokens.get('--rh-space-lg');
+    const inputcss = `a { padding: var(--rh-space-xl, ${lg}); }`;
+    const expected = `a { padding: var(--rh-space-xl, ${xl}); }`;
+    const actual = await getAutofixedCSS(inputcss);
+    t.isEqual(actual, expected, 'corrects simple value');
+  });
+
   test('simple list', async t => {
     t.plan(1);
     const xl = tokens.get('--rh-space-xl');
@@ -24,7 +34,7 @@ describe('token-values', test => {
     const inputcss = `a { padding: var(--rh-space-xl, ${xl}) var(--rh-space-lg, ${xl}); }`;
     const expected = `a { padding: var(--rh-space-xl, ${xl}) var(--rh-space-lg, ${lg}); }`;
     const actual = await getAutofixedCSS(inputcss);
-    t.isEqual(actual, expected);
+    t.isEqual(actual, expected, 'corrects list values');
   });
 
   test('nested custom property value', async t => {
@@ -34,7 +44,7 @@ describe('token-values', test => {
     const inputcss = `a { padding: var(--_padding: var(--rh-space-lg, ${xl})); }`;
     const expected = `a { padding: var(--_padding: var(--rh-space-lg, ${lg})); }`;
     const actual = await getAutofixedCSS(inputcss);
-    t.isEqual(actual, expected);
+    t.isEqual(actual, expected, 'corrects nested value');
   });
 
   test('list with nested custom property value', async t => {
