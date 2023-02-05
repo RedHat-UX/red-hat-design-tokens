@@ -14,7 +14,7 @@ const meta = {
 };
 
 /** @type {import('stylelint').Plugin} */
-const ruleFunction = (_options, _secondaryOptions, ctx) => {
+const ruleFunction = (_, opts, ctx) => {
   return (root, result) => {
     const validOptions = stylelint.utils.validateOptions(
       result,
@@ -28,6 +28,7 @@ const ruleFunction = (_options, _secondaryOptions, ctx) => {
       return;
     }
 
+    const migrations = new Map(Object.entries(opts?.migrations ?? {}));
 
     root.walk(node => {
       if (node.type === 'decl') {
@@ -35,13 +36,18 @@ const ruleFunction = (_options, _secondaryOptions, ctx) => {
         parsedValue.walk(parsed => {
           if (parsed.type === 'function' && parsed.value === 'var') {
             const [{ value }] = parsed.nodes ?? [];
-            if (value.startsWith('--rh') && !tokens.has(value)) {
+            if (value.startsWith('--rh') && !tokens.has(value) || migrations.has(value)) {
               const message = `Expected ${value} to be a known token name`;
               const { nodes: [{ sourceIndex, sourceEndIndex }] } = parsed;
               const declIndex = declarationValueIndex(node);
               const index = declIndex + sourceIndex;
               const endIndex = declIndex + sourceEndIndex;
-              stylelint.utils.report({ node, message, ruleName, result, index, endIndex });
+              if (ctx.fix && migrations.has(value)) {
+                node.value = node.value.replace(value, migrations.get(value));
+                return;
+              } else {
+                stylelint.utils.report({ node, message, ruleName, result, index, endIndex });
+              }
             }
           }
         });

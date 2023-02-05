@@ -6,12 +6,26 @@ import stylelint from 'stylelint';
 async function runRule(code) {
   return stylelint.lint({
     code,
-    fix: true,
     config: {
       rules: { 'rhds/no-unknown-token-name': true },
       plugins: ['./plugins/stylelint.cjs'],
     }
   });
+}
+
+async function getAutofixedCSS(code) {
+  const { output } = await stylelint.lint({
+    code,
+    fix: true,
+    config: {
+      rules: { 'rhds/no-unknown-token-name': [true, { migrations: {
+        '--rh-color-black-900': '--rh-color-grey-900',
+        '--rh-color-black-100': '--rh-color-grey-100',
+      } }] },
+      plugins: ['./plugins/stylelint.cjs'],
+    }
+  });
+  return output;
 }
 
 test('simple list with typo in one name', async t => {
@@ -121,4 +135,19 @@ a {
     severity: 'error',
     text: 'Expected --rh-length-ll to be a known token name',
   }, 'provides detail for second error');
+});
+
+test('migrating names', async t => {
+  t.plan(3);
+  const inputval = `a { color: var(--rh-color-black-900); }`;
+  const expecval = `a { color: var(--rh-color-grey-900); }`;
+  t.isEqual(await getAutofixedCSS(inputval), expecval, 'simple value');
+
+  const inputnest = `a { color: var(--_color: var(--rh-color-black-900)); }`;
+  const expecnest = `a { color: var(--_color: var(--rh-color-grey-900)); }`;
+  t.isEqual(await getAutofixedCSS(inputnest), expecnest, 'nested custom property value');
+
+  const inputlistnest = `a { --colors: var(--_color, var(--rh-color-black-900)) var(--_color-bg: var(--rh-color-black-100)); }`;
+  const expeclistnest = `a { --colors: var(--_color, var(--rh-color-grey-900)) var(--_color-bg: var(--rh-color-grey-100)); }`;
+  t.isEqual(await getAutofixedCSS(inputlistnest), expeclistnest, 'list with nested custom property value');
 });
