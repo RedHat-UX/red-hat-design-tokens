@@ -181,6 +181,16 @@ module.exports = function RHDSPlugin(eleventyConfig, pluginOptions = {}) {
 
   const slugify = eleventyConfig.getFilter('slugify');
 
+  const assetsPath = pluginOptions.assetsPath ?? '/assets/';
+  eleventyConfig.addPassthroughCopy({ [join(__dirname, '11ty', '*')]: assetsPath });
+
+  eleventyConfig.addFilter('getTokenDocs', function(path) {
+    const tokens = require('../json/rhds.tokens.json');
+    const { parent, key } = getParentCollection({ path }, tokens);
+    const collection = parent[key];
+    return getDocs(collection);
+  });
+
   eleventyConfig.addShortcode('category',
     async function category(options = {}) {
       const tokens = require('../json/rhds.tokens.json');
