@@ -28,7 +28,8 @@
       "require": "./json/*"
     },
     "./plugins/11ty.cjs": "./plugins/11ty.cjs",
-    "./plugins/stylelint.cjs": "./plugins/stylelint.cjs"
+    "./plugins/stylelint.cjs": "./plugins/stylelint.cjs",
+    "./css/*": "./css/*"
   },
   "files": [
     "css",
