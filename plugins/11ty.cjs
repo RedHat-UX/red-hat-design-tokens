@@ -85,7 +85,7 @@ function table({ tokens, name = '', docs } = {}) {
         let variable = `var(--${token.name}, ${token.$value})`;
 
         if (isFamily) {
-          variable = variable.replace(/"/g, "'");
+          variable = variable.replace(/"/g, '\'');
         }
 
         return isHSLorRGB ? '' : /* html */`
