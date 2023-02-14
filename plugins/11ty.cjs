@@ -82,7 +82,11 @@ function table({ tokens, name = '', docs } = {}) {
         const isColor = !!token.path.includes('color');
         const isCrayon = isColor && token.name.match(/0$/);
         const isHSLorRGB = !!token.name.match(/(hsl|rgb)$/);
-        const variable = `var(--${token.name}, ${token.$value})`;
+        let variable = `var(--${token.name}, ${token.$value})`;
+
+        if (isFamily) {
+          variable = variable.replace(/"/g, "'");
+        }
 
         return isHSLorRGB ? '' : /* html */`
         <tr id="${token.name}"
