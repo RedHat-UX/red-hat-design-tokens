@@ -84,7 +84,6 @@ tr {
 tr.on-dark {
   background-color: var(--rh-color-surface-darkest, #151515);
   color: var(--rh-color-text-primary-on-dark, #ffffff);
-  fill: var(--rh-color-text-primary-on-dark, #ffffff);
 }
 
 th, td {
@@ -105,11 +104,6 @@ td.token > div {
 
 .hex {
   text-transform: uppercase;
-}
-
-.copy-cell {
-  text-align: end;
-  vertical-align: middle;
 }
 
 section {
@@ -152,11 +146,14 @@ code {
   padding: var(--rh-space-xs);
   background: none;
   cursor: pointer;
-  opacity: 0.2;
+}
+
+.copy-button svg {
+  width: 24px;
+  fill: currentcolor;
 }
 
 .copy-button:is(.value, .name) {
-  opacity: 1;
   background-color: var(--rh-color-surface-lighter);
   overflow-x: hidden;
   max-width: 350px;
@@ -192,12 +189,25 @@ code {
   background: var(--rh-color-interactive-blue-darker);
 }
 
-.copy-button svg {
-  width: 24px;
+.copy-cell {
+  text-align: end;
+  vertical-align: middle;
 }
 
-tr:is(:hover, :focus-within) .copy-button {
-  opacity: 1;
+.copy-cell .copy-button {
+  color: var(--rh-color-icon-subtle);
+}
+
+.on-dark .copy-cell .copy-button {
+  color: var(--rh-color-icon-subtle-hover);
+}
+
+tr:is(:hover, :focus-within) .copy-cell .copy-button {
+  color: var(--rh-color-icon-secondary-on-light);
+}
+
+tr:is(:hover, :focus-within).on-dark .copy-cell .copy-button {
+  color: var(--rh-color-icon-secondary-on-dark);
 }
 
 .font samp {
