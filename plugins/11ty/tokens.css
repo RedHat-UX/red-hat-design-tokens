@@ -95,10 +95,6 @@ td:first-child {
   padding-inline-start: var(--rh-space-lg, 16px);
 }
 
-tr.variants summary {
-  translate: 10px -2.5em;
-}
-
 tr.variants > td {
   vertical-align: top;
 }
@@ -111,8 +107,7 @@ tr.variants summary {
   height: 2.5em;
   width: 2.5em;
   position: absolute;
-  left: calc(-.5 * 2.5em);
-  /* list-style: none; */
+  translate: 0px -2.25em;
 }
 
 tr.variants summary rh-tooltip {
@@ -121,14 +116,12 @@ tr.variants summary rh-tooltip {
   inset: 0;
 }
 
-tr.variants summary::marker {
-  /* content: '...'; */
-  /* display: block; */
-  /* translate: 50%; */
+tr.variants details table {
+  padding-inline: var(--rh-space-lg);
 }
 
-tr.variants td:first-child {
-  padding-inline: none;
+tr.variants > td:first-child {
+  padding: 0;
 }
 
 td.token > div {
