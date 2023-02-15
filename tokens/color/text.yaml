@@ -23,6 +23,7 @@ color:
           colors. Layouts with colored backgrounds or a photo changes the rules regarding the
           placement of text, so use white or black text for body copy applications.
 
+
           [wcag]: https://www.w3.org/WAI/WCAG2AA-Conformance.html
 
     primary:
