@@ -1,22 +1,30 @@
 const { readFile } = require('node:fs/promises');
 const { join } = require('node:path');
+const markdownSyntaxHighlightOptions = require('@11ty/eleventy-plugin-syntaxhighlight/src/markdownSyntaxHighlightOptions');
 
-const getDocs = x => x?.$extensions?.['com.redhat.ux'];
+const getDocs = (x, key = 'com.redhat.ux') => x?.$extensions?.[key];
 const capitalize = x => `${x.at(0).toUpperCase()}${x.slice(1)}`;
 const isRef = x => x?.original?.$value?.startsWith?.('{') ?? false;
 const deref = x => `rh-${x.original.$value.replace(/[{}]/g, '').split('.').join('-')}`;
-const markdownSyntaxHighlightOptions = require('@11ty/eleventy-plugin-syntaxhighlight/src/markdownSyntaxHighlightOptions');
 
+/** Returns a string with common indent stripped from each line. Useful for templating HTML */
 function dedent(str) {
   const stripped = str.replace(/^\n/, '');
   const match = stripped.match(/^\s+/);
   return match ? stripped.replace(new RegExp(`^${match[0]}`, 'gm'), '') : str;
 }
 
-function styleMap(objt) {
-  return Object.entries(objt).map(([k, v]) => `${k}: ${v?.toString().replaceAll('"', '\'')}`).join(';');
+/** HTML attribute values should use single quotes to avoid breaking out of the value's surrounding double quotes */
+function escapeDoubleQuotes(x) {
+  return x?.toString().replaceAll('"', '\'');
 }
 
+/** Converts an object mapping css property names to values into a CSS rule for inlining into HTML */
+function styleMap(objt) {
+  return Object.entries(objt).map(([k, v]) => `${k}: ${escapeDoubleQuotes(v)}`).join(';');
+}
+
+/** When recursing over the token categories, it's helpful to get the containing category for things like docs and key names */
 function getParentCollection(options, tokens) {
   let parent = options.parent ?? tokens;
 
@@ -33,6 +41,7 @@ function getParentCollection(options, tokens) {
   return { parent, key };
 }
 
+/** Try to get the path to a token source file. Not all object values in a token collection have that metadata attached */
 function getFilePathGuess(collection) {
   return Object.values(collection).reduce((path, val) =>
       path || typeof val !== 'object' ? path
@@ -40,12 +49,13 @@ function getFilePathGuess(collection) {
             : getFilePathGuess(val), '');
 }
 
-function getDescription(collection) {
+/** Get the markdown description in a category's docs extension */
+function getDescription(collection, options) {
   const {
     filePath = getFilePathGuess(collection),
     description = '',
     descriptionFile
-  } = getDocs(collection) ?? {};
+  } = getDocs(collection, options.docsExtension) ?? {};
 
   if (description) {
     return description;
@@ -56,7 +66,15 @@ function getDescription(collection) {
   }
 }
 
-function table({ tokens, name = '', docs } = {}) {
+/**
+ * Generate an HTML table of tokens
+ * @param {object} [opts={}]
+ * @param {object} opts.tokens the collection of tokens to render
+ * @param {string} opts.name the name of the collection
+ * @param {object} opts.docs the docs extension for the collection
+ * @param {object} opts.docsExtension the key to the docs extension
+ */
+function table({ tokens, name = '', docs, docsExtension } = {}) {
   if (!tokens.length || name.startsWith('$')) {
     return '';
   }
@@ -73,16 +91,16 @@ function table({ tokens, name = '', docs } = {}) {
       <tbody>${tokens.map(token => { /* eslint-disable indent */
         const { r, g, b } = token.attributes?.rgb ?? {};
         const { h, s, l } = token.attributes?.hsl ?? {};
-        const isWeight = !!token.path.includes('weight');
-        const isRadius = !!token.path.includes('radius');
-        const isWidth = !!token.path.includes('width');
-        const isFont = !!token.path.includes('font');
-        const isFamily = !!token.path.includes('family');
-        const isSize = !!token.path.includes('size');
         const isColor = !!token.path.includes('color');
         const isCrayon = isColor && token.name.match(/0$/);
-        const isHSLorRGB = !!token.name.match(/(hsl|rgb)$/);
-        const variable = `var(--${token.name}, ${token.$value})`;
+        const isHSLorRGB = isColor && !!token.name.match(/(hsl|rgb)$/);
+        const isFamily = !!token.path.includes('family');
+        const isFont = !!token.path.includes('font');
+        const isRadius = !!token.path.includes('radius');
+        const isSize = !!token.path.includes('size');
+        const isWeight = !!token.path.includes('weight');
+        const isWidth = !!token.path.includes('width');
+        const variable = `var(--${token.name}, ${escapeDoubleQuotes(token.$value)})`;
 
         return isHSLorRGB ? '' : /* html */`
         <tr id="${token.name}"
@@ -97,7 +115,7 @@ function table({ tokens, name = '', docs } = {}) {
               [`--${token.attributes.type === 'icon' && token.$type === 'dimension' ? `${name}-size` : name}`]: token.$value,
             })}">
           <td class="sample">
-            <samp${name === 'space' ? ` style="background-color: ${getDocs(token)?.color ?? ''};"` : ''}>
+            <samp${name === 'space' ? ` style="background-color: ${getDocs(token, docsExtension)?.color ?? ''};"` : ''}>
             ${isColor && token.path.includes('text') ? 'Aa'
             : isFont ? (docs?.example ?? token.attributes?.aliases?.[0] ?? 'Aa')
             : name === 'breakpoint' ? `
@@ -173,6 +191,10 @@ function table({ tokens, name = '', docs } = {}) {
     /* eslint-enable indent */
 }
 
+/**
+ * @param {import('@11ty/eleventy/src/UserConfig')} eleventyConfig
+ * @param {PluginOptions} [pluginOptions={}]
+ */
 module.exports = function RHDSPlugin(eleventyConfig, pluginOptions = {}) {
   const md = require('markdown-it')({
     html: true,
@@ -206,7 +228,7 @@ module.exports = function RHDSPlugin(eleventyConfig, pluginOptions = {}) {
       const name = options.name ?? path.split('.').pop();
       const { parent, key } = getParentCollection(options, tokens);
       const collection = parent[key];
-      const docs = getDocs(collection);
+      const docs = getDocs(collection, pluginOptions.docsExtension);
       const heading = docs?.heading ?? capitalize(name.replace('-', ' '));
       const slug = slugify(`${parentName} ${name}`.trim()).toLowerCase();
 
@@ -236,8 +258,8 @@ module.exports = function RHDSPlugin(eleventyConfig, pluginOptions = {}) {
       return dedent(/* html */`
         <section id="${name}" class="token-category level-${level - 1}">
           <h${level} id="${slug}">${heading}<a href="#${slug}">#</a></h${level}>
-          <div class="description">${md.render(dedent(await getDescription(collection)))}</div>
-          ${table({ tokens: Object.values(collection).filter(x => x.$value), name, docs })}
+          <div class="description">${md.render(dedent(await getDescription(collection, pluginOptions)))}</div>
+          ${table({ tokens: Object.values(collection).filter(x => x.$value), name, docs, docsExtension: pluginOptions.docsExtension })}
           ${(await Promise.all(children.map(category))).join('\n')}
           ${(await Promise.all(include.map((path, i, a) => category({ path, level: level + 1, isLast: !a[i + 1] })))).join('\n')}${isLast ? '' : `
           <a class="btt" href="#">Top</a>`}
