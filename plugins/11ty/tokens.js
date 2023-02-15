@@ -7,3 +7,9 @@ for (const button of document.querySelectorAll('.copy-button')) {
     await navigator.clipboard.writeText(text.trim());
   });
 }
+
+for (const details of document.querySelectorAll('.variants details')) {
+  details.addEventListener('toggle', function(event) {
+    event.target.closest('tr.variants')?.classList.toggle('open', event.target.open);
+  });
+}
