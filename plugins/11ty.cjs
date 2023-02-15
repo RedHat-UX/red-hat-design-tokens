@@ -1,11 +1,11 @@
 const { readFile } = require('node:fs/promises');
 const { join } = require('node:path');
+const markdownSyntaxHighlightOptions = require('@11ty/eleventy-plugin-syntaxhighlight/src/markdownSyntaxHighlightOptions');
 
 const getDocs = x => x?.$extensions?.['com.redhat.ux'];
 const capitalize = x => `${x.at(0).toUpperCase()}${x.slice(1)}`;
 const isRef = x => x?.original?.$value?.startsWith?.('{') ?? false;
 const deref = x => `rh-${x.original.$value.replace(/[{}]/g, '').split('.').join('-')}`;
-const markdownSyntaxHighlightOptions = require('@11ty/eleventy-plugin-syntaxhighlight/src/markdownSyntaxHighlightOptions');
 
 function dedent(str) {
   const stripped = str.replace(/^\n/, '');
@@ -13,8 +13,12 @@ function dedent(str) {
   return match ? stripped.replace(new RegExp(`^${match[0]}`, 'gm'), '') : str;
 }
 
+function escapeDoubleQuotes(x) {
+  return x?.toString().replaceAll('"', '\'');
+}
+
 function styleMap(objt) {
-  return Object.entries(objt).map(([k, v]) => `${k}: ${v?.toString().replaceAll('"', '\'')}`).join(';');
+  return Object.entries(objt).map(([k, v]) => `${k}: ${escapeDoubleQuotes(v)}`).join(';');
 }
 
 function getParentCollection(options, tokens) {
@@ -73,20 +77,16 @@ function table({ tokens, name = '', docs } = {}) {
       <tbody>${tokens.map(token => { /* eslint-disable indent */
         const { r, g, b } = token.attributes?.rgb ?? {};
         const { h, s, l } = token.attributes?.hsl ?? {};
-        const isWeight = !!token.path.includes('weight');
-        const isRadius = !!token.path.includes('radius');
-        const isWidth = !!token.path.includes('width');
-        const isFont = !!token.path.includes('font');
-        const isFamily = !!token.path.includes('family');
-        const isSize = !!token.path.includes('size');
         const isColor = !!token.path.includes('color');
         const isCrayon = isColor && token.name.match(/0$/);
-        const isHSLorRGB = !!token.name.match(/(hsl|rgb)$/);
-        let variable = `var(--${token.name}, ${token.$value})`;
-
-        if (isFamily) {
-          variable = variable.replace(/"/g, '\'');
-        }
+        const isHSLorRGB = isColor && !!token.name.match(/(hsl|rgb)$/);
+        const isFamily = !!token.path.includes('family');
+        const isFont = !!token.path.includes('font');
+        const isRadius = !!token.path.includes('radius');
+        const isSize = !!token.path.includes('size');
+        const isWeight = !!token.path.includes('weight');
+        const isWidth = !!token.path.includes('width');
+        const variable = `var(--${token.name}, ${escapeDoubleQuotes(token.$value)})`;
 
         return isHSLorRGB ? '' : /* html */`
         <tr id="${token.name}"
