@@ -95,6 +95,35 @@ td:first-child {
   padding-inline-start: var(--rh-space-lg, 16px);
 }
 
+tr.variants > td {
+  vertical-align: top;
+}
+
+tr.variants details {
+  position: relative;
+}
+
+tr.variants summary {
+  height: 2.5em;
+  width: 2.5em;
+  position: absolute;
+  translate: 0px -2.25em;
+}
+
+tr.variants summary rh-tooltip {
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+tr.variants details table {
+  padding-inline: var(--rh-space-lg);
+}
+
+tr.variants > td:first-child {
+  padding: 0;
+}
+
 td.token > div {
   display: flex;
   flex-flow: row wrap;
@@ -153,7 +182,7 @@ code {
   fill: currentcolor;
 }
 
-.copy-button:is(.value, .name) {
+.token:is(.value, .name) .copy-button {
   background-color: var(--rh-color-surface-lighter);
   overflow-x: hidden;
   max-width: 350px;
@@ -161,12 +190,12 @@ code {
   text-overflow: ellipsis;
 }
 
-.copy-button.value.color {
+.token.value .copy-button.color {
   border-radius: var(--rh-border-radius-pill);
   padding-block: 0;
 }
 
-.copy-button.value.color::after {
+.token.value .copy-button.color::after {
   content: '';
   display: inline-block;
   border-radius: 100%;
@@ -181,7 +210,7 @@ code {
   opacity: 1;
 }
 
-.on-dark .copy-button:is(.value, .name) {
+.on-dark :is(.value, .name) .copy-button {
   background-color: var(--rh-color-surface-darker);
 }
 

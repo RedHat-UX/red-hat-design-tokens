@@ -15,24 +15,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@300;500;700&family=Noto+Sans+JP:wght@300;500;700&family=Noto+Sans+KR:wght@300;500;700&family=Noto+Sans+Malayalam:wght@300;500;700&family=Noto+Sans+SC:wght@300;500;700&family=Noto+Sans+TC:wght@300;500;700&family=Noto+Sans+Tamil:wght@300;500;700&family=Noto+Sans+Thai:wght@300;500;700&display=swap"> 
     <link rel="stylesheet" href="https://ga.jspm.io/npm:@rhds/elements@1.0.0-beta.27/elements/rh-footer/rh-footer-lightdom.css">
     <link rel="stylesheet" href="/assets/rhds.css">
-    <link rel="stylesheet" href="/assets/styles.css">
-    <link rel="stylesheet" href="/assets/11ty.css">
+    <link rel="stylesheet" href="/assets/tokens.css">
+    
 
     <script type="importmap">{{ importMap | dump | safe }}</script>
 
     <!-- ES Module Shims: Import maps polyfill for modules browsers without import maps support (all except Chrome 89+) -->
     <script async src="https://ga.jspm.io/npm:es-module-shims@1.5.1/dist/es-module-shims.js" crossorigin="anonymous"></script>
 
-    <script type="module">
-      import '@rhds/elements/rh-tooltip/rh-tooltip.js';
-      import '@rhds/elements/rh-footer/rh-global-footer.js';
-      for (const button of document.querySelectorAll('.copy-button')) {
-        button.addEventListener('click', async function(event) {
-          const text = event.target.closest('[data-copy]')?.dataset?.copy ?? button.textContent;
-          await navigator.clipboard.writeText(text.trim());
-        });
-      }
-    </script>
+    <script type="module" src="/assets/tokens.js"></script>
   </head>
   <body>
     <header id="main-header">
