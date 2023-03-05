@@ -7,7 +7,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.setServerPassthroughCopyBehavior('passthrough');
   eleventyConfig.addWatchTarget('lib/**/*.js');
   eleventyConfig.addWatchTarget('tokens/**/*.{yml,yaml}');
-  eleventyConfig.addWatchTarget('plugins/**/*.js');
+  eleventyConfig.addWatchTarget('plugins/**/*.{cjs,js}');
   eleventyConfig.addPlugin(TokensPlugin);
   eleventyConfig.addPassthroughCopy({ 'docs/assets': 'assets' });
   eleventyConfig.addPassthroughCopy({ 'css/global.css': 'assets/rhds.css' });

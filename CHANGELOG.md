@@ -1,5 +1,22 @@
 # @rhds/tokens
 
+## 1.0.0-beta.17
+
+### Minor Changes
+
+- 90207a2: 11ty: added expanded table rows for color variants
+- bc80671: 11ty plugin: Fixed copy button
+
+  - Fixed copy button when token values contain double-quotes
+  - Used token colours for copy button
+  - Made the docs extension key configurable (defaults to `com.redhat.ux`)
+
+- 90207a2: 11ty: added `getTokenDocs` filter
+
+### Patch Changes
+
+- 07c1e2c: Updated dependencies
+
 ## 1.0.0-beta.16
 
 ### Patch Changes
