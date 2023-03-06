@@ -3,6 +3,8 @@ color:
     50:
       $value: '#fdf7e7'
       $description: Alert - Warning background
+    300:
+      $value: '#f4c145'
     400:
       $value: '#f0ab00'
       $description: Alert - Warning accent

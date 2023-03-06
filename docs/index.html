@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="/assets/styles.css">
     <link rel="stylesheet" href="/assets/11ty.css">
     <link rel="stylesheet" href="/assets/prism.css">
+    <link rel="stylesheet" href="/assets/highlightjs.css">
     <link rel="stylesheet" href="/assets/tokens.css">
 
     <script type="importmap">{{ importMap | dump | safe }}</script>
@@ -121,7 +122,9 @@
       {% category path = 'box-shadow' %}
       {% category path = 'font',
                   include = 'color.text' %}
+
       {% category path = 'color.syntax' %}
+
       {% category path = 'border',
                   include = 'color.border' %}
       {% category path = 'opacity' %}

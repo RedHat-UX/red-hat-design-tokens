@@ -1,11 +1,11 @@
 const { readFile } = require('node:fs/promises');
 const { join } = require('node:path');
 const markdownSyntaxHighlightOptions = require('@11ty/eleventy-plugin-syntaxhighlight/src/markdownSyntaxHighlightOptions');
+const markdownItHighlightJs = require('markdown-it-highlightjs');
+const markdownItPrism = require('markdown-it-prism');
 
 const getDocs = (x, options) => x?.$extensions?.[options.docsExtension];
 const capitalize = x => `${x.at(0).toUpperCase()}${x.slice(1)}`;
-const isRef = x => x?.original?.$value?.startsWith?.('{') ?? false;
-const deref = x => `rh-${x.original.$value.replace(/[{}]/g, '').split('.').join('-')}`;
 
 /** Returns a string with common indent stripped from each line. Useful for templating HTML */
 function dedent(str) {
@@ -51,16 +51,16 @@ function getFilePathGuess(collection) {
 
 /** Get the markdown description in a category's docs extension */
 function getDescription(collection, options) {
-  const {
-    filePath = getFilePathGuess(collection),
-    description = '',
-    descriptionFile
-  } = getDocs(collection, options) ?? {};
-
-  if (description) {
-    return description;
-  } else if (descriptionFile) {
-    return readFile(join(process.cwd(), filePath, '..', descriptionFile), 'utf-8');
+  const docs = getDocs(collection, options) ?? {};
+  if (docs.description) {
+    return docs.description;
+  } else if (docs.descriptionFile) {
+    return readFile(join(
+      process.cwd(),
+      docs.filePath ?? getFilePathGuess(collection),
+      '..',
+      docs.descriptionFile,
+    ), 'utf-8');
   } else {
     return '';
   }
@@ -210,10 +210,9 @@ function table({ tokens, name = '', docs, options } = {}) {
  * @param {PluginOptions} [pluginOptions={}]
  */
 module.exports = function RHDSPlugin(eleventyConfig, pluginOptions = {}) {
-  const md = require('markdown-it')({
-    html: true,
-    highlight: markdownSyntaxHighlightOptions(pluginOptions),
-  });
+  const md = require('markdown-it')({ html: true })
+    .use(markdownItHighlightJs);
+    // .use(markdownItPrism);
 
   const slugify = eleventyConfig.getFilter('slugify');
 
@@ -226,6 +225,20 @@ module.exports = function RHDSPlugin(eleventyConfig, pluginOptions = {}) {
     const collection = parent[key];
     return getDocs(collection, pluginOptions);
   });
+
+  async function description(options) {
+    if (options.description === false) {
+      return '';
+    }
+    options.attrs ??= pluginOptions.attrs ?? (() => '');
+    options.docsExtension ??= pluginOptions.docsExtension ?? 'com.redhat.ux';
+    const tokens = require('../json/rhds.tokens.json');
+    const { parent, key } = getParentCollection(options, tokens);
+    const collection = parent[key];
+    return `<div class="description">${md.render(dedent(await getDescription(collection, options)))}</div>`;
+  }
+
+  eleventyConfig.addShortcode('description', description);
 
   eleventyConfig.addShortcode('category',
     async function category(options = {}) {
@@ -275,7 +288,7 @@ module.exports = function RHDSPlugin(eleventyConfig, pluginOptions = {}) {
       return dedent(/* html */`
         <section id="${name}" class="token-category level-${level - 1}">
           <h${level} id="${slug}">${heading}<a href="#${slug}">#</a></h${level}>
-          <div class="description">${md.render(dedent(await getDescription(collection, pluginOptions)))}</div>
+          ${await description(options)}
           ${await table({ /* eslint-disable indent */
             tokens: Object.values(collection).filter(x => x.$value),
             options,

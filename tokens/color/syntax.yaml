@@ -5,109 +5,88 @@ color:
         heading: Syntax Highlighting
         descriptionFile: syntax.md
 
-    # atrule:
-    #   on-light:
-    #     $value: '{color.}'
+    background:
+      light:
+        $value: '{color.black.150}'
+      dark:
+        $value: '{color.black.800}'
 
-    attr-name:
-      on-light:
-        $value: '{color.orange.500}'
-
-    attr-value:
-      on-light:
-        $value: '{color.orange.500}'
+    color:
+      light:
+        $value: '{color.black.900}'
+      dark:
+        $value: '{color.black.300}'
 
     boolean:
       on-light:
         $value: '{color.orange.500}'
+      on-dark:
+        $value: '{color.orange.300}'
 
-    # builtin:
-    #   on-light:
-    #     $value: '{color.}'
-
-    # cdata:
-    #   on-light:
-    #     $value: '{color.}'
-
-    # char:
-    #   on-light:
-    #     $value: '{color.}'
-
-    class-name:
+    title:
+      $extensions:
+        com.prismjs:
+          name: class-name
       on-light:
-        $value: '{color.green.600}'
-
-    comment:
-      on-light:
-        $value: '{color.black.500}'
+        $value: '{color.purple.500}'
+      on-dark:
+        $value: '{color.gold.300}'
 
     constant:
       on-light:
         $value: '{color.purple.500}'
 
-    # deleted:
-    #   on-light:
-    #     $value: '{color.}'
-
-    # doctype:
-    #   on-light:
-    #     $value: '{color.}'
-
-    # entity:
-    #   on-light:
-    #     $value: '{color.}'
-
     function:
       on-light:
         $value: '{color.red.500}'
 
-    # important:
-    #   on-light:
-    #     $value: '{color.}'
-
-    # inserted:
-    #   on-light:
-    #     $value: '{color.}'
-
     keyword:
       on-light:
-        $value: '{color.purple.500}'
-
-    # namespace:
-    #   on-light:
-    #     $value: '{color.}'
+        $value: '{color.magenta.500}'
+      on-dark:
+        $value: '{color.purple.300}'
 
     number:
       on-light:
         $value: '{color.orange.500}'
+      on-dark:
+        $value: '{color.orange.300}'
 
     operator:
       on-light:
         $value: '{color.cyan.500}'
 
-    # prolog:
-    #   on-light:
-    #     $value: '{color.}'
+    selector-tag:
+      on-light:
+        $value: '{color.red.600}'
+      on-dark:
+        $value: '{color.red.400}'
 
+    built_in:
+      on-light:
+        $value: '{color.blue.500}'
+      on-dark:
+        $value: '{color.blue.100}'
     property:
       on-light:
         $value: '{color.blue.500}'
+      on-dark:
+        $value: '{color.black.300}'
 
     punctuation:
       on-light:
-        $value: '{color.blue.500}'
+        $value: '{color.black.900}'
+      on-dark:
+        $value: '{color.black.300}'
 
+    literal:
+      on-light:
+        $value: '{color.orange.500}'
+      on-dark:
+        $value: '{color.orange.300}'
     regex:
       on-light:
-        $value: '{color.red.500}'
-
-    # selector:
-    #   on-light:
-    #     $value: '{color.}'
-
-    string:
-      on-light:
-        $value: '{color.green.500}'
+        $value: '{color.orange.500}'
 
     symbol:
       on-light:
@@ -115,13 +94,40 @@ color:
 
     tag:
       on-light:
+        $value: '{color.black.600}'
+      on-dark:
+        $value: '{color.black.500}'
+    name:
+      on-light:
+        $value: '{color.red.600}'
+      on-dark:
+        $value: '{color.red.400}'
+    meta:
+      on-light:
+        $value: '{color.blue.500}'
+      on-dark:
+        $value: '{color.blue.100}'
+    comment:
+      on-light:
+        $value: '{color.black.600}'
+      on-dark:
+        $value: '{color.black.500}'
+    attr:
+      on-light:
         $value: '{color.orange.500}'
+      on-dark:
+        $value: '{color.orange.300}'
+    string:
+      on-light:
+        $value: '{color.green.500}'
+      on-dark:
+        $value: '{color.light-green.400}'
 
-    # url:
-    #   on-light:
-    #     $value: '{color.}'
-
+    attribute:
+      on-dark:
+        $value: '{color.blue.100}'
     variable:
       on-light:
-        $value: '{color.purple.500}'
-
+        $value: '{color.red.600}'
+      on-dark:
+        $value: '{color.red.400}'

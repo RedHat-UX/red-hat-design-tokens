@@ -1,0 +1,4 @@
+color:
+  magenta:
+    500:
+      $value: '#b300b3'

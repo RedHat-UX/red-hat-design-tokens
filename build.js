@@ -38,6 +38,7 @@ export function build() {
     .registerTransformGroup(TransformGroups.js)
     .registerTransformGroup(TransformGroups.sketch)
     .registerFormat(Formats.litCss)
+    .registerFormat(Formats.highlightjsCss)
     .registerFormat(Formats.prismCss)
     .registerFormat(Formats.mapEs)
     .registerFormat(Formats.mapCjs)

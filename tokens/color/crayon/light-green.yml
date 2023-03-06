@@ -1,0 +1,4 @@
+color:
+  light-green:
+    400:
+      $value: '#92d400'
