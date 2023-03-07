@@ -16,13 +16,19 @@
   <head>
     <title>HTML</title>
     <link rel="stylesheet" href="/styles.css">
+
+    <style>body {width: 500px;}</style>
+    
+    <script type="application/javascript">
+      function $init() {return true;}
+    </script>
   </head>
   <body>
     <header>
       <h1>Tags</h1>
     </header>
     <main>
-      <!-- main content here -->
+      <p checked class="title" id='title'><!-- main content here --></p>
     </main>
   </body>
 </html>
@@ -48,10 +54,44 @@ body, .usertext {
   --heading-1: 30px/32px Helvetica, sans-serif;
 }
 
+@import url(print.css);
 @media print {
   a[href^=http]::after {
     content: attr(href)
   }
+}
+```
+
+<rh-tab>Less</rh-tab>
+<rh-tab-panel>
+
+```less
+@import “fruits”; 
+
+@rhythm: 1.5em; 
+
+@media screen and (min-resolution: 2dppx) { 
+  body {font-size: 125%} 
+} 
+
+section > .foo + #bar:hover [href*=“less”] { 
+  margin: @rhythm 0 0 @rhythm; 
+  padding: calc(5% + 20px); 
+  background: #f00ba7 url(http://placehold.alpha-centauri/42.png) no-repeat; 
+  background-image: linear-gradient(-135deg, wheat, fuchsia) !important; 
+  background-blend-mode: multiply; 
+} 
+
+@font-face { 
+  font-family: /* ? */ ‘Omega’; 
+  src: url(‘../fonts/omega-webfont.woff?v=2.0.2’); 
+} 
+
+.icon-baz::before { 
+  display: inline-block; 
+  font-family: “Omega”, Alpha, sans-serif; 
+  content: “\f085”; 
+  color: rgba(98, 76 /* or 54 */, 231, .75); 
 }
 ```
 
