@@ -16,17 +16,17 @@ color:
   gray:
     05:
       $value: '#F2F2F2'
-      $description: Lighter surface (light theme)
+      $description: Primary surface (light theme)
       attributes:
         type: gray
     10:
       $value: '#E0E0E0'
-      $description: Light surface (light theme)
+      $description: Tertiary surface (light theme)
       attributes:
         type: gray
     20:
       $value: '#C7C7C7'
-      $description: Subtle borders (light theme)
+      $description: Secondary surface (light theme) or subtle borders (light theme)
       attributes:
         type: gray
     30:
@@ -46,17 +46,17 @@ color:
         type: gray
     60:
       $value: '#383838'
-      $description: Dark surface (dark theme)
+      $description: Tertiary surface (dark theme)
       attributes:
         type: gray
     70:
       $value: '#292929'
-      $description: Darker surface (dark theme)
+      $description: Secondary surface (dark theme)
       attributes:
         type: gray
     80:
       $value: '#1F1F1F'
-      $description: Darkest surface (dark theme)
+      $description: Primary surface (dark theme)
       attributes:
         type: gray
     90:
