@@ -66,6 +66,6 @@ color:
 
   black:
     $value: '#000000'
-    $description: Brand black
+    $description: Brand black (avoid using)
     attributes:
       type: gray

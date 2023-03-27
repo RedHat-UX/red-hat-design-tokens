@@ -4,6 +4,9 @@ color:
       com.redhat.ux:
         order: 20
 
+    white:
+      $value: '{color.white}'
+      $description: White surface (light theme)
     lightest:
       $value: '{color.gray.05}'
       $description: Primary surface (light theme)
@@ -22,3 +25,6 @@ color:
     darkest:
       $value: '{color.gray.80}'
       $description: Primary surface (dark theme)
+    black: 
+      $value: '{color.gray.90}'
+      $description: Black surface (dark theme)
