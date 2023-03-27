@@ -44,7 +44,7 @@ function getParentCollection(options, tokens) {
 /** Try to get the path to a token source file. Not all object values in a token collection have that metadata attached */
 function getFilePathGuess(collection) {
   return Object.values(collection).reduce((path, val) =>
-      path || typeof val !== 'object' ? path
+      path || typeof val !== 'object' || val === null ? path
             : '$value' in val ? val.filePath
             : getFilePathGuess(val), '');
 }
