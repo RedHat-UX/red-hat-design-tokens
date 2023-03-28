@@ -38,7 +38,7 @@ color:
         $value: '{color.gray.50}'
         $description: Secondary text color for light theme
       on-dark:
-        $value: '{color.gray.10}'
+        $value: '{color.gray.20}'
         $description: Secondary text color for dark theme
     brand:
       on-light:
