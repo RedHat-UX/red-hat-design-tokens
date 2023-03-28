@@ -2,7 +2,7 @@ color:
   canvas:
     $extensions:
       com.redhat.ux:
-        order: 
+        order: 200
 
     white:
       $value: '{color.white}'

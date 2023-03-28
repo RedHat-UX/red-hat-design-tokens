@@ -1,5 +1,8 @@
 color:
   green:
+    $extensions:
+      com.redhat.ux:
+        order: 304
     50:
       $value: '#f3faf2'
       $description: alert - success background

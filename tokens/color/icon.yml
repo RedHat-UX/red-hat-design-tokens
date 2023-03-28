@@ -4,6 +4,7 @@ color:
       com.redhat.ux:
         category: icon
         heading: Color
+        order: 90
 
     primary:
       on-light:

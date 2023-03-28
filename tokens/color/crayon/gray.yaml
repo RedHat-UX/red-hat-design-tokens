@@ -8,7 +8,7 @@ color:
   gray:
     $extensions:
       com.redhat.ux:
-        order: 50
+        order: 390
         description: >-
           In addition to white and black, each theme features various shades of gray.
           Be mindful of accessibility when using text or components on top of shades of gray.

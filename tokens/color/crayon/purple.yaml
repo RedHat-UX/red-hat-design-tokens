@@ -1,5 +1,8 @@
 color:
   purple:
+    $extensions:
+      com.redhat.ux:
+        order: 306
     50:
       $value: '#f2f0fc'
       $description: Label - Filled (Purple) background color

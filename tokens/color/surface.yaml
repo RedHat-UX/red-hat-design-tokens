@@ -2,7 +2,7 @@ color:
   surface:
     $extensions:
       com.redhat.ux:
-        order: 20
+        order: 250
 
     white:
       $value: '{color.white}'

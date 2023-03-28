@@ -1,5 +1,8 @@
 color:
   red:
+    $extensions:
+      com.redhat.ux:
+        order: 300
     50:
       $value: '#faeae8'
       $description: Alert - Critical background

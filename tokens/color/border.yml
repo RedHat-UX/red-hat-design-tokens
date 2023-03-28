@@ -4,6 +4,7 @@ color:
       com.redhat.ux:
         category: border
         collapse: true
+        order: 80
         heading: Color
 
     strong:
