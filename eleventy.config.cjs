@@ -178,13 +178,13 @@ module.exports = function(eleventyConfig) {
               : docs?.example ?? ''}
               </samp>
             </td>
-            <td ${options.attrs({ type: 'name', token })} class="token name">
+            <td class="token name">
               <button class="copy-button"><code>--${token.name}</code></button>
             </td>
-            <td ${options.attrs({ type: 'value', token })} class="token value
-                     ${!isDimension ? '' : token.$value?.endsWith('rem') ? 'rem' : 'px'}
-                     ${!isColor ? '' : 'color'}
-                     ${!isHSLorRGB ? 'hex' : ''}">${(
+            <td class="token value
+               ${!isDimension ? '' : token.$value?.endsWith('rem') ? 'rem' : 'px'}
+               ${!isColor ? '' : 'color'}
+               ${!isHSLorRGB ? 'hex' : ''}">${(
               isDimension ? `
               <button class="copy-button"><code>${token.$value}</code></button>`
             : isColor ? `
@@ -202,13 +202,13 @@ module.exports = function(eleventyConfig) {
           </tr>${!isCrayon ? '' : `
           <tr class="variants">
             <td colspan="5">
-              <details ${options.attrs({ type: 'details', token })}>
+              <details>
                 <summary title="Color function variants"></summary>
                 <table class="${token.path.join(' ')}${token.attributes.isLight ? ' light' : ''}"
                        style="--color: ${token.$value}">
                   <tr id="${token.name}-rgb" style="--color: rgb(${r}, ${g}, ${b})">
                     <td class="sample"><samp>${token.path.includes('text') ? 'Aa' : docs?.example ?? ''}</samp></td>
-                    <td ${options.attrs({ type: 'name', token })} class="token name">
+                    <td class="token name">
                       <button class="copy-button"><code>--${token.name}-rgb</code></button>
                     </td>
                     <td><button class="copy-button"><code>rgb(${r}, ${g}, ${b})</code></button></td>
@@ -217,7 +217,7 @@ module.exports = function(eleventyConfig) {
                   </tr>
                   <tr id="${token.name}-hsl" style="--color: hsl(${h} ${s}% ${l}%)">
                     <td class="sample"><samp>${token.path.includes('text') ? 'Aa' : docs?.example ?? ''}</samp></td>
-                    <td ${options.attrs({ type: 'name', token })} class="token name">
+                    <td class="token name">
                       <button class="copy-button"><code>--${token.name}-hsl</code></button>
                     </td>
                     <td><button class="copy-button"><code>hsl(${h} ${s}% ${l}%)</code></button></td>
@@ -252,7 +252,6 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addShortcode('category',
     async function category(options = {}) {
-      options.attrs ??= (() => '');
       options.docsExtension ??= 'com.redhat.ux';
 
       const tokens = require('./json/rhds.tokens.json');
@@ -282,6 +281,7 @@ module.exports = function(eleventyConfig) {
 
       const children = Object.entries(collection)
         .filter(isChildEntry)
+        .sort(byOrder)
         .map(([key], i, a) => ({
           path: key,
           parent: collection,
@@ -289,6 +289,19 @@ module.exports = function(eleventyConfig) {
           parentName: `${parentName} ${name}`.trim(),
           isLast: i === a.length - 1,
         }));
+
+      function getOrder([key, collection]) {
+        let docs;
+        do {
+          docs = getDocs(collection);
+          collection = collection.parent;
+        } while (collection && !docs);
+        return docs?.order ?? 0;
+      }
+
+      function byOrder(a, b) {
+        return getOrder(a) - getOrder(b);
+      }
 
       /**
        * 0. render the description
