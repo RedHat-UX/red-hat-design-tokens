@@ -1,5 +1,11 @@
 # @rhds/tokens
 
+## 1.0.0-beta.19
+
+### Patch Changes
+
+- 1de1327: Changed the gray color associated with secondary text
+
 ## 1.0.0-beta.18
 
 ### Major Changes
