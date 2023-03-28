@@ -55,7 +55,7 @@
 
 ### Patch Changes
 
-- 3bf26ab: Fixed missing rgb and hsl values for grey colours
+- 3bf26ab: Fixed missing rgb and hsl values for gray colours
 
 ## 1.0.0-beta.10
 
