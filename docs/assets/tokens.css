@@ -16,7 +16,7 @@ body {
 }
 
 #main-header {
-  background: var(--rh-color-black-900);
+  background: var(--rh-color-gray-90);
   color: var(--rh-color-text-primary-on-dark);
   padding: var(--rh-space-xs) var(--rh-space-2xl);
   display: flex;
@@ -267,7 +267,7 @@ tr:is(:hover, :focus-within).on-dark .copy-cell .copy-button {
 }
 
 .color:not(.border, .text).light samp {
-  border-color: var(--rh-color-black-900);
+  border-color: var(--rh-color-gray-90);
 }
 
 .line-height samp {

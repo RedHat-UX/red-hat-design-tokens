@@ -4,11 +4,12 @@ color:
       com.redhat.ux:
         category: border
         collapse: true
+        order: 80
         heading: Color
 
     strong:
       on-light:
-        $value: '{color.black.900}'
+        $value: '{color.gray.90}'
         $description: Strong border color (light theme)
       on-dark:
         $value: '{color.white}'
@@ -16,11 +17,11 @@ color:
 
     subtle:
       on-light:
-        $value: '{color.black.300}'
+        $value: '{color.gray.20}'
         $description: Subtle border color (light theme)
       on-dark:
-        $value: '{color.black.600}'
-        $description: Subtle border color (light theme)
+        $value: '{color.gray.40}'
+        $description: Subtle border color (dark theme)
 
     interactive:
       on-light:
@@ -28,7 +29,7 @@ color:
         $description: Interactive border color (light theme)
       on-dark:
         $value: '{color.blue.200}'
-        $description: Interactive border color (light theme)
+        $description: Interactive border color (dark theme)
 
     danger:
       on-light:
@@ -36,4 +37,4 @@ color:
         $description: Danger border color (light theme)
       on-dark:
         $value: '{color.red.400}'
-        $description: Danger border color (light theme)
+        $description: Danger border color (dark theme)

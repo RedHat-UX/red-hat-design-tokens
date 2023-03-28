@@ -1,0 +1,12 @@
+color:
+  canvas:
+    $extensions:
+      com.redhat.ux:
+        order: 200
+
+    white:
+      $value: '{color.white}'
+      $description: Primary canvas (light theme)
+    black:
+      $value: '{color.gray.90}'
+      $description: Primary canvas (dark theme)

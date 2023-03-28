@@ -4,6 +4,7 @@ color:
       com.redhat.ux:
         category: icon
         heading: Color
+        order: 90
 
     primary:
       on-light:
@@ -13,14 +14,14 @@ color:
 
     secondary:
       on-light:
-        $value: '{color.black.900}'
+        $value: '{color.gray.90}'
       on-dark:
         $value: '{color.white}'
 
     subtle:
       # @see https://github.com/amzn/style-dictionary/issues/716#issuecomment-943673202
       _:
-        $value: '{color.black.500}'
+        $value: '{color.gray.40}'
       hover:
-        $value: '{color.black.400}'
+        $value: '{color.gray.30}'
 

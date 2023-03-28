@@ -81,8 +81,10 @@ export function build() {
                         const $type = 'color';
                         return [
                           [tone, tones[tone]],
-                          [`${tone}-hsl`, { $type, $value, value: $value }],
-                          [`${tone}-rgb`, { $type, $value, value: $value }],
+                          ...tone.match(/^(\$|attributes|value)/) ? [] : [
+                            [`${tone}-hsl`, { $type, $value, value: $value }],
+                            [`${tone}-rgb`, { $type, $value, value: $value }],
+                          ]
                         ];
                       });
                     return [color, Object.fromEntries(all)];

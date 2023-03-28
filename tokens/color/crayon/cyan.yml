@@ -1,5 +1,8 @@
 color:
   cyan:
+    $extensions:
+      com.redhat.ux:
+        order: 302
     50:
       $value: '#f2f9f9'
       $description: Alert - Default background

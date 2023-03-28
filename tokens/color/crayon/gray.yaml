@@ -1,61 +1,71 @@
 color:
+  white:
+    $value: '#ffffff'
+    $description: Primary canvas (light theme) or primary text (dark theme)
+    attributes:
+      type: gray
+
   gray:
     $extensions:
       com.redhat.ux:
-        order: 50
+        order: 390
         description: >-
           In addition to white and black, each theme features various shades of gray.
           Be mindful of accessibility when using text or components on top of shades of gray.
 
-  white:
-    $value: '#ffffff'
-    $description: Primary surface (light theme) or primary text (dark theme)
-    attributes:
-      type: gray
-
-  black:
-    150:
-      $value: '#f5f5f5'
+    '05':
+      $value: '#F2F2F2'
+      $description: Primary surface (light theme)
+      attributes:
+        type: gray
+    '10':
+      $value: '#E0E0E0'
       $description: Tertiary surface (light theme)
       attributes:
         type: gray
-    200:
-      $value: '#f0f0f0'
-      $description: Secondary surface (light theme)
+    '20':
+      $value: '#C7C7C7'
+      $description: Secondary surface (light theme) or subtle borders (light theme)
       attributes:
         type: gray
-    300:
-      $value: '#d2d2d2'
-      $description: Borders (light theme) or secondary text (dark theme) 
+    '30':
+      $value: '#A3A3A3'
+      $description: Subtle icon (hover state)
       attributes:
         type: gray
-    400:
-      $value: '#b8bbbe'
-      $description: Icons or tertiary uses (light theme)
+    '40':
+      $value: '#707070'
+      $description: Subtle icon
       attributes:
         type: gray
-    500:
-      $value: '#8a8d90'
-      $description: Icons or tertiary uses (dark theme)
+    '50':
+      $value: '#4D4D4D'
+      $description: Secondary text (light theme)
       attributes:
         type: gray
-    600:
-      $value: '#6a6e73'
-      $description: Borders (dark theme) or secondary text (light theme)
-      attributes:
-        type: gray
-    700:
-      $value: '#3c3f42'
-      $description: Secondary surface (dark theme)
-      attributes:
-        type: gray
-    800:
-      $value: '#212427'
+    '60':
+      $value: '#383838'
       $description: Tertiary surface (dark theme)
       attributes:
         type: gray
-    900:
-      $value: '#151515'
-      $description: Primary surface (dark theme) or primary text (light theme)
+    '70':
+      $value: '#292929'
+      $description: Secondary surface (dark theme)
       attributes:
         type: gray
+    '80':
+      $value: '#1F1F1F'
+      $description: Primary surface (dark theme)
+      attributes:
+        type: gray
+    '90':
+      $value: '#151515'
+      $description: Primary canvas (dark theme) or primary text (light theme)
+      attributes:
+        type: gray
+
+  black:
+    $value: '#000000'
+    $description: Brand black (avoid using)
+    attributes:
+      type: gray

@@ -36,6 +36,11 @@ json:
   actions:
     - descriptionFile
   files:
+    - destination: rhds.tokens.flat.json
+      format: json/flat
+      options:
+        fileHeader: redhat/legal
+        outputReferences: true
     - destination: rhds.tokens.json
       format: json
       options:
