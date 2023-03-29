@@ -8,27 +8,54 @@ size:
     '01':
       $value: '{length.lg}'
       $description: 16px icon box
+      attributes:
+        category: icon
+        type: size
     '02':
       $value: '{length.xl}'
       $description: 24px icon box
+      attributes:
+        category: icon
+        type: size
     '03':
       $value: '{length.2xl}'
       $description: 32px icon box
+      attributes:
+        category: icon
+        type: size
     '04':
       $value: 40px
       $description: 40px icon box
+      attributes:
+        category: icon
+        type: size
     '05':
       $value: '{length.3xl}'
       $description: 48px icon box
+      attributes:
+        category: icon
+        type: size
     '06':
       $value: '{length.4xl}'
       $description: 64px icon box
+      attributes:
+        category: icon
+        type: size
     '07':
       $value: '{length.5xl}'
       $description: 80px icon box
+      attributes:
+        category: icon
+        type: size
     '08':
       $value: '{length.6xl}'
       $description: 96px icon box
+      attributes:
+        category: icon
+        type: size
     '09':
       $value: '{length.7xl}'
       $description: 128px icon box
+      attributes:
+        category: icon
+        type: size

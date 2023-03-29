@@ -68,40 +68,10 @@ js:
   transformGroup: js
   buildPath: js/
   files:
-    - destination: values.cjs
-      format: javascript/module-flat
-      options:
-        fileHeader: redhat/legal
-    - destination: values.d.cts
-      format: typescript/es6-declarations
-      options:
-        fileHeader: redhat/legal
     - destination: values.js
-      format: javascript/es6
+      format: javascript/modules
       options:
         fileHeader: redhat/legal
-    - destination: values.d.ts
-      format: typescript/es6-declarations
-      options:
-        fileHeader: redhat/legal
-
-# html:
-#   transformGroup: css
-#   buildPath: build/
-#   prefix: rh
-#   actions:
-#     - copyAssets
-#   files:
-#     - destination: index.html
-#       format: html/docs
-#       options:
-#         fileHeader: redhat/legal
-#         outputReferences: true
-#     - destination: rhds.css
-#       format: css/variables
-#       options:
-#         fileHeader: redhat/legal
-#         selector: ':root'
 
 editor:
   transformGroup: css

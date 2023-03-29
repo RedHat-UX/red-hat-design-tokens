@@ -10,21 +10,39 @@ font:
       xs:
         $value: 0.75rem
         $description: 12px font size
+        attributes:
+          category: typography
+          type: font-size
       sm:
         $value: 0.875rem
         $description: 14px font size
+        attributes:
+          category: typography
+          type: font-size
       md:
         $value: 1rem
         $description: 16px font size
+        attributes:
+          category: typography
+          type: font-size
       lg:
         $value: 1.125rem
         $description: 18px font size
+        attributes:
+          category: typography
+          type: font-size
       xl:
         $value: 1.25rem
         $description: 20px font size
+        attributes:
+          category: typography
+          type: font-size
       2xl:
         $value: 1.5rem
         $description: 24px font size
+        attributes:
+          category: typography
+          type: font-size
 
     code:
       $extensions:
@@ -34,21 +52,39 @@ font:
       xs:
         $value: '{font.size.body-text.xs}'
         $description: 12px font size
+        attributes:
+          category: typography
+          type: font-size
       sm:
         $value: '{font.size.body-text.sm}'
         $description: 14px font size
+        attributes:
+          category: typography
+          type: font-size
       md:
         $value: '{font.size.body-text.md}'
         $description: 16px font size
+        attributes:
+          category: typography
+          type: font-size
       lg:
         $value: '{font.size.body-text.lg}'
         $description: 18px font size
+        attributes:
+          category: typography
+          type: font-size
       xl:
         $value: '{font.size.body-text.xl}'
         $description: 20px font size
+        attributes:
+          category: typography
+          type: font-size
       2xl:
         $value: '{font.size.body-text.2xl}'
         $description: 24px font size
+        attributes:
+          category: typography
+          type: font-size
 
     heading:
       $extensions:
@@ -58,19 +94,37 @@ font:
       xs:
         $value: 1.25rem
         $description: h6 heading font size
+        attributes:
+          category: typography
+          type: font-size
       sm:
         $value: 1.5rem
         $description: h5 heading font size
+        attributes:
+          category: typography
+          type: font-size
       md:
         $value: 1.75rem
         $description: h4 heading font size
+        attributes:
+          category: typography
+          type: font-size
       lg:
         $value: 2.25rem
         $description: h3 heading font size
+        attributes:
+          category: typography
+          type: font-size
       xl:
         $value: 2.5rem
         $description: h2 heading font size
+        attributes:
+          category: typography
+          type: font-size
       2xl:
         $value: 3rem
         $description: h1 heading font size
+        attributes:
+          category: typography
+          type: font-size
 

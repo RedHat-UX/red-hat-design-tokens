@@ -20,16 +20,26 @@
       "import": "./js/tokens.js",
       "require": "./js/tokens.cjs"
     },
-    "./values.js": {
-      "import": "./js/values.js",
-      "require": "./js/values.cjs"
-    },
     "./json/*": {
       "require": "./json/*"
     },
     "./plugins/11ty.cjs": "./plugins/11ty.cjs",
     "./plugins/stylelint.cjs": "./plugins/stylelint.cjs",
-    "./css/*": "./css/*"
+    "./css/*": "./css/*",
+    "./values.js": {
+      "import": "./js/values.js",
+      "require": "./js/values.cjs"
+    },
+    "./animation.js": "./js/animation.js",
+    "./border.js": "./js/border.js",
+    "./box-shadow.js": "./js/box-shadow.js",
+    "./color.js": "./js/color.js",
+    "./icon.js": "./js/icon.js",
+    "./length.js": "./js/length.js",
+    "./media.js": "./js/media.js",
+    "./opacity.js": "./js/opacity.js",
+    "./space.js": "./js/space.js",
+    "./typography.js": "./js/typography.js"
   },
   "files": [
     "css",
