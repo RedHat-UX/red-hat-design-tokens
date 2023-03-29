@@ -1,5 +1,11 @@
 # @rhds/tokens
 
+## 1.0.0-beta.21
+
+### Patch Changes
+
+- 06eaa2c: Removed light-alt surface token
+
 ## 1.0.0-beta.20
 
 ### Major Changes
