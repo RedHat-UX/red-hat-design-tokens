@@ -20,16 +20,29 @@
       "import": "./js/tokens.js",
       "require": "./js/tokens.cjs"
     },
-    "./values.js": {
-      "import": "./js/values.js",
-      "require": "./js/values.cjs"
-    },
     "./json/*": {
       "require": "./json/*"
     },
     "./plugins/11ty.cjs": "./plugins/11ty.cjs",
     "./plugins/stylelint.cjs": "./plugins/stylelint.cjs",
-    "./css/*": "./css/*"
+    "./css/*": "./css/*",
+    "./values.js": {
+      "import": "./js/values.js",
+      "require": "./js/values.cjs"
+    },
+    "./animation.js": "./js/animation.js",
+    "./border.js": "./js/border.js",
+    "./box-shadow.js": "./js/box-shadow.js",
+    "./breakpoint.js": "./js/breakpoint.js",
+    "./color.js": "./js/color.js",
+    "./font.js": "./js/font.js",
+    "./length.js": "./js/length.js",
+    "./letter-spacing.js": "./js/letter-spacing.js",
+    "./line-height.js": "./js/line-height.js",
+    "./media.js": "./js/media.js",
+    "./opacity.js": "./js/opacity.js",
+    "./size.js": "./js/size.js",
+    "./space.js": "./js/space.js"
   },
   "files": [
     "css",
