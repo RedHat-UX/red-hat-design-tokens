@@ -4,27 +4,24 @@ color:
       com.redhat.ux:
         order: 250
 
-    white:
-      $value: '{color.white}'
-      $description: White surface (light theme)
     lightest:
-      $value: '{color.gray.05}'
+      $value: '{color.white}'
       $description: Primary surface (light theme)
     lighter:
-      $value: '{color.gray.10}'
+      $value: '{color.gray.05}'
       $description: Tertiary surface (light theme)
     light:
-      $value: '{color.gray.20}'
+      $value: '{color.gray.10}'
       $description: Secondary surface (light theme)
     dark:
       $value: '{color.gray.60}'
       $description: Tertiary surface (dark theme)
-    darker:
+    dark-alt:
       $value: '{color.gray.70}'
+      $description: Alternative tertiary surface (not available for use with context provider)
+    darker:
+      $value: '{color.gray.80}'
       $description: Secondary surface (dark theme)
     darkest:
-      $value: '{color.gray.80}'
-      $description: Primary surface (dark theme)
-    black: 
       $value: '{color.gray.90}'
-      $description: Black surface (dark theme)
+      $description: Primary surface (dark theme)
