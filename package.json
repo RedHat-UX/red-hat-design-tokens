@@ -33,16 +33,13 @@
     "./animation.js": "./js/animation.js",
     "./border.js": "./js/border.js",
     "./box-shadow.js": "./js/box-shadow.js",
-    "./breakpoint.js": "./js/breakpoint.js",
     "./color.js": "./js/color.js",
-    "./font.js": "./js/font.js",
+    "./icon.js": "./js/icon.js",
     "./length.js": "./js/length.js",
-    "./letter-spacing.js": "./js/letter-spacing.js",
-    "./line-height.js": "./js/line-height.js",
     "./media.js": "./js/media.js",
     "./opacity.js": "./js/opacity.js",
-    "./size.js": "./js/size.js",
-    "./space.js": "./js/space.js"
+    "./space.js": "./js/space.js",
+    "./typography.js": "./js/typography.js"
   },
   "files": [
     "css",
