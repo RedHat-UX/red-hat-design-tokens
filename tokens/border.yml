@@ -6,7 +6,7 @@ border:
         heading: Width
     sm:
       $value: '{length.4xs}'
-      $description: '1px border width; Example: Secondary CTA or Button'        
+      $description: '1px border width; Example: Secondary CTA or Button'
     md:
       $value: '{length.3xs}'
       $description: '2px border width: Example: Alert'

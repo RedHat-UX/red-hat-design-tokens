@@ -5,7 +5,7 @@ color:
         category: border
         collapse: true
         order: 80
-        Heading: Color
+        heading: Color
 
     strong:
       on-light:
