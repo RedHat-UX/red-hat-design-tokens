@@ -10,9 +10,9 @@ font:
       xs:
         $value: 0.75rem
         $description: 12px font size
-      attributes:
-        category: typography
-        type: font-size
+        attributes:
+          category: typography
+          type: font-size
       sm:
         $value: 0.875rem
         $description: 14px font size

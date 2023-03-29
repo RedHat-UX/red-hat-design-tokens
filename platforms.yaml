@@ -68,10 +68,6 @@ js:
   transformGroup: js
   buildPath: js/
   files:
-    - destination: values.cjs
-      format: javascript/module-flat
-      options:
-        fileHeader: redhat/legal
     - destination: values.js
       format: javascript/modules
       options:
