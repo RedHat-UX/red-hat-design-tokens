@@ -1,5 +1,35 @@
 # @rhds/tokens
 
+## 1.0.0-beta.20
+
+### Major Changes
+
+- 17f0fff: **javascript**: Made each category available as a separate module
+
+  Before:
+
+  ```js
+  import { Red300 } from "@rhds/tokens";
+
+  element.style.color = Red300;
+  ```
+
+  After:
+
+  ```js
+  import { Red300 } from "@rhds/tokens/color.js";
+
+  element.style.color = Red300.hex;
+  ```
+
+  Some values exported from `values.js` and from the various category modules are
+  now structured data. This includes breakpoints, colours, shadows, and media
+  queries.
+
+### Patch Changes
+
+- e354fdf: Remapped new gray surface tokens and added a description for canvas tokens
+
 ## 1.0.0-beta.19
 
 ### Patch Changes
