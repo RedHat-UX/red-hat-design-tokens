@@ -1,7 +1,7 @@
 color:
   white:
     $value: '#ffffff'
-    $description: Primary canvas (light theme) or primary text (dark theme)
+    $description: Lightest surface (light theme) or primary text (dark theme)
     attributes:
       type: gray
 
@@ -15,17 +15,17 @@ color:
 
     '05':
       $value: '#F2F2F2'
-      $description: Primary surface (light theme)
+      $description: Tertiary surface (light theme)
       attributes:
         type: gray
     '10':
       $value: '#E0E0E0'
-      $description: Tertiary surface (light theme)
+      $description: Secondary surface (light theme)
       attributes:
         type: gray
     '20':
       $value: '#C7C7C7'
-      $description: Secondary surface (light theme) or subtle borders (light theme)
+      $description: Subtle borders (light theme)
       attributes:
         type: gray
     '30':
@@ -50,17 +50,17 @@ color:
         type: gray
     '70':
       $value: '#292929'
-      $description: Secondary surface (dark theme)
+      $description: 
       attributes:
         type: gray
     '80':
       $value: '#1F1F1F'
-      $description: Primary surface (dark theme)
+      $description: Secondary surface (dark theme)
       attributes:
         type: gray
     '90':
       $value: '#151515'
-      $description: Primary canvas (dark theme) or primary text (light theme)
+      $description: Primary surface (dark theme) or primary text (light theme)
       attributes:
         type: gray
 
