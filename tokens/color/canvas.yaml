@@ -4,7 +4,7 @@ color:
       com.redhat.ux:
         order: 200
         description: >-
-        The canvas tokens should be used for page backgrounds only. To add a background to contained sections, use a surface token.
+          The canvas tokens should be used for page backgrounds only. To add a background to contained sections, use a surface token.
 
     white:
       $value: '{color.white}'
