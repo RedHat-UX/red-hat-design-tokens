@@ -5,36 +5,60 @@ color:
         category: border
         collapse: true
         order: 80
-        heading: Color
+        Heading: Color
 
     strong:
       on-light:
         $value: '{color.gray.90}'
         $description: Strong border color (light theme)
+        attributes:
+          category: border
+          type: color
       on-dark:
         $value: '{color.white}'
         $description: Strong border color (dark theme)
+        attributes:
+          category: border
+          type: color
 
     subtle:
       on-light:
         $value: '{color.gray.20}'
         $description: Subtle border color (light theme)
+        attributes:
+          category: border
+          type: color
       on-dark:
         $value: '{color.gray.40}'
         $description: Subtle border color (dark theme)
+        attributes:
+          category: border
+          type: color
 
     interactive:
       on-light:
         $value: '{color.blue.400}'
         $description: Interactive border color (light theme)
+        attributes:
+          category: border
+          type: color
       on-dark:
         $value: '{color.blue.200}'
         $description: Interactive border color (dark theme)
+        attributes:
+          category: border
+          type: color
 
     danger:
       on-light:
         $value: '{color.red.500}'
         $description: Danger border color (light theme)
+        attributes:
+          category: border
+          type: color
       on-dark:
         $value: '{color.red.400}'
         $description: Danger border color (dark theme)
+        attributes:
+          category: border
+          type: color

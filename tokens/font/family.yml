@@ -42,6 +42,9 @@ font:
         - Helvetica
         - Arial
         - sans-serif
+      attributes:
+        category: typography
+        type: font-family
     body-text:
       $description: Body text font family
       $extensions:
@@ -61,6 +64,9 @@ font:
         - Helvetica
         - Arial
         - sans-serif
+      attributes:
+        category: typography
+        type: font-family
     code:
       $description: Code font family
       $extensions:
@@ -72,3 +78,6 @@ font:
         - Courier New
         - Courier
         - monospace
+      attributes:
+        category: typography
+        type: font-family

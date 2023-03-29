@@ -3,3 +3,6 @@ letter-spacing:
     text:
       $value: 0.0125rem
       $description: Extra letter spacing for small body text sizes
+      attributes:
+        category: typography
+        type: letter-spacing

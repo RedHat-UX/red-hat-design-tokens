@@ -7,9 +7,18 @@ line-height:
   heading:
     $value: 1.3
     $description: Line height for headings
+    attributes:
+      category: typography
+      type: line-height
   body-text:
     $value: 1.5
     $description: Line height for body text
+    attributes:
+      category: typography
+      type: line-height
   code:
     $value: 1.5
     $description: Line height for code
+    attributes:
+      category: typography
+      type: line-height

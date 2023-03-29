@@ -9,19 +9,37 @@ color:
     primary:
       on-light:
         $value: '{color.brand.red.on-light}'
+        attributes:
+          category: icon
+          type: color
       on-dark:
         $value: '{color.brand.red.on-dark}'
+        attributes:
+          category: icon
+          type: color
 
     secondary:
       on-light:
         $value: '{color.gray.90}'
+        attributes:
+          category: icon
+          type: color
       on-dark:
         $value: '{color.white}'
+        attributes:
+          category: icon
+          type: color
 
     subtle:
       # @see https://github.com/amzn/style-dictionary/issues/716#issuecomment-943673202
       _:
         $value: '{color.gray.40}'
+        attributes:
+          category: icon
+          type: color
       hover:
         $value: '{color.gray.30}'
+        attributes:
+          category: icon
+          type: color
 
