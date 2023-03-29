@@ -13,6 +13,9 @@ color:
     light:
       $value: '{color.gray.10}'
       $description: Secondary surface (light theme)
+    light-alt:
+      $value: '{color.gray.20}'
+      $description: Alternative secondary surface (not available for use with context provider)
     dark:
       $value: '{color.gray.60}'
       $description: Tertiary surface (dark theme)
