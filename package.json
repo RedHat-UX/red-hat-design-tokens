@@ -87,8 +87,6 @@
   "wireit": {
     "build": {
       "dependencies": [
-        "style-dictionary",
-        "types",
         "package",
         "11ty"
       ]
@@ -138,6 +136,8 @@
     "package": {
       "command": "cd editor/vscode && vsce package",
       "dependencies": [
+        "style-dictionary",
+        "types",
         "test"
       ],
       "files": [
