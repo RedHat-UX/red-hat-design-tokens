@@ -1,5 +1,12 @@
 # @rhds/tokens
 
+## 1.0.0-beta.22
+
+### Minor Changes
+
+- cde3ef0: Improved exported typescript types, use string references in media tokens'
+  javascript module representation
+
 ## 1.0.0-beta.21
 
 ### Patch Changes
