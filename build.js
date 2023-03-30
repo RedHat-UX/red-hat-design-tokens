@@ -46,6 +46,7 @@ export function build() {
     .registerFormat(Formats.hexokinase)
     .registerFormat(Formats.docsPage)
     .registerAction(Actions.copyAssets)
+    .registerAction(Actions.copyTypes)
     .registerAction(Actions.writeEsMapDeclaration)
     .registerAction(Actions.writeVSIXManifest)
     .registerAction(Actions.descriptionFile)
