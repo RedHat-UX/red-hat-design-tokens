@@ -1,5 +1,11 @@
 # @rhds/tokens
 
+## 1.0.0-beta.23
+
+### Patch Changes
+
+- ceea9a3: include js files when releasing in CI/CD
+
 ## 1.0.0-beta.22
 
 ### Minor Changes
