@@ -1,17 +1,14 @@
 {
-  "mode": "pre",
+  "mode": "exit",
   "tag": "beta",
   "initialVersions": {
     "@rhds/tokens": "0.0.0"
   },
   "changesets": [
     "better-ts-types",
-    "big-sloths-lie",
     "dry-moose-hear",
     "eleven-peaches-sell",
     "empty-cars-juggle",
-    "fast-crabs-fix",
-    "fix-package-ci",
     "forty-clocks-check",
     "fresh-balloons-swim",
     "hip-dolls-grab",
