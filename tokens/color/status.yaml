@@ -1,0 +1,89 @@
+color:
+  status:
+    $extensions:
+      com.redhat.ux:
+        order: 500
+        category: color
+        heading: Status colors
+        description: >-
+          
+
+    success:
+      text:
+        on-light:
+          $value: '{color.green.600}'
+          $description: Success text color (light theme)
+        on-dark:
+          $value: '{color.green.600}'
+          $description: Success text color (dark theme)
+      icon:
+        on-light:
+          $value: '{color.green.500}'
+          $description: Success icon color (light theme)
+        on-dark:
+          $value: '{color.green.500}'
+          $description: Success icon color (dark theme)
+      border:
+        on-light:
+          $value: '{color.green.500}'
+          $description: Success border color (light theme)
+        on-dark:
+            $value: '{color.green.500}'
+            $description: Success border color (dark theme)
+      surface:
+        # @see https://github.com/amzn/style-dictionary/issues/716#issuecomment-943673202
+        _:
+          on-light:
+              $value: '{color.green.500}'
+              $description: Success surface color (light theme)
+          on-dark:
+              $value: '{color.green.500}'
+              $description: Success surface color (dark theme)
+        subtle:
+          on-light:
+              $value: '{color.green.50}'
+              $description: Subtle success surface color (light theme)
+          on-dark:
+              $value: '{color.green.50}'
+              $description: Subtle success surface color (dark theme)
+
+    warning:
+      text:
+        on-light:
+          $value: '{color.gold.600}'
+          $description: Warning text color (light theme)
+        on-dark:
+          $value: '{color.gold.600}'
+          $description: Warning text color (dark theme)
+      icon:
+        on-light:
+          $value: '{color.gold.400}'
+          $description: Warning icon color (light theme)
+        on-dark:
+          $value: '{color.gold.400}'
+          $description: Warning icon color (dark theme)
+      border:
+        on-light:
+          $value: '{color.gold.400}'
+          $description: Warning border color (light theme)
+        on-dark:
+            $value: '{color.gold.400}'
+            $description: Warning border color (dark theme)
+      surface:
+        # @see https://github.com/amzn/style-dictionary/issues/716#issuecomment-943673202
+        _:
+          on-light:
+              $value: '{color.gold.400}'
+              $description: Warning surface color (light theme)
+          on-dark:
+              $value: '{color.gold.400}'
+              $description: Warning surface color (dark theme)
+        subtle:
+          on-light:
+              $value: '{color.gold.50}'
+              $description: Subtle warning surface color (light theme)
+          on-dark:
+              $value: '{color.gold.50}'
+              $description: Subtle warning surface color (dark theme)
+
+    
