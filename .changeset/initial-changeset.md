@@ -5,5 +5,5 @@
 Initial release 🎉
 
 ```sh
-npm i @rhds/tokens@beta
+npm i @rhds/tokens
 ```
