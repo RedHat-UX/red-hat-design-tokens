@@ -48,17 +48,3 @@ color:
         attributes:
           category: border
           type: color
-
-    # danger:
-    #   on-light:
-    #     $value: '{color.red.500}'
-    #     $description: Danger border color (light theme)
-    #     attributes:
-    #       category: border
-    #       type: color
-    #   on-dark:
-    #     $value: '{color.red.400}'
-    #     $description: Danger border color (dark theme)
-    #     attributes:
-    #       category: border
-    #       type: color
