@@ -1,5 +1,5 @@
 ---
-"@rhds/tokens": minor
+"@rhds/tokens": major
 ---
 
 Removed danger border color tokens
