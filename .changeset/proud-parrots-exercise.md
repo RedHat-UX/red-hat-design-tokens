@@ -17,7 +17,7 @@ class ResponsiveElement extends LitElement {
   #screenSize = new ScreenSizeController(this);
 
   render() {
-    const isMobilePortrait = this.#screenSize.has('mobile-portrait');
+    const isMobilePortrait = this.#screenSize.matches.has('2xs');
     return html`
       <div id="#container" class="${classMap({ isMobilePortrait })}">
         ...
