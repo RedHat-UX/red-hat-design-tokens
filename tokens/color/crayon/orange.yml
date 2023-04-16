@@ -1,5 +1,8 @@
 color:
   orange:
+    $extensions:
+      com.redhat.ux:
+        order: 305
     50:
       $value: '#fff6ec'
       $description: Label - Filled (Orange) background color

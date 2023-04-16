@@ -42,11 +42,13 @@ export function build() {
     .registerFormat(Formats.prismCss)
     .registerFormat(Formats.mapEs)
     .registerFormat(Formats.mapCjs)
+    .registerFormat(Formats.modules)
     .registerFormat(Formats.vscodeSnippets)
     .registerFormat(Formats.textmateSnippets)
     .registerFormat(Formats.hexokinase)
     .registerFormat(Formats.docsPage)
     .registerAction(Actions.copyAssets)
+    .registerAction(Actions.copyTypes)
     .registerAction(Actions.writeEsMapDeclaration)
     .registerAction(Actions.writeVSIXManifest)
     .registerAction(Actions.descriptionFile)
@@ -81,8 +83,10 @@ export function build() {
                         const $type = 'color';
                         return [
                           [tone, tones[tone]],
-                          [`${tone}-hsl`, { $type, $value, value: $value }],
-                          [`${tone}-rgb`, { $type, $value, value: $value }],
+                          ...tone.match(/^(\$|attributes|value)/) ? [] : [
+                            [`${tone}-hsl`, { $type, $value, value: $value }],
+                            [`${tone}-rgb`, { $type, $value, value: $value }],
+                          ]
                         ];
                       });
                     return [color, Object.fromEntries(all)];

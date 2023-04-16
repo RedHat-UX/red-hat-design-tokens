@@ -1,5 +1,8 @@
 color:
   blue:
+    $extensions:
+      com.redhat.ux:
+        order: 301
     50:
       $value: '#e7f1fa'
       $description: Alert - Info background

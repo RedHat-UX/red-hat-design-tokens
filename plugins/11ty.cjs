@@ -1,8 +1,8 @@
 const { readFile } = require('node:fs/promises');
 const { join } = require('node:path');
-const markdownSyntaxHighlightOptions = require('@11ty/eleventy-plugin-syntaxhighlight/src/markdownSyntaxHighlightOptions');
 const markdownItHighlightJs = require('markdown-it-highlightjs');
-const markdownItPrism = require('markdown-it-prism');
+// const markdownSyntaxHighlightOptions = require('@11ty/eleventy-plugin-syntaxhighlight/src/markdownSyntaxHighlightOptions');
+// const markdownItPrism = require('markdown-it-prism');
 
 const getDocs = (x, options) => x?.$extensions?.[options.docsExtension];
 const capitalize = x => `${x.at(0).toUpperCase()}${x.slice(1)}`;

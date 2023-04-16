@@ -1,5 +1,8 @@
 color:
   gold:
+    $extensions:
+      com.redhat.ux:
+        order: 303
     50:
       $value: '#fdf7e7'
       $description: Alert - Warning background

@@ -12,69 +12,93 @@ breakpoint:
     $extensions:
       com.redhat.ux:
         title: Extra Extra Small (max-width)
+    attributes:
+      category: media
   xs:
     $value: 576px
     $description: Mobile portrait
     $extensions:
       com.redhat.ux:
         title: Extra Small
+    attributes:
+      category: media
   xsMax:
     $value: 767px
     $description: Mobile landscape (max-width)
     $extensions:
       com.redhat.ux:
         title: Extra Small (max-width)
+    attributes:
+      category: media
   sm:
     $value: 768px
     $description: Mobile landscape
     $extensions:
       com.redhat.ux:
         title: Small
+    attributes:
+      category: media
   smMax:
     $value: 991px
     $description: Mobile landscape (max-width)
     $extensions:
       com.redhat.ux:
         title: Small (max-width)
+    attributes:
+      category: media
   md:
     $value: 992px
     $description: Tablet portrait
     $extensions:
       com.redhat.ux:
         title: Medium
+    attributes:
+      category: media
   mdMax:
     $value: 1199px
     $description: Tablet portrait (max-width)
     $extensions:
       com.redhat.ux:
         title: Medium (max-width)
+    attributes:
+      category: media
   lg:
     $value: 1200px
     $description: Tablet landscape
     $extensions:
       com.redhat.ux:
         title: Large
+    attributes:
+      category: media
   lgMax:
     $value: 1439px
     $description: Tablet landscape (max-width)
     $extensions:
       com.redhat.ux:
         title: Large (max-width)
+    attributes:
+      category: media
   xl:
     $value: 1440px
     $description: Desktop small
     $extensions:
       com.redhat.ux:
         title: Extra Large
+    attributes:
+      category: media
   xlMax:
     $value: 1679px
     $description: Desktop small (max-width)
     $extensions:
       com.redhat.ux:
         title: Extra Large (max-width)
+    attributes:
+      category: media
   2xl:
     $value: 1680px
     $description: Desktop large
     $extensions:
       com.redhat.ux:
         title: Extra Extra Large
+    attributes:
+      category: media
