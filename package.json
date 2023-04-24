@@ -136,9 +136,7 @@
     "package": {
       "command": "cd editor/vscode && vsce package",
       "dependencies": [
-        "style-dictionary",
-        "types",
-        "test"
+        "style-dictionary"
       ],
       "files": [
         "editor/vscode/package.json",
