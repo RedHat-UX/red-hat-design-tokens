@@ -20,6 +20,10 @@
       "import": "./js/tokens.js",
       "require": "./js/tokens.cjs"
     },
+    "./meta.js": { 
+      "import": "./js/meta.js", 
+      "require": "./js/meta.cjs" 
+    },
     "./json/*": {
       "require": "./json/*"
     },
