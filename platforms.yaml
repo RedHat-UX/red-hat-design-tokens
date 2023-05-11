@@ -71,6 +71,8 @@ map:
 js:
   transformGroup: js
   buildPath: js/
+  actions:
+    - copyTypes
   files:
     - destination: values.js
       format: javascript/modules

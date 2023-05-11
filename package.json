@@ -1,6 +1,6 @@
 {
   "name": "@rhds/tokens",
-  "version": "1.0.0-beta.21",
+  "version": "1.0.0",
   "description": "Red Hat Design System Tokens",
   "scripts": {
     "build": "wireit",
@@ -18,7 +18,8 @@
   "exports": {
     ".": {
       "import": "./js/tokens.js",
-      "require": "./js/tokens.cjs"
+      "require": "./js/tokens.cjs",
+      "types": "./js/tokens.d.ts"
     },
     "./meta.js": { 
       "import": "./js/meta.js", 
@@ -27,29 +28,59 @@
     "./json/*": {
       "require": "./json/*"
     },
-    "./plugins/11ty.cjs": "./plugins/11ty.cjs",
     "./plugins/stylelint.cjs": "./plugins/stylelint.cjs",
     "./css/*": "./css/*",
     "./values.js": {
       "import": "./js/values.js",
-      "require": "./js/values.cjs"
+      "require": "./js/values.cjs",
+      "types": "./js/values.d.ts"
     },
-    "./animation.js": "./js/animation.js",
-    "./border.js": "./js/border.js",
-    "./box-shadow.js": "./js/box-shadow.js",
-    "./color.js": "./js/color.js",
-    "./icon.js": "./js/icon.js",
-    "./length.js": "./js/length.js",
-    "./media.js": "./js/media.js",
-    "./opacity.js": "./js/opacity.js",
-    "./space.js": "./js/space.js",
-    "./typography.js": "./js/typography.js"
+    "./animation.js": {
+      "import": "./js/animation.js",
+      "types": "./js/animation.d.ts"
+    },
+    "./border.js": {
+      "import": "./js/border.js",
+      "types": "./js/border.d.ts"
+    },
+    "./box-shadow.js": {
+      "import": "./js/box-shadow.js",
+      "types": "./js/box-shadow.d.ts"
+    },
+    "./color.js": {
+      "import": "./js/color.js",
+      "types": "./js/color.d.ts"
+    },
+    "./icon.js": {
+      "import": "./js/icon.js",
+      "types": "./js/icon.d.ts"
+    },
+    "./length.js": {
+      "import": "./js/length.js",
+      "types": "./js/length.d.ts"
+    },
+    "./media.js": {
+      "import": "./js/media.js",
+      "types": "./js/media.d.ts"
+    },
+    "./opacity.js": {
+      "import": "./js/opacity.js",
+      "types": "./js/opacity.d.ts"
+    },
+    "./space.js": {
+      "import": "./js/space.js",
+      "types": "./js/space.d.ts"
+    },
+    "./typography.js": {
+      "import": "./js/typography.js",
+      "types": "./js/typography.d.ts"
+    }
   },
   "files": [
     "css",
     "editor",
     "plugins",
-    "js",
+    "js/**/*.{js,d.ts}",
     "json",
     "scss"
   ],
@@ -60,7 +91,6 @@
   "wireit": {
     "build": {
       "dependencies": [
-        "style-dictionary",
         "package",
         "11ty"
       ]
@@ -101,10 +131,16 @@
         "style-dictionary"
       ]
     },
+    "types": {
+      "command": "tsc -m es2022 --target es2022 --moduleResolution nodenext -d ./js/*.ts",
+      "dependencies": [
+        "style-dictionary"
+      ]
+    },
     "package": {
       "command": "cd editor/vscode && vsce package",
       "dependencies": [
-        "test"
+        "style-dictionary"
       ],
       "files": [
         "editor/vscode/package.json",
@@ -128,6 +164,7 @@
     "tap-difflet": "^0.7.2",
     "tape-describe": "^1.0.3",
     "tape-es": "^1.2.17",
+    "typescript": "^5.0.2",
     "vsce": "^2.15.0",
     "wireit": "^0.9.5",
     "yaml": "^2.2.1"
