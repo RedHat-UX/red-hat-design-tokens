@@ -63,6 +63,10 @@ map:
       format: javascript/map
     - destination: tokens.cjs
       format: javascript/map-cjs
+    - destination: meta.js
+      format: javascript/meta-map
+    - destination: meta.cjs
+      format: javascript/meta-map-cjs
 
 js:
   transformGroup: js

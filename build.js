@@ -40,6 +40,8 @@ export function build() {
     .registerFormat(Formats.litCss)
     .registerFormat(Formats.mapEs)
     .registerFormat(Formats.mapCjs)
+    .registerFormat(Formats.metaMapEs)
+    .registerFormat(Formats.metaMapCjs)
     .registerFormat(Formats.modules)
     .registerFormat(Formats.vscodeSnippets)
     .registerFormat(Formats.textmateSnippets)
