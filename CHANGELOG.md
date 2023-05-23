@@ -1,5 +1,19 @@
 # @rhds/tokens
 
+## 1.1.0
+
+### Minor Changes
+
+- 0766863: Adds token meta data export.
+
+  ```js
+  import { tokens } from "@rhds/tokens/meta.js";
+
+  const family = tokens.get("--rh-font-family-body-text");
+  console.log(family.$description);
+  // 'The font family used for body text'
+  ```
+
 ## 1.0.0
 
 ### Major Changes
