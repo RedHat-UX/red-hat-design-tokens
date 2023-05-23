@@ -10,7 +10,8 @@
     "start": "wireit",
     "lint": "eslint lib plugins test docs",
     "format": "eslint --fix lib plugins test docs",
-    "test": "wireit"
+    "test": "wireit",
+    "types": "wireit"
   },
   "type": "module",
   "main": "js/tokens.cjs",
