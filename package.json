@@ -5,13 +5,13 @@
   "scripts": {
     "build": "wireit",
     "11ty": "eleventy",
-    "package": "wireit",
+    "package-vscode": "wireit",
     "style-dictionary": "wireit",
     "start": "wireit",
     "lint": "eslint lib plugins test docs",
     "format": "eslint --fix lib plugins test docs",
     "test": "wireit",
-    "types": "wireit"
+    "compile": "wireit"
   },
   "type": "module",
   "main": "js/tokens.cjs",
@@ -92,7 +92,7 @@
   "wireit": {
     "build": {
       "dependencies": [
-        "package",
+        "package-vscode",
         "11ty"
       ]
     },
@@ -129,23 +129,23 @@
       ],
       "dependencies": [
         "lint",
-        "style-dictionary"
+        "compile"
       ]
     },
-    "types": {
+    "compile": {
       "command": "tsc -m es2022 --target es2022 --moduleResolution nodenext -d ./js/*.ts",
       "dependencies": [
         "style-dictionary"
       ]
     },
-    "package": {
+    "package-vscode": {
       "command": "cd editor/vscode && vsce package",
-      "dependencies": [
-        "style-dictionary"
-      ],
       "files": [
         "editor/vscode/package.json",
         "editor/vscode/snippets.json"
+      ],
+      "dependencies": [
+        "compile"
       ],
       "output": [
         "*.vsix"

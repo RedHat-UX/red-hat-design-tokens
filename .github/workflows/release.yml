@@ -21,7 +21,6 @@ jobs:
       - uses: google/wireit@setup-github-actions-caching/v1
 
       - run: npm ci --prefer-offline
-      - run: npm run types
       - run: npm run test
 
       - name: Create Release Pull Request or Publish to npm
@@ -47,7 +46,7 @@ jobs:
           echo "$tag"
           echo "::set-output name=tag::$tag"
 
-      - run: npm run package
+      - run: npm run package-vscode
 
       - name: Upload release artifact
         uses: actions/github-script@v6
