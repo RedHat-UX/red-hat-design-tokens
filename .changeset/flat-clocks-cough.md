@@ -2,4 +2,4 @@
 "@rhds/tokens": patch
 ---
 
-fix: missing file exports
+Fixes missing file exports
