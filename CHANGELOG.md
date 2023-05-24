@@ -1,5 +1,11 @@
 # @rhds/tokens
 
+## 1.1.1
+
+### Patch Changes
+
+- a777f24: Fixes missing file exports
+
 ## 1.1.0
 
 ### Minor Changes
