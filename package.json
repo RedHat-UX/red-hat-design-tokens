@@ -81,7 +81,7 @@
     "css",
     "editor",
     "plugins",
-    "js/**/*.{js,d.ts}",
+    "js/**/*.{js,d.ts,cjs}",
     "json",
     "scss"
   ],
