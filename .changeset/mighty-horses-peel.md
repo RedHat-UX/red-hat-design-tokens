@@ -2,4 +2,4 @@
 "@rhds/tokens": patch
 ---
 
-Added `js/*.cjs` extensions to files entries pattern array
+Added `js/*.cjs` to files entry points patterns array
