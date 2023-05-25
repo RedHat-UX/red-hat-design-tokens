@@ -1,6 +1,6 @@
 {
   "name": "@rhds/tokens",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Red Hat Design System Tokens",
   "scripts": {
     "build": "wireit",

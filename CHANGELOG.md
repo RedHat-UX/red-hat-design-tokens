@@ -1,5 +1,11 @@
 # @rhds/tokens
 
+## 1.1.2
+
+### Patch Changes
+
+- f820df6: Added `js/**/*.cjs` to files entry points patterns array
+
 ## 1.1.1
 
 ### Patch Changes
