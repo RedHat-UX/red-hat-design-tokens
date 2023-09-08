@@ -23,9 +23,12 @@ jobs:
         with:
           node-version: '18'
           cache: npm
+        env:
+          api_token: ${{ secrets.FIGMA_API_TOKEN }}
+          file_id: ${{ secrets.FIGMA_FILE_ID }}
 
       # Set up GitHub Actions caching for Wireit.
       - uses: google/wireit@setup-github-actions-caching/v1
 
       - run: npm ci --prefer-offline
-      - run: npm run figma
+      - run: npm run figma -- $api_token $file_id

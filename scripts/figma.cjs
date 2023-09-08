@@ -1,7 +1,8 @@
-const rhdsTokens = require('../build/rhds.tokens.json');
+const process = require('process');
 
-const apiToken = '';
-const fileId = '';
+const [,, apiToken, fileId] = process.argv;
+
+const rhdsTokens = require('../build/rhds.tokens.json');
 
 const fileName = `test-${new Date().toISOString().slice(0, 10)}`;
 const defaultModeId = 'default';
@@ -146,7 +147,6 @@ const importJSONFile = async () => {
   createCollection(fileName, defaultModeId);
   const modeId = defaultModeId;
   loopTokens(rhdsTokens, modeId);
-  console.log(figmaApiPayload)
   await callFigmaCreateApi(figmaApiPayload);
 };
 
