@@ -1,16 +1,6 @@
 name: Figma
 
-on:
-  pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
-      - ready_for_review
-      - auto_merge_enabled
-  push:
-    branches:
-      - main
+on: workflow_dispatch
 
 jobs:
   add-collection-to-figma:
