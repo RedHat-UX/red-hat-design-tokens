@@ -30,7 +30,7 @@ const parseColor = color => {
 };
 
 const callFigmaCreateApi = async body => {
-  const response = await fetch(
+  return await fetch(
     `https://api.figma.com/v1/files/${fileId}/variables`, {
       method: 'POST',
       body: JSON.stringify(body),
@@ -38,11 +38,19 @@ const callFigmaCreateApi = async body => {
         'X-FIGMA-TOKEN': apiToken,
         'Content-Type': 'application/json',
       },
-    });
-  return response.json();
+    }).then(response => response.json());
 };
 
 const createCollection = (name, initialModeId) => {
+  /**
+    * Standard format for creating a collection
+    * {
+    *   action
+    *   id
+    *   name
+    *   initialModeId
+    * }
+    */
   figmaApiPayload.variableCollections.push({
     action: 'CREATE',
     id: name,
@@ -58,11 +66,30 @@ const createToken = (
   name,
   value
 ) => {
+  /**
+   * Standard format for creating a mode value
+   * {
+   *  variableId,
+   *  modeId,
+   *  value
+   * }
+   */
   figmaApiPayload.variableModeValues.push({
     variableId: name,
     modeId,
     value,
   });
+
+  /**
+    * Standard format for creating a token
+    * {
+    *   action,
+    *   id,
+    *   name,
+    *   resolvedType, (COLOR, STRING, FLOAT)
+    *   variableCollectionId (name of the collection)
+    * }
+    */
   figmaApiPayload.variables.push({
     action: 'CREATE',
     id: name,
@@ -72,48 +99,56 @@ const createToken = (
   });
 };
 
+const getTokenType = (type, object) => {
+  if (object.$value.toString().match(/(px|rem)$/) || type === 'number') {
+    return 'FLOAT';
+  } else if (type === 'color') {
+    return 'COLOR';
+  }
+  return 'STRING';
+};
+
+const getTokenKey = (type, key, object) => {
+  if (type === 'FLOAT') {
+    const [measurement] = object.$value.match(/(px|rem)$/);
+    return `${key}${typeof measurement !== 'undefined' ? ` (${measurement})` : ''}/--${object?.name}`;
+  } else if (type === 'COLOR') {
+    return `${key}/--${object?.name}`;
+  }
+  return `${key}/--${object?.name}`;
+};
+
+const getTokenValue = (type, object) => {
+  if (type === 'FLOAT') {
+    let measurement = undefined;
+    const value = object?.$value.toString();
+    [measurement] = object.$value.match(/(px|rem)$/);
+    if (measurement) {
+      return Number.parseFloat(value.replace(measurement[0], ''));
+    }
+    return object?.$value;
+  } else if (type === 'COLOR') {
+    return parseColor(object?.attributes?.hex);
+  }
+  return object?.$value.toString();
+};
+
 const traverseToken = (collection, modeId, type, key, object) => {
   type = type || object?.$type;
   if (key.charAt(0) === '$') {
     return;
   }
   if (object?.$value !== undefined) {
-    if (object?.$value.toString().match(/(px|rem)$/)) {
-      type = 'number';
-    }
-    if (type === 'color') {
-      createToken(
-        collection,
-        modeId,
-        'COLOR',
-        `${key}/--${object?.name}`,
-        parseColor(object?.attributes?.hex)
-      );
-    } else if (type === 'number') {
-      let measurement = undefined;
-      const value = object?.$value.toString();
-      [measurement] = value.match(/(px|rem)$/);
-      if (measurement) {
-        object.$value = Number.parseFloat(value.replace(measurement[0], ''));
-      }
-      createToken(
-        collection,
-        modeId,
-        'FLOAT',
-        `${key}${
-          typeof measurement !== 'undefined' ? ` (${measurement})` : ''
-        }/--${object?.name}`,
-        object?.$value
-      );
-    } else {
-      createToken(
-        collection,
-        modeId,
-        'STRING',
-        `${key}/--${object?.name}`,
-        object?.$value.toString()
-      );
-    }
+    const tokenType = getTokenType(type, object);
+    const tokenKey = getTokenKey(tokenType, key, object);
+    const tokenValue = getTokenValue(tokenType, object);
+    createToken(
+      collection,
+      modeId,
+      tokenType,
+      tokenKey,
+      tokenValue,
+    );
   } else {
     if (typeof object !== 'undefined') {
       Object.entries(object).forEach(([key2, object2]) => {
@@ -145,8 +180,7 @@ const loopTokens = (rhdsTokens, modeId) => {
 
 const importJSONFile = async () => {
   createCollection(fileName, defaultModeId);
-  const modeId = defaultModeId;
-  loopTokens(rhdsTokens, modeId);
+  loopTokens(rhdsTokens, defaultModeId);
   await callFigmaCreateApi(figmaApiPayload);
 };
 
