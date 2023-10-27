@@ -7,30 +7,35 @@ color:
           Each theme features two shades of blue, one for Link and Focus states and one for Hover
           and Active states.
 
-    blue:
-      lightest:
-        $value: '{color.blue.100}'
-        $description: Inline link hover (dark theme)
-      lighter:
-        $value: '{color.blue.200}'
-        $description: Inline link (dark theme)
-      darker:
-        $value: '{color.blue.400}'
-        $description: Inline link (light theme)
-      darkest:
-        $value: '{color.blue.500}'
-        $description: Inline link hover (light theme)
+    primary:
+      default:
+        on-light:
+          $value: '{color.blue.50}'
+          $description: Light theme primary interactive - default
+        on-dark:
+          $value: '{color.blue.40}'
+          $description: Dark theme primary interactive - default
+      hover:
+        on-light:
+          $value: '{color.blue.70}'
+          $description: Light theme primary interactive - hover
+            default:
+        on-dark:
+          $value: '{color.blue.20}'
+          $description: Dark theme primary interactive - hover
+      visited:
+        default:
+          on-light:
+            $value: '{color.purple.50}'
+            $description: Light theme primary interactive - visited - default
+          on-dark:
+            $value: '{color.purple.30}'
+            $description: Dark theme primary interactive - visited - default
+        hover:
+          on-light:
+            $value: '{color.purple.70}'
+            $description: Light theme primary interactive - visited - hover
+          on-dark:
+            $value: '{color.purple.10}'
+            $description: Dark theme primary interactive - visited - hover
 
-    purple:
-      lightest:
-        $value: '{color.purple.100}'
-        $description: Inline link visited hover (dark theme)
-      lighter:
-        $value: '{color.purple.300}'
-        $description: Inline link visited (dark theme)
-      darker:
-        $value: '{color.purple.500}'
-        $description: Inline link visited (light theme)
-      darkest:
-        $value: '{color.purple.700}'
-        $description: Inline link visited hover (light theme)

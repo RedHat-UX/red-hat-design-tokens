@@ -16,28 +16,25 @@ color:
 
       lightest:
         $value: '{color.red.10}'
-        $description: Lightest brand red
+        $description:
       lighter:
-        $value: '{color.red.200}'
-        $description: lighter brand red
+        $value: '{color.red.20}'
+        $description:
       light:
-        $value: '{color.red.300}'
-        $description: Light brand red
+        $value: '{color.red.30}'
+        $description:
 
       dark:
-        $value: '{color.red.600}'
-        $description: Dark brand red/Brand red hover
+        $value: '{color.red.60}'
+        $description: Brand red hover
       darker:
-        $value: '{color.red.700}'
-        $description: Darker brand red
-      darkest:
-        $value: '{color.red.800}'
-        $description: Darkest brand red
+        $value: '{color.red.70}'
+        $description:
 
       on-dark:
-        $value: '{color.red.400}'
-        $description: Brand red on dark background
+        $value: '{color.red.40}'
+        $description: Brand red on dark background (DOUBLE CHECK)
       on-light:
-        $value: '{color.red.500}'
-        $description: Brand red on light background
+        $value: '{color.red.50}'
+        $description: Light and dark theme brand red
 

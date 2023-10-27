@@ -6,40 +6,74 @@ color:
         heading: Color
         order: 90
 
-    primary:
+    brand:
       on-light:
         $value: '{color.brand.red.on-light}'
+        $description: Light theme icon color (e.g. pictograms)
         attributes:
           category: icon
           type: color
       on-dark:
         $value: '{color.brand.red.on-dark}'
+        $description: Dark theme icon color (e.g. pictograms)
         attributes:
           category: icon
           type: color
 
-    secondary:
-      on-light:
-        $value: '{color.gray.90}'
-        attributes:
-          category: icon
-          type: color
-      on-dark:
-        $value: '{color.white}'
-        attributes:
-          category: icon
-          type: color
+    strong:
+      default:
+        on-light:
+          $value: '{color.gray.95}'
+          $description: Light theme strong icon color (e.g. close button)
+          attributes:
+            category: icon
+            type: color
+        on-dark:
+          $value: '{color.white}'
+          $description: Dark theme strong icon color (e.g. close button)
+          attributes:
+            category: icon
+            type: color
+      hover:
+        on-light:
+          $value: '{color.gray.60}'
+          $description: Light theme strong icon hover color
+          attributes:
+            category: icon
+            type: color
+        on-dark:
+          $value: '{color.gray.30}'
+          $description: Dark theme strong icon hover color
+          attributes:
+            category: icon
+            type: color
 
     subtle:
       # @see https://github.com/amzn/style-dictionary/issues/716#issuecomment-943673202
-      _:
-        $value: '{color.gray.40}'
-        attributes:
-          category: icon
-          type: color
+      default:
+        on-light:
+          $value: '{color.gray.60}'
+          $description: Light theme subtle icon color
+          attributes:
+            category: icon
+            type: color
+        on-dark:
+          $value: '{color.gray.30}'
+          $description: Dark theme subtle icon color
+          attributes:
+            category: icon
+            type: color
       hover:
-        $value: '{color.gray.30}'
-        attributes:
-          category: icon
-          type: color
+        on-light:
+          $value: '{color.gray.95}'
+          $description: Light theme subtle icon hover color
+          attributes:
+            category: icon
+            type: color
+        on-dark:
+          $value: '{color.white}'
+          $description: Dark theme subtle icon hover color
+          attributes:
+            category: icon
+            type: color
 

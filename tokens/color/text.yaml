@@ -28,40 +28,40 @@ color:
 
     primary:
       on-light:
-        $value: '{color.gray.90}'
-        $description: Primary text color for light theme
+        $value: '{color.gray.95}'
+        $description: Light theme primary text color
         attributes:
           category: typography
           type: color
       on-dark:
         $value: '{color.white}'
-        $description: Primary text color for dark theme
+        $description: Dark theme primary text color
         attributes:
           category: typography
           type: color
     secondary:
       on-light:
-        $value: '{color.gray.50}'
-        $description: Secondary text color for light theme
+        $value: '{color.gray.60}'
+        $description: Light theme secondary text color
         attributes:
           category: typography
           type: color
       on-dark:
-        $value: '{color.gray.20}'
-        $description: Secondary text color for dark theme
+        $value: '{color.gray.30}'
+        $description: Dark theme secondary text color
         attributes:
           category: typography
           type: color
     brand:
       on-light:
-        $value: '{color.red.500}'
-        $description: Brand text color for light theme
+        $value: '{color.red.50}'
+        $description: Light theme brand text color
         attributes:
           category: typography
           type: color
       on-dark:
-        $value: '{color.red.400}'
-        $description: Brand text color for dark theme
+        $value: '{color.red.50}'
+        $description: Dark theme brand text color
         attributes:
           category: typography
           type: color

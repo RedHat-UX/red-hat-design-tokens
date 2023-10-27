@@ -9,42 +9,58 @@ color:
 
     strong:
       on-light:
-        $value: '{color.gray.90}'
-        $description: Strong border color (light theme)
+        $value: '{color.gray.50}'
+        $description: Light theme strong border color
         attributes:
           category: border
           type: color
       on-dark:
         $value: '{color.white}'
-        $description: Strong border color (dark theme)
+        $description: Dark theme strong border color
         attributes:
           category: border
           type: color
 
     subtle:
       on-light:
-        $value: '{color.gray.20}'
-        $description: Subtle border color (light theme)
+        $value: '{color.gray.30}'
+        $description: Light theme subtle border color
         attributes:
           category: border
           type: color
       on-dark:
-        $value: '{color.gray.40}'
-        $description: Subtle border color (dark theme)
+        $value: '{color.gray.50}'
+        $description: Dark theme subtle border color
         attributes:
           category: border
           type: color
 
     interactive:
-      on-light:
-        $value: '{color.blue.400}'
-        $description: Interactive border color (light theme)
-        attributes:
-          category: border
-          type: color
-      on-dark:
-        $value: '{color.blue.200}'
-        $description: Interactive border color (dark theme)
-        attributes:
-          category: border
-          type: color
+      default:
+        on-light:
+          $value: '{color.blue.50}'
+          $description: Light theme interactive border color
+          attributes:
+            category: border
+            type: color
+        on-dark:
+          $value: '{color.blue.40}'
+          $description: Dark theme interactive border color
+          attributes:
+            category: border
+            type: color
+
+    destructive:
+      default:
+        on-light:
+          $value: '{color.red-orange.40}'
+          $description: Light theme destructive border color
+          attributes:
+            category: border
+            type: color
+        on-dark:
+          $value: '{color.red-orange.60}'
+          $description: Dark theme interactive border color
+          attributes:
+            category: border
+            type: color

@@ -5,17 +5,10 @@ color:
         order: 10
         collapse: true
 
-    base:
-      on-light:
-        $value: '{color.blue.400}'
-        $description: Inline link (light theme)
-      on-dark:
-        $value: '{color.blue.200}'
-        $description: Inline link (dark theme)
     brand:
       on-light:
-        $value: '{color.red.500}'
-        $description: Brand red (light theme)
+        $value: '{color.red.50}'
+        $description: Light theme border accent color (e.g. Accordion, Tabs, etc.)
       on-dark:
-        $value: '{color.red.400}'
-        $description: Brand red (dark theme)
+        $value: '{color.red.50}'
+        $description: Dark theme border accent color (e.g. Accordion, Tabs, etc.)
