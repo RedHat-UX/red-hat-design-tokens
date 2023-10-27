@@ -19,7 +19,6 @@ color:
         on-light:
           $value: '{color.blue.70}'
           $description: Light theme primary interactive - hover
-            default:
         on-dark:
           $value: '{color.blue.20}'
           $description: Dark theme primary interactive - hover
