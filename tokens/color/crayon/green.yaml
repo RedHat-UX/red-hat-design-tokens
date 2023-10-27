@@ -1,0 +1,28 @@
+color:
+  green:
+    $extensions:
+      com.redhat.ux:
+        order: 304
+        description: >-
+          The green color is primarily used to indicate a success state, but it can also be used sparingly in other situations where green is needed.
+    10:
+      $value: '#E9F7DF'
+      $description:
+    20:
+      $value: '#D1F1BB'
+      $description:
+    30:
+      $value: '#AFDC8F'
+      $description:
+    40:
+      $value: '#87BB62'
+      $description:
+    50:
+      $value: '#63993D'
+      $description:
+    60:
+      $value: '#3D7317'
+      $description:
+    70:
+      $value: '#204D00'
+      $description:

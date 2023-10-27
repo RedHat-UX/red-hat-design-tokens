@@ -15,7 +15,7 @@ color:
             [Brand standards](https://www.redhat.com/en/about/brand/standards/color) page.
 
       lightest:
-        $value: '{color.red.100}'
+        $value: '{color.red.10}'
         $description: Lightest brand red
       lighter:
         $value: '{color.red.200}'

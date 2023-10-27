@@ -1,26 +1,27 @@
 color:
-  blue:
+  teal:
     $extensions:
       com.redhat.ux:
-        order: 301
+        order: 302
     10:
-      $value: '#E0F0FF'
+      $value: '#DAF2F2'
       $description:
     20:
-      $value: '#B9DAFC'
+      $value: '#B9E5E5'
       $description:
     30:
-      $value: '#92C5F9'
+      $value: '#9AD8D8'
       $description:
     40:
-      $value: '#4394E5'
+      $value: '#63BDBD'
       $description:
     50:
-      $value: '#0066CC'
+      $value: '#37A3A3'
       $description:
     60:
-      $value: '#004D99'
+      $value: '#147878'
       $description:
     70:
-      $value: '#003366'
+      $value: '#004D4D'
       $description:
+
