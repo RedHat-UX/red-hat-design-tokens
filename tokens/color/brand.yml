@@ -33,7 +33,8 @@ color:
 
       on-dark:
         $value: '{color.red.40}'
-        $description: Brand red on dark background (DOUBLE CHECK)
+        # TODO(marionne) DOUBLE CHECK
+        $description: Brand red on dark background
       on-light:
         $value: '{color.red.50}'
         $description: Light and dark theme brand red
