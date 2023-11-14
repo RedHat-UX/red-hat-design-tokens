@@ -49,7 +49,6 @@ color:
             type: color
 
     subtle:
-      # @see https://github.com/amzn/style-dictionary/issues/716#issuecomment-943673202
       default:
         on-light:
           $value: '{color.gray.60}'
