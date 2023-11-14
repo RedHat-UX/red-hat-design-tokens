@@ -54,13 +54,13 @@ color:
           type: color
     brand:
       on-light:
-        $value: '{color.red.50}'
+        $value: '{color.brand.red.on-light}'
         $description: Light theme brand text color
         attributes:
           category: typography
           type: color
       on-dark:
-        $value: '{color.red.50}'
+        $value: '{color.brand.red.on-light}'
         $description: Dark theme brand text color
         attributes:
           category: typography
