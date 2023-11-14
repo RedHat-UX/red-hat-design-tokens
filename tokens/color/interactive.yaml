@@ -22,6 +22,20 @@ color:
         on-dark:
           $value: '{color.blue.20}'
           $description: Dark theme primary interactive - hover
+      active:
+        on-light:
+          $value: '{color.blue.70}'
+          $description: Light theme primary interactive - active
+        on-dark:
+          $value: '{color.blue.20}'
+          $description: Dark theme primary interactive - active
+      focus:
+        on-light:
+          $value: '{color.blue.70}'
+          $description: Light theme primary interactive - focus
+        on-dark:
+          $value: '{color.blue.20}'
+          $description: Dark theme primary interactive - focus
       visited:
         default:
           on-light:
@@ -37,4 +51,77 @@ color:
           on-dark:
             $value: '{color.purple.10}'
             $description: Dark theme primary interactive - visited - hover
+        active:
+          on-light:
+            $value: '{color.purple.70}'
+            $description: Light theme primary interactive - visited - active
+          on-dark:
+            $value: '{color.purple.10}'
+            $description: Dark theme primary interactive - visited - active
+        focus:
+          on-light:
+            $value: '{color.purple.70}'
+            $description: Light theme primary interactive - visited - focus
+          on-dark:
+            $value: '{color.purple.10}'
+            $description: Dark theme primary interactive - visited - focus
+
+    secondary:
+      default:
+        on-light:
+          $value: '{color.gray.60}'
+          $description: Light theme secondary interactive - default
+        on-dark:
+          $value: '{color.gray.30}'
+          $description: Dark theme secondary interactive - default
+      hover:
+        on-light:
+          $value: '{color.gray.60}'
+          $description: Light theme secondary interactive - hover
+        on-dark:
+          $value: '{color.gray.30}'
+          $description: Dark theme secondary interactive - hover
+      active:
+        on-light:
+          $value: '{color.gray.60}'
+          $description: Light theme secondary interactive - active
+        on-dark:
+          $value: '{color.gray.30}'
+          $description: Dark theme secondary interactive - active
+      focus:
+        on-light:
+          $value: '{color.gray.60}'
+          $description: Light theme secondary interactive - focus
+        on-dark:
+          $value: '{color.gray.30}'
+          $description: Dark theme secondary interactive - focus
+      visited:
+        default:
+          on-light:
+            $value: '{color.gray.60}'
+            $description: Light theme secondary interactive - visited - default
+          on-dark:
+            $value: '{color.gray.30}'
+            $description: Dark theme secondary interactive - visited - default
+        hover:
+          on-light:
+            $value: '{color.gray.60}'
+            $description: Light theme secondary interactive - visited - hover
+          on-dark:
+            $value: '{color.gray.30}'
+            $description: Dark theme secondary interactive - visited - hover
+        active:
+          on-light:
+            $value: '{color.gray.60}'
+            $description: Light theme secondary interactive - visited - active
+          on-dark:
+            $value: '{color.gray.30}'
+            $description: Dark theme secondary interactive - visited - active
+        focus:
+          on-light:
+            $value: '{color.gray.60}'
+            $description: Light theme secondary interactive - visited - focus
+          on-dark:
+            $value: '{color.gray.30}'
+            $description: Dark theme secondary interactive - visited - focus
 

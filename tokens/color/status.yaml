@@ -1,0 +1,48 @@
+color:
+  status:
+    $extensions:
+      com.redhat.ux:
+        order: 260
+
+    note:
+      on-light:
+        $value: '{color.purple.50}'
+        $description: Light theme note color
+      on-dark:
+        $value: '{color.purple.30}'
+        $description: Dark theme note color
+    neutral:
+      on-light:
+        $value: '{color.gray.50}'
+        $description: Light theme neutral status color
+      on-dark:
+        $value: '{color.gray.40}'
+        $description: Dark theme caution status color
+    success:
+      on-light:
+        $value: '{color.green.50}'
+        $description: Light theme success status color
+      on-dark:
+        $value: '{color.green.50}'
+        $description: Dark theme success status color
+    caution:
+      on-light:
+        $value: '{color.yellow.30}'
+        $description: Light theme caution status color
+      on-dark:
+        $value: '{color.yellow.30}'
+        $description: Dark theme caution status color
+    warning:
+      on-light:
+        $value: '{color.orange.50}'
+        $description: Light theme warning status color
+      on-dark:
+        $value: '{color.orange.40}'
+        $description: Dark theme warning status color
+    danger:
+      on-light:
+        $value: '{color.red-orange.50}'
+        $description: Light theme danger status color
+      on-dark:
+        $value: '{color.red-orange.50}'
+        $description: Dark theme danger status color

@@ -53,14 +53,14 @@ color:
     destructive:
       default:
         on-light:
-          $value: '{color.red-orange.40}'
+          $value: '{color.red-orange.60}'
           $description: Light theme destructive border color
           attributes:
             category: border
             type: color
         on-dark:
-          $value: '{color.red-orange.60}'
-          $description: Dark theme interactive border color
+          $value: '{color.red-orange.40}'
+          $description: Dark theme destructive border color
           attributes:
             category: border
             type: color

@@ -6,19 +6,22 @@ color:
 
     lightest:
       $value: '{color.white}'
-      $description: Primary surface (light theme)
+      $description: Light theme primary surface
     lighter:
       $value: '{color.gray.10}'
-      $description: Secondary surface (light theme)
+      $description: Light theme secondary surface
     light:
       $value: '{color.gray.20}'
-      $description: Tertiary surface (light theme)
+      $description: Light theme tertiary surface
     dark:
       $value: '{color.gray.70}'
-      $description: Tertiary surface (dark theme)
+      $description: Dark theme tertiary surface
     darker:
       $value: '{color.gray.80}'
-      $description: Secondary surface (dark theme)
+      $description: Dark theme secondary surface
+    darkest-alt:
+      $value: '{color.gray.90}'
+      $description: Dark theme primary surface (alternative)
     darkest:
       $value: '{color.gray.95}'
-      $description: Primary surface (dark theme)
+      $description: Dark theme primary surface

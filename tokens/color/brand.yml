@@ -16,26 +16,18 @@ color:
 
       lightest:
         $value: '{color.red.10}'
-        $description:
       lighter:
         $value: '{color.red.20}'
-        $description:
       light:
         $value: '{color.red.30}'
-        $description:
-
+      light-alt:
+        $value: '{color.red.40}'
       dark:
         $value: '{color.red.60}'
-        $description: Brand red hover
       darker:
         $value: '{color.red.70}'
-        $description:
-
-      on-dark:
-        $value: '{color.red.40}'
-        # TODO(marionne) DOUBLE CHECK
-        $description: Brand red on dark background
       on-light:
         $value: '{color.red.50}'
-        $description: Light and dark theme brand red
+      on-dark:
+        $value: '{color.red.50}'
 
