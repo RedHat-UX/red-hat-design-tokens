@@ -20,7 +20,7 @@ color:
 
     secondary:
       on-light:
-        $value: '{color.gray.90}'
+        $value: '{color.gray.95}'
         attributes:
           category: icon
           type: color
@@ -33,12 +33,12 @@ color:
     subtle:
       # @see https://github.com/amzn/style-dictionary/issues/716#issuecomment-943673202
       _:
-        $value: '{color.gray.40}'
+        $value: '{color.gray.50}'
         attributes:
           category: icon
           type: color
       hover:
-        $value: '{color.gray.30}'
+        $value: '{color.gray.40}'
         attributes:
           category: icon
           type: color

@@ -9,28 +9,28 @@ color:
 
     blue:
       lightest:
-        $value: '{color.blue.100}'
+        $value: '{color.blue.blue-20}'
         $description: Inline link hover (dark theme)
       lighter:
-        $value: '{color.blue.200}'
+        $value: '{color.blue.30}'
         $description: Inline link (dark theme)
       darker:
-        $value: '{color.blue.400}'
+        $value: '{color.blue.50}'
         $description: Inline link (light theme)
       darkest:
-        $value: '{color.blue.500}'
+        $value: '{color.blue.70}'
         $description: Inline link hover (light theme)
 
     purple:
       lightest:
-        $value: '{color.purple.100}'
+        $value: '{color.purple.10}'
         $description: Inline link visited hover (dark theme)
       lighter:
-        $value: '{color.purple.300}'
+        $value: '{color.purple.30}'
         $description: Inline link visited (dark theme)
       darker:
-        $value: '{color.purple.500}'
+        $value: '{color.purple.50}'
         $description: Inline link visited (light theme)
       darkest:
-        $value: '{color.purple.700}'
+        $value: '{color.purple.70}'
         $description: Inline link visited hover (light theme)
