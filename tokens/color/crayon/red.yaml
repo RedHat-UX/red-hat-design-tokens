@@ -3,30 +3,24 @@ color:
     $extensions:
       com.redhat.ux:
         order: 300
+    10:
+      $value: '#FCE3E3'
+      $description:
+    20:
+      $value: '#FBC5C5'
+      $description:
+    30:
+      $value: '#F9A8A8'
+      $description:
+    40:
+      $value: '#F56E6E'
+      $description:
     50:
-      $value: '#faeae8'
-      $description: Alert - Critical background
-    100:
-      $value: '#fddbdb'
-      $description: Lightest red
-    200:
-      $value: '#fab6b6'
-      $description: Lighter red
-    300:
-      $value: '#f56d6d'
-      $description: Light red
-    400:
-      $value: '#ff442b'
-      $description: Brand red (dark theme)
-    500:
-      $value: '#ee0000'
-      $description: Brand red (light theme)
-    600:
-      $value: '#be0000'
-      $description: Dark red or brand red hover
-    700:
-      $value: '#8f0000'
-      $description: Darker red
-    800:
-      $value: '#5f0000'
-      $description: Darkest red
+      $value: '#EE0000'
+      $description: Red Hat red
+    60:
+      $value: '#A60000'
+      $description:
+    70:
+      $value: '#5F0000'
+      $description:

@@ -3,14 +3,24 @@ color:
     $extensions:
       com.redhat.ux:
         order: 306
+    10:
+      $value: '#ECE6FF'
+      $description:
+    20:
+      $value: '#D0C5F4'
+      $description:
+    30:
+      $value: '#B6A6E9'
+      $description:
+    40:
+      $value: '#876FD4'
+      $description:
     50:
-      $value: '#f2f0fc'
-      $description: Label - Filled (Purple) background color
-    100:
-      $value: '#cbc1ff'
-    300:
-      $value: '#a18fff'
-    500:
-      $value: '#6753ac'
-    700:
-      $value: '#1f0066'
+      $value: '#5E40BE'
+      $description:
+    60:
+      $value: '#3D2785'
+      $description:
+    70:
+      $value: '#21134D'
+      $description:

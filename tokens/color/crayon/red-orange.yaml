@@ -1,0 +1,29 @@
+color:
+  red-orange:
+    $extensions:
+      com.redhat.ux:
+        order: 303
+        description: >-
+          The red orange color is reserved for danger or error states. Do not use it anywhere else.
+
+    10:
+      $value: '#FFE3D9'
+      $description:
+    20:
+      $value: '#FBBEA8'
+      $description:
+    30:
+      $value: '#F89B78'
+      $description:
+    40:
+      $value: '#F4784A'
+      $description:
+    50:
+      $value: '#F4784A'
+      $description:
+    60:
+      $value: '#B1380B'
+      $description:
+    70:
+      $value: '#731F00'
+      $description:
