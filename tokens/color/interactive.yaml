@@ -9,7 +9,7 @@ color:
 
     blue:
       lightest:
-        $value: '{color.blue.blue-20}'
+        $value: '{color.blue.20}'
         $description: Inline link hover (dark theme)
       lighter:
         $value: '{color.blue.30}'
