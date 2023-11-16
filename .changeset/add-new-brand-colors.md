@@ -2,9 +2,11 @@
 "@rhds/tokens": major
 ---
 
+# Crayon color updates
+
 Crayon color token names and values were changed to match the [new Red Hat color palette](https://www.redhat.com/en/about/brand/standards/color).
 
-To help you make these changes, use the [RHDS Stylelint Plugin](https://github.com/RedHat-UX/red-hat-design-tokens/tree/main/plugins/stylelint). Below is a snippet with a rule to help identify when an old token name is used. If you like more information about Stylelint, visit [stylelint.io](http://stylelint.io/).
+To help you make these changes, use the [RHDS Stylelint Plugin](https://github.com/RedHat-UX/red-hat-design-tokens/tree/main/plugins/stylelint). Below is a snippet with a rule to help identify when an old token name is used. If you'd like more information about Stylelint, visit [stylelint.io](http://stylelint.io/).
 
 > This rule can take a dictionary of names to migrate, and if it finds one of the specified names, it will automatically replace it with the new one.
 
@@ -91,7 +93,7 @@ Red-orange is a new crayon color token group. This color set is reserved for dan
 
 ### Teal (previously cyan)
 
-| `Old token | Old value | New token | New value |
+| Old token | Old value | New token | New value |
 | ---------- | --------- | --------- | --------- |
 | `cyan-50`  | `#F2F9F9` | `teal-10` | `#DAF2F2` |
 |            |           | `teal-20` | `#B9E5E5` |
@@ -133,6 +135,7 @@ The gray token names changed, but the values did not.
 
 | Old token | New token  |
 | --------- | ---------- |
+| `white`   | `white`    |
 | `gray-05` | `gray-10`  |
 | `gray-10` | `gray-20`  |
 | `gray-20` | `gray-30`  |
@@ -148,3 +151,90 @@ The gray token names changed, but the values did not.
 
 ## Semantic token value changes
 
+### Accent
+
+| Semantic token          | Old crayon token value | New crayon token value |
+| ----------------------- | ---------------------- | ---------------------- |
+| `accent-base-on-light`  | `blue-400`               | `blue-50`              |
+| `accent-base-on-dark`   | `blue-200`               | `blue-30`              |
+| `accent-brand-on-light` | `red-500`                | `brand-red-on-light`   |
+| `accent-brand-on-dark`  | `red-400`                | `brand-red-on-dark`    |
+
+### Border
+
+| Semantic token                | Old crayon token value | New crayon token value |
+| ----------------------------- | ---------------------- | ---------------------- |
+| `border-strong-on-light`      | `gray-90`              | `gray-95`              |
+| `border-strong-on-dark`       | `white`                | `white`                |
+| `border-subtle-on-light`      | `gray-20`              | `gray-30`              |
+| `border-subtle-on-dark`       | `gray-40`              | `gray-50`              |
+| `border-interactive-on-light` | `blue-400`             | `blue-50`              |
+| `border-interactive-on-dark`  | `blue-200`             | `blue-30`              |
+
+### Brand
+
+| Semantic token       | Old crayon token value | New crayon token value |
+| -------------------- | ---------------------- | ---------------------- |
+| `brand-red-lightest` | `red-100`              | `red-10`               |
+| `brand-red-lighter`  | `red-200`              | `red-20`               |
+| `brand-red-light`    | `red-300`              | `red-40`               |
+| `brand-red-dark`     | `red-600`              | `red-60`               |
+| `brand-red-darker`   | `red-700`              | `red-70`               |
+| `brand-red-darkest`  | `red-800`              | `red-70`               |
+| `brand-red-on-light` | `red-500`              | `red-50`               |
+| `brand-red-on-dark`  | `red-400`              | `red-50`               |
+
+### Canvas
+
+| Semantic token | Old crayon token value | New crayon token value |
+| -------------- | ---------------------- | ---------------------- |
+| `canvas-white` | `white`                | `white`                |
+| `canvas-black` | `gray-90`              | `gray-95`              |
+
+### Icon
+
+| Semantic token            | Old crayon token value | New crayon token value |
+| ------------------------- | ---------------------- | ---------------------- |
+| `icon-primary-on-light`   | `brand-red-on-light`   | `brand-red-on-light`   |
+| `icon-primary-on-dark`    | `brand-red-on-dark`    | `brand-red-on-dark`    |
+| `icon-secondary-on-light` | `gray-90`              | `gray-95`              |
+| `icon-secondary-on-dark`  | `white`                | `gray-50`              |
+| `icon-subtle`             | `gray-40`              | `gray-50`              |
+| `icon-subtle-hover`       | `gray-30`              | `gray-40`              |
+
+### Interactive
+
+| Semantic token                | Old crayon token value | New crayon token value |
+| ----------------------------- | ---------------------- | ---------------------- |
+| `interactive-blue-lightest`   | `blue-100`             | `blue-20`              |
+| `interactive-blue-lighter`    | `blue-200`             | `blue-30`              |
+| `interactive-blue-darker`     | `blue-400`             | `blue-50`              |
+| `interactive-blue-darkest`    | `blue-500`             | `blue-70`              |
+| `interactive-purple-lightest` | `purple-100`           | `purple-10`            |
+| `interactive-purple-lighter`  | `purple-300`           | `purple-30`            |
+| `interactive-purple-darker`   | `purple-500`           | `purple-50`            |
+| `interactive-purple-darkest`  | `purple-700`           | `purple-70`            |
+
+### Surface
+
+| Semantic token     | Old crayon token value | New crayon token value |
+| ------------------ | ---------------------- | ---------------------- |
+| `surface-lightest` | `white`                | `white`                |
+| `surface-lighter`  | `gray-05`              | `gray-10`              |
+| `surface-light`    | `gray-10`              | `gray-20`              |
+| `surface-dark`     | `gray-60`              | `gray-70`              |
+| `surface-dark-alt` | `gray-70`              | `gray-80`              |
+| `surface-darker`   | `gray-80`              | `gray-90`              |
+| `surface-darkest`  | `gray-90`              | `gray-95`              |
+
+
+### Text
+
+| Semantic token            | Old crayon token value | New crayon token value |
+| ------------------------- | ---------------------- | ---------------------- |
+| `text-primary-on-light`   | `gray-90`              | `gray-95`              |
+| `text-primary-on-dark`    | `white`                | `white`                |
+| `text-secondary-on-light` | `gray-50`              | `gray-60`              |
+| `text-secondary-on-dark`  | `gray-20`              | `gray-30`              |
+| `text-brand-on-light`     | `red-500`              | `brand-red-on-light`   |
+| `text-brand-on-dark`      | `red-400`              | `brand-red-on-dark`    |
