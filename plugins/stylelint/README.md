@@ -37,6 +37,6 @@ rules:
   rhds/no-unknown-token-value:
     - true
     - migrations:
-      # instances of black-900 will be replaced with gray-90
-      --rh-color-black-900: --rh-color-gray-90
+      # instances of gray-90 will be replaced with gray-95
+      --rh-color-gray-90: --rh-color-gray-95
 ```
