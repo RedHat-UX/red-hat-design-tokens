@@ -7,22 +7,15 @@ color:
         order: 302
     10:
       $value: '#DAF2F2'
-      $description:
     20:
       $value: '#B9E5E5'
-      $description:
     30:
       $value: '#9AD8D8'
-      $description:
     40:
       $value: '#63BDBD'
-      $description:
     50:
       $value: '#37A3A3'
-      $description:
     60:
       $value: '#147878'
-      $description:
     70:
       $value: '#004D4D'
-      $description:

@@ -5,22 +5,15 @@ color:
         order: 305
     10:
       $value: '#FFE8CC'
-      $description:
     20:
       $value: '#FCCB8F'
-      $description:
     30:
       $value: '#F8AE54'
-      $description:
     40:
       $value: '#F5921B'
-      $description:
     50:
       $value: '#CA6C0F'
-      $description:
     60:
       $value: '#9E4A06'
-      $description:
     70:
       $value: '#732E00'
-      $description:

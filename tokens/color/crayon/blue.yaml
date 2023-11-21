@@ -5,22 +5,15 @@ color:
         order: 301
     10:
       $value: '#E0F0FF'
-      $description:
     20:
       $value: '#B9DAFC'
-      $description:
     30:
       $value: '#92C5F9'
-      $description:
     40:
       $value: '#4394E5'
-      $description:
     50:
       $value: '#0066CC'
-      $description:
     60:
       $value: '#004D99'
-      $description:
     70:
       $value: '#003366'
-      $description:

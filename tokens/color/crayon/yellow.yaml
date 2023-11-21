@@ -7,22 +7,15 @@ color:
         order: 303
     10:
       $value: '#FFF4CC'
-      $description:
     20:
       $value: '#FFE072'
-      $description:
     30:
       $value: '#FFCC17'
-      $description:
     40:
       $value: '#DCA614'
-      $description:
     50:
       $value: '#B98412'
-      $description:
     60:
       $value: '#96640F'
-      $description:
     70:
       $value: '#73480B'
-      $description:
