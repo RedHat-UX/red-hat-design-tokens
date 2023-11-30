@@ -5,15 +5,20 @@ color:
         order: 305
     10:
       $value: '#FFE8CC'
+      $description: Label - Filled (Orange) background color
     20:
       $value: '#FCCB8F'
     30:
       $value: '#F8AE54'
+      $description: Label - Filled (Orange) border color
     40:
       $value: '#F5921B'
+      $description: Label - Filled (Orange) accent color
     50:
       $value: '#CA6C0F'
+      $description: Label - Filled (Orange) accent color
     60:
       $value: '#9E4A06'
     70:
       $value: '#732E00'
+      $description: 	Label - Filled (Orange) text color

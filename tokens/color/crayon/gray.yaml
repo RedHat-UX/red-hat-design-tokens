@@ -15,42 +15,52 @@ color:
 
     '10':
       $value: '#F2F2F2'
+      $description: Tertiary surface (light theme)
       attributes:
         type: gray
     '20':
       $value: '#E0E0E0'
+      $description: Secondary surface (light theme)
       attributes:
         type: gray
     '30':
       $value: '#C7C7C7'
+      $description: Subtle borders (light theme)
       attributes:
         type: gray
     '40':
       $value: '#A3A3A3'
+      $description: Subtle icon (hover state)
       attributes:
         type: gray
     '50':
       $value: '#707070'
+      $description: Subtle icon
       attributes:
         type: gray
     '60':
       $value: '#4D4D4D'
+      $description: Secondary text (light theme)
       attributes:
         type: gray
     '70':
       $value: '#383838'
+      $description: Tertiary surface (dark theme)
       attributes:
         type: gray
     '80':
       $value: '#292929'
+      $description: Alternative tertiary surface (not available for use with context provider)
       attributes:
         type: gray
     '90':
       $value: '#1F1F1F'
+      $description: Secondary surface (dark theme)
       attributes:
         type: gray
     '95':
       $value: '#151515'
+      $description: Primary surface (dark theme) or primary text (light theme)
       attributes:
         type: gray
 

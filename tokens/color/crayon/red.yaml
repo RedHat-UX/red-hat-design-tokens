@@ -3,17 +3,26 @@ color:
     $extensions:
       com.redhat.ux:
         order: 300
+        description: >-
+          Avoid using *any* red color token for danger or error messaging.
     10:
       $value: '#FCE3E3'
+      $description:
     20:
       $value: '#FBC5C5'
+      $description: Lightest brand red
     30:
       $value: '#F9A8A8'
+      $description: Lighter brand red
     40:
       $value: '#F56E6E'
+      $description: Light brand red
     50:
       $value: '#EE0000'
+      $description: Brand red (light and dark theme)
     60:
       $value: '#A60000'
+      $description: Dark brand red
     70:
       $value: '#5F0000'
+      $description: Darker brand red

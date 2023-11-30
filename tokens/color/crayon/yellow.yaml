@@ -7,15 +7,18 @@ color:
         order: 303
     10:
       $value: '#FFF4CC'
+      $description: Alert - Warning background
     20:
       $value: '#FFE072'
     30:
       $value: '#FFCC17'
     40:
       $value: '#DCA614'
+      $description: 	Alert - Warning accent
     50:
       $value: '#B98412'
     60:
       $value: '#96640F'
     70:
       $value: '#73480B'
+      $description: Alert - Warning title text

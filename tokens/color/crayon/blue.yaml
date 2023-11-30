@@ -5,15 +5,22 @@ color:
         order: 301
     10:
       $value: '#E0F0FF'
+      $description: Alert - Info background
     20:
       $value: '#B9DAFC'
+      $description: Label - Filled (Blue) border color
     30:
       $value: '#92C5F9'
+      $description: Inline link (dark theme)
     40:
       $value: '#4394E5'
+      $description: Alert - Info accent
     50:
       $value: '#0066CC'
+      $description: Label - Filled (Blue) accent color
     60:
       $value: '#004D99'
+      $description: Inline link hover (light theme)
     70:
       $value: '#003366'
+      $description: 	Alert - Info title text

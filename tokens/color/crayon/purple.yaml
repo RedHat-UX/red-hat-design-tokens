@@ -5,15 +5,20 @@ color:
         order: 306
     10:
       $value: '#ECE6FF'
+      $description: Label - Filled (Purple) background color
     20:
       $value: '#D0C5F4'
+      $description: Inline link visited hover (dark theme)
     30:
       $value: '#B6A6E9'
     40:
       $value: '#876FD4'
+      $description: Inline link visited (dark theme)
     50:
       $value: '#5E40BE'
     60:
       $value: '#3D2785'
+      $description: Inline link visited (light theme)
     70:
       $value: '#21134D'
+      $description: Inline link visited hover (light theme)

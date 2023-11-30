@@ -50,7 +50,7 @@ rules:
       --rh-color-blue-50: --rh-color-blue-10
       --rh-color-blue-100: --rh-color-blue-20
       --rh-color-blue-200: --rh-color-blue-30
-      --rh-color-blue-300: --rh-color-blue-40
+      --rh-color-blue-250: --rh-color-blue-40
       --rh-color-blue-400: --rh-color-blue-50
       --rh-color-blue-500: --rh-color-blue-60
       --rh-color-blue-600: --rh-color-blue-70
