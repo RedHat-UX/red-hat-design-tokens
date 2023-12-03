@@ -3,22 +3,24 @@ color:
     $extensions:
       com.redhat.ux:
         order: 301
-    50:
-      $value: '#e7f1fa'
+    10:
+      $value: '#E0F0FF'
       $description: Alert - Info background
-    100:
-      $value: '#bee1f4'
+    20:
+      $value: '#B9DAFC'
       $description: Label - Filled (Blue) border color
-    200:
-      $value: '#73bcf7'
-    250:
-      $value: '#2b9af3'
+    30:
+      $value: '#92C5F9'
+      $description: Inline link (dark theme)
+    40:
+      $value: '#4394E5'
       $description: Alert - Info accent
-    400:
-      $value: '#0066cc'
+    50:
+      $value: '#0066CC'
       $description: Label - Filled (Blue) accent color
-    500:
-      $value: '#004080'
-    600:
-      $value: '#002952'
-      $description: Alert - Info title text
+    60:
+      $value: '#004D99'
+      $description: Inline link hover (light theme)
+    70:
+      $value: '#003366'
+      $description: 	Alert - Info title text
