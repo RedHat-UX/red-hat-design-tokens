@@ -10,7 +10,7 @@ To help you make these changes, use the [RHDS Stylelint Plugin](https://github.c
 
 Stylelint's migration rule can take a dictionary of names to migrate, and if it finds one of the specified names, it will automatically replace it with the new one. The rules below indicate how color tokens in 1.0 map to those in 2.0 and can be copied and pasted into your own repo. 
 
-```
+```yaml
 rules:
   rhds/no-unknown-token-value:
     - true
