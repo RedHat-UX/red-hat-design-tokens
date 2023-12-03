@@ -76,34 +76,40 @@ rules:
 
 There are several new crayon color tokens that have been added and do not directly map to a 1.0 token. These include:
 
---rh-color-red-orange-10
---rh-color-red-orange-20
---rh-color-red-orange-30
---rh-color-red-orange-40
---rh-color-red-orange-50
+- `--rh-color-red-orange-10`
+- `--rh-color-red-orange-20`
+- `--rh-color-red-orange-30`
+- `--rh-color-red-orange-40`
+- `--rh-color-red-orange-50`
 
---rh-color-orange-20
---rh-color-orange-50
+- `--rh-color-orange-20`
+- `--rh-color-orange-50`
 
---rh-color-yellow-20
---rh-color-yellow-30
---rh-color-yellow-50
---rh-color-yellow-60
+- `--rh-color-yellow-20`
+- `--rh-color-yellow-30`
+- `--rh-color-yellow-50`
+- `--rh-color-yellow-60`
 
---rh-color-green-30
---rh-color-green-40
---rh-color-green-50
+- `--rh-color-green-30`
+- `--rh-color-green-40`
+- `--rh-color-green-50`
 
---rh-color-teal-20
---rh-color-teal-40
+- `--rh-color-teal-20`
+- `--rh-color-teal-40`
+ 
+- `--rh-color-purple-30`
+- `--rh-color-purple-50`
 
---rh-color-purple-30
---rh-color-purple-50
 
 
 ## Semantic token value changes
 
-The following semantic token values changed, but the token names did not.
+The following semantic token values changed, but the token names did not. In many cases, you may automatically migrate these tokens using the `rhds/token-values` stylelint rule.
+
+~~~yaml
+rules:
+  rhds/token-values: true
+~~~
 
 ### Accent
 
