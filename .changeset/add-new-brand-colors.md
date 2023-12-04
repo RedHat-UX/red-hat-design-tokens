@@ -12,7 +12,7 @@ Stylelint's migration rule can take a dictionary of names to migrate, and if it 
 
 ```yaml
 rules:
-  rhds/no-unknown-token-value:
+  rhds/token-values:
     - true
     - migrations:
       # reds
