@@ -3,14 +3,22 @@ color:
     $extensions:
       com.redhat.ux:
         order: 306
-    50:
-      $value: '#f2f0fc'
+    10:
+      $value: '#ECE6FF'
       $description: Label - Filled (Purple) background color
-    100:
-      $value: '#cbc1ff'
-    300:
-      $value: '#a18fff'
-    500:
-      $value: '#6753ac'
-    700:
-      $value: '#1f0066'
+    20:
+      $value: '#D0C5F4'
+      $description: Inline link visited hover (dark theme)
+    30:
+      $value: '#B6A6E9'
+    40:
+      $value: '#876FD4'
+      $description: Inline link visited (dark theme)
+    50:
+      $value: '#5E40BE'
+    60:
+      $value: '#3D2785'
+      $description: Inline link visited (light theme)
+    70:
+      $value: '#21134D'
+      $description: Inline link visited hover (light theme)

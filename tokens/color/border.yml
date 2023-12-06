@@ -9,7 +9,7 @@ color:
 
     strong:
       on-light:
-        $value: '{color.gray.90}'
+        $value: '{color.gray.95}'
         $description: Strong border color (light theme)
         attributes:
           category: border
@@ -23,13 +23,13 @@ color:
 
     subtle:
       on-light:
-        $value: '{color.gray.20}'
+        $value: '{color.gray.30}'
         $description: Subtle border color (light theme)
         attributes:
           category: border
           type: color
       on-dark:
-        $value: '{color.gray.40}'
+        $value: '{color.gray.50}'
         $description: Subtle border color (dark theme)
         attributes:
           category: border
@@ -37,13 +37,13 @@ color:
 
     interactive:
       on-light:
-        $value: '{color.blue.400}'
+        $value: '{color.blue.50}'
         $description: Interactive border color (light theme)
         attributes:
           category: border
           type: color
       on-dark:
-        $value: '{color.blue.200}'
+        $value: '{color.blue.30}'
         $description: Interactive border color (dark theme)
         attributes:
           category: border

@@ -10,5 +10,5 @@ color:
       $value: '{color.white}'
       $description: Primary canvas (light theme)
     black:
-      $value: '{color.gray.90}'
+      $value: '{color.gray.95}'
       $description: Primary canvas (dark theme)

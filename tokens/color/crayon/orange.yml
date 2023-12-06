@@ -3,18 +3,22 @@ color:
     $extensions:
       com.redhat.ux:
         order: 305
-    50:
-      $value: '#fff6ec'
+    10:
+      $value: '#FFE8CC'
       $description: Label - Filled (Orange) background color
-    100:
-      $value: '#f4b678'
+    20:
+      $value: '#FCCB8F'
+    30:
+      $value: '#F8AE54'
       $description: Label - Filled (Orange) border color
-    300:
-      $value: '#ec7a08'
+    40:
+      $value: '#F5921B'
       $description: Label - Filled (Orange) accent color
-    500:
-      $value: '#8f4700'
+    50:
+      $value: '#CA6C0F'
       $description: Label - Filled (Orange) accent color
-    700:
-      $value: '#3b1f00'
-      $description: Label - Filled (Orange) text color
+    60:
+      $value: '#9E4A06'
+    70:
+      $value: '#732E00'
+      $description: 	Label - Filled (Orange) text color
