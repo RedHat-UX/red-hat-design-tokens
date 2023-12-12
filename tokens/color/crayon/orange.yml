@@ -2,7 +2,7 @@ color:
   orange:
     $extensions:
       com.redhat.ux:
-        order: 305
+        order: 302
     10:
       $value: '#FFE8CC'
       $description: Label - Filled (Orange) background color
