@@ -1,5 +1,13 @@
 # @rhds/tokens
 
+## 2.0.1
+
+### Patch Changes
+
+- 3c18e2c: Stylelint: avoid some false-positives when linting [component token names][wiki].
+
+  [wiki]: https://github.com/RedHat-UX/red-hat-design-system/wiki/CSS-Styles#tokens-and-naming-conventions
+
 ## 2.0.0
 
 ### Major Changes
