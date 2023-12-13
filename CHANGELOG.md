@@ -14,7 +14,7 @@
 
   ```yaml
   rules:
-    rhds/token-values:
+    rhds/no-unknown-token-names:
       - true
       - migrations:
           # reds

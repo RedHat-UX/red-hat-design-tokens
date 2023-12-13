@@ -34,7 +34,7 @@ specified names, it will automatically replace it with the new one.
 
 ```yaml
 rules:
-  rhds/token-values:
+  rhds/no-unknown-token-name:
     - true
     - migrations:
       # instances of gray-90 will be replaced with gray-95
