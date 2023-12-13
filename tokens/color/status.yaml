@@ -11,13 +11,6 @@ color:
       on-dark:
         $value: '{color.red-orange.40}'
         $description: Danger accent color (dark theme)
-      surface:
-        on-light:
-          $value: '{color.red-orange.10}'
-          $description: Danger surface color (light theme)
-        on-dark:
-          $value: '{color.red-orange.70}'
-          $description: Danger surface color (dark theme)
 
     warning:
       on-light:
@@ -26,13 +19,6 @@ color:
       on-dark:
         $value: '{color.orange.40}'
         $description: Warning accent color (dark theme)
-      surface:
-        on-light:
-          $value: '{color.orange.10}'
-          $description: Warning surface color (light theme)
-        on-dark:
-          $value: '{color.orange.70}'
-          $description: Warning surface color (dark theme)
 
     caution:
       on-light:
@@ -41,13 +27,6 @@ color:
       on-dark:
         $value: '{color.yellow.30}'
         $description: Caution accent color (dark theme)
-      surface:
-        on-light:
-          $value: '{color.yellow.10}'
-          $description: Caution surface color (light theme)
-        on-dark:
-          $value: '{color.yellow.70}'
-          $description: Caution surface color (dark theme)
 
     neutral:
       on-light:
@@ -56,13 +35,6 @@ color:
       on-dark:
         $value: '{color.gray.40}'
         $description: Neutral accent color (dark theme)
-      surface:
-        on-light:
-          $value: '{color.gray.10}'
-          $description: Neutral surface color (light theme)
-        on-dark:
-          $value: '{color.gray.80}'
-          $description: Neutral surface color (dark theme)
 
     note:
       on-light:
@@ -71,13 +43,6 @@ color:
       on-dark:
         $value: '{color.purple.30}'
         $description: Note accent color (dark theme)
-      surface:
-        on-light:
-          $value: '{color.purple.10}'
-          $description: Note surface color (light theme)
-        on-dark:
-          $value: '{color.purple.60}'
-          $description: Note surface color (dark theme)
 
     success:
       on-light:
@@ -86,10 +51,3 @@ color:
       on-dark:
         $value: '{color.green.40}'
         $description: Success accent color (dark theme)
-      surface:
-        on-light:
-          $value: '{color.green.10}'
-          $description: Success surface color (light theme)
-        on-dark:
-          $value: '{color.green.70}'
-          $description: Success surface color (dark theme)

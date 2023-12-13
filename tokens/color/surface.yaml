@@ -25,3 +25,46 @@ color:
     darkest:
       $value: '{color.gray.95}'
       $description: Primary surface (dark theme)
+
+    danger:
+      on-light:
+        $value: '{color.red-orange.10}'
+        $description: Danger surface color (light theme)
+      on-dark:
+        $value: '{color.red-orange.70}'
+        $description: Danger surface color (dark theme)
+    warning:
+      on-light:
+        $value: '{color.orange.10}'
+        $description: Warning surface color (light theme)
+      on-dark:
+        $value: '{color.orange.70}'
+        $description: Warning surface color (dark theme)
+    caution:
+      on-light:
+        $value: '{color.yellow.10}'
+        $description: Caution surface color (light theme)
+      on-dark:
+        $value: '{color.yellow.70}'
+        $description: Caution surface color (dark theme)
+    neutral:
+      on-light:
+        $value: '{color.gray.10}'
+        $description: Neutral surface color (light theme)
+      on-dark:
+        $value: '{color.gray.80}'
+        $description: Neutral surface color (dark theme)
+    note:
+      on-light:
+        $value: '{color.purple.10}'
+        $description: Note surface color (light theme)
+      on-dark:
+        $value: '{color.purple.60}'
+        $description: Note surface color (dark theme)
+    success:
+      on-light:
+        $value: '{color.green.10}'
+        $description: Success surface color (light theme)
+      on-dark:
+        $value: '{color.green.70}'
+        $description: Success surface color (dark theme)
