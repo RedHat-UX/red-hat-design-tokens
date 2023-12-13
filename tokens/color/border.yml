@@ -53,28 +53,27 @@ color:
 
       on-light:
         $value: '{color.red-orange.50}'
-        $description: 
+        $description: Danger border color (light theme)
         attributes:
           category: border
           type: color
       on-dark:
         $value: '{color.red-orange.40}'
-        $description: 
+        $description: Danger border color (dark theme)
         attributes:
           category: border
           type: color
 
     warning:
-
       on-light:
         $value: '{color.orange.50}'
-        $description: 
+        $description: Warning border color (light theme)
         attributes:
           category: border
           type: color
       on-dark:
         $value: '{color.orange.40}'
-        $description: 
+        $description: Warning border color (dark theme)
         attributes:
           category: border
           type: color
@@ -82,13 +81,13 @@ color:
     caution:
       on-light:
         $value: '{color.yellow.60}'
-        $description: 
+        $description: Caution border color (light theme)
         attributes:
           category: border
           type: color
       on-dark:
         $value: '{color.yellow.30}'
-        $description: 
+        $description: Caution border color (dark theme)
         attributes:
           category: border
           type: color
@@ -96,13 +95,13 @@ color:
     neutral:
       on-light:
         $value: '{color.gray.60}'
-        $description: 
+        $description: Neutral status border color (light theme)
         attributes:
           category: border
           type: color
       on-dark:
         $value: '{color.gray.40}'
-        $description: 
+        $description: Neutral status border color (dark theme)
         attributes:
           category: border
           type: color
@@ -110,13 +109,13 @@ color:
     note:
       on-light:
         $value: '{color.purple.50}'
-        $description: 
+        $description: Note border color (light theme)
         attributes:
           category: border
           type: color
       on-dark:
         $value: '{color.purple.30}'
-        $description: 
+        $description: Note border color (dark theme)
         attributes:
           category: border
           type: color
@@ -124,13 +123,13 @@ color:
     success:
       on-light:
         $value: '{color.green.60}'
-        $description: 
+        $description: Success border color (light theme)
         attributes:
           category: border
           type: color
       on-dark:
         $value: '{color.green.40}'
-        $description: 
+        $description: Success border color (dark theme)
         attributes:
           category: border
           type: color
