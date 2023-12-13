@@ -17,7 +17,7 @@ color:
       $value: '#87BB62'
     50:
       $value: '#63993D'
-      $description: 
+      $description:
     60:
       $value: '#3D7317'
       $description: Alert - Success accent
