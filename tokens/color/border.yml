@@ -50,7 +50,6 @@ color:
           type: color
 
     danger:
-
       on-light:
         $value: '{color.red-orange.50}'
         $description: Danger border color (light theme)
