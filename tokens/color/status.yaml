@@ -28,21 +28,21 @@ color:
         $value: '{color.yellow.30}'
         $description: Caution accent color (dark theme)
 
-    neutral:
+    default:
       on-light:
         $value: '{color.gray.60}'
-        $description: Neutral accent color (light theme)
+        $description: Default accent color (light theme)
       on-dark:
         $value: '{color.gray.40}'
-        $description: Neutral accent color (dark theme)
+        $description: Default accent color (dark theme)
 
-    note:
+    info:
       on-light:
         $value: '{color.purple.50}'
-        $description: Note accent color (light theme)
+        $description: Info accent color (light theme)
       on-dark:
         $value: '{color.purple.30}'
-        $description: Note accent color (dark theme)
+        $description: Info accent color (dark theme)
 
     success:
       on-light:

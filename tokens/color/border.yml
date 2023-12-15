@@ -91,30 +91,30 @@ color:
           category: border
           type: color
 
-    neutral:
+    default:
       on-light:
         $value: '{color.gray.60}'
-        $description: Neutral status border color (light theme)
+        $description: Default status border color (light theme)
         attributes:
           category: border
           type: color
       on-dark:
         $value: '{color.gray.40}'
-        $description: Neutral status border color (dark theme)
+        $description: Default status border color (dark theme)
         attributes:
           category: border
           type: color
 
-    note:
+    info:
       on-light:
         $value: '{color.purple.50}'
-        $description: Note border color (light theme)
+        $description: Info border color (light theme)
         attributes:
           category: border
           type: color
       on-dark:
         $value: '{color.purple.30}'
-        $description: Note border color (dark theme)
+        $description: Info border color (dark theme)
         attributes:
           category: border
           type: color

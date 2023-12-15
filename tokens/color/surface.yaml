@@ -47,20 +47,20 @@ color:
       on-dark:
         $value: '{color.yellow.70}'
         $description: Caution surface color (dark theme)
-    neutral:
+    default:
       on-light:
         $value: '{color.gray.10}'
-        $description: Neutral surface color (light theme)
+        $description: Default surface color (light theme)
       on-dark:
         $value: '{color.gray.80}'
-        $description: Neutral surface color (dark theme)
-    note:
+        $description: Default surface color (dark theme)
+    info:
       on-light:
         $value: '{color.purple.10}'
-        $description: Note surface color (light theme)
+        $description: Info surface color (light theme)
       on-dark:
         $value: '{color.purple.60}'
-        $description: Note surface color (dark theme)
+        $description: Info surface color (dark theme)
     success:
       on-light:
         $value: '{color.green.10}'
