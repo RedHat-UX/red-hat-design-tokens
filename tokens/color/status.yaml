@@ -20,14 +20,6 @@ color:
         $value: '{color.orange.40}'
         $description: Warning accent color (dark theme)
 
-    caution:
-      on-light:
-        $value: '{color.yellow.60}'
-        $description: Caution accent color (light theme)
-      on-dark:
-        $value: '{color.yellow.30}'
-        $description: Caution accent color (dark theme)
-
     default:
       on-light:
         $value: '{color.gray.60}'
