@@ -7,16 +7,16 @@ Added status tokens
 ```css
 button {
   .light &.danger {
-    background: var(--rh-color-danger-on-light);
+    background: var(--rh-color-status-danger-on-light);
   }
   .light &.success {
-    background: var(--rh-color-success-on-light);
+    background: var(--rh-color-status-success-on-light);
   }
   .dark &.danger {
-    background: var(--rh-color-danger-on-dark);
+    background: var(--rh-color-status-danger-on-dark);
   }
   .dark &.success {
-    background: var(--rh-color-success-on-dark);
+    background: var(--rh-color-status-success-on-dark);
   }
 }
 ```
