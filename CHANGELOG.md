@@ -1,5 +1,28 @@
 # @rhds/tokens
 
+## 2.1.0
+
+### Minor Changes
+
+- b64dd32: Added status tokens
+
+  ```css
+  button {
+    .light &.danger {
+      background: var(--rh-color-status-danger-on-light);
+    }
+    .light &.success {
+      background: var(--rh-color-status-success-on-light);
+    }
+    .dark &.danger {
+      background: var(--rh-color-status-danger-on-dark);
+    }
+    .dark &.success {
+      background: var(--rh-color-status-success-on-dark);
+    }
+  }
+  ```
+
 ## 2.0.1
 
 ### Patch Changes
