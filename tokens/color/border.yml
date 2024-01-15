@@ -48,3 +48,70 @@ color:
         attributes:
           category: border
           type: color
+
+    status:
+      danger:
+        on-light:
+          $value: '{color.red-orange.50}'
+          $description: Danger status border color (light theme)
+          attributes:
+            category: border
+            type: color
+        on-dark:
+          $value: '{color.red-orange.40}'
+          $description: Danger status border color (dark theme)
+          attributes:
+            category: border
+            type: color
+      warning:
+        on-light:
+          $value: '{color.orange.50}'
+          $description: Warning status border color (light theme)
+          attributes:
+            category: border
+            type: color
+        on-dark:
+          $value: '{color.orange.40}'
+          $description: Warning status border color (dark theme)
+          attributes:
+            category: border
+            type: color
+      default:
+        on-light:
+          $value: '{color.gray.60}'
+          $description: Default status border color (light theme)
+          attributes:
+            category: border
+            type: color
+        on-dark:
+          $value: '{color.gray.40}'
+          $description: Default status border color (dark theme)
+          attributes:
+            category: border
+            type: color
+      info:
+        on-light:
+          $value: '{color.purple.50}'
+          $description: Info status border color (light theme)
+          attributes:
+            category: border
+            type: color
+        on-dark:
+          $value: '{color.purple.30}'
+          $description: Info status border color (dark theme)
+          attributes:
+            category: border
+            type: color
+      success:
+        on-light:
+          $value: '{color.green.60}'
+          $description: Success status border color (light theme)
+          attributes:
+            category: border
+            type: color
+        on-dark:
+          $value: '{color.green.40}'
+          $description: Success status border color (dark theme)
+          attributes:
+            category: border
+            type: color

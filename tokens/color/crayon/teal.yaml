@@ -4,7 +4,7 @@ color:
   teal:
     $extensions:
       com.redhat.ux:
-        order: 302
+        order: 305
     10:
       $value: '#DAF2F2'
       $description: Alert - Default background
