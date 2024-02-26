@@ -43,3 +43,38 @@ color:
           category: icon
           type: color
 
+    status:
+      danger:
+        on-light:
+          $value: '{color.red-orange.50}'
+          $description: Danger status icon color (light theme)
+        on-dark:
+          $value: '{color.red-orange.40}'
+          $description: Danger status icon color (dark theme)
+      warning:
+        on-light:
+          $value: '{color.orange.50}'
+          $description: Warning status icon color (light theme)
+          $value: '{color.orange.40}'
+          $description: Warning status icon color (dark theme)
+      default:
+        on-light:
+          $value: '{color.gray.60}'
+          $description: Default status icon color (light theme)
+        on-dark:
+          $value: '{color.gray.40}'
+          $description: Default status icon color (dark theme)
+      info:
+        on-light:
+          $value: '{color.purple.50}'
+          $description: Info status icon color (light theme)
+        on-dark:
+          $value: '{color.purple.30}'
+          $description: Info status icon color (dark theme)
+      success:
+        on-light:
+          $value: '{color.green.60}'
+          $description: Success status icon color (light theme)
+        on-dark:
+          $value: '{color.green.40}'
+          $description: Success status icon color (dark theme)
