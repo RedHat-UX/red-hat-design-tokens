@@ -55,6 +55,7 @@ color:
         on-light:
           $value: '{color.orange.50}'
           $description: Warning status icon color (light theme)
+        on-dark:
           $value: '{color.orange.40}'
           $description: Warning status icon color (dark theme)
       default:
