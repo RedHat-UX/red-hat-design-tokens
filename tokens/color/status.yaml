@@ -6,7 +6,7 @@ color:
 
     danger:
       on-light:
-        $value: '{color.red-orange.50}'
+        $value: '{color.red-orange.60}'
         $description: Danger accent color (light theme)
       on-dark:
         $value: '{color.red-orange.40}'
