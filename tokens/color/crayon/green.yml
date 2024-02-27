@@ -3,15 +3,24 @@ color:
     $extensions:
       com.redhat.ux:
         order: 304
-    50:
-      $value: '#f3faf2'
-      $description: alert - success background
-    100:
-      $value: '#bde5b8'
+        description: >-
+          The green color is primarily used to indicate a success state, but it can also be used sparingly in other situations where green is needed.
+    10:
+      $value: '#E9F7DF'
+      $description: Alert - success background
+    20:
+      $value: '#D1F1BB'
       $description: Label - Filled (Green) border color
-    500:
-      $value: '#3e8635'
+    30:
+      $value: '#AFDC8F'
+    40:
+      $value: '#87BB62'
+    50:
+      $value: '#63993D'
+      $description:
+    60:
+      $value: '#3D7317'
       $description: Alert - Success accent
-    600:
-      $value: '#1e4f18'
+    70:
+      $value: '#204D00'
       $description: Alert - Success title text

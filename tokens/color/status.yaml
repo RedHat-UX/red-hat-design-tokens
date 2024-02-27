@@ -1,0 +1,45 @@
+color:
+  status:
+    $extensions:
+      com.redhat.ux:
+        order: 500
+
+    danger:
+      on-light:
+        $value: '{color.red-orange.60}'
+        $description: Danger accent color (light theme)
+      on-dark:
+        $value: '{color.red-orange.40}'
+        $description: Danger accent color (dark theme)
+
+    warning:
+      on-light:
+        $value: '{color.orange.50}'
+        $description: Warning accent color (light theme)
+      on-dark:
+        $value: '{color.orange.40}'
+        $description: Warning accent color (dark theme)
+
+    default:
+      on-light:
+        $value: '{color.gray.60}'
+        $description: Default accent color (light theme)
+      on-dark:
+        $value: '{color.gray.40}'
+        $description: Default accent color (dark theme)
+
+    info:
+      on-light:
+        $value: '{color.purple.50}'
+        $description: Info accent color (light theme)
+      on-dark:
+        $value: '{color.purple.30}'
+        $description: Info accent color (dark theme)
+
+    success:
+      on-light:
+        $value: '{color.green.60}'
+        $description: Success accent color (light theme)
+      on-dark:
+        $value: '{color.green.40}'
+        $description: Success accent color (dark theme)
