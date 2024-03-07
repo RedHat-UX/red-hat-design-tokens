@@ -1,3 +1,4 @@
+import '@rhds/elements/rh-tabs/rh-tabs.js';
 import '@rhds/elements/rh-tooltip/rh-tooltip.js';
 import '@rhds/elements/rh-footer/rh-global-footer.js';
 

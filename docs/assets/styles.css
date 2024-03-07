@@ -1,0 +1,22 @@
+#syntax .description {
+  padding: var(--rh-space-lg, 16px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--rh-space-lg, 16px);
+}
+
+#syntax .description > label {
+  width: 100%;
+}
+
+#syntax pre {
+  border-radius: var(--rh-border-radius-default, 3px);
+  border: 1px solid var(--rh-color-border-subtle-on-light, #d2d2d2);
+  padding: var(--rh-space-xl, 24px);
+}
+
+#syntax .dark pre {
+  background: var(--rh-color-syntax-background-dark, #212427);
+  color: var(--rh-color-syntax-color-dark, #d2d2d2);
+  border-color: var(--rh-color-border-subtle-on-dark, #6a6e73);
+}

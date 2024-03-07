@@ -1,0 +1,101 @@
+color:
+  syntax:
+    $extensions:
+      com.redhat.ux:
+        heading: Syntax Highlighting
+        descriptionFile: syntax.md
+
+    default:
+      on-light:
+        $value: '{color.gray.95}'
+        $description: 
+
+    background:
+      on-light:
+        $value: '{color.gray.10}'
+        $description: 
+
+    selected-text-background:
+      on-light:
+        $value: '{color.blue.10}'
+        $description: 
+
+    comment:
+      on-light:
+        $value: '{color.gray.60}'
+        $description: 
+
+    property:
+      on-light:
+        $value: '{color.purple.50}'
+        $description: 
+
+    keyword:
+      on-light:
+        $value: '{color.blue.60}'
+        $description: 
+
+    tag:
+      on-light:
+        $value: '{color.purple.50}'
+        $description: 
+
+    selector:
+      on-light:
+        $value: '{color.teal.60}'
+        $description: 
+
+    boolean:
+      on-light:
+        $value: '{color.purple.50}'
+        $description: 
+
+    constant:
+      on-light:
+        $value: '{color.purple.50}'
+        $description: 
+
+    punctuation:
+      on-light:
+        $value: '{color.gray.60}'
+        $description: 
+
+    number:
+      on-light:
+        $value: '{color.purple.50}'
+        $description: 
+
+    attribute:
+      on-light:
+        $value: '{color.teal.60}'
+        $description: 
+
+    string:
+      on-light:
+        $value: '{color.teal.60}'
+        $description: 
+
+    symbol:
+      on-light:
+        $value: '{color.purple.50}'
+        $description: 
+
+    variable:
+      on-light:
+        $value: '{color.orange.60}'
+        $description: 
+
+    operator:
+      on-light:
+        $value: '{color.yellow.60}'
+        $description: 
+
+    function:
+      on-light:
+        $value: '{color.red.60}'
+        $description: 
+
+    regex:
+      on-light:
+        $value: '{color.orange.60}'
+        $description: 

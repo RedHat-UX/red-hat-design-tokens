@@ -1,100 +1,73 @@
-// @ts-check
+const { readFile } = require('node:fs/promises');
+const { join } = require('node:path');
+const markdownItHighlightJs = require('markdown-it-highlightjs');
+// const markdownSyntaxHighlightOptions = require('@11ty/eleventy-plugin-syntaxhighlight/src/markdownSyntaxHighlightOptions');
+// const markdownItPrism = require('markdown-it-prism');
 
-/** @param {import('@11ty/eleventy/src/UserConfig')} eleventyConfig */
-module.exports = function(eleventyConfig) {
-  eleventyConfig.on('eleventy.before', () => import('./build.js').then(m => new Promise(r => (m.build(), setTimeout(r, 50)))));
-  eleventyConfig.setServerPassthroughCopyBehavior('passthrough');
-  eleventyConfig.addWatchTarget('lib/**/*.js');
-  eleventyConfig.addWatchTarget('tokens/**/*.{yml,yaml}');
-  eleventyConfig.addWatchTarget('plugins/**/*.{cjs,js}');
-  eleventyConfig.addPassthroughCopy({ 'docs/assets': 'assets' });
-  eleventyConfig.addPassthroughCopy({ 'css/global.css': 'assets/rhds.css' });
-  eleventyConfig.addPassthroughCopy({ 'css/prism.css': 'assets/prism.css' });
-  eleventyConfig.addPassthroughCopy({ 'css/highlightjs.css': 'assets/highlightjs.css' });
-  eleventyConfig.addPassthroughCopy({ 'plugins/11ty/styles.css': 'assets/11ty.css' });
-  eleventyConfig.addGlobalData('importMap', async function() {
-    const { Generator } = await import('@jspm/generator');
-    const generator = new Generator();
-    await generator.install([
-      '@rhds/elements',
-      // '@rhds/elements/rh-tabs/rh-tabs.js',
-      '@rhds/elements/rh-footer/rh-global-footer.js',
-      '@rhds/elements/rh-tooltip/rh-tooltip.js',
-    ]);
-    return generator.getMap();
+const getDocs = (x, options) => x?.$extensions?.[options.docsExtension];
+const capitalize = x => `${x.at(0).toUpperCase()}${x.slice(1)}`;
+
+/** Returns a string with common indent stripped from each line. Useful for templating HTML */
+function dedent(str) {
+  const stripped = str.replace(/^\n/, '');
+  const match = stripped.match(/^\s+/);
+  return match ? stripped.replace(new RegExp(`^${match[0]}`, 'gm'), '') : str;
+}
+
+/** HTML attribute values should use single quotes to avoid breaking out of the value's surrounding double quotes */
+function escapeDoubleQuotes(x) {
+  return x?.toString().replaceAll('"', '\'');
+}
+
+/** Converts an object mapping css property names to values into a CSS rule for inlining into HTML */
+function styleMap(objt) {
+  return Object.entries(objt).map(([k, v]) => `${k}: ${escapeDoubleQuotes(v)}`).join(';');
+}
+
+/** When recursing over the token categories, it's helpful to get the containing category for things like docs and key names */
+function getParentCollection(options, tokens) {
+  let parent = options.parent ?? tokens;
+
+  let collection;
+
+  const key = options.path.split('.').pop();
+  options.path.split('.').forEach((part, i, a) => {
+    collection = parent[part];
+    if (a[i + 1]) {
+      parent = collection;
+    }
   });
 
-  // BEGIN: generate deploy preview / 11ty dev server preview page
-  const { readFile } = require('node:fs/promises');
-  const { join } = require('node:path');
-  const markdownSyntaxHighlightOptions = require('@11ty/eleventy-plugin-syntaxhighlight/src/markdownSyntaxHighlightOptions');
+  return { parent, key };
+}
 
-  const getDocs = (x, options) => x?.$extensions?.[options?.docsExtension ?? 'com.redhat.ux'];
-  const capitalize = x => `${x.at(0).toUpperCase()}${x.slice(1)}`;
-  const isRef = x => x?.original?.$value?.startsWith?.('{') ?? false;
-  const deref = x => `rh-${x.original.$value.replace(/[{}]/g, '').split('.').join('-')}`;
-
-  /** Returns a string with common indent stripped from each line. Useful for templating HTML */
-  function dedent(str) {
-    const stripped = str.replace(/^\n/, '');
-    const match = stripped.match(/^\s+/);
-    return match ? stripped.replace(new RegExp(`^${match[0]}`, 'gm'), '') : str;
-  }
-
-  /** HTML attribute values should use single quotes to avoid breaking out of the value's surrounding double quotes */
-  function escapeDoubleQuotes(x) {
-    return x?.toString().replaceAll('"', '\'');
-  }
-
-  /** Converts an object mapping css property names to values into a CSS rule for inlining into HTML */
-  function styleMap(objt) {
-    return Object.entries(objt).map(([k, v]) => `${k}: ${escapeDoubleQuotes(v)}`).join(';');
-  }
-
-  /** When recursing over the token categories, it's helpful to get the containing category for things like docs and key names */
-  function getParentCollection(options, tokens) {
-    let parent = options.parent ?? tokens;
-
-    let collection;
-
-    const key = options.path.split('.').pop();
-    options.path.split('.').forEach((part, i, a) => {
-      collection = parent[part];
-      if (a[i + 1]) {
-        parent = collection;
-      }
-    });
-
-    return { parent, key };
-  }
-
-  /** Try to get the path to a token source file. Not all object values in a token collection have that metadata attached */
-  function getFilePathGuess(collection) {
-    return Object.values(collection).reduce((path, val) =>
-      path || typeof val !== 'object' || val === null ? path
+/** Try to get the path to a token source file. Not all object values in a token collection have that metadata attached */
+function getFilePathGuess(collection) {
+  return Object.values(collection).reduce((path, val) =>
+      path || typeof val !== 'object' ? path
             : '$value' in val ? val.filePath
             : getFilePathGuess(val), '');
+}
+
+/** Get the markdown description in a category's docs extension */
+function getDescription(collection, options) {
+  const docs = getDocs(collection, options) ?? {};
+  if (docs.description) {
+    return docs.description;
+  } else if (docs.descriptionFile) {
+    return readFile(join(
+      process.cwd(),
+      docs.filePath ?? getFilePathGuess(collection),
+      '..',
+      docs.descriptionFile,
+    ), 'utf-8');
+  } else {
+    return '';
   }
+}
 
-  /** Get the markdown description in a category's docs extension */
-  function getDescription(collection, options) {
-    const {
-      filePath = getFilePathGuess(collection),
-      description = '',
-      descriptionFile
-    } = getDocs(collection, options) ?? {};
-
-    if (description) {
-      return description;
-    } else if (descriptionFile) {
-      return readFile(join(process.cwd(), filePath, '..', descriptionFile), 'utf-8');
-    } else {
-      return '';
-    }
-  }
-
-  function copyCell(token, variable) {
-    return /* html */`
+function copyCell(token, variable) {
+  return /* html */`
     <td class="copy-cell">
       <rh-tooltip position="top-start">
         <button class="copy-button" data-copy="${variable}">
@@ -115,25 +88,21 @@ module.exports = function(eleventyConfig) {
       </rh-tooltip>
     </td>
   `;
+}
+
+/**
+ * Generate an HTML table of tokens
+ * @param {object} [opts={}]
+ * @param {object} opts.tokens the collection of tokens to render
+ * @param {string} opts.name the name of the collection
+ * @param {object} opts.docs the docs extension for the collection
+ * @param {Options} opts.options options
+ */
+function table({ tokens, name = '', docs, options } = {}) {
+  if (!tokens.length || name.startsWith('$')) {
+    return '';
   }
-
-  /**
-   * @typedef {object} TableOpts
-   * @prop {object} opts.tokens the collection of tokens to render
-   * @prop {string} opts.name the name of the collection
-   * @prop {object} opts.docs the docs extension for the collection
-   * @prop {any} opts.options options
-   */
-
-  /**
-   * Generate an HTML table of tokens
-   * @param {TableOpts} opts
-   */
-  function table({ tokens = [], name = '', docs = {}, options = {} }) {
-    if (!tokens.length || name.startsWith('$')) {
-      return '';
-    }
-    return dedent(/* html */`
+  return dedent(/* html */`
     <table>
       <thead>
         <tr>
@@ -176,17 +145,17 @@ module.exports = function(eleventyConfig) {
               ${isColor && token.path.includes('text') ? 'Aa'
               : isFont ? (docs?.example ?? token.attributes?.aliases?.[0] ?? 'Aa')
               : name === 'breakpoint' ? `
-                <img src="assets/breakpoints/device-${token.name}.svg" role="presentation">`
+                <img src="assets/device-${token.name}.svg" role="presentation">`
               : docs?.example ?? ''}
               </samp>
             </td>
-            <td class="token name">
+            <td ${options.attrs({ type: 'name', token })} class="token name">
               <button class="copy-button"><code>--${token.name}</code></button>
             </td>
-            <td class="token value
-               ${!isDimension ? '' : token.$value?.endsWith('rem') ? 'rem' : 'px'}
-               ${!isColor ? '' : 'color'}
-               ${!isHSLorRGB ? 'hex' : ''}">${(
+            <td ${options.attrs({ type: 'value', token })} class="token value
+                     ${!isDimension ? '' : token.$value?.endsWith('rem') ? 'rem' : 'px'}
+                     ${!isColor ? '' : 'color'}
+                     ${!isHSLorRGB ? 'hex' : ''}">${(
               isDimension ? `
               <button class="copy-button"><code>${token.$value}</code></button>`
             : isColor ? `
@@ -204,13 +173,13 @@ module.exports = function(eleventyConfig) {
           </tr>${!isCrayon ? '' : `
           <tr class="variants">
             <td colspan="5">
-              <details>
+              <details ${options.attrs({ type: 'details', token })}>
                 <summary title="Color function variants"></summary>
                 <table class="${token.path.join(' ')}${token.attributes.isLight ? ' light' : ''}"
                        style="--color: ${token.$value}">
                   <tr id="${token.name}-rgb" style="--color: rgb(${r}, ${g}, ${b})">
                     <td class="sample"><samp>${token.path.includes('text') ? 'Aa' : docs?.example ?? ''}</samp></td>
-                    <td class="token name">
+                    <td ${options.attrs({ type: 'name', token })} class="token name">
                       <button class="copy-button"><code>--${token.name}-rgb</code></button>
                     </td>
                     <td><button class="copy-button"><code>rgb(${r}, ${g}, ${b})</code></button></td>
@@ -219,7 +188,7 @@ module.exports = function(eleventyConfig) {
                   </tr>
                   <tr id="${token.name}-hsl" style="--color: hsl(${h} ${s}% ${l}%)">
                     <td class="sample"><samp>${token.path.includes('text') ? 'Aa' : docs?.example ?? ''}</samp></td>
-                    <td class="token name">
+                    <td ${options.attrs({ type: 'name', token })} class="token name">
                       <button class="copy-button"><code>--${token.name}-hsl</code></button>
                     </td>
                     <td><button class="copy-button"><code>hsl(${h} ${s}% ${l}%)</code></button></td>
@@ -234,29 +203,49 @@ module.exports = function(eleventyConfig) {
         }).map(dedent).join('\n')}
     </table>`).trim();
     /* eslint-enable indent */
-  }
+}
 
-  const md = require('markdown-it')({
-    html: true,
-    highlight: markdownSyntaxHighlightOptions(),
-  });
+/**
+ * @param {import('@11ty/eleventy/src/UserConfig')} eleventyConfig
+ * @param {PluginOptions} [pluginOptions={}]
+ */
+module.exports = function RHDSPlugin(eleventyConfig, pluginOptions = {}) {
+  const md = require('markdown-it')({ html: true })
+    .use(markdownItHighlightJs);
+    // .use(markdownItPrism);
 
   const slugify = eleventyConfig.getFilter('slugify');
 
-  eleventyConfig.addPassthroughCopy({ 'css/global.css': '/assets/rhds.css' });
+  const assetsPath = pluginOptions.assetsPath ?? '/assets/';
+  eleventyConfig.addPassthroughCopy({ [join(__dirname, '11ty', '*')]: assetsPath });
 
   eleventyConfig.addFilter('getTokenDocs', function(path) {
-    const tokens = require('./json/rhds.tokens.json');
+    const tokens = require('../json/rhds.tokens.json');
     const { parent, key } = getParentCollection({ path }, tokens);
     const collection = parent[key];
-    return getDocs(collection);
+    return getDocs(collection, pluginOptions);
   });
+
+  async function description(options) {
+    if (options.description === false) {
+      return '';
+    }
+    options.attrs ??= pluginOptions.attrs ?? (() => '');
+    options.docsExtension ??= pluginOptions.docsExtension ?? 'com.redhat.ux';
+    const tokens = require('../json/rhds.tokens.json');
+    const { parent, key } = getParentCollection(options, tokens);
+    const collection = parent[key];
+    return `<div class="description">${md.render(dedent(await getDescription(collection, options)))}</div>`;
+  }
+
+  eleventyConfig.addShortcode('description', description);
 
   eleventyConfig.addShortcode('category',
     async function category(options = {}) {
-      options.docsExtension ??= 'com.redhat.ux';
+      options.attrs ??= pluginOptions.attrs ?? (() => '');
+      options.docsExtension ??= pluginOptions.docsExtension ?? 'com.redhat.ux';
 
-      const tokens = require('./json/rhds.tokens.json');
+      const tokens = require('../json/rhds.tokens.json');
 
       const isLast = options.isLast ?? false;
       const parentName = options.parentName ?? '';
@@ -283,7 +272,6 @@ module.exports = function(eleventyConfig) {
 
       const children = Object.entries(collection)
         .filter(isChildEntry)
-        .sort(byOrder)
         .map(([key], i, a) => ({
           path: key,
           parent: collection,
@@ -291,19 +279,6 @@ module.exports = function(eleventyConfig) {
           parentName: `${parentName} ${name}`.trim(),
           isLast: i === a.length - 1,
         }));
-
-      function getOrder([key, collection]) {
-        let docs;
-        do {
-          docs = getDocs(collection);
-          collection = collection.parent;
-        } while (collection && !docs);
-        return docs?.order ?? 0;
-      }
-
-      function byOrder(a, b) {
-        return getOrder(a) - getOrder(b);
-      }
 
       /**
        * 0. render the description
@@ -313,7 +288,7 @@ module.exports = function(eleventyConfig) {
       return dedent(/* html */`
         <section id="${name}" class="token-category level-${level - 1}">
           <h${level} id="${slug}">${heading}<a href="#${slug}">#</a></h${level}>
-          <div class="description">${md.render(dedent(await getDescription(collection)))}</div>
+          ${await description(options)}
           ${await table({ /* eslint-disable indent */
             tokens: Object.values(collection).filter(x => x.$value),
             options,
@@ -329,12 +304,4 @@ module.exports = function(eleventyConfig) {
           <a class="btt" href="#">Top</a>`}
         </section>`);
     });
-
-  return {
-    htmlTemplateEngine: 'njk',
-    dir: {
-      input: 'docs',
-      output: 'build',
-    },
-  };
 };

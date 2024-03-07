@@ -8,6 +8,14 @@ css:
       options:
         fileHeader: redhat/legal
         selector: ':root'
+    - destination: prism.css
+      format: css/prism
+      options:
+        fileHeader: redhat/legal
+    - destination: highlightjs.css
+      format: css/highlightjs
+      options:
+        fileHeader: redhat/legal
     - destination: shared.css
       format: css/variables
       options:

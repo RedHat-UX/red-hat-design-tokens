@@ -38,6 +38,8 @@ export function build() {
     .registerTransformGroup(TransformGroups.js)
     .registerTransformGroup(TransformGroups.sketch)
     .registerFormat(Formats.litCss)
+    .registerFormat(Formats.highlightjsCss)
+    .registerFormat(Formats.prismCss)
     .registerFormat(Formats.mapEs)
     .registerFormat(Formats.mapCjs)
     .registerFormat(Formats.metaMapEs)
@@ -60,12 +62,10 @@ export function build() {
         parse({ contents, filePath }) {
           const isCrayon = filePath.split('/').includes('crayon');
           return YAML.parse(contents,
-
             /**
-           * Transform `$value` (DTCG syntax) to `value` (style-dictionary syntax)
-           * @this {*}
-           */
-
+             * Transform `$value` (DTCG syntax) to `value` (style-dictionary syntax)
+             * @this {*}
+             */
             function(key, value) {
               if ('$value' in this) {
                 this.value = this.$value;
