@@ -5,129 +5,97 @@ color:
         heading: Syntax Highlighting
         descriptionFile: syntax.md
 
+    default:
+      on-light:
+        $value: '{color.gray.95}'
+        $description: 
+
     background:
-      light:
-        $value: '{color.black.150}'
-      dark:
-        $value: '{color.black.800}'
-
-    color:
-      light:
-        $value: '{color.black.900}'
-      dark:
-        $value: '{color.black.300}'
-
-    boolean:
       on-light:
-        $value: '{color.orange.500}'
-      on-dark:
-        $value: '{color.orange.300}'
+        $value: '{color.gray.10}'
+        $description: 
 
-    title:
-      $extensions:
-        com.prismjs:
-          name: class-name
+    selected-text-background:
       on-light:
-        $value: '{color.purple.500}'
-      on-dark:
-        $value: '{color.gold.300}'
+        $value: '{color.blue.10}'
+        $description: 
 
-    constant:
+    comment:
       on-light:
-        $value: '{color.purple.500}'
+        $value: '{color.gray.60}'
+        $description: 
 
-    function:
+    property:
       on-light:
-        $value: '{color.red.500}'
+        $value: '{color.purple.50}'
+        $description: 
 
     keyword:
       on-light:
-        $value: '{color.magenta.500}'
-      on-dark:
-        $value: '{color.purple.300}'
-
-    number:
-      on-light:
-        $value: '{color.orange.500}'
-      on-dark:
-        $value: '{color.orange.300}'
-
-    operator:
-      on-light:
-        $value: '{color.cyan.500}'
-
-    selector-tag:
-      on-light:
-        $value: '{color.red.600}'
-      on-dark:
-        $value: '{color.red.400}'
-
-    built_in:
-      on-light:
-        $value: '{color.blue.500}'
-      on-dark:
-        $value: '{color.blue.100}'
-    property:
-      on-light:
-        $value: '{color.blue.500}'
-      on-dark:
-        $value: '{color.black.300}'
-
-    punctuation:
-      on-light:
-        $value: '{color.black.900}'
-      on-dark:
-        $value: '{color.black.300}'
-
-    literal:
-      on-light:
-        $value: '{color.orange.500}'
-      on-dark:
-        $value: '{color.orange.300}'
-    regex:
-      on-light:
-        $value: '{color.orange.500}'
-
-    symbol:
-      on-light:
-        $value: '{color.green.500}'
+        $value: '{color.blue.60}'
+        $description: 
 
     tag:
       on-light:
-        $value: '{color.black.600}'
-      on-dark:
-        $value: '{color.black.500}'
-    name:
+        $value: '{color.purple.50}'
+        $description: 
+
+    selector:
       on-light:
-        $value: '{color.red.600}'
-      on-dark:
-        $value: '{color.red.400}'
-    meta:
+        $value: '{color.teal.60}'
+        $description: 
+
+    boolean:
       on-light:
-        $value: '{color.blue.500}'
-      on-dark:
-        $value: '{color.blue.100}'
-    comment:
+        $value: '{color.purple.50}'
+        $description: 
+
+    constant:
       on-light:
-        $value: '{color.black.600}'
-      on-dark:
-        $value: '{color.black.500}'
-    attr:
+        $value: '{color.purple.50}'
+        $description: 
+
+    punctuation:
       on-light:
-        $value: '{color.orange.500}'
-      on-dark:
-        $value: '{color.orange.300}'
-    string:
+        $value: '{color.gray.60}'
+        $description: 
+
+    number:
       on-light:
-        $value: '{color.green.500}'
-      on-dark:
-        $value: '{color.light-green.400}'
+        $value: '{color.purple.50}'
+        $description: 
 
     attribute:
-      on-dark:
-        $value: '{color.blue.100}'
+      on-light:
+        $value: '{color.teal.60}'
+        $description: 
+
+    string:
+      on-light:
+        $value: '{color.teal.60}'
+        $description: 
+
+    symbol:
+      on-light:
+        $value: '{color.purple.50}'
+        $description: 
+
     variable:
       on-light:
-        $value: '{color.red.600}'
-      on-dark:
-        $value: '{color.red.400}'
+        $value: '{color.orange.60}'
+        $description: 
+
+    operator:
+      on-light:
+        $value: '{color.yellow.60}'
+        $description: 
+
+    function:
+      on-light:
+        $value: '{color.red.60}'
+        $description: 
+
+    regex:
+      on-light:
+        $value: '{color.orange.60}'
+        $description: 
