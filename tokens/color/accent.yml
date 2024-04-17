@@ -7,15 +7,15 @@ color:
 
     base:
       on-light:
-        $value: '{color.blue.400}'
+        $value: '{color.blue.50}'
         $description: Inline link (light theme)
       on-dark:
-        $value: '{color.blue.200}'
+        $value: '{color.blue.30}'
         $description: Inline link (dark theme)
     brand:
       on-light:
-        $value: '{color.red.500}'
+        $value: '{color.brand.red.on-light}'
         $description: Brand red (light theme)
       on-dark:
-        $value: '{color.red.400}'
+        $value: '{color.brand.red.on-dark}'
         $description: Brand red (dark theme)

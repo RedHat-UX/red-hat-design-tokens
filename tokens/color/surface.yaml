@@ -8,20 +8,57 @@ color:
       $value: '{color.white}'
       $description: Primary surface (light theme)
     lighter:
-      $value: '{color.gray.05}'
+      $value: '{color.gray.10}'
       $description: Tertiary surface (light theme)
     light:
-      $value: '{color.gray.10}'
+      $value: '{color.gray.20}'
       $description: Secondary surface (light theme)
     dark:
-      $value: '{color.gray.60}'
+      $value: '{color.gray.70}'
       $description: Tertiary surface (dark theme)
     dark-alt:
-      $value: '{color.gray.70}'
+      $value: '{color.gray.80}'
       $description: Alternative tertiary surface (not available for use with context provider)
     darker:
-      $value: '{color.gray.80}'
+      $value: '{color.gray.90}'
       $description: Secondary surface (dark theme)
     darkest:
-      $value: '{color.gray.90}'
+      $value: '{color.gray.95}'
       $description: Primary surface (dark theme)
+
+    status:
+      danger:
+        on-light:
+          $value: '{color.red-orange.10}'
+          $description: Danger status surface color (light theme)
+        on-dark:
+          $value: '{color.red-orange.70}'
+          $description: Danger status surface color (dark theme)
+      warning:
+        on-light:
+          $value: '{color.orange.10}'
+          $description: Warning status surface color (light theme)
+        on-dark:
+          $value: '{color.orange.70}'
+          $description: Warning status surface color (dark theme)
+      default:
+        on-light:
+          $value: '{color.gray.10}'
+          $description: Default status surface color (light theme)
+        on-dark:
+          $value: '{color.gray.80}'
+          $description: Default status surface color (dark theme)
+      info:
+        on-light:
+          $value: '{color.purple.10}'
+          $description: Info status surface color (light theme)
+        on-dark:
+          $value: '{color.purple.60}'
+          $description: Info status surface color (dark theme)
+      success:
+        on-light:
+          $value: '{color.green.10}'
+          $description: Success status surface color (light theme)
+        on-dark:
+          $value: '{color.green.70}'
+          $description: Success status surface color (dark theme)

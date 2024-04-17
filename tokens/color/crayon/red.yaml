@@ -3,30 +3,26 @@ color:
     $extensions:
       com.redhat.ux:
         order: 300
+        description: >-
+          Avoid using *any* red color token for danger or error messaging.
+    10:
+      $value: '#FCE3E3'
+      $description:
+    20:
+      $value: '#FBC5C5'
+      $description: Lightest brand red
+    30:
+      $value: '#F9A8A8'
+      $description: Lighter brand red
+    40:
+      $value: '#F56E6E'
+      $description: Light brand red
     50:
-      $value: '#faeae8'
-      $description: Alert - Critical background
-    100:
-      $value: '#fddbdb'
-      $description: Lightest red
-    200:
-      $value: '#fab6b6'
-      $description: Lighter red
-    300:
-      $value: '#f56d6d'
-      $description: Light red
-    400:
-      $value: '#ff442b'
-      $description: Brand red (dark theme)
-    500:
-      $value: '#ee0000'
-      $description: Brand red (light theme)
-    600:
-      $value: '#be0000'
-      $description: Dark red or brand red hover
-    700:
-      $value: '#8f0000'
-      $description: Darker red
-    800:
-      $value: '#5f0000'
-      $description: Darkest red
+      $value: '#EE0000'
+      $description: Brand red (light and dark theme)
+    60:
+      $value: '#A60000'
+      $description: Dark brand red
+    70:
+      $value: '#5F0000'
+      $description: Darker brand red
