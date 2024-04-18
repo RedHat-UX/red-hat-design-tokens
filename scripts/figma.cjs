@@ -4,13 +4,35 @@ const [,, apiToken, fileId] = process.argv;
 
 const rhdsTokens = require('../build/rhds.tokens.json');
 
-const fileName = `test-${new Date().toISOString().slice(0, 10)}`;
-const defaultModeId = 'default';
+const collections = {
+  default: {
+    name: 'General',
+    modeId: 'default',
+  },
+  dark: {
+    name: 'Base colors - dark',
+    modeId: 'dark',
+  },
+  light: {
+    name: 'Base colors - light',
+    modeId: 'light',
+  },
+  color: {
+    name: 'Color Palette',
+    modeId: 'color',
+  },
+  semantic: {
+    name: 'Semantic colors',
+    modeId: 'semantic-light',
+    secondaryModeId: 'semantic-dark',
+  },
+};
 
 const figmaApiPayload = {
   variableCollections: [],
   variables: [],
-  variableModeValues: [],
+  variableModes: [],
+  variableModeValues: []
 };
 
 const parseColor = color => {
@@ -41,7 +63,24 @@ const callFigmaCreateApi = async body => {
     }).then(response => response.json());
 };
 
-const createCollection = (name, initialModeId) => {
+const createSecondaryMode = (name, variableCollectionId) => {
+  /**
+   * Standard format for creating a mode
+   * {
+   *  action
+   *  name
+   *  variableCollectionId
+   * }
+   */
+  figmaApiPayload.variableModes.push({
+    action: 'CREATE',
+    id: name,
+    name,
+    variableCollectionId,
+  });
+};
+
+const createCollections = () => {
   /**
     * Standard format for creating a collection
     * {
@@ -51,11 +90,16 @@ const createCollection = (name, initialModeId) => {
     *   initialModeId
     * }
     */
-  figmaApiPayload.variableCollections.push({
-    action: 'CREATE',
-    id: name,
-    name,
-    initialModeId,
+  Object.entries(collections).forEach(([, { name, modeId, secondaryModeId }]) => {
+    figmaApiPayload.variableCollections.push({
+      action: 'CREATE',
+      id: name,
+      name,
+      initialModeId: modeId,
+    });
+    if (secondaryModeId) {
+      createSecondaryMode(secondaryModeId, name);
+    }
   });
 };
 
@@ -108,17 +152,36 @@ const getTokenType = (type, object) => {
   return 'STRING';
 };
 
-const getTokenKey = (type, key, object) => {
-  if (type === 'FLOAT') {
-    const [measurement] = object.$value.match(/(px|rem)$/);
-    return `${key}${typeof measurement !== 'undefined' ? ` (${measurement})` : ''}/--${object?.name}`;
-  } else if (type === 'COLOR') {
-    return `${key}/--${object?.name}`;
+const getColorTheme = object => {
+  if (object.name.toString().match(/(light|dark)$/)) {
+    const [theme] = object.name.toString().match(/(light|dark)$/);
+    return theme;
   }
-  return `${key}/--${object?.name}`;
+  return undefined;
+};
+
+const getCollection = object => {
+  if (object.name.toString().match(/light(er|est)?$/)) {
+    return collections.light;
+  } else if (object.name.toString().match(/dark(er|est)?$/)) {
+    return collections.dark;
+  } else if (object.name.toString().match(/color(?!.*(hsl|rgb))/)) {
+    return collections.color;
+  }
+  return collections.default;
 };
 
 const getTokenValue = (type, object) => {
+  if (object.original?.$value !== undefined && object.original?.$value.toString().indexOf('{') > -1) {
+    const modifiableValue = object.original.$value.toString().replace('{', '').replace('}', '');
+    const originalValue = modifiableValue.replaceAll('.', '-').toString();
+    const originalPath = modifiableValue.split('.').slice(0, -1).join('/');
+
+    return {
+      id: `${originalPath}/--rh-${originalValue}`,
+      type: 'VARIABLE_ALIAS'
+    };
+  }
   if (type === 'FLOAT') {
     let measurement = undefined;
     const value = object?.$value.toString();
@@ -133,29 +196,87 @@ const getTokenValue = (type, object) => {
   return object?.$value.toString();
 };
 
-const traverseToken = (collection, modeId, type, key, object) => {
+const createSemanticToken = (name, type, path, value, stringMatch) => {
+  if (name.match(stringMatch)) {
+    const theme = name.match(/light(er|est)?|white/) ? collections.semantic.modeId : name.match(/dark(er|est)?|black/) ? collections.semantic.secondaryModeId : undefined;
+
+    // Fixing up the name
+    name = name.replace(/light(er|est)?|white/, '');
+    name = name.replace(/dark(er|est)?|black/, '');
+    name = name.replace(/-$/, '');
+    name = name.replace(/-on$/, '');
+
+    const variableExists = figmaApiPayload.variables.find(variable => variable.id === name);
+    if (variableExists) {
+      figmaApiPayload.variables.push({
+        action: 'UPDATE',
+        id: name,
+        value,
+        variableCollectionId: collections.semantic.name,
+        modeId: theme,
+      });
+    } else {
+      createToken(
+        collections.semantic.name,
+        theme,
+        type,
+        `${path}/${name}`,
+        value
+      );
+    }
+  }
+};
+
+const traverseToken = (type, key, object) => {
   type = type || object?.$type;
   if (key.charAt(0) === '$') {
     return;
   }
   if (object?.$value !== undefined) {
     const tokenType = getTokenType(type, object);
-    const tokenKey = getTokenKey(tokenType, key, object);
     const tokenValue = getTokenValue(tokenType, object);
+    const collection = getCollection(object);
+    if (tokenType === 'COLOR') {
+      const colorTheme = getColorTheme(object);
+      if (colorTheme) {
+        createToken(
+          collection.name,
+          collection.name === collections.color.name ? collection.modeId[colorTheme] : collection.modeId,
+          tokenType,
+          `${object.path.slice(0, -1).join('/')}/${colorTheme ? `${colorTheme}/` : ''}--${object?.name}`,
+          tokenValue
+        );
+        createSemanticToken(
+          object.name,
+          tokenType,
+          object.path.slice(0, -1).join('/'),
+          tokenValue,
+          /(light|dark)$/
+        );
+      }
+      if (object.name.toString().match(/(white|black)$/)) {
+        createSemanticToken(
+          object.name,
+          tokenType,
+          object.path.slice(0, -1).join('/'),
+          tokenValue,
+          /(white|black)$/
+        );
+      }
+    }
     createToken(
-      collection,
-      modeId,
+      collection.name,
+      collection.modeId,
       tokenType,
-      tokenKey,
-      tokenValue,
+      // Join all items in an array except the last one
+      `${object.path.slice(0, -1).join('/')}/--${object?.name}`,
+      tokenValue
     );
   } else {
     if (typeof object !== 'undefined') {
       Object.entries(object).forEach(([key2, object2]) => {
         if (key2.charAt(0) !== '$') {
           traverseToken(
-            collection,
-            modeId,
             type,
             `${key}/${key2}`,
             object2,
@@ -166,11 +287,9 @@ const traverseToken = (collection, modeId, type, key, object) => {
   }
 };
 
-const loopTokens = (rhdsTokens, modeId) => {
+const loopTokens = () => {
   Object.entries(rhdsTokens).forEach(([key, value]) => {
     traverseToken(
-      fileName,
-      modeId,
       rhdsTokens.$type,
       key,
       value,
@@ -179,9 +298,12 @@ const loopTokens = (rhdsTokens, modeId) => {
 };
 
 const importJSONFile = async () => {
-  createCollection(fileName, defaultModeId);
-  loopTokens(rhdsTokens, defaultModeId);
-  await callFigmaCreateApi(figmaApiPayload);
+  createCollections();
+
+  loopTokens();
+
+  const res = await callFigmaCreateApi(figmaApiPayload);
+  console.log(res);
 };
 
 importJSONFile();
