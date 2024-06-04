@@ -4,6 +4,7 @@
 
 Added status tokens
 
+Example use case:
 ```css
 button {
   .light &.danger {
