@@ -1,5 +1,47 @@
 # @rhds/tokens
 
+## 2.1.0
+
+### Minor Changes
+
+- f54e53e: Changed value of `--rh-color-status-danger-on-light` from `--rh-color-red-orange-50` to `--rh-color-red-orange-60`
+
+  Added the following tokens to use status colors for icons:
+
+  - `--rh-color-icon-status-danger-on-light`
+  - `--rh-color-icon-status-danger-on-dark`
+  - `--rh-color-icon-status-warning-on-light`
+  - `--rh-color-icon-status-warning-on-dark`
+  - `--rh-color-icon-status-default-on-light`
+  - `--rh-color-icon-status-default-on-dark`
+  - `--rh-color-icon-status-info-on-light`
+  - `--rh-color-icon-status-info-on-dark`
+  - `--rh-color-icon-status-success-on-light`
+  - `--rh-color-icon-status-success-on-dark`
+
+- b64dd32: Added status tokens
+
+  ```css
+  button {
+    .light &.danger {
+      background: var(--rh-color-status-danger-on-light);
+    }
+    .light &.success {
+      background: var(--rh-color-status-success-on-light);
+    }
+    .dark &.danger {
+      background: var(--rh-color-status-danger-on-dark);
+    }
+    .dark &.success {
+      background: var(--rh-color-status-success-on-dark);
+    }
+  }
+  ```
+
+### Patch Changes
+
+- 7a116f8: added stops to textmate snippets
+
 ## 2.0.1
 
 ### Patch Changes
