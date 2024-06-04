@@ -16,7 +16,7 @@ module.exports = function(eleventyConfig) {
     const generator = new Generator();
     await generator.install([
       '@rhds/elements',
-      '@rhds/elements/rh-footer/rh-global-footer.js',
+      '@rhds/elements/rh-footer/rh-footer-universal.js',
       '@rhds/elements/rh-tooltip/rh-tooltip.js',
     ]);
     return generator.getMap();
