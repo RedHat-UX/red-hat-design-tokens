@@ -1,6 +1,17 @@
 name: Figma
 
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    inputs: 
+      file_id:
+        description: 'Figma file ID'
+        required: true
+      figma_token:
+        description: 'Figma API token'
+        required: true
+      style_dictionary_url: 
+        description: 'Style Dictionary URL'
+        required: true
 
 jobs:
   add-collection-to-figma:
@@ -9,16 +20,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: brianferry/figma-create@v1.0
         with:
-          node-version: '18'
-          cache: npm
-        env:
-          api_token: ${{ secrets.FIGMA_API_TOKEN }}
-          file_id: ${{ secrets.FIGMA_FILE_ID }}
-
-      # Set up GitHub Actions caching for Wireit.
-      - uses: google/wireit@setup-github-actions-caching/v1
-
-      - run: npm ci --prefer-offline
-      - run: npm run figma -- $api_token $file_id
+          api_token: ${{ github.event.inputs.figma_token }}
+          file_id: ${{ github.event.inputs.file_id }}
+          style_dictionary_url: ${{ github.event.inputs.style_dictionary_url }}
+      - name: Archive Figma Tokens Payload
+        uses: actions/upload-artifact@v2
+        with:
+          name: figma-tokens
+          path: build/
