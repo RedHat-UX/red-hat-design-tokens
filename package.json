@@ -8,7 +8,6 @@
     "package-vscode": "wireit",
     "style-dictionary": "wireit",
     "start": "wireit",
-    "figma": "wireit",
     "lint": "eslint lib plugins test docs",
     "format": "eslint --fix lib plugins test docs",
     "test": "wireit",
@@ -128,13 +127,6 @@
         "plugins/**/*.js",
         "tokens/**/*.ya?ml"
       ],
-      "dependencies": [
-        "lint",
-        "compile"
-      ]
-    },
-    "figma": {
-      "command": "node ./scripts/figma.cjs",
       "dependencies": [
         "lint",
         "compile"
