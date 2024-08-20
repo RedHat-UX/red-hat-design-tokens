@@ -97,13 +97,13 @@
       ]
     },
     "style-dictionary": {
-      "command": "node build.js",
+      "command": "node --experimental-strip-types build.ts",
       "files": [
         "tokens/**/*",
         "docs/**/*",
         "lib/**/*",
         "platforms.yaml",
-        "build.js"
+        "build.ts"
       ],
       "output": [
         "build/**",

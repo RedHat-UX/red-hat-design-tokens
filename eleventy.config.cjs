@@ -2,7 +2,7 @@
 
 /** @param {import('@11ty/eleventy/src/UserConfig')} eleventyConfig */
 module.exports = function(eleventyConfig) {
-  eleventyConfig.on('eleventy.before', () => import('./build.js').then(m => new Promise(r => (m.build(), setTimeout(r, 50)))));
+  //eleventyConfig.on('eleventy.before', () => import('./build.ts').then(m => new Promise(r => (m.build(), setTimeout(r, 50)))));
   eleventyConfig.setServerPassthroughCopyBehavior('passthrough');
   eleventyConfig.addWatchTarget('lib/**/*.js');
   eleventyConfig.addWatchTarget('tokens/**/*.{yml,yaml}');

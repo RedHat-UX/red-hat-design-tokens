@@ -1,4 +1,3 @@
-// @ts-check
 import YAML from 'yaml';
 import StyleDictionary from 'style-dictionary';
 
@@ -12,15 +11,11 @@ import * as Preprocessors from './lib/preprocessors.js';
 
 import { readFile } from 'node:fs/promises';
 
-const PLATFORMS_URL = new URL('./platforms.yaml', import.meta.url);
-const platforms = YAML.parse(await readFile(PLATFORMS_URL, 'utf-8'));
-
 export async function build() {
-  const sd = new StyleDictionary({
-    source: ['tokens/**/*.{yaml,yml}'],
-    parsers: ['yaml'],
-    platforms,
-  });
+  const yamlPlatforms = await readFile(new URL('./platforms.yaml', import.meta.url), 'utf-8');
+  const platforms = YAML.parse(yamlPlatforms as unknown as string);
+
+  const sd = new StyleDictionary();
 
   sd.registerParser({
     name: 'yaml',
@@ -61,6 +56,17 @@ export async function build() {
   sd.registerAction(Actions.writeEsMapDeclaration)
   sd.registerAction(Actions.writeVSIXManifest)
   sd.registerAction(Actions.descriptionFile)
+
+  await sd.extend({
+    source: [
+      'tokens/**/*.{yaml,yml}',
+    ],
+    parsers: [
+      'yaml',
+    ],
+    preprocessors: ['split-colors'],
+    platforms,
+  })
 
   await sd.hasInitialized;
   await sd.buildAllPlatforms();
