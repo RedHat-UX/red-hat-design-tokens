@@ -10,7 +10,7 @@ async function getAutofixedCSS(code) {
     fix: true,
     config: {
       rules: { 'rhds/token-values': true },
-      plugins: ['./plugins/stylelint.cjs'],
+      plugins: ['./plugins/stylelint.js'],
     }
   });
   return output;
@@ -57,4 +57,3 @@ describe('token-values', test => {
     t.isEqual(actual, expected);
   });
 });
-

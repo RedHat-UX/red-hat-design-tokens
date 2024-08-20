@@ -1,27 +1,27 @@
-const path = require('node:path');
-const { tokens } = require('@rhds/tokens');
-const stylelint = require('stylelint');
-const declarationValueIndex = require('stylelint/lib/utils/declarationValueIndex');
-const parser = require('postcss-value-parser');
+import { dirname, sep } from 'node:path';
+import { tokens } from '@rhds/tokens';
+import { utils } from 'stylelint';
+import declarationValueIndex from 'stylelint/lib/utils/declarationValueIndex';
+import parser from 'postcss-value-parser';
 
 const ruleName = 'rhds/no-unknown-token-name';
 
-const messages = stylelint.utils.ruleMessages(ruleName, {
+const messages = utils.ruleMessages(ruleName, {
   expected: 'Expected ...'
 });
 
 const meta = {
-  url: 'https://github.com/RedHat-UX/red-hat-design-tokens/tree/main/plugins/stylelint/rules/no-unknown-token-name.cjs',
+  url: 'https://github.com/RedHat-UX/red-hat-design-tokens/tree/main/plugins/stylelint/rules/no-unknown-token-name.js',
 };
 
 /** @type {import('stylelint').Plugin} */
 const ruleFunction = (_, opts, ctx) => {
   return (root, result) => {
     // here we assume a file structure of */rh-tagname/rh-tagname.css
-    const tagName = path.dirname(root.source.input.file)
-      .split(path.sep)
+    const tagName = dirname(root.source.input.file)
+      .split(sep)
       .findLast(x => x.startsWith('rh-'));
-    const validOptions = stylelint.utils.validateOptions(
+    const validOptions = utils.validateOptions(
       result,
       ruleName,
       {
@@ -54,7 +54,7 @@ const ruleFunction = (_, opts, ctx) => {
                 node.value = node.value.replace(value, migrations.get(value));
                 return;
               } else {
-                stylelint.utils.report({ node, message, ruleName, result, index, endIndex });
+                utils.report({ node, message, ruleName, result, index, endIndex });
               }
             }
           }
@@ -68,4 +68,4 @@ ruleFunction.ruleName = ruleName;
 ruleFunction.messages = messages;
 ruleFunction.meta = meta;
 
-module.exports = ruleFunction;
+export default ruleFunction;

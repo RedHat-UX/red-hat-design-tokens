@@ -1,5 +1,7 @@
 color:
   white:
+    $extensions:
+      isCrayon: true
     $value: '#ffffff'
     $description: Lightest surface (light theme) or primary text (dark theme)
     attributes:
@@ -7,6 +9,7 @@ color:
 
   gray:
     $extensions:
+      isCrayon: true
       com.redhat.ux:
         order: 390
         description: >-
@@ -65,6 +68,8 @@ color:
         type: gray
 
   black:
+    $extensions:
+      isCrayon: true
     $value: '#000000'
     $description: Brand black (avoid using)
     attributes:

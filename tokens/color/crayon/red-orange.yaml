@@ -1,6 +1,7 @@
 color:
   red-orange:
     $extensions:
+      isCrayon: true
       com.redhat.ux:
         order: 301
         description: >-

@@ -7,7 +7,7 @@ async function runRule(code) {
     code,
     config: {
       rules: { 'rhds/no-unknown-token-name': true },
-      plugins: ['./plugins/stylelint.cjs'],
+      plugins: ['./plugins/stylelint.js'],
     }
   });
 }
@@ -21,7 +21,7 @@ async function getAutofixedCSS(code) {
         '--rh-color-black-900': '--rh-color-grey-900',
         '--rh-color-black-100': '--rh-color-grey-100',
       } }] },
-      plugins: ['./plugins/stylelint.cjs'],
+      plugins: ['./plugins/stylelint.js'],
     }
   });
   return output;

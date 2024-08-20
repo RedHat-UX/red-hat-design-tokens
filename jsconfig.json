@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "moduleResolution": "node",
-    "module": "es2020"
+    "moduleResolution": "nodenext",
+    "module": "nodenext"
   }
 }

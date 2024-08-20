@@ -29,7 +29,7 @@
     "./json/*": {
       "require": "./json/*"
     },
-    "./plugins/stylelint.cjs": "./plugins/stylelint.cjs",
+    "./plugins/stylelint.js": "./plugins/stylelint.js",
     "./css/*": "./css/*",
     "./values.js": {
       "import": "./js/values.js",
@@ -133,7 +133,7 @@
       ]
     },
     "compile": {
-      "command": "tsc -m es2022 --target es2022 --moduleResolution nodenext -d ./js/*.ts",
+      "command": "tsc -m nodenext --target es2022 --moduleResolution nodenext -d ./js/*.ts",
       "dependencies": [
         "style-dictionary"
       ]
@@ -153,27 +153,27 @@
     }
   },
   "devDependencies": {
-    "@11ty/eleventy": "^2.0.0",
-    "@changesets/cli": "^2.26.0",
-    "@jspm/generator": "^1.0.4",
-    "@patternfly/eslint-config-elements": "^0.0.2-next.4",
+    "@11ty/eleventy": "^2.0.1",
+    "@changesets/cli": "^2.27.7",
+    "@jspm/generator": "^2.1.3",
+    "@patternfly/eslint-config-elements": "^4.0.0",
     "css-tree": "^2.3.1",
-    "deepmerge": "^4.3.0",
-    "eslint": "^8.35.0",
-    "markdown-it": "^13.0.1",
-    "style-dictionary": "^3.7.2",
+    "deepmerge": "^4.3.1",
+    "eslint": "^9.9.0",
+    "markdown-it": "^14.1.0",
+    "style-dictionary": "^4.0.1",
     "tap-difflet": "^0.7.2",
     "tape-describe": "^1.0.3",
     "tape-es": "^1.2.17",
-    "typescript": "^5.0.2",
+    "typescript": "^5.5.4",
     "vsce": "^2.15.0",
-    "wireit": "^0.9.5",
-    "yaml": "^2.2.1"
+    "wireit": "^0.14.7",
+    "yaml": "^2.5.0"
   },
   "dependencies": {
-    "@11ty/eleventy-plugin-syntaxhighlight": "^4.2.0",
-    "highlight.js": "^11.7.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+    "highlight.js": "^11.10.0",
     "postcss-value-parser": "^4.2.0",
-    "stylelint": "^15.2.0"
+    "stylelint": "^16.8.2"
   }
 }
