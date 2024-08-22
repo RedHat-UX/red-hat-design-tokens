@@ -78,7 +78,6 @@ export const modules: Format = {
       fileHeader({ file }),
       ...Array.from(categories, x => `export * from './${x}.js';`),
     ].join('\n');
-    console.log(content)
     return content
   },
 };

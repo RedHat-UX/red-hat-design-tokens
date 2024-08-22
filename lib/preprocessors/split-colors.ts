@@ -39,7 +39,6 @@ export const splitColors: Preprocessor = {
     // create a copy in which we will do mutations
     const copy = structuredClone(dictionary);
     splitColorsRecurse(copy, opts);
-    console.log(copy.color.teal);
     return copy;
   },
 };

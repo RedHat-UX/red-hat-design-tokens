@@ -15,7 +15,6 @@ export async function build() {
   const platformsUrl = new URL('./platforms.yaml', import.meta.url);
   const yamlPlatforms = await readFile(platformsUrl, 'utf-8');
   if (typeof yamlPlatforms !== 'string') {
-    console.log(yamlPlatforms);
     throw new Error('Bad Platforms');
   }
 
