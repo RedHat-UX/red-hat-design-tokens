@@ -1,16 +1,15 @@
 import YAML from 'yaml';
-import { readFile } from 'node:fs/promises';
-import { promisify } from 'node:util';
+import { readFile, glob } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
+import { join } from 'node:path';
 
-import g from 'glob';
 import deepmerge from 'deepmerge';
-
-const glob = promisify(g);
 
 const cwd = fileURLToPath(new URL('../tokens/', import.meta.url));
 
-const files = await glob('**/*.y?(a)ml', { absolute: true, cwd });
+const files = [];
+for await (const file of glob('**/*.y?(a)ml', { cwd }))
+  files.push(join(cwd, file));
 
 const parsed = await Promise.all(files.map(async x => YAML.parse(await readFile(x, 'utf8'))));
 

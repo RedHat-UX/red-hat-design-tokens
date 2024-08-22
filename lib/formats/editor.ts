@@ -1,4 +1,4 @@
-import { isColor } from '../predicates.js';
+import { isColor } from '../predicates.ts';
 
 /** @typedef {import('style-dictionary').Format} Format */
 

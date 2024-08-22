@@ -1,5 +1,5 @@
 import Color from 'tinycolor2';
-import { isColor } from '../predicates.js';
+import { isColor } from '../predicates.ts';
 
 /**
  * Add HEX, RGB, HSL, HSV, and isLight (boolean) to colour types

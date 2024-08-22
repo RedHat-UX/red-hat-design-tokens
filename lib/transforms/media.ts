@@ -1,4 +1,4 @@
-import * as Predicates from '../predicates.js';
+import * as Predicates from '../predicates.ts';
 
 /**
  * Transforms which build media queries

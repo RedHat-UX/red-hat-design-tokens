@@ -1,53 +1,45 @@
-// @ts-check
-import { readdir } from 'node:fs/promises';
+import type { Config, Token, Tokens } from 'style-dictionary';
+import type { Preprocessor } from 'style-dictionary/types';
 
-/** @import { DesignToken, DesignTokens, Config } from 'style-dictionary/types'; */
+import { readdir } from 'node:fs/promises';
 
 const crayonFiles = await readdir(new URL('../../tokens/color/crayon', import.meta.url));
 const CRAYONS = new Set(crayonFiles.map(x => x.replace(/\.ya?ml/, '')));
 CRAYONS.add('white');
 CRAYONS.add('black');
 
-/**
- * @param {DesignTokens | DesignToken} slice
- * @param {DesignTokens} original
- * @param {Config} opts
- */
-function splitColorsRecurse(slice, original, opts) {
+function splitColorsRecurse(slice: Tokens | Token, opts: Config) {
   for (const key in slice) {
     const token = slice[key];
     if (typeof token !== 'object' || token === null) {
       continue;
     } else if (token.$extensions?.isCrayon) {
-      slice[key] = Object.fromEntries(Object.entries(slice[key] ?? {}).flatMap(([tone, value]) => {
+      slice[key] = Object.fromEntries(Object.entries(slice[key] ?? {}).flatMap(([tone, value]: [string, Token]) => {
         const color = value.filePath?.split('/').pop().replace(/\.ya?ml/, '');
         if (!CRAYONS.has(color)) {
-          return [[tone, value]];
+          return [[tone, {...value}]];
         } else {
-          const $value =  `{color.${color}.${tone}}`;
-          console.log({ tone, $value})
+          const $value = `{color.${color}.${tone}}`;
           return [
-            [tone, value],
+            [tone, {...value}],
             [`${tone}-hsl`, {$value}],
             [`${tone}-rgb`, {$value}],
           ];
         }
       }));
     } else {
-      splitColorsRecurse(token, original, opts);
+      splitColorsRecurse(token, opts);
     }
   }
 }
 
-/** @type {import('style-dictionary/types').Preprocessor}*/
-export const splitColors = {
+export const splitColors: Preprocessor = {
   name: 'split-colors',
   preprocessor(dictionary, opts) {
     // create a copy in which we will do mutations
     const copy = structuredClone(dictionary);
-    // create a separate copy to check as the original object
-    const original = structuredClone(dictionary);
-    splitColorsRecurse(copy, original, opts);
+    splitColorsRecurse(copy, opts);
+    console.log(copy.color.teal);
     return copy;
   },
 };

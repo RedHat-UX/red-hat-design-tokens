@@ -1,26 +1,45 @@
 import YAML from 'yaml';
 import StyleDictionary from 'style-dictionary';
 
-import * as Formats from './lib/formats.js';
-import * as Transforms from './lib/transforms.js';
-import * as FileHeaders from './lib/file-header.js';
-import * as TransformGroups from './lib/transform-groups.js';
-import * as Actions from './lib/actions.js';
-import * as Filters from './lib/filters.js';
-import * as Preprocessors from './lib/preprocessors.js';
+import * as Formats from './lib/formats.ts';
+import * as Transforms from './lib/transforms.ts';
+import * as FileHeaders from './lib/file-header.ts';
+import * as TransformGroups from './lib/transform-groups.ts';
+import * as Actions from './lib/actions.ts';
+import * as Filters from './lib/filters.ts';
+import * as Preprocessors from './lib/preprocessors.ts';
 
 import { readFile } from 'node:fs/promises';
 
 export async function build() {
-  const yamlPlatforms = await readFile(new URL('./platforms.yaml', import.meta.url), 'utf-8');
-  const platforms = YAML.parse(yamlPlatforms as unknown as string);
+  const platformsUrl = new URL('./platforms.yaml', import.meta.url);
+  const yamlPlatforms = await readFile(platformsUrl, 'utf-8');
+  if (typeof yamlPlatforms !== 'string') {
+    console.log(yamlPlatforms);
+    throw new Error('Bad Platforms');
+  }
 
-  const sd = new StyleDictionary();
+  const platforms = YAML.parse(yamlPlatforms);
 
-  sd.registerParser({
-    name: 'yaml',
-    pattern: /\.ya?ml$/,
-    parser: ({ contents }) => YAML.parse(contents),
+  const sd = new StyleDictionary({
+    hooks: {
+      parsers: {
+        yaml: {
+          pattern: /\.ya?ml$/,
+          parser: ({ contents }) => YAML.parse(contents),
+        }
+      }
+    },
+    parsers: [ 'yaml', ],
+    preprocessors: ['split-colors'],
+    source: [
+      'tokens/**/*.yml',
+      'tokens/**/*.yaml',
+    ],
+    platforms,
+    log: {
+      verbosity: 'verbose',
+    }
   });
 
   sd.registerPreprocessor(Preprocessors.splitColors)
@@ -56,17 +75,6 @@ export async function build() {
   sd.registerAction(Actions.writeEsMapDeclaration)
   sd.registerAction(Actions.writeVSIXManifest)
   sd.registerAction(Actions.descriptionFile)
-
-  await sd.extend({
-    source: [
-      'tokens/**/*.{yaml,yml}',
-    ],
-    parsers: [
-      'yaml',
-    ],
-    preprocessors: ['split-colors'],
-    platforms,
-  })
 
   await sd.hasInitialized;
   await sd.buildAllPlatforms();

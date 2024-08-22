@@ -1,8 +1,5 @@
-/** @typedef {import('style-dictionary').Named<import('style-dictionary').TransformGroup>} TransformGroup */
-
 /**
  * Transforms to apply to s/css outputs
- * @type {TransformGroup}
  */
 export const css = {
   name: 'css',
@@ -22,7 +19,6 @@ export const css = {
 
 /**
  * Transforms to apply to js outputs
- * @type {TransformGroup}
  */
 export const js = {
   name: 'js',
@@ -31,7 +27,6 @@ export const js = {
 
 /**
  * Transforms to apply to Sketch palette output
- * @type {TransformGroup}
  */
 export const sketch = {
   name: 'sketch',

@@ -1,18 +1,20 @@
 import {
-  readFileSync,
-  copyFileSync,
-  mkdirSync,
-  rmSync,
-  writeFileSync,
-  rmdirSync,
-  readdirSync,
-} from 'node:fs';
+  readFile,
+  copyFile,
+  mkdir,
+  writeFile,
+  rmdir,
+  rm,
+  readdir,
+} from 'node:fs/promises';
+
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-/** @typedef {import('style-dictionary').Named<import('style-dictionary').Action>} Action */
+import type { Token } from 'style-dictionary'
+import type { Action } from 'style-dictionary/types';
 
-const rel = path => new URL(path, import.meta.url);
+const rel = (path: string) => new URL(path, import.meta.url);
 const DOCS_STYLES_IN = fileURLToPath(rel('../docs/styles.css'));
 const DOCS_STYLES_OUT = fileURLToPath(rel('../build/styles.css'));
 const TYPES_IN = fileURLToPath(rel('./types.ts'));
@@ -33,74 +35,72 @@ const TOKENS_DECL_URLS = [
   rel('../js/tokens.d.cts')
 ];
 
-const { version } = JSON.parse(readFileSync(PACKAGE_JSON_URL, 'utf8'));
+const { version } = JSON.parse(
+  await readFile(PACKAGE_JSON_URL, 'utf-8') as unknown as string
+);
 
 /**
  * Copy web assets to build dir
- * @type {Action}
  */
-export const copyAssets = {
+export const copyAssets: Action = {
   name: 'copy-assets',
-  do() {
-    copyFileSync(DOCS_STYLES_IN, DOCS_STYLES_OUT);
-    mkdirSync(ASSETS_IN_DIR, { recursive: true });
-    mkdirSync(ASSETS_OUT_DIR, { recursive: true });
-    for (const asset of readdirSync(ASSETS_IN_DIR)) {
-      copyFileSync(
+  async do() {
+    await copyFile(DOCS_STYLES_IN, DOCS_STYLES_OUT);
+    await mkdir(ASSETS_IN_DIR, { recursive: true });
+    await mkdir(ASSETS_OUT_DIR, { recursive: true });
+    for (const asset of await readdir(ASSETS_IN_DIR)) {
+      await copyFile(
         new URL(`./${asset}`, ASSETS_IN_DIR.href),
         new URL(`./${asset}`, ASSETS_OUT_DIR.href),
       );
     }
   },
-  undo() {
-    rmdirSync(ASSETS_OUT_DIR, { force: true });
-    rmSync(DOCS_STYLES_OUT, { force: true });
+  async undo() {
+    await rmdir(ASSETS_OUT_DIR, { recursive: true });
+    await rm(DOCS_STYLES_OUT, { force: true });
   }
 };
 
 /**
  * Copy base TS types
- * @type {Action}
  */
-export const copyTypes = {
+export const copyTypes: Action = {
   name: 'copyTypes',
-  do() {
-    copyFileSync(TYPES_IN, TYPES_OUT);
+  async do() {
+    await copyFile(TYPES_IN, TYPES_OUT);
   },
-  undo() {
-    rmSync(TYPES_OUT, { force: true });
+  async undo() {
+    await rm(TYPES_OUT, { force: true });
   }
 };
 
 /**
  * Write declaration file for JS token map
- * @type {Action}
  */
-export const writeEsMapDeclaration = {
+export const writeEsMapDeclaration: Action = {
   name: 'writeEsMapDeclaration',
-  do() {
+  async do() {
     for (const url of TOKENS_DECL_URLS) {
-      writeFileSync(url, TOKENS_DECL_CONTENT, 'utf8');
+      await writeFile(url, TOKENS_DECL_CONTENT, 'utf8');
     }
   },
-  undo() {
+  async undo() {
     for (const url of TOKENS_DECL_URLS) {
-      rmSync(url);
+      await rm(url);
     }
   }
 };
 
 /**
  * Write VSCode package manifest
- * @type {Action}
  */
-export const writeVSIXManifest = {
+export const writeVSIXManifest: Action = {
   name: 'writeVSIXManifest',
-  do() {
-    mkdirSync(dirname(fileURLToPath(VSIX_MANIFEST_URL)), { recursive: true });
-    copyFileSync(LICENSE_URL, VSCODE_LICENSE_URL);
-    copyFileSync(README_URL, VSCODE_README_URL);
-    writeFileSync(VSIX_MANIFEST_URL, JSON.stringify({
+  async do() {
+    await mkdir(dirname(fileURLToPath(VSIX_MANIFEST_URL)), { recursive: true });
+    await copyFile(LICENSE_URL, VSCODE_LICENSE_URL);
+    await copyFile(README_URL, VSCODE_README_URL);
+    await writeFile(VSIX_MANIFEST_URL, JSON.stringify({
       name: 'red-hat-design-tokens',
       version,
       publisher: 'Red Hat UX',
@@ -125,14 +125,14 @@ export const writeVSIXManifest = {
       },
     }, null, 2), 'utf8');
   },
-  undo() {
-    rmSync(VSIX_MANIFEST_URL);
-    rmSync(VSCODE_LICENSE_URL);
-    rmSync(VSCODE_README_URL);
+  async undo() {
+    await rm(VSIX_MANIFEST_URL);
+    await rm(VSCODE_LICENSE_URL);
+    await rm(VSCODE_README_URL);
   }
 };
 
-function getFilePathGuess(collection) {
+function getFilePathGuess(collection: Token) {
   return Object.values(collection).reduce((path, val) =>
       path || typeof val !== 'object' ? path
             : '$value' in val ? val.filePath
@@ -144,7 +144,7 @@ function getDescription(collection) {
     filePath = getFilePathGuess(collection),
     descriptionFile,
   } = collection.$extensions[EXT_KEY];
-  return readFileSync(join(process.cwd(), dirname(filePath), descriptionFile), 'utf-8');
+  return readFile(join(process.cwd(), dirname(filePath), descriptionFile), 'utf-8');
 }
 
 function writeDescription(parent) {
@@ -163,9 +163,12 @@ function writeDescription(parent) {
 
 export const descriptionFile = {
   name: 'descriptionFile',
-  do() {
-    const json = JSON.parse(readFileSync(OUTPUT_JSON_URL, 'utf8'));
+  async do() {
+    const json = JSON.parse(await readFile(OUTPUT_JSON_URL, 'utf8') as unknown as string);
     writeDescription(json);
-    writeFileSync(OUTPUT_JSON_URL, JSON.stringify(json, null, 2));
+    await writeFile(OUTPUT_JSON_URL, JSON.stringify(json, null, 2));
+  },
+  async undo() {
+    await rm(OUTPUT_JSON_URL)
   }
 };

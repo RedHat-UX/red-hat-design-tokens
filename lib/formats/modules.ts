@@ -1,22 +1,30 @@
-import * as Predicates from '../predicates.js';
+import type { Format } from 'style-dictionary/types';
+import type { Token } from 'style-dictionary';
+
+import * as Predicates from '../predicates.ts';
+
 import { writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { colorFormats } from '../transforms.js';
+import { colorFormats } from '../transforms.ts';
 import { fileHeader } from 'style-dictionary/utils'
 
-function deserializeShadow(x) {
-  const [offsetX, offsetY, blur, spread, color] = x.$value.split(' ');
-  return JSON.stringify({ offsetX, offsetY, blur, spread, color });
+function deserializeShadow(x: Token) {
+  if (typeof x.$value === 'object')
+    return JSON.stringify(x.$value);
+  else {
+    const [offsetX, offsetY, blur, spread, color] = x.$value.split(' ');
+    return JSON.stringify({ offsetX, offsetY, blur, spread, color });
+  }
 }
 
-const capitalize = x => `${x.at(0).toUpperCase()}${x.slice(1)}`;
+const capitalize = (x: string) => `${x.at(0).toUpperCase()}${x.slice(1)}`;
 
-function colorRef(x) {
-  const r = JSON.stringify(colorFormats.transformer({ ...x }));
+function colorRef(x: Token) {
+  const r = JSON.stringify(colorFormats.transform({ ...x }));
   return r;
 }
 
-function mediaRef(x) {
+function mediaRef(x: Token) {
   const values = [];
   const stringified = JSON.stringify(x.original.$value, (_, value) => {
     const [, inner] = value?.match?.(/^\{(.*)\}$/) ?? [];
@@ -34,12 +42,11 @@ function mediaRef(x) {
 
 /**
  * Per-category javascript modules
- * @type {import('style-dictionary').Format}
  * @example ```js
- * import { Red300 } from '@rhds/tokens/color.js';
- * ```
+ *          import { Red300 } from '@rhds/tokens/color.js';
+ *          ```
  */
-export const modules = {
+export const modules: Format = {
   name: 'javascript/modules',
   format({ file, dictionary, platform }) {
     const categories = new Set(dictionary.allTokens.map(x => x.attributes.category));
@@ -67,9 +74,11 @@ export const modules = {
       ].join('\n');
       writeFileSync(outpath, contents, 'utf8');
     }
-    return [
+    const content =  [
       fileHeader({ file }),
       ...Array.from(categories, x => `export * from './${x}.js';`),
     ].join('\n');
+    console.log(content)
+    return content
   },
 };

@@ -1,8 +1,8 @@
+import type { Format } from 'style-dictionary/types'
 import { fileHeader, formattedVariables } from 'style-dictionary/utils'
 
 /**
  * Lit CSS object
- * @type {import('style-dictionary').Format}
  * @example ```js
  * import { resetStyles } from '@rhds/tokens/reset.css.js';
  *
@@ -12,7 +12,7 @@ import { fileHeader, formattedVariables } from 'style-dictionary/utils'
  * }
  * ```
  */
-export const litCss = {
+export const litCss: Format = {
   name: 'css/lit',
   format: ({ file, dictionary, options }) =>
     `${fileHeader({ file })}

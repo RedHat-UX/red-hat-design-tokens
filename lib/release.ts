@@ -2,18 +2,15 @@ import { readFile, readdir } from 'node:fs/promises';
 
 const vscodeDir = new URL('../editor/vscode/', import.meta.url);
 
-/** @param {number} ms */
-const sleep = ms => new Promise(r => setTimeout(r, ms));
+const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
 
 /**
  * Wait exponentially longer, by seconds, each time we fail to fetch the release
- * @template T
- * @param {(...args: any[]) => T} fn async function to be backed off
- * @param {number} retries current count of retries
- * @param {number} max Max number of retries
- * @return {Promise<T>}
+ * @param  fn async function to be backed off
+ * @param  retries current count of retries
+ * @param  max Max number of retries
  */
-async function backoff(fn, retries = 0, max = 10) {
+async function backoff<T>(fn: (...args: any[]) => T, retries: number = 0, max: number = 10): Promise<T> {
   try {
     return await fn();
   } catch (e) {
