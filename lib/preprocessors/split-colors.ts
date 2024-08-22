@@ -41,13 +41,6 @@ export const splitColors: Preprocessor = {
     // create a copy in which we will do mutations
     const copy = structuredClone(dictionary);
     splitColorsRecurse(copy, opts);
-
-    await writeFile(
-      join(process.cwd(), 'out.json'),
-      JSON.stringify(copy, null, 2),
-      'utf-8' as const
-    );
-
     return copy;
   },
 };

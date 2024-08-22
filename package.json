@@ -10,8 +10,7 @@
     "start": "wireit",
     "lint": "eslint lib plugins test docs",
     "format": "eslint --fix lib plugins test docs",
-    "test": "wireit",
-    "compile": "wireit"
+    "test": "wireit"
   },
   "type": "module",
   "main": "js/tokens.cjs",
@@ -116,7 +115,10 @@
     },
     "start": {
       "command": "eleventy --incremental --serve",
-      "service": true
+      "service": true,
+      "dependencies": [
+        "style-dictionary"
+      ]
     },
     "test": {
       "command": "tape-es 'test/*.js' | tap-difflet",
@@ -129,12 +131,6 @@
       ],
       "dependencies": [
         "lint",
-        "compile"
-      ]
-    },
-    "compile": {
-      "command": "tsc -m nodenext --target es2022 --moduleResolution nodenext -d ./js/*.ts",
-      "dependencies": [
         "style-dictionary"
       ]
     },
@@ -145,7 +141,7 @@
         "editor/vscode/snippets.json"
       ],
       "dependencies": [
-        "compile"
+        "style-dictionary"
       ],
       "output": [
         "*.vsix"
