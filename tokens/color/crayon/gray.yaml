@@ -1,9 +1,7 @@
 color:
   white:
-    $extensions:
-      isCrayon: true
+    $description: 'Lightest surface (light theme) or primary text (dark theme)'
     $value: '#ffffff'
-    $description: Lightest surface (light theme) or primary text (dark theme)
     attributes:
       type: gray
 
@@ -68,8 +66,6 @@ color:
         type: gray
 
   black:
-    $extensions:
-      isCrayon: true
     $value: '#000000'
     $description: Brand black (avoid using)
     attributes:

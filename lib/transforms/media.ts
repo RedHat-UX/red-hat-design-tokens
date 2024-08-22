@@ -1,13 +1,11 @@
+import type { Transform } from 'style-dictionary/types';
+
 import * as Predicates from '../predicates.ts';
 
 /**
  * Transforms which build media queries
  */
-
-/**
- * @type {import('style-dictionary').Named<import('style-dictionary').Transform>}
- */
-export const mediaQuery = {
+export const mediaQuery: Transform = {
   name: 'media-query/css',
   type: 'value',
   transitive: true,

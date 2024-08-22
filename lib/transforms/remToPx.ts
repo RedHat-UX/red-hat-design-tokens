@@ -1,8 +1,9 @@
+import type { Transform } from "style-dictionary/types";
+
 /**
  * Add px values for rem-based tokens, assuming default 16px base px font size
- * @type {import('style-dictionary').Named<import('style-dictionary').Transform>}
  */
-export const remToPx = {
+export const remToPx: Transform = {
   name: 'remToPx/css',
   type: 'attribute',
   transitive: true,

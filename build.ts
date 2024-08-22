@@ -30,7 +30,7 @@ export async function build() {
       }
     },
     parsers: [ 'yaml', ],
-    preprocessors: ['split-colors'],
+    preprocessors: ['split-colors', 'wtf-description'],
     source: [
       'tokens/**/*.yml',
       'tokens/**/*.yaml',
@@ -41,6 +41,28 @@ export async function build() {
     }
   });
 
+  sd.registerPreprocessor({
+    name: 'wtf-description',
+    preprocessor(dictionary, opts) {
+      function fixDescription(slice) {
+        if (slice.$description && typeof slice.$description !== 'string') {
+          console.log(slice)
+          slice.$description = Array.from(slice.$description).join('')
+        }
+
+        for (const key in slice) {
+          const token = slice[key];
+          if (typeof token !== 'object' || token === null) {
+            continue;
+          } else {
+            fixDescription(token)
+          }
+        }
+      }
+      fixDescription(dictionary)
+      return dictionary;
+    },
+  });
   sd.registerPreprocessor(Preprocessors.splitColors)
 
   sd.registerFileHeader(FileHeaders.legal)

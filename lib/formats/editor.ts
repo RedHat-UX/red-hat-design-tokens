@@ -1,9 +1,9 @@
+import type { Token } from 'style-dictionary';
+import type { Format } from 'style-dictionary/types';
 import { isColor } from '../predicates.ts';
 
-/** @typedef {import('style-dictionary').Format} Format */
-
 /** Creates a list of entries matching token names with values */
-function pairAliasWithValue(token) {
+function pairAliasWithValue(token: Token) {
   if (typeof token.value === 'string') {
     const name = token.original?.value?.startsWith('{') ? token.original.value.replace(/\._}$/, '}') : `{${token.path.reduce((a, b) => `${a}.${b}`, '')}}`.replace(/^\{\./, '{');
     return [[name, token.value]];
@@ -16,9 +16,8 @@ function pairAliasWithValue(token) {
 
 /**
  * Exports VSCode-style snippets for editor support
- * @type {Format}
  */
-export const vscodeSnippets = {
+export const vscodeSnippets: Format = {
   name: 'editor/snippets/vscode',
   format: ({ dictionary }) =>
     JSON.stringify(Object.fromEntries(
@@ -41,13 +40,12 @@ export const vscodeSnippets = {
 
 /**
  * Exports textmate-style snippets for editor support
- * @type {Format}
  * @example ```snippets
  * snippet --rh-color-black
  *   var(--rh-color-black, #000)
  * ```
  */
-export const textmateSnippets = {
+export const textmateSnippets: Format = {
   name: 'editor/snippets/textmate',
   format: ({ dictionary }) =>
   //     dictionary.allTokens.reduce((snippets, token) => `${snippets}
@@ -73,9 +71,8 @@ const COLOR_TOKEN_RE = /{color\.(\w+)\.(\d{1,3})}/;
 
 /**
  * Exports [vim-hexokinase](https://github.com/RRethy/vim-hexokinase) custom patterns
- * @type {Format}
  */
-export const hexokinase = {
+export const hexokinase: Format = {
   name: 'editor/hexokinase',
   format: ({ dictionary }) =>
     JSON.stringify({

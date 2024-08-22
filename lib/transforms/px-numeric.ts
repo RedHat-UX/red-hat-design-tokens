@@ -1,8 +1,9 @@
+import type { Transform } from "style-dictionary/types";
+
 /**
  * Add px values as numbers at the `px` attribute
- * @type {import('style-dictionary').Named<import('style-dictionary').Transform>}
  */
-export const pxNumeric = {
+export const pxNumeric: Transform = {
   name: 'attribute/px',
   type: 'attribute',
   filter: token => token.$value?.endsWith?.('px'),

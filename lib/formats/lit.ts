@@ -22,7 +22,7 @@ export const resetStyles = css\`
 ${formattedVariables({
   format: 'css',
   dictionary,
-  outputReferences: options.outputReferences,
+  ...options,
 })}
 }\`;
 export default resetStyles;`,

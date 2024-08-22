@@ -1,11 +1,12 @@
+import type { Transform } from 'style-dictionary/types';
+
 import Color from 'tinycolor2';
 import { isColor } from '../predicates.ts';
 
 /**
  * Add HEX, RGB, HSL, HSV, and isLight (boolean) to colour types
- * @type {import('style-dictionary').Named<import('style-dictionary').Transform>}
  */
-export const colorFormats = {
+export const colorFormats: Transform = {
   name: 'attribute/color',
   type: 'attribute',
   filter: isColor,
@@ -24,15 +25,14 @@ export const colorFormats = {
 
 /**
  * Use HSL values
- * @type {import('style-dictionary').Named<import('style-dictionary').Transform>}
  */
-export const hslValue = {
+export const hslValue: Transform = {
   name: 'color/css/hsl',
   transitive: true,
   type: 'value',
   filter: x => isColor(x) && x.path.at(-1).endsWith('hsl'),
   transform(token) {
-    const { h, s, l } = token.attributes.hsl;
+    const { h, s, l } = token.attributes.hsl as { h: string; s: string; l: string; };
     token.$value = `${h} ${s}% ${l}%`;
     return token.$value;
   },
@@ -40,15 +40,14 @@ export const hslValue = {
 
 /**
  * Use rgb values
- * @type {import('style-dictionary').Named<import('style-dictionary').Transform>}
  */
-export const rgbValue = {
+export const rgbValue: Transform = {
   name: 'color/css/rgb',
   transitive: true,
   type: 'value',
   filter: x => isColor(x) && x.path.at(-1).endsWith('rgb'),
   transform(token) {
-    const { r, g, b } = token.attributes.rgb;
+    const { r, g, b } = token.attributes.rgb as { r: string; g: string; b: string; };
     token.$value = `${r} ${g} ${b}`;
     return token.$value;
   },
