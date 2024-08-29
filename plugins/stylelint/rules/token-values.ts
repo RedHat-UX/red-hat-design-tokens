@@ -29,7 +29,8 @@ const ruleFunction: Rule = () => {
         const parsedValue = parser(node.value);
         parsedValue.walk(ch => {
           if (ch.type === 'function' && ch.value === 'var' && ch.nodes.length > 1) {
-            const [{ value: name }, , ...values] = ch.nodes ?? [];
+            const [value, , ...values] = ch.nodes ?? [];
+            const { value: name } = value;
             if (tokens.has(name as `--rh-${string}`)) {
               const actual = parser.stringify(values);
               const expected = tokens.get(name as `--rh-${string}`)?.toString();
@@ -39,6 +40,9 @@ const ruleFunction: Rule = () => {
                   message: `Expected ${name} to equal ${expected}`,
                   ruleName,
                   result,
+                  word: name,
+                  index: value.sourceIndex,
+                  endIndex: value.sourceEndIndex,
                   fix() {
                     ch.nodes = ch.nodes.toSpliced(2, 0, ...parser(expected).nodes);
                     node.value = parser.stringify(parsedValue.nodes);

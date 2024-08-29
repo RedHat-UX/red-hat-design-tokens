@@ -20,9 +20,6 @@ const meta = {
 const ruleFunction: Rule = (_, opts) => {
   return (root, result) => {
     // here we assume a file structure of */rh-tagname/rh-tagname.css
-    if (!root.source.input.file) {
-      console.log(root.source.input);
-    }
     const tagName = dirname(root.source.input.file)
         .split(sep)
         .findLast(x => x.startsWith('rh-'));
@@ -39,7 +36,8 @@ const ruleFunction: Rule = (_, opts) => {
         const parsedValue = parser(node.value);
         parsedValue.walk(parsed => {
           if (parsed.type === 'function' && parsed.value === 'var') {
-            const [{ value }] = parsed.nodes ?? [];
+            const [child] = parsed.nodes ?? [];
+            const { value } = child;
             if (value.startsWith('--rh')
                 && !value.startsWith(`--${tagName}`)
                 && !tokens.has(value as `--rh-${string}`)
@@ -50,6 +48,9 @@ const ruleFunction: Rule = (_, opts) => {
                 message,
                 ruleName,
                 result,
+                word: value,
+                index: child.sourceIndex,
+                endIndex: child.sourceEndIndex,
                 fix() {
                   if (migrations.has(value)) {
                     node.value = node.value.replace(value, migrations.get(value) as `--rh-${string}`);
