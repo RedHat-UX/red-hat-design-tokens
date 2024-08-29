@@ -128,6 +128,30 @@
       {% category path = 'breakpoint' %}
       {% category path = 'media' %}
 
+      <rh-surface id="theme-link-demo" color-palette="lighter">
+        <rh-card color-palette="darkest">
+          <p>That way, colours respond to their parents' <code>color-palette</code>
+             Without requiring <a href="#">custom CSS</a></p>
+        </rh-card>
+        <p>Use <a href="#">theme tokens</a> for best results.
+      </rh-surface>
+
+      <style>
+      #theme-link-demo {
+        & a {
+          color: var(--rh-color-interactive-blue-normal);
+          &:hover,
+          &:focus-within,
+          &:active { color: var(--rh-color-interactive-blue-emphasized); }
+          &:visited {
+            color: var(--rh-color-interactive-purple-normal);
+            &:hover,
+            &:focus-within,
+            &:active { color: var(--rh-color-interactive-purple-emphasized); }
+          }
+        }
+      }
+      </style>
     </main>
     <rh-global-footer>
       <h3 slot="links-primary" hidden>Red Hat legal and privacy links</h3>
