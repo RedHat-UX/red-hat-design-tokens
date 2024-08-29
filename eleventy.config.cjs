@@ -18,6 +18,8 @@ module.exports = function(eleventyConfig) {
       '@rhds/elements',
       '@rhds/elements/rh-footer/rh-footer-universal.js',
       '@rhds/elements/rh-tooltip/rh-tooltip.js',
+      '@rhds/elements/rh-card/rh-card.js',
+      '@rhds/elements/rh-surface/rh-surface.js',
     ]);
     return generator.getMap();
   });

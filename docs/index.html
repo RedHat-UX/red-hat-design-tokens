@@ -112,6 +112,35 @@
 
       </section>
 
+      <section id="theme-tokens">
+
+        <rh-surface id="theme-link-demo" color-palette="lighter">
+          <p>Use <a href="#">theme tokens</a> for best results.<p>
+          <rh-card color-palette="darkest">
+            <p>That way, colours respond to their parents' <code>color-palette</code>
+               Without requiring <a href="#">custom CSS</a></p>
+          </rh-card>
+        </rh-surface>
+
+        <style>
+        #theme-link-demo {
+          & a {
+            color: var(--rh-color-interactive-blue-normal);
+            &:hover,
+            &:focus-within,
+            &:active { color: var(--rh-color-interactive-blue-emphasized); }
+            &:visited {
+              color: var(--rh-color-interactive-purple-normal);
+              &:hover,
+              &:focus-within,
+              &:active { color: var(--rh-color-interactive-purple-emphasized); }
+            }
+          }
+        }
+        </style>
+
+      </section>
+
       {% category path = 'color',
                   exclude = ['border', 'text', 'icon'] %}
       {% category path = 'box-shadow' %}
@@ -128,32 +157,8 @@
       {% category path = 'breakpoint' %}
       {% category path = 'media' %}
 
-      <rh-surface id="theme-link-demo" color-palette="lighter">
-        <rh-card color-palette="darkest">
-          <p>That way, colours respond to their parents' <code>color-palette</code>
-             Without requiring <a href="#">custom CSS</a></p>
-        </rh-card>
-        <p>Use <a href="#">theme tokens</a> for best results.
-      </rh-surface>
-
-      <style>
-      #theme-link-demo {
-        & a {
-          color: var(--rh-color-interactive-blue-normal);
-          &:hover,
-          &:focus-within,
-          &:active { color: var(--rh-color-interactive-blue-emphasized); }
-          &:visited {
-            color: var(--rh-color-interactive-purple-normal);
-            &:hover,
-            &:focus-within,
-            &:active { color: var(--rh-color-interactive-purple-emphasized); }
-          }
-        }
-      }
-      </style>
     </main>
-    <rh-global-footer>
+    <rh-footer-universal>
       <h3 slot="links-primary" hidden>Red Hat legal and privacy links</h3>
       <ul slot="links-primary">
         <li><a href="#">About Red Hat</a></li>
@@ -178,7 +183,7 @@
         <img src="https://access.redhat.com/chrome_themes/nimbus/img/rh-summit-red-a.svg" alt="Red Hat Summit"
           width="73px" loading="lazy">
       </a>
-    </rh-global-footer>
+    </rh-footer-universal>
   </body>
 </html>
 
