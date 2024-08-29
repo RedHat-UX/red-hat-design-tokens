@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://static.redhat.com/libs/redhat/redhat-font/4/webfonts/red-hat-font.min.css">
     <link rel="stylesheet" href="https://static.redhat.com/libs/redhat/redhat-theme/4/advanced-theme.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@300;500;700&family=Noto+Sans+JP:wght@300;500;700&family=Noto+Sans+KR:wght@300;500;700&family=Noto+Sans+Malayalam:wght@300;500;700&family=Noto+Sans+SC:wght@300;500;700&family=Noto+Sans+TC:wght@300;500;700&family=Noto+Sans+Tamil:wght@300;500;700&family=Noto+Sans+Thai:wght@300;500;700&display=swap"> 
-    <link rel="stylesheet" href="https://ga.jspm.io/npm:@rhds/elements@1.0.0-beta.27/elements/rh-footer/rh-footer-lightdom.css">
+    <link rel="stylesheet" href="https://ga.jspm.io/npm:@rhds/elements@2.0.0/elements/rh-footer/rh-footer-lightdom.css">
     <link rel="stylesheet" href="/assets/rhds.css">
     <link rel="stylesheet" href="/assets/tokens.css">
 
@@ -22,7 +22,144 @@
     <!-- ES Module Shims: Import maps polyfill for modules browsers without import maps support (all except Chrome 89+) -->
     <script async src="https://ga.jspm.io/npm:es-module-shims@1.5.1/dist/es-module-shims.js" crossorigin="anonymous"></script>
 
-    <script type="module" src="/assets/tokens.js"></script>
+    <script type="module">
+      import '@rhds/elements/rh-card/rh-card.js';
+      import '@rhds/elements/rh-surface/rh-surface.js';
+      import '@rhds/elements/rh-switch/rh-switch.js';
+      import '@rhds/elements/rh-footer/rh-footer-universal.js';
+
+      for (const button of document.querySelectorAll('.copy-button')) {
+        button.addEventListener('click', async function(event) {
+          const text = event.target.closest('[data-copy]')?.dataset?.copy ?? button.textContent;
+          await navigator.clipboard.writeText(text.trim());
+        });
+      }
+
+      for (const details of document.querySelectorAll('.variants details')) {
+        details.addEventListener('toggle', function(event) {
+          event.target.closest('tr.variants')?.classList.toggle('open', event.target.open);
+        });
+      }
+
+      const surface = document.getElementById('theme-link-demo');
+      const card = surface.querySelector('rh-card');
+
+      surface.addEventListener('change', function(event) {
+        const next = event.target.checked ? 'darkest' : 'lightest';
+        surface.colorPalette = next;
+      });
+
+      // START HACK remove after merging themes into rhds
+      surface.addEventListener('change', async function() {
+        for (const element of document.querySelectorAll('rh-surface,rh-card')) {
+          await hack(element);
+        }
+      });
+
+      async function hack(element) {
+        await element.updateComplete;
+        element.shadowRoot.firstElementChild.classList.add('on');
+        element.shadowRoot.firstElementChild.classList.remove('light');
+        element.shadowRoot.firstElementChild.classList.remove('dark');
+        element.shadowRoot.firstElementChild.classList.add(element.colorPalette.replace(/er|est/, ''));
+      }
+
+      const styleSheet = new CSSStyleSheet();
+      styleSheet.replaceSync(`
+        :host([color-palette^="dark"]) {
+          --context: dark;
+          --rh-color-theme-inverse: var(--rh-color-white, #ffffff);
+        }
+
+        :host([color-palette^="light"]) {
+          --context: light;
+          --rh-color-theme-inverse: var(--rh-color-black, #000000);
+        }
+
+        :host([color-palette="lightest"]) {
+          --rh-color-surface: var(--rh-color-surface-lightest, #ffffff);
+        }
+
+        :host([color-palette="lighter"]) {
+          --rh-color-surface: var(--rh-color-surface-lighter, #f2f2f2);
+        }
+
+        :host([color-palette="light"]) {
+          --rh-color-surface: var(--rh-color-surface-light, #e0e0e0);
+        }
+
+        :host([color-palette="base"]) {
+          --rh-color-surface: var(--rh-color-surface-lightest, #ffffff);
+        }
+
+        :host([color-palette="dark"]) {
+          --rh-color-surface: var(--rh-color-surface-dark, #383838);
+        }
+
+        :host([color-palette="darker"]) {
+          --rh-color-surface: var(--rh-color-surface-darker, #1f1f1f);
+        }
+
+        :host([color-palette="darkest"]) {
+          --rh-color-surface: var(--rh-color-surface-darkest, #151515);
+        }
+
+        .on.dark {
+          --rh-color-accent-base: var(--rh-color-accent-base-on-dark, #92c5f9);
+          --rh-color-accent-brand: var(--rh-color-accent-brand-on-dark, #ee0000);
+          --rh-color-border-interactive: var(--rh-color-border-interactive-on-dark, #92c5f9);
+          --rh-color-border-strong: var(--rh-color-border-strong-on-dark, #ffffff);
+          --rh-color-border-subtle: var(--rh-color-border-subtle-on-dark, #707070);
+          --rh-color-brand-red: var(--rh-color-brand-red-on-dark, #ee0000);
+          --rh-color-icon-primary: var(--rh-color-icon-primary-on-dark, #ee0000);
+          --rh-color-icon-secondary: var(--rh-color-icon-secondary-on-dark, #ffffff);
+          --rh-color-text-primary: var(--rh-color-text-primary-on-dark, #ffffff);
+          --rh-color-text-secondary: var(--rh-color-text-secondary-on-dark, #c7c7c7);
+          --rh-color-interactive-blue-normal: var(--rh-color-interactive-blue-lighter);
+          --rh-color-interactive-blue-emphasized: var(--rh-color-interactive-blue-lightest);
+          --rh-color-interactive-purple-normal: var(--rh-color-interactive-purple-lighter);
+          --rh-color-interactive-purple-emphasized: var(--rh-color-interactive-purple-lightest);
+        }
+
+        .on.light {
+          --rh-color-accent-base: var(--rh-color-accent-base-on-light, #0066cc);
+          --rh-color-accent-brand: var(--rh-color-accent-brand-on-light, #ee0000);
+          --rh-color-border-interactive: var(--rh-color-border-interactive-on-light, #0066cc);
+          --rh-color-border-strong: var(--rh-color-border-strong-on-light, #151515);
+          --rh-color-border-subtle: var(--rh-color-border-subtle-on-light, #c7c7c7);
+          --rh-color-brand-red: var(--rh-color-brand-red-on-light, #ee0000);
+          --rh-color-icon-primary: var(--rh-color-icon-primary-on-light, #ee0000);
+          --rh-color-icon-secondary: var(--rh-color-icon-secondary-on-light, #151515);
+          --rh-color-text-primary: var(--rh-color-text-primary-on-light, #151515);
+          --rh-color-text-secondary: var(--rh-color-text-secondary-on-light, #4d4d4d);
+          --rh-color-interactive-blue-normal: var(--rh-color-interactive-blue-darker);
+          --rh-color-interactive-blue-emphasized: var(--rh-color-interactive-blue-darkest);
+          --rh-color-interactive-purple-normal: var(--rh-color-interactive-purple-darker);
+          --rh-color-interactive-purple-emphasized: var(--rh-color-interactive-purple-darkest);
+        }
+      `);
+
+      async function adopt(element) {
+        await element.updateComplete;
+        element.shadowRoot.adoptedStyleSheets = [
+          ...element.shadowRoot.adoptedStyleSheets,
+          styleSheet,
+        ];
+      }
+
+      for (const element of document.querySelectorAll('rh-surface,rh-card')) {
+        adopt(element);
+        hack(element);
+      }
+      // END HACK
+    </script>
+    <style>
+    #theme-link-demo div {
+      padding: var(--rh-space-2xl);
+      border-radius: var(--rh-border-radius-default);
+      border: var(--rh-border-width-sm) solid var(--rh-color-border-subtle);
+    }
+    </style>
   </head>
   <body>
     <header id="main-header">
@@ -45,118 +182,125 @@
       </a>
     </header>
     <main>
-      <aside id="downloads">
-        <nav>
-          <h3>Contents</h3>
-          <ol>
-            <li><a href="#color">Color</a></li>
-            <li><a href="#box-shadow">Box Shadow</a></li>
-            <li><a href="#font">Typography</a></li>
-            <li><a href="#border">Borders</a></li>
-            <li><a href="#opacity">Opacity</a></li>
-            <li><a href="#space">Spacers</a></li>
-            <li><a href="#length">Length</a></li>
-            <li><a href="#icon">Icons</a></li>
-            <li><a href="#breakpoints">Breakpoints</a></li>
-            <li><a href="#media">Media Queries</a></li>
-          </ol>
-          <h3>Downloads</h3>
-          <ul>
-            <li><a href="rhds.tokens.json">Tokens JSON</a></li>
-            <li><a href="rhds.sketchpalette">Sketch Color Palette</a></li>
-            <li><a href="extension.vsix">VSCode Extension</a></li>
-          </ul>
-        </nav>
-      </aside>
+      <rh-surface color-palette="lightest">
+        <aside id="downloads">
+          <nav>
+            <h3>Contents</h3>
+            <ol>
+              <li><a href="#color">Color</a></li>
+              <li><a href="#box-shadow">Box Shadow</a></li>
+              <li><a href="#font">Typography</a></li>
+              <li><a href="#border">Borders</a></li>
+              <li><a href="#opacity">Opacity</a></li>
+              <li><a href="#space">Spacers</a></li>
+              <li><a href="#length">Length</a></li>
+              <li><a href="#icon">Icons</a></li>
+              <li><a href="#breakpoints">Breakpoints</a></li>
+              <li><a href="#media">Media Queries</a></li>
+            </ol>
+            <h3>Downloads</h3>
+            <ul>
+              <li><a href="rhds.tokens.json">Tokens JSON</a></li>
+              <li><a href="rhds.sketchpalette">Sketch Color Palette</a></li>
+              <li><a href="extension.vsix">VSCode Extension</a></li>
+            </ul>
+          </nav>
+        </aside>
 
-      <section id="overview">
-        <h2>Overview<a href="#overview">#</a></h2>
-        <p>
-          Design tokens are a way of naming, defining, categorizing, and sharing <em>values</em>
-          in a design system. Doing so helps us produce <em>uniform user experiences</em> across
-          platforms and teams. Tokens are defined once using a standard syntax, and can be
-          transformed by software into a variety of formats and helpers, for multiple platforms.
-        </p>
+        <section id="overview">
+          <h2>Overview<a href="#overview">#</a></h2>
+          <p>
+            Design tokens are a way of naming, defining, categorizing, and sharing <em>values</em>
+            in a design system. Doing so helps us produce <em>uniform user experiences</em> across
+            platforms and teams. Tokens are defined once using a standard syntax, and can be
+            transformed by software into a variety of formats and helpers, for multiple platforms.
+          </p>
 
-        <p>
-          An example token is
-          <a href="#--rh-color-brand-red-on-dark"><code>--rh-color-brand-red-on-dark</code></a>,
-          the version of “Red Hat red” for use on dark backgrounds.
-          It has the value <code>#FF442B</code>.
-        </p>
+          <p>
+            An example token is
+            <a href="#--rh-color-brand-red-on-dark"><code>--rh-color-brand-red-on-dark</code></a>,
+            the version of “Red Hat red” for use on dark backgrounds.
+            It has the value <code>#FF442B</code>.
+          </p>
 
-        <p>
-          Tokens are for <em>designers</em> and <em>developers</em>. They aid <em>designers</em>
-          by <em>limiting</em> the pool of available style values to the brand standards and by
-          <em>standardizing</em> their names and uses. They aid <em>developers</em> in making it
-          easier to implement the designers’ specification by referencing well-defined token names.
-        </p>
+          <p>
+            Tokens are for <em>designers</em> and <em>developers</em>. They aid <em>designers</em>
+            by <em>limiting</em> the pool of available style values to the brand standards and by
+            <em>standardizing</em> their names and uses. They aid <em>developers</em> in making it
+            easier to implement the designers’ specification by referencing well-defined token names.
+          </p>
 
-        <p>
-          A designer might access the tokens in an XD template or via a figma plugin.
-          We are researching the best way to make this available across teams and are eager for
-          feedback.
-        </p>
+          <p>
+            A designer might access the tokens in an XD template or via a figma plugin.
+            We are researching the best way to make this available across teams and are eager for
+            feedback.
+          </p>
 
-        <p>
-          A developer might use them by referencing preloaded <em>CSS custom properties</em>, using
-          <em>SCSS variables</em>, or by using <em>editor snippets</em> and <em>lint rules</em> to
-          auto-complete variable names in CSS files.
-        </p>
+          <p>
+            A developer might use them by referencing preloaded <em>CSS custom properties</em>, using
+            <em>SCSS variables</em>, or by using <em>editor snippets</em> and <em>lint rules</em> to
+            auto-complete variable names in CSS files.
+          </p>
 
-        <p>
-          We want <a href="https://github.com/RedHat-UX/red-hat-design-tokens/discussions">your feedback</a>
-          on our tokens! Are there missing values? Do you have an idea for an output format or tool
-          integration?
-        </p>
+          <p>
+            We want <a href="https://github.com/RedHat-UX/red-hat-design-tokens/discussions">your feedback</a>
+            on our tokens! Are there missing values? Do you have an idea for an output format or tool
+            integration?
+          </p>
 
-      </section>
+        </section>
 
-      <section id="theme-tokens">
+        <section id="theme-tokens">
+          <rh-surface id="theme-link-demo" color-palette="lightest">
+            <div>
+              <label for="theme-demo-switch">Color Palette</label>
+              <rh-switch id="theme-demo-switch"
+                         message-on="Darkest"
+                         message-off="Light"></rh-switch>
+              <p>Use <a href="#">theme tokens</a> for best results.</p>
+              <rh-card color-palette="darkest">
+                <p>That way, colours respond to their parents' <code>color-palette</code>
+                   Without requiring <a href="#">custom CSS</a></p>
+              </rh-card>
+            </div>
+          </rh-surface>
 
-        <rh-surface id="theme-link-demo" color-palette="lighter">
-          <p>Use <a href="#">theme tokens</a> for best results.<p>
-          <rh-card color-palette="darkest">
-            <p>That way, colours respond to their parents' <code>color-palette</code>
-               Without requiring <a href="#">custom CSS</a></p>
-          </rh-card>
-        </rh-surface>
-
-        <style>
-        #theme-link-demo {
-          & a {
-            color: var(--rh-color-interactive-blue-normal);
-            &:hover,
-            &:focus-within,
-            &:active { color: var(--rh-color-interactive-blue-emphasized); }
-            &:visited {
-              color: var(--rh-color-interactive-purple-normal);
+          <style>
+          rh-surface {
+            & a {
+              color: var(--rh-color-interactive-blue-normal);
               &:hover,
               &:focus-within,
-              &:active { color: var(--rh-color-interactive-purple-emphasized); }
+              &:active { color: var(--rh-color-interactive-blue-emphasized); }
+              &:visited {
+                color: var(--rh-color-interactive-purple-normal);
+                &:hover,
+                &:focus-within,
+                &:active { color: var(--rh-color-interactive-purple-emphasized); }
+              }
             }
           }
-        }
-        </style>
+          </style>
 
-      </section>
+        </section>
 
-      {% category path = 'color',
-                  exclude = ['border', 'text', 'icon'] %}
-      {% category path = 'box-shadow' %}
-      {% category path = 'font',
-                  include = ['line-height', 'color.text'] %}
-      {% category path = 'border',
-                  include = 'color.border' %}
-      {% category path = 'opacity' %}
-      {% category path = 'space' %}
-      {% category path = 'length' %}
-      {% category path = 'size.icon',
-                  name = 'icon',
-                  include = 'color.icon' %}
-      {% category path = 'breakpoint' %}
-      {% category path = 'media' %}
+        {% category path = 'color',
+                    exclude = ['border', 'text', 'icon'] %}
+        {% category path = 'box-shadow' %}
+        {% category path = 'font',
+                    include = ['line-height', 'color.text'] %}
+        {% category path = 'border',
+                    include = 'color.border' %}
+        {% category path = 'opacity' %}
+        {% category path = 'space' %}
+        {% category path = 'length' %}
+        {% category path = 'size.icon',
+                    name = 'icon',
+                    include = 'color.icon' %}
+        {% category path = 'breakpoint' %}
+        {% category path = 'media' %}
 
+      </rh-surface>
     </main>
     <rh-footer-universal>
       <h3 slot="links-primary" hidden>Red Hat legal and privacy links</h3>

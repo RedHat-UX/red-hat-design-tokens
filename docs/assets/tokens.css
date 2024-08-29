@@ -34,12 +34,12 @@ main {
   padding-inline: var(--rh-length-2xl);
 }
 
-main > aside {
+main aside {
   float: right;
   padding-inline: 2em;
 }
 
-main > aside :is(ol, ul) {
+main aside :is(ol, ul) {
   list-style-type: none;
   padding-inline-start: 0;
 }

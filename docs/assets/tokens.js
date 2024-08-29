@@ -1,5 +1,5 @@
 import '@rhds/elements/rh-tooltip/rh-tooltip.js';
-import '@rhds/elements/rh-footer/rh-global-footer.js';
+import '@rhds/elements/rh-footer/rh-footer-universal.js';
 
 for (const button of document.querySelectorAll('.copy-button')) {
   button.addEventListener('click', async function(event) {
