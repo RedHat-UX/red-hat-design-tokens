@@ -90,10 +90,16 @@
   },
   "wireit": {
     "build": {
-      "command": "tsc -p tsconfig.output.json",
       "dependencies": [
+        "compile",
         "package-vscode",
         "11ty"
+      ]
+    },
+    "compile": {
+      "command": "tsc -p tsconfig.output.json",
+      "dependencies": [
+        "style-dictionary"
       ]
     },
     "style-dictionary": {
@@ -129,7 +135,7 @@
         "tokens/**/*.ya?ml"
       ],
       "dependencies": [
-        "build"
+        "compile"
       ]
     },
     "package-vscode": {
