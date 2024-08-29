@@ -12,7 +12,6 @@ const meta = {
   url: 'https://github.com/RedHat-UX/red-hat-design-tokens/tree/main/plugins/stylelint/rules/token-values.js',
 };
 
-/** @type {import('stylelint').Plugin} */
 const ruleFunction = (_options, _secondaryOptions, ctx) => {
   return (root, result) => {
     const validOptions = utils.validateOptions(

@@ -1,12 +1,15 @@
+import type { Dictionary, Format } from 'style-dictionary/types';
+
 import { fileHeader } from 'style-dictionary/utils';
 
-const makeEntries = dictionary => dictionary.allTokens.map(x => [`--${x.name}`, x.value]);
+const makeEntries = (dictionary: Dictionary) =>
+  dictionary.allTokens.map(x => [`--${x.name}`, x.value]);
 
-const makeMetaEntries = dictionary => dictionary.allTokens.map(x => [`--${x.name}`, x]);
+const makeMetaEntries = (dictionary: Dictionary) =>
+  dictionary.allTokens.map(x => [`--${x.name}`, x]);
 
 /**
  * JavaScript token map
- * @type {import('style-dictionary').Format}
  * @example ```js
  * import { tokens } from '@rhds/tokens';
  *
@@ -14,7 +17,7 @@ const makeMetaEntries = dictionary => dictionary.allTokens.map(x => [`--${x.name
  * // e.g. 'RedHatText, "Red Hat Text", sans-serif';
  * ```
  */
-export const mapEs = {
+export const mapEs: Format = {
   name: 'javascript/map',
   format({ file, dictionary }) {
     return [
@@ -27,7 +30,6 @@ export const mapEs = {
 
 /**
  * JavaScript token map
- * @type {import('style-dictionary').Format}
  * @example Importing token objects in JavaScript modules
  *          ```js
  *          import { tokens } from '@rhds/tokens/meta.js';
@@ -37,7 +39,7 @@ export const mapEs = {
  *          // 'The font family used for body text'
  * ```
  */
-export const metaMapEs = {
+export const metaMapEs: Format = {
   name: 'javascript/meta-map',
   format({ file, dictionary }) {
     return [
@@ -50,7 +52,6 @@ export const metaMapEs = {
 
 /**
  * CommonJS token map
- * @type {import('style-dictionary').Format}
  * @example ```js
  * const { tokens } = require('@rhds/tokens');
  *
@@ -58,17 +59,16 @@ export const metaMapEs = {
  * // e.g. 'RedHatText, "Red Hat Text", sans-serif';
  * ```
  */
-export const mapCjs = {
+export const mapCjs: Format = {
   name: 'javascript/map-cjs',
   format: (...args) =>
-    mapEs
-        .format(...args)
+    (mapEs
+        .format(...args) as string)
         .replace('export const tokens', 'exports.tokens'),
 };
 
 /**
  * CommonJS token map
- * @type {import('style-dictionary').Format}
  * @example Importing token objects in CommonJS modules
  *          ```js
  *          import { tokens } from '@rhds/tokens/meta.js';
@@ -78,12 +78,10 @@ export const mapCjs = {
  *          // 'The font family used for body text'
  *          ```
  */
-export const metaMapCjs = {
+export const metaMapCjs: Format = {
   name: 'javascript/meta-map-cjs',
   format: (...args) =>
-    metaMapEs
-        .format(...args)
+    (metaMapEs
+        .format(...args) as string)
         .replace('export const tokens', 'exports.tokens'),
 };
-
-

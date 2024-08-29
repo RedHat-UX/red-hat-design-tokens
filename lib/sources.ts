@@ -1,10 +1,11 @@
+import type { DesignToken } from 'style-dictionary/types';
+
 import YAML from 'yaml';
 import { readFile, glob } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
 
 import deepmerge from 'deepmerge';
-import { DesignToken } from 'style-dictionary/types';
 
 const cwd = fileURLToPath(new URL('../tokens/', import.meta.url));
 

@@ -90,6 +90,7 @@
   },
   "wireit": {
     "build": {
+      "command": "tsc",
       "dependencies": [
         "package-vscode",
         "11ty"

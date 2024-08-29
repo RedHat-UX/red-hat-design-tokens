@@ -1,11 +1,10 @@
-/** @type {import('style-dictionary/types').Preprocessor}*/
-export const $value = {
+import type { PreprocessedTokens } from 'style-dictionary';
+import type { Preprocessor } from 'style-dictionary/types';
+
+export const $value: Preprocessor = {
   name: '$value',
   preprocessor(dictionary) {
-    /**
-     * @param {import('style-dictionary').PreprocessedTokens} slice
-     */
-    function addValueFrom$value(slice) {
+    function addValueFrom$value(slice: PreprocessedTokens) {
       Object.values(slice).forEach(kiddo => {
         if (typeof kiddo === 'object') {
           addValueFrom$value(kiddo);
