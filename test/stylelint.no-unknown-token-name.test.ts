@@ -1,8 +1,10 @@
+import type tape from 'tape';
+
 import describe from 'tape-describe';
 
 import stylelint from 'stylelint';
 
-async function runRule(code) {
+async function runRule(code: string) {
   return stylelint.lint({
     code,
     config: {
@@ -12,7 +14,7 @@ async function runRule(code) {
   });
 }
 
-async function getAutofixedCSS(code) {
+async function getAutofixedCSS(code: string) {
   const result = await stylelint.lint({
     code,
     fix: true,
@@ -27,7 +29,7 @@ async function getAutofixedCSS(code) {
   return result.code;
 }
 
-describe('no-unknown-token-name', test => {
+describe('no-unknown-token-name', (test: typeof tape) => {
   test('simple list with typo in one name', async t => {
     t.plan(3);
     const { errored, results: [{ warnings: [warning, ...rest] }] } =

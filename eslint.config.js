@@ -8,6 +8,8 @@ export default [
       '**/*.ya?ml',
       '**/*.yml',
       '**/*.yaml',
+      '**/*.js',
+      '!docs/**/*.js',
       '**/*.css',
       '**/*.svg',
       '**/*.md',

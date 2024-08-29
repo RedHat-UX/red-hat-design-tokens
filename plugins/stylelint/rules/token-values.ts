@@ -3,7 +3,7 @@ import type { Rule } from 'stylelint';
 import { tokens } from '@rhds/tokens';
 
 import stylelint from 'stylelint';
-import parser, { stringify } from 'postcss-value-parser';
+import parser from 'postcss-value-parser';
 
 const ruleName = 'rhds/token-values';
 
@@ -12,7 +12,8 @@ const messages = stylelint.utils.ruleMessages(ruleName, {
 });
 
 const meta = {
-  url: 'https://github.com/RedHat-UX/red-hat-design-tokens/tree/main/plugins/stylelint/rules/token-values.js',
+  url: 'https://github.com/RedHat-UX/red-hat-design-tokens/tree/main/plugins/stylelint/rules/token-values.ts',
+  fixable: true,
 };
 
 const ruleFunction: Rule = () => {
@@ -30,8 +31,8 @@ const ruleFunction: Rule = () => {
           if (ch.type === 'function' && ch.value === 'var' && ch.nodes.length > 1) {
             const [{ value: name }, , ...values] = ch.nodes ?? [];
             if (tokens.has(name as `--rh-${string}`)) {
-              const actual = stringify(values);
-              const expected = tokens.get(name as `--rh-${string}`).toString();
+              const actual = parser.stringify(values);
+              const expected = tokens.get(name as `--rh-${string}`)?.toString();
               if (expected !== actual) {
                 stylelint.utils.report({
                   node,
@@ -40,7 +41,7 @@ const ruleFunction: Rule = () => {
                   result,
                   fix() {
                     ch.nodes = ch.nodes.toSpliced(2, 0, ...parser(expected).nodes);
-                    node.value = stringify(parsedValue.nodes);
+                    node.value = parser.stringify(parsedValue.nodes);
                   },
                 });
               }

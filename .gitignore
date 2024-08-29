@@ -9,6 +9,9 @@ design
 plugins/**/*.js
 plugins/**/*.js.map
 plugins/**/*.d.ts
+test/**/*.js
+test/**/*.js.map
+test/**/*.d.ts
 
 .DS_Store
 .wireit

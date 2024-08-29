@@ -1,10 +1,12 @@
+import type tape from 'tape';
+
 import describe from 'tape-describe';
 
 import { tokens } from '@rhds/tokens';
 
 import stylelint from 'stylelint';
 
-async function getAutofixedCSS(code) {
+async function getAutofixedCSS(code: string) {
   const result = await stylelint.lint({
     code,
     fix: true,
@@ -16,7 +18,7 @@ async function getAutofixedCSS(code) {
   return result.code;
 }
 
-describe('token-values', test => {
+describe('token-values', (test: typeof tape) => {
   test('simple value', async t => {
     t.plan(1);
     const xl = tokens.get('--rh-space-xl');

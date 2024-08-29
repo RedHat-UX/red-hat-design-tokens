@@ -1,5 +1,4 @@
 import type { Rule } from 'stylelint';
-import type { Declaration } from 'postcss';
 
 import { dirname, sep } from 'node:path';
 import { tokens } from '@rhds/tokens';
@@ -14,38 +13,16 @@ const messages = stylelint.utils.ruleMessages(ruleName, {
 });
 
 const meta = {
-  url: 'https://github.com/RedHat-UX/red-hat-design-tokens/tree/main/plugins/stylelint/rules/no-unknown-token-name.js',
+  url: 'https://github.com/RedHat-UX/red-hat-design-tokens/tree/main/plugins/stylelint/rules/no-unknown-token-name.ts',
+  fixable: true,
 };
 
-const isObject = (x: unknown): x is object => typeof x === 'object' && x !== null;
-
-/**
- * Get the index of a declaration's value
- * copied from stylelint/lib/utils/declarationValueIndex.mjs
- * @param  decl
- */
-function declarationValueIndex(decl: Declaration): number {
-  const { raws } = decl;
-  const prop = raws.prop as object;
-
-  return [
-    isObject(prop) && 'prefix' in prop && prop.prefix,
-    (isObject(prop) && 'raw' in prop && prop.raw) || decl.prop,
-    isObject(prop) && 'suffix' in prop && prop.suffix,
-    raws.between || ':',
-    raws.value && 'prefix' in raws.value && raws.value.prefix,
-  ].reduce<number>((count: number, str) => {
-    if (typeof str === 'string') {
-      return count + str.length;
-    }
-
-    return count;
-  }, 0);
-}
-
-const ruleFunction: Rule = (_, opts, ctx) => {
+const ruleFunction: Rule = (_, opts) => {
   return (root, result) => {
     // here we assume a file structure of */rh-tagname/rh-tagname.css
+    if (!root.source.input.file) {
+      console.log(root.source.input);
+    }
     const tagName = dirname(root.source.input.file)
         .split(sep)
         .findLast(x => x.startsWith('rh-'));
@@ -68,16 +45,17 @@ const ruleFunction: Rule = (_, opts, ctx) => {
                 && !tokens.has(value as `--rh-${string}`)
                 || migrations.has(value)) {
               const message = `Expected ${value} to be a known token name`;
-              const { nodes: [{ sourceIndex, sourceEndIndex }] } = parsed;
-              const declIndex = declarationValueIndex(node);
-              const index = declIndex + sourceIndex;
-              const endIndex = declIndex + sourceEndIndex;
-              if (ctx.fix && migrations.has(value)) {
-                node.value = node.value.replace(value, migrations.get(value) as `--rh-${string}`);
-                return;
-              } else {
-                stylelint.utils.report({ node, message, ruleName, result, index, endIndex });
-              }
+              stylelint.utils.report({
+                node,
+                message,
+                ruleName,
+                result,
+                fix() {
+                  if (migrations.has(value)) {
+                    node.value = node.value.replace(value, migrations.get(value) as `--rh-${string}`);
+                  }
+                },
+              });
             }
           }
         });
