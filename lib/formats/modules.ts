@@ -1,12 +1,13 @@
 import type { Format } from 'style-dictionary/types';
 import type { Token } from 'style-dictionary';
 
+import { mkdir, writeFile } from 'node:fs/promises';
+import { join, dirname } from 'node:path';
+
 import * as Predicates from '../predicates.ts';
 
-import { writeFileSync } from 'node:fs';
-import { join } from 'node:path';
-import { colorFormats } from '../transforms.ts';
 import { fileHeader } from 'style-dictionary/utils';
+import { colorFormats } from '../transforms.ts';
 
 function deserializeShadow(x: Token) {
   if (typeof x.$value === 'object') {
@@ -18,11 +19,6 @@ function deserializeShadow(x: Token) {
 }
 
 const capitalize = (x: string) => `${x.at(0).toUpperCase()}${x.slice(1)}`;
-
-function colorRef(x: Token) {
-  const r = JSON.stringify(colorFormats.transform({ ...x }));
-  return r;
-}
 
 function mediaRef(x: Token) {
   const values = [];
@@ -48,7 +44,7 @@ function mediaRef(x: Token) {
  */
 export const modules: Format = {
   name: 'javascript/modules',
-  format({ file, dictionary, platform }) {
+  async format({ file, dictionary, platform, options }) {
     const categories = new Set(dictionary.allTokens.map(x => x.attributes.category));
     for (const name of categories) {
       const outpath = join(process.cwd(), platform.buildPath, `${name}.ts`);
@@ -60,7 +56,11 @@ export const modules: Format = {
       const defs = category
           .map(x => {
             const value =
-              Predicates.isColor(x) ? colorRef(x)
+              Predicates.isColor(x) ? JSON.stringify(colorFormats.transform(
+                structuredClone(x),
+                platform,
+                options,
+              ))
             : Predicates.isShadow(x) ? deserializeShadow(x)
             : Predicates.isMediaQuery(x) ? mediaRef(x)
             : JSON.stringify(x.$value);
@@ -72,10 +72,12 @@ export const modules: Format = {
         ...!hasColors ? [] : ['import type { Color } from "./types.js";'],
         ...defs,
       ].join('\n');
-      writeFileSync(outpath, contents, 'utf8');
+
+      await mkdir(dirname(outpath), { recursive: true });
+      await writeFile(outpath, contents, 'utf8');
     }
     const content = [
-      fileHeader({ file }),
+      await fileHeader({ file }),
       ...Array.from(categories, x => `export * from './${x}.js';`),
     ].join('\n');
     return content;
