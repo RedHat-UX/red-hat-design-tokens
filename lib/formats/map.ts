@@ -19,9 +19,9 @@ const makeMetaEntries = (dictionary: Dictionary) =>
  */
 export const mapEs: Format = {
   name: 'javascript/map',
-  format({ file, dictionary }) {
+  async format({ file, dictionary }) {
     return [
-      fileHeader({ file }),
+      await fileHeader({ file }),
       `export const tokens = new Map(${JSON.stringify(makeEntries(dictionary), null, 2)});`,
     ].join('\n');
   },
@@ -41,9 +41,9 @@ export const mapEs: Format = {
  */
 export const metaMapEs: Format = {
   name: 'javascript/meta-map',
-  format({ file, dictionary }) {
+  async format({ file, dictionary }) {
     return [
-      fileHeader({ file }),
+      await fileHeader({ file }),
       `export const tokens = new Map(${JSON.stringify(makeMetaEntries(dictionary), null, 2)});`,
     ].join('\n');
   },
@@ -61,8 +61,8 @@ export const metaMapEs: Format = {
  */
 export const mapCjs: Format = {
   name: 'javascript/map-cjs',
-  format: (...args) =>
-    (mapEs
+  format: async (...args) =>
+    (await mapEs
         .format(...args) as string)
         .replace('export const tokens', 'exports.tokens'),
 };
@@ -80,8 +80,8 @@ export const mapCjs: Format = {
  */
 export const metaMapCjs: Format = {
   name: 'javascript/meta-map-cjs',
-  format: (...args) =>
-    (metaMapEs
+  format: async (...args) =>
+    (await metaMapEs
         .format(...args) as string)
         .replace('export const tokens', 'exports.tokens'),
 };

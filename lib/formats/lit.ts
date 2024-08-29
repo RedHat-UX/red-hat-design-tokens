@@ -14,8 +14,8 @@ import { fileHeader, formattedVariables } from 'style-dictionary/utils';
  */
 export const litCss: Format = {
   name: 'css/lit',
-  format: ({ file, dictionary, options }) =>
-    `${fileHeader({ file })}
+  format: async ({ file, dictionary, options }) =>
+    `${await fileHeader({ file })}
 import { css } from 'lit';
 export const resetStyles = css\`
 :host {

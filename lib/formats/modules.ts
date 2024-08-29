@@ -9,6 +9,12 @@ import * as Predicates from '../predicates.ts';
 import { fileHeader } from 'style-dictionary/utils';
 import { colorFormats } from '../transforms.ts';
 
+function camelcase(str: string): string {
+  const a = str.toLowerCase()
+      .replace(/[-_\s.]+(.)?/g, (_, c) => c ? c.toUpperCase() : '');
+  return a.substring(0, 1).toLowerCase() + a.substring(1);
+}
+
 function deserializeShadow(x: Token) {
   if (typeof x.$value === 'object') {
     return JSON.stringify(x.$value);
@@ -64,11 +70,11 @@ export const modules: Format = {
             : Predicates.isShadow(x) ? deserializeShadow(x)
             : Predicates.isMediaQuery(x) ? mediaRef(x)
             : JSON.stringify(x.$value);
-            return `export const ${x.name}${Predicates.isColor(x) ? ': Color' : ''} = ${value};`;
+            return `export const ${capitalize(camelcase(x.name))}${Predicates.isColor(x) ? ': Color' : ''} = ${value};`;
           });
       const hasColors = category.some(x => Predicates.isColor(x));
       const contents = [
-        fileHeader({ file }),
+        await fileHeader({ file }),
         ...!hasColors ? [] : ['import type { Color } from "./types.js";'],
         ...defs,
       ].join('\n');
