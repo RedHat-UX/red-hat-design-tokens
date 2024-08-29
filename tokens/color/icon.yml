@@ -7,6 +7,10 @@ color:
         order: 90
 
     primary:
+      $description: >-
+        Responsive `icon-primary` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+        Resolves to `--rh-color-icon-primary-on-light` on a themable container with a light color palette
+        and `--rh-color-icon-primary-on-dark` on a themable container with a dark color palette.
       on-light:
         $value: '{color.brand.red.on-light}'
         attributes:
@@ -19,6 +23,10 @@ color:
           type: color
 
     secondary:
+      $description: >-
+        Responsive `icon-secondary` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+        Resolves to `--rh-color-icon-secondary-on-light` on a themable container with a light color palette
+        and `--rh-color-icon-secondary-on-dark` on a themable container with a dark color palette.
       on-light:
         $value: '{color.gray.95}'
         attributes:
@@ -45,6 +53,10 @@ color:
 
     status:
       danger:
+        $description: >-
+          Responsive `icon-status-danger` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-icon-status-danger-on-light` on a themable container with a light color palette
+          and `--rh-color-icon-status-danger-on-dark` on a themable container with a dark color palette.
         on-light:
           $value: '{color.red-orange.50}'
           $description: Danger status icon color (light theme)
@@ -52,6 +64,10 @@ color:
           $value: '{color.red-orange.40}'
           $description: Danger status icon color (dark theme)
       warning:
+        $description: >-
+          Responsive `icon-status-warning` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-icon-status-warning-on-light` on a themable container with a light color palette
+          and `--rh-color-icon-status-warning-on-dark` on a themable container with a dark color palette.
         on-light:
           $value: '{color.orange.50}'
           $description: Warning status icon color (light theme)
@@ -59,6 +75,10 @@ color:
           $value: '{color.orange.40}'
           $description: Warning status icon color (dark theme)
       default:
+        $description: >-
+          Responsive `icon-status-default` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-icon-status-default-on-light` on a themable container with a light color palette
+          and `--rh-color-icon-status-default-on-dark` on a themable container with a dark color palette.
         on-light:
           $value: '{color.gray.60}'
           $description: Default status icon color (light theme)
@@ -66,6 +86,10 @@ color:
           $value: '{color.gray.40}'
           $description: Default status icon color (dark theme)
       info:
+        $description: >-
+          Responsive `icon-status-info` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-icon-status-info-on-light` on a themable container with a light color palette
+          and `--rh-color-icon-status-info-on-dark` on a themable container with a dark color palette.
         on-light:
           $value: '{color.purple.50}'
           $description: Info status icon color (light theme)
@@ -73,6 +97,10 @@ color:
           $value: '{color.purple.30}'
           $description: Info status icon color (dark theme)
       success:
+        $description: >-
+          Responsive `icon-status-success` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-icon-status-success-on-light` on a themable container with a light color palette
+          and `--rh-color-icon-status-success-on-dark` on a themable container with a dark color palette.
         on-light:
           $value: '{color.green.60}'
           $description: Success status icon color (light theme)

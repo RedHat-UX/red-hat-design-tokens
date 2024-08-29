@@ -6,6 +6,18 @@ color:
         descriptionFile: interactive.md
 
     blue:
+      normal:
+        $description: >-
+          Responsive `interactive-blue` (e.g. link) color value.
+          Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-interactive-blue-darker` on a themable container with a light color palette
+          and `--rh-color-interactive-blue-lighest` on a themable container with a dark color palette.
+      emphasized:
+        $description: >-
+          Responsive `interactive-blue` (e.g. link hover) color value.
+          Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-interactive-blue-darkest` on a themable container with a light color palette
+          and `--rh-color-interactive-blue-lighter` on a themable container with a dark color palette.
       lightest:
         $value: '{color.blue.20}'
         $description: Inline link hover (dark theme)
@@ -20,6 +32,18 @@ color:
         $description: Inline link hover (light theme)
 
     purple:
+      normal:
+        $description: >-
+          Responsive `interactive-purple` (e.g. visited link) color value.
+          Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-interactive-purple-darker` on a themable container with a light color palette
+          and `--rh-color-interactive-purple-lighest` on a themable container with a dark color palette.
+      emphasized:
+        $description: >-
+          Responsive `interactive-purple` (e.g. visited link hover) color value.
+          Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-interactive-purple-darkest` on a themable container with a light color palette
+          and `--rh-color-interactive-purple-lighter` on a themable container with a dark color palette.
       lightest:
         $value: '{color.purple.10}'
         $description: Inline link visited hover (dark theme)

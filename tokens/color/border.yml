@@ -8,6 +8,10 @@ color:
         heading: Color
 
     strong:
+      $description: >-
+        Responsive `border-strong` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+        Resolves to `--rh-color-border-strong-on-light` on a themable container with a light color palette
+        and `--rh-color-border-strong-on-dark` on a themable container with a dark color palette
       on-light:
         $value: '{color.gray.95}'
         $description: Strong border color (light theme)
@@ -22,6 +26,10 @@ color:
           type: color
 
     subtle:
+      $description: >-
+        Responsive `border-subtle` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+        Resolves to `--rh-color-border-subtle-on-light` on a themable container with a light color palette
+        and `--rh-color-border-subtle-on-dark` on a themable container with a dark color palette.
       on-light:
         $value: '{color.gray.30}'
         $description: Subtle border color (light theme)
@@ -36,6 +44,10 @@ color:
           type: color
 
     interactive:
+      $description: >-
+        Responsive `border-interactive` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+        Resolves to `--rh-color-border-interactive-on-light` on a themable container with a light color palette
+        and `--rh-color-border-interactive-on-dark` on a themable container with a dark color palette.
       on-light:
         $value: '{color.blue.50}'
         $description: Interactive border color (light theme)
@@ -51,6 +63,10 @@ color:
 
     status:
       danger:
+        $description: >-
+          Responsive `border-status-danger` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-border-status-danger-on-light` on a themable container with a light color palette
+          and `--rh-color-border-status-danger-on-dark` on a themable container with a dark color palette.
         on-light:
           $value: '{color.red-orange.50}'
           $description: Danger status border color (light theme)
@@ -64,6 +80,10 @@ color:
             category: border
             type: color
       warning:
+        $description: >-
+          Responsive `border-status-warning` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-border-status-warning-on-light` on a themable container with a light color palette
+          and `--rh-color-border-status-warning-on-dark` on a themable container with a dark color palette.
         on-light:
           $value: '{color.orange.50}'
           $description: Warning status border color (light theme)
@@ -77,6 +97,10 @@ color:
             category: border
             type: color
       default:
+        $description: >-
+          Responsive `border-status-default` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-border-status-default-on-light` on a themable container with a light color palette
+          and `--rh-color-border-status-default-on-dark` on a themable container with a dark color palette.
         on-light:
           $value: '{color.gray.60}'
           $description: Default status border color (light theme)
@@ -90,6 +114,10 @@ color:
             category: border
             type: color
       info:
+        $description: >-
+          Responsive `border-status-info` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-border-status-info-on-light` on a themable container with a light color palette
+          and `--rh-color-border-status-info-on-dark` on a themable container with a dark color palette.
         on-light:
           $value: '{color.purple.50}'
           $description: Info status border color (light theme)
@@ -103,6 +131,10 @@ color:
             category: border
             type: color
       success:
+        $description: >-
+          Responsive `border-status-success` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-border-status-success-on-light` on a themable container with a light color palette
+          and `--rh-color-border-status-success-on-dark` on a themable container with a dark color palette.
         on-light:
           $value: '{color.green.60}'
           $description: Success status border color (light theme)

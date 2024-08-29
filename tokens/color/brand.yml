@@ -5,6 +5,11 @@ color:
         order: 0
 
     red:
+      $description: >-
+        Responsive `brand-red` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+        Resolves to `--rh-color-brand-red-on-light` on a themable container with a light color palette
+        and `--rh-color-brand-red-on-dark` on a themable container with a dark color palette.
+
       $extensions:
         com.redhat.ux:
           description: >-
