@@ -6,18 +6,17 @@ color:
       description: >-
         Color helps create consistent experiences across web properties. Various colors are
         available in two themes, light and dark.
-          --rh-color-accent-base: var(--rh-color-accent-base-on-dark, #92c5f9);
 
   accent:
     base:
       $value: '{color.accent.base.on-light}'
-      $description: |
+      $description: >-
         Responsive `accent-base` color value. Typically read only - use a themable container e.g. `<rh-surface>`
         Resolves to `--rh-color-accent-base-on-light` on a themable container with a light color palette
         and `--rh-color-accent-base-on-dark` on a themable container with a dark color palette.
     brand:
       $value: '{color.accent.brand.on-light}'
-      $description: |
+      $description: >-
         Responsive `accent-brand` color value. Typically read only - use a themable container e.g. `<rh-surface>`.
         Resolves to `--rh-color-accent-brand-on-light` on a themable container with a light color palette
         and `--rh-color-accent-brand-on-dark` on a themable container with a dark color palette.
@@ -25,19 +24,19 @@ color:
   border:
     interactive:
       $value: '{color.border.interactive.on-light}'
-      $description: |
+      $description: >-
         Responsive `border-interactive` color value. Typically read only - use a themable container e.g. `<rh-surface>`
         Resolves to `--rh-color-border-interactive-on-light` on a themable container with a light color palette
         and `--rh-color-border-interactive-on-dark` on a themable container with a dark color palette.
     strong:
       $value: '{color.border.strong.on-light}'
-      $description: |
+      $description: >-
         Responsive `border-strong` color value. Typically read only - use a themable container e.g. `<rh-surface>`
         Resolves to `--rh-color-border-strong-on-light` on a themable container with a light color palette
         and `--rh-color-border-strong-on-dark` on a themable container with a dark color palette.
     subtle:
       $value: '{color.border.subtle.on-light}'
-      $description: |
+      $description: >-
         Responsive `border-subtle` color value. Typically read only - use a themable container e.g. `<rh-surface>`
         Resolves to `--rh-color-border-subtle-on-light` on a themable container with a light color palette
         and `--rh-color-border-subtle-on-dark` on a themable container with a dark color palette.
@@ -45,7 +44,7 @@ color:
   brand:
     red:
       $value: '{color.brand.red.on-light}'
-      $description: |
+      $description: >-
         Responsive `brand-red` color value. Typically read only - use a themable container e.g. `<rh-surface>`
         Resolves to `--rh-color-brand-red-on-light` on a themable container with a light color palette
         and `--rh-color-brand-red-on-dark` on a themable container with a dark color palette.
@@ -53,13 +52,13 @@ color:
   icon:
     primary:
       $value: '{color.icon.primary.on-light}'
-      $description: |
+      $description: >-
         Responsive `icon-primary` color value. Typically read only - use a themable container e.g. `<rh-surface>`
         Resolves to `--rh-color-icon-primary-on-light` on a themable container with a light color palette
         and `--rh-color-icon-primary-on-dark` on a themable container with a dark color palette.
     secondary:
       $value: '{color.icon.secondary.on-light}'
-      $description: |
+      $description: >-
         Responsive `icon-secondary` color value. Typically read only - use a themable container e.g. `<rh-surface>`
         Resolves to `--rh-color-icon-secondary-on-light` on a themable container with a light color palette
         and `--rh-color-icon-secondary-on-dark` on a themable container with a dark color palette.
@@ -67,13 +66,13 @@ color:
   text:
     primary:
       $value: '{color.text.primary.on-light}'
-      $description: |
+      $description: >-
         Responsive `text-primary` color value. Typically read only - use a themable container e.g. `<rh-surface>`
         Resolves to `--rh-color-text-primary-on-light` on a themable container with a light color palette
         and `--rh-color-text-primary-on-dark` on a themable container with a dark color palette.
     secondary:
       $value: '{color.text.secondary.on-light}'
-      $description: |
+      $description: >-
         Responsive `text-secondary` color value. Typically read only - use a themable container e.g. `<rh-surface>`
         Resolves to `--rh-color-text-secondary-on-light` on a themable container with a light color palette
         and `--rh-color-text-secondary-on-dark` on a themable container with a dark color palette.
@@ -83,14 +82,14 @@ color:
     blue:
       normal:
         $value: '{color.interactive.blue.darker}'
-        $description: |
+        $description: >-
           Responsive `interactive-blue` (e.g. link) color value.
           Typically read only - use a themable container e.g. `<rh-surface>`
           Resolves to `--rh-color-interactive-blue-darker` on a themable container with a light color palette
           and `--rh-color-interactive-blue-lighest` on a themable container with a dark color palette.
       emphasized:
         $value: '{color.interactive.blue.darkest}'
-        $description: |
+        $description: >-
           Responsive `interactive-blue` (e.g. link hover) color value.
           Typically read only - use a themable container e.g. `<rh-surface>`
           Resolves to `--rh-color-interactive-blue-darkest` on a themable container with a light color palette
@@ -99,14 +98,14 @@ color:
     purple:
       normal:
         $value: '{color.interactive.purple.darker}'
-        $description: |
+        $description: >-
           Responsive `interactive-purple` (e.g. visited link) color value.
           Typically read only - use a themable container e.g. `<rh-surface>`
           Resolves to `--rh-color-interactive-purple-darker` on a themable container with a light color palette
           and `--rh-color-interactive-purple-lighest` on a themable container with a dark color palette.
       emphasized:
         $value: '{color.interactive.purple.darkest}'
-        $description: |
+        $description: >-
           Responsive `interactive-purple` (e.g. visited link hover) color value.
           Typically read only - use a themable container e.g. `<rh-surface>`
           Resolves to `--rh-color-interactive-purple-darkest` on a themable container with a light color palette
