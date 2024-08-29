@@ -1,10 +1,13 @@
+import type { Rule } from 'stylelint';
+
 import { tokens } from '@rhds/tokens';
-import { utils } from 'stylelint';
+
+import stylelint from 'stylelint';
 import parser, { stringify } from 'postcss-value-parser';
 
 const ruleName = 'rhds/token-values';
 
-const messages = utils.ruleMessages(ruleName, {
+const messages = stylelint.utils.ruleMessages(ruleName, {
   expected: 'Expected ...',
 });
 
@@ -12,15 +15,9 @@ const meta = {
   url: 'https://github.com/RedHat-UX/red-hat-design-tokens/tree/main/plugins/stylelint/rules/token-values.js',
 };
 
-const ruleFunction = (_options, _secondaryOptions, ctx) => {
+const ruleFunction: Rule = () => {
   return (root, result) => {
-    const validOptions = utils.validateOptions(
-      result,
-      ruleName,
-      {
-        /* .. */
-      }
-    );
+    const validOptions = stylelint.utils.validateOptions(result, ruleName);
 
     if (!validOptions) {
       return;
@@ -32,26 +29,20 @@ const ruleFunction = (_options, _secondaryOptions, ctx) => {
         parsedValue.walk(ch => {
           if (ch.type === 'function' && ch.value === 'var' && ch.nodes.length > 1) {
             const [{ value: name }, , ...values] = ch.nodes ?? [];
-            if (tokens.has(name)) {
+            if (tokens.has(name as `--rh-${string}`)) {
               const actual = stringify(values);
-              const expected = tokens.get(name).toString();
+              const expected = tokens.get(name as `--rh-${string}`).toString();
               if (expected !== actual) {
-                if (ctx.fix) {
-                  ch.nodes[2] = parser(expected);
-                  node.value = stringify(parsedValue);
-                  return;
-                } else {
-                  utils.report({
-                    node,
-                    message: `Expected ${name} to equal ${expected}`,
-                    ruleName,
-                    result,
-                    line: node.line,
-                    column: node.column + ch.sourceIndex,
-                    endLine: node.endLine,
-                    endColumn: node.endColumn,
-                  });
-                }
+                stylelint.utils.report({
+                  node,
+                  message: `Expected ${name} to equal ${expected}`,
+                  ruleName,
+                  result,
+                  fix() {
+                    ch.nodes = ch.nodes.toSpliced(2, 0, ...parser(expected).nodes);
+                    node.value = stringify(parsedValue.nodes);
+                  },
+                });
               }
             }
           }
