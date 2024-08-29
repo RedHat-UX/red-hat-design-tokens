@@ -10,13 +10,13 @@ color:
 
   accent:
     base:
-      $value: '{color.accent.base.on.light}'
+      $value: '{color.accent.base.on-light}'
       $description: |
         Responsive `accent-base` color value. Typically read only - use a themable container e.g. `<rh-surface>`
         Resolves to `--rh-color-accent-base-on-light` on a themable container with a light color palette
         and `--rh-color-accent-base-on-dark` on a themable container with a dark color palette.
     brand:
-      $value: '{color.accent.brand.on.light}'
+      $value: '{color.accent.brand.on-light}'
       $description: |
         Responsive `accent-brand` color value. Typically read only - use a themable container e.g. `<rh-surface>`.
         Resolves to `--rh-color-accent-brand-on-light` on a themable container with a light color palette
@@ -24,19 +24,19 @@ color:
 
   border:
     interactive:
-      $value: '{color.border.interactive.on.light}'
+      $value: '{color.border.interactive.on-light}'
       $description: |
         Responsive `border-interactive` color value. Typically read only - use a themable container e.g. `<rh-surface>`
         Resolves to `--rh-color-border-interactive-on-light` on a themable container with a light color palette
         and `--rh-color-border-interactive-on-dark` on a themable container with a dark color palette.
     strong:
-      $value: '{color.border.strong.on.light}'
+      $value: '{color.border.strong.on-light}'
       $description: |
         Responsive `border-strong` color value. Typically read only - use a themable container e.g. `<rh-surface>`
         Resolves to `--rh-color-border-strong-on-light` on a themable container with a light color palette
         and `--rh-color-border-strong-on-dark` on a themable container with a dark color palette.
     subtle:
-      $value: '{color.border.subtle.on.light}'
+      $value: '{color.border.subtle.on-light}'
       $description: |
         Responsive `border-subtle` color value. Typically read only - use a themable container e.g. `<rh-surface>`
         Resolves to `--rh-color-border-subtle-on-light` on a themable container with a light color palette
@@ -44,7 +44,7 @@ color:
 
   brand:
     red:
-      $value: '{color.brand.red.on.light}'
+      $value: '{color.brand.red.on-light}'
       $description: |
         Responsive `brand-red` color value. Typically read only - use a themable container e.g. `<rh-surface>`
         Resolves to `--rh-color-brand-red-on-light` on a themable container with a light color palette
@@ -52,13 +52,13 @@ color:
 
   icon:
     primary:
-      $value: '{color.icon.primary.on.light}'
+      $value: '{color.icon.primary.on-light}'
       $description: |
         Responsive `icon-primary` color value. Typically read only - use a themable container e.g. `<rh-surface>`
         Resolves to `--rh-color-icon-primary-on-light` on a themable container with a light color palette
         and `--rh-color-icon-primary-on-dark` on a themable container with a dark color palette.
     secondary:
-      $value: '{color.icon.secondary.on.light}'
+      $value: '{color.icon.secondary.on-light}'
       $description: |
         Responsive `icon-secondary` color value. Typically read only - use a themable container e.g. `<rh-surface>`
         Resolves to `--rh-color-icon-secondary-on-light` on a themable container with a light color palette
@@ -66,13 +66,13 @@ color:
 
   text:
     primary:
-      $value: '{color.text.primary.on.light}'
+      $value: '{color.text.primary.on-light}'
       $description: |
         Responsive `text-primary` color value. Typically read only - use a themable container e.g. `<rh-surface>`
         Resolves to `--rh-color-text-primary-on-light` on a themable container with a light color palette
         and `--rh-color-text-primary-on-dark` on a themable container with a dark color palette.
     secondary:
-      $value: '{color.text.secondary.on.light}'
+      $value: '{color.text.secondary.on-light}'
       $description: |
         Responsive `text-secondary` color value. Typically read only - use a themable container e.g. `<rh-surface>`
         Resolves to `--rh-color-text-secondary-on-light` on a themable container with a light color palette
