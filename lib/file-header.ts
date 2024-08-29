@@ -1,9 +1,10 @@
 import type { FileHeader } from 'style-dictionary/types';
 
 import { fileURLToPath } from 'node:url';
-import { readFileSync } from 'node:fs';
+import { readFile } from 'node:fs/promises';
 
 const LICENSE_URL = new URL('../LICENSE', import.meta.url);
+const LICENSE = await readFile(fileURLToPath(LICENSE_URL), 'utf8');
 
 /**
  * Copy the repo license (MIT) into file headers
@@ -14,5 +15,5 @@ export const legal: FileHeader =
     ...defaultMessage,
     '',
     '@license',
-    ...readFileSync(fileURLToPath(LICENSE_URL), 'utf8').split('\n'),
+    ...LICENSE.split('\n'),
   ];
