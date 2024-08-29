@@ -32,7 +32,7 @@ export const hslValue: Transform = {
   type: 'value',
   filter: x => isColor(x) && x.path.at(-1).endsWith('hsl'),
   transform(token) {
-    const { h, s, l } = token.attributes.hsl as { h: string; s: string; l: string; };
+    const { h, s, l } = token.attributes.hsl as { h: string; s: string; l: string };
     token.$value = `${h} ${s}% ${l}%`;
     return token.$value;
   },
@@ -47,7 +47,7 @@ export const rgbValue: Transform = {
   type: 'value',
   filter: x => isColor(x) && x.path.at(-1).endsWith('rgb'),
   transform(token) {
-    const { r, g, b } = token.attributes.rgb as { r: string; g: string; b: string; };
+    const { r, g, b } = token.attributes.rgb as { r: string; g: string; b: string };
     token.$value = `${r} ${g} ${b}`;
     return token.$value;
   },

@@ -1,4 +1,4 @@
-import type { Transform } from "style-dictionary/types";
+import type { Transform } from 'style-dictionary/types';
 
 /**
  * Add px values for rem-based tokens, assuming default 16px base px font size
@@ -16,5 +16,5 @@ export const remToPx: Transform = {
     }
     const px = `${(val * baseFont).toFixed(0)}px`;
     return { ...token.attributes, px };
-  }
+  },
 };

@@ -1,5 +1,5 @@
-import type { Format } from 'style-dictionary/types'
-import { fileHeader, formattedVariables } from 'style-dictionary/utils'
+import type { Format } from 'style-dictionary/types';
+import { fileHeader, formattedVariables } from 'style-dictionary/utils';
 
 /**
  * Lit CSS object
@@ -20,10 +20,10 @@ import { css } from 'lit';
 export const resetStyles = css\`
 :host {
 ${formattedVariables({
-  format: 'css',
-  dictionary,
-  ...options,
-})}
+    format: 'css',
+    dictionary,
+    ...options,
+  })}
 }\`;
 export default resetStyles;`,
 };

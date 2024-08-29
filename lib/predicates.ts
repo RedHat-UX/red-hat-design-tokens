@@ -35,5 +35,14 @@ export const isMediaQuery: Predicate = token =>
 export const hasExtensions: Predicate = token =>
   !!token.$extensions;
 
-export const isDescription = and(hasExtensions, token => token.path.at(-1) === 'description');
-export const hasDescription = and(hasExtensions, token => token.$extensions['com.redhat.ux'].description);
+export const isDescription = and(
+  hasExtensions,
+  token =>
+    token.path.at(-1) === 'description',
+);
+
+export const hasDescription = and(
+  hasExtensions,
+  token =>
+    token.$extensions['com.redhat.ux'].description,
+);

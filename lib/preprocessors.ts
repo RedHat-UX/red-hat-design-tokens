@@ -1,2 +1,2 @@
-export * from './preprocessors/value.ts'
-export * from './preprocessors/split-colors.ts'
+export * from './preprocessors/value.ts';
+export * from './preprocessors/split-colors.ts';

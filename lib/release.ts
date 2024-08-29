@@ -10,7 +10,7 @@ const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
  * @param  retries current count of retries
  * @param  max Max number of retries
  */
-async function backoff<T>(fn: (...args: any[]) => T, retries: number = 0, max: number = 10): Promise<T> {
+async function backoff<T>(fn: (...args: any[]) => T, retries = 0, max = 10): Promise<T> {
   try {
     return await fn();
   } catch (e) {
@@ -23,7 +23,14 @@ async function backoff<T>(fn: (...args: any[]) => T, retries: number = 0, max: n
   }
 }
 
-/** Github actions script to upload and release a VSIX bundle */
+/**
+ * Github actions script to upload and release a VSIX bundle
+ * @param args
+ * @param args.core github core api
+ * @param args.github github github api
+ * @param args.tag commit tag
+ * @param args.workspace cwd
+ */
 export async function release({ core, github, tag, workspace }) {
   const owner = 'RedHat-UX';
   const repo = 'red-hat-design-tokens';

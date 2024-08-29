@@ -5,7 +5,7 @@ import parser, { stringify } from 'postcss-value-parser';
 const ruleName = 'rhds/token-values';
 
 const messages = utils.ruleMessages(ruleName, {
-  expected: 'Expected ...'
+  expected: 'Expected ...',
 });
 
 const meta = {

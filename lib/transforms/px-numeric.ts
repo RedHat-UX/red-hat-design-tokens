@@ -1,4 +1,4 @@
-import type { Transform } from "style-dictionary/types";
+import type { Transform } from 'style-dictionary/types';
 
 /**
  * Add px values as numbers at the `px` attribute
@@ -10,5 +10,5 @@ export const pxNumeric: Transform = {
   transform(token) {
     const px = parseFloat(token.$value);
     return { ...token.attributes, px };
-  }
+  },
 };

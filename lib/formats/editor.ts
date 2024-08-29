@@ -2,13 +2,19 @@ import type { Token } from 'style-dictionary';
 import type { Format } from 'style-dictionary/types';
 import { isColor } from '../predicates.ts';
 
-/** Creates a list of entries matching token names with values */
+/**
+ * Recursively creates a list of entries matching token names with values
+ * @param token token to match against
+ */
 function pairAliasWithValue(token: Token) {
   if (typeof token.value === 'string') {
-    const name = token.original?.value?.startsWith('{') ? token.original.value.replace(/\._}$/, '}') : `{${token.path.reduce((a, b) => `${a}.${b}`, '')}}`.replace(/^\{\./, '{');
+    const name =
+        token.original?.value?.startsWith('{') ? token.original.value.replace(/\._}$/, '}')
+      : `{${token.path.reduce((a, b) => `${a}.${b}`, '')}}`.replace(/^\{\./, '{');
     return [[name, token.value]];
   } else if (token.value) {
-    return Object.fromEntries(Object.entries(token.value).map(pairAliasWithValue));
+    return Object.fromEntries(Object.entries(token.value)
+        .map(pairAliasWithValue));
   } else {
     return [];
   }
@@ -29,7 +35,7 @@ export const vscodeSnippets: Format = {
             prefix: [
               // `--${token.name}`,
               token.name.replaceAll('-', ''),
-              token.value?.startsWith?.('#') ? token.value.replace(/^#/, '') : null
+              token.value?.startsWith?.('#') ? token.value.replace(/^#/, '') : null,
             ].filter(Boolean),
             body: [`var(--${token.name}\${1:, ${token.value}})$2`],
             description: token.$description,
@@ -79,8 +85,8 @@ export const hexokinase: Format = {
       regex_pattern: COLOR_TOKEN_RE.toString().replace(/^\/|\/$/, ''),
       colour_table: Object.fromEntries(
         dictionary.allTokens
-          .filter(isColor)
-          .flatMap(pairAliasWithValue)
-          .sort())
+            .filter(isColor)
+            .flatMap(pairAliasWithValue)
+            .sort()),
     }, null, 2),
 };

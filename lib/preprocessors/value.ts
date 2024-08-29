@@ -19,6 +19,6 @@ export const $value = {
       return slice;
     }
 
-    return addValueFrom$value(dictionary)
+    return addValueFrom$value(dictionary);
   },
-}
+};

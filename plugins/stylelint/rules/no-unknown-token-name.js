@@ -7,7 +7,7 @@ import parser from 'postcss-value-parser';
 const ruleName = 'rhds/no-unknown-token-name';
 
 const messages = utils.ruleMessages(ruleName, {
-  expected: 'Expected ...'
+  expected: 'Expected ...',
 });
 
 const meta = {
@@ -19,8 +19,8 @@ const ruleFunction = (_, opts, ctx) => {
   return (root, result) => {
     // here we assume a file structure of */rh-tagname/rh-tagname.css
     const tagName = dirname(root.source.input.file)
-      .split(sep)
-      .findLast(x => x.startsWith('rh-'));
+        .split(sep)
+        .findLast(x => x.startsWith('rh-'));
     const validOptions = utils.validateOptions(
       result,
       ruleName,
@@ -41,10 +41,10 @@ const ruleFunction = (_, opts, ctx) => {
         parsedValue.walk(parsed => {
           if (parsed.type === 'function' && parsed.value === 'var') {
             const [{ value }] = parsed.nodes ?? [];
-            if (value.startsWith('--rh') &&
-                !value.startsWith(`--${tagName}`) &&
-                !tokens.has(value) ||
-                migrations.has(value)) {
+            if (value.startsWith('--rh')
+                && !value.startsWith(`--${tagName}`)
+                && !tokens.has(value)
+                || migrations.has(value)) {
               const message = `Expected ${value} to be a known token name`;
               const { nodes: [{ sourceIndex, sourceEndIndex }] } = parsed;
               const declIndex = declarationValueIndex(node);

@@ -6,12 +6,12 @@ import * as Predicates from '../predicates.ts';
 import { writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { colorFormats } from '../transforms.ts';
-import { fileHeader } from 'style-dictionary/utils'
+import { fileHeader } from 'style-dictionary/utils';
 
 function deserializeShadow(x: Token) {
-  if (typeof x.$value === 'object')
+  if (typeof x.$value === 'object') {
     return JSON.stringify(x.$value);
-  else {
+  } else {
     const [offsetX, offsetY, blur, spread, color] = x.$value.split(' ');
     return JSON.stringify({ offsetX, offsetY, blur, spread, color });
   }
@@ -53,31 +53,31 @@ export const modules: Format = {
     for (const name of categories) {
       const outpath = join(process.cwd(), platform.buildPath, `${name}.ts`);
       const category = dictionary
-        .allTokens
-        .filter(x => x.attributes?.category === name)
-        // don't output -rgb and -hsl tokens, because colours here are structured data which includes hsl and rgb values
-        .filter(x => !Predicates.isColor(x) || !x.name.match(/(rgb|hsl)$/i));
+          .allTokens
+          .filter(x => x.attributes?.category === name)
+      // don't output -rgb and -hsl tokens, because colours here are structured data which includes hsl and rgb values
+          .filter(x => !Predicates.isColor(x) || !x.name.match(/(rgb|hsl)$/i));
       const defs = category
-        .map(x => {
-          const value =
+          .map(x => {
+            const value =
               Predicates.isColor(x) ? colorRef(x)
             : Predicates.isShadow(x) ? deserializeShadow(x)
             : Predicates.isMediaQuery(x) ? mediaRef(x)
             : JSON.stringify(x.$value);
-          return `export const ${x.name}${Predicates.isColor(x) ? ': Color' : ''} = ${value};`;
-        });
+            return `export const ${x.name}${Predicates.isColor(x) ? ': Color' : ''} = ${value};`;
+          });
       const hasColors = category.some(x => Predicates.isColor(x));
       const contents = [
         fileHeader({ file }),
         ...!hasColors ? [] : ['import type { Color } from "./types.js";'],
-        ...defs
+        ...defs,
       ].join('\n');
       writeFileSync(outpath, contents, 'utf8');
     }
-    const content =  [
+    const content = [
       fileHeader({ file }),
       ...Array.from(categories, x => `export * from './${x}.js';`),
     ].join('\n');
-    return content
+    return content;
   },
 };

@@ -8,12 +8,12 @@ async function runRule(code) {
     config: {
       rules: { 'rhds/no-unknown-token-name': true },
       plugins: ['./plugins/stylelint.js'],
-    }
+    },
   });
 }
 
 async function getAutofixedCSS(code) {
-  const { output } = await stylelint.lint({
+  const result = await stylelint.lint({
     code,
     fix: true,
     config: {
@@ -22,9 +22,9 @@ async function getAutofixedCSS(code) {
         '--rh-color-black-100': '--rh-color-grey-100',
       } }] },
       plugins: ['./plugins/stylelint.js'],
-    }
+    },
   });
-  return output;
+  return result.code;
 }
 
 describe('no-unknown-token-name', test => {

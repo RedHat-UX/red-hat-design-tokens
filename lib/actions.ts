@@ -11,7 +11,7 @@ import {
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import type { Token } from 'style-dictionary'
+import type { Token } from 'style-dictionary';
 import type { Action } from 'style-dictionary/types';
 
 const rel = (path: string) => new URL(path, import.meta.url);
@@ -32,7 +32,7 @@ const TOKENS_DECL_CONTENT = 'export declare const tokens: Map<`--rh-${string}`, 
 const EXT_KEY = 'com.redhat.ux';
 const TOKENS_DECL_URLS = [
   rel('../js/tokens.d.ts'),
-  rel('../js/tokens.d.cts')
+  rel('../js/tokens.d.cts'),
 ];
 
 const { version } = JSON.parse(
@@ -58,7 +58,7 @@ export const copyAssets: Action = {
   async undo() {
     await rmdir(ASSETS_OUT_DIR, { recursive: true });
     await rm(DOCS_STYLES_OUT, { force: true });
-  }
+  },
 };
 
 /**
@@ -71,7 +71,7 @@ export const copyTypes: Action = {
   },
   async undo() {
     await rm(TYPES_OUT, { force: true });
-  }
+  },
 };
 
 /**
@@ -88,7 +88,7 @@ export const writeEsMapDeclaration: Action = {
     for (const url of TOKENS_DECL_URLS) {
       await rm(url);
     }
-  }
+  },
 };
 
 /**
@@ -113,15 +113,15 @@ export const writeVSIXManifest: Action = {
       contributes: {
         snippets: [
           { language: 'css', path: './snippets.json' },
-          { language: 'scss', path: './snippets.json' }
-        ]
+          { language: 'scss', path: './snippets.json' },
+        ],
       },
       bugs: {
-        url: 'https://github.com/redhat-ux/red-hat-design-tokens/issues'
+        url: 'https://github.com/redhat-ux/red-hat-design-tokens/issues',
       },
       repository: {
         type: 'git',
-        url: 'https://github.com/redhat-ux/red-hat-design-tokens'
+        url: 'https://github.com/redhat-ux/red-hat-design-tokens',
       },
     }, null, 2), 'utf8');
   },
@@ -129,7 +129,7 @@ export const writeVSIXManifest: Action = {
     await rm(VSIX_MANIFEST_URL);
     await rm(VSCODE_LICENSE_URL);
     await rm(VSCODE_README_URL);
-  }
+  },
 };
 
 function getFilePathGuess(collection: Token) {
@@ -169,6 +169,6 @@ export const descriptionFile = {
     await writeFile(OUTPUT_JSON_URL, JSON.stringify(json, null, 2));
   },
   async undo() {
-    await rm(OUTPUT_JSON_URL)
-  }
+    await rm(OUTPUT_JSON_URL);
+  },
 };

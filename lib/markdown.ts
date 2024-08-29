@@ -15,6 +15,6 @@ export const md = markdownit({
         return str;
       }
     }
-  }
+  },
 });
 

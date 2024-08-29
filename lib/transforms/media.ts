@@ -15,7 +15,7 @@ export const mediaQuery: Transform = {
     const maxWidth = token.$value['max-width'];
     const string = [
       minWidth && `(min-width: ${minWidth})`,
-      maxWidth && `(max-width: ${maxWidth})`
+      maxWidth && `(max-width: ${maxWidth})`,
     ].filter(Boolean).join(' and ');
     token.$value = string;
     return string;

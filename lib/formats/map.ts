@@ -1,4 +1,4 @@
-import { fileHeader } from 'style-dictionary/utils'
+import { fileHeader } from 'style-dictionary/utils';
 
 const makeEntries = dictionary => dictionary.allTokens.map(x => [`--${x.name}`, x.value]);
 
@@ -62,8 +62,8 @@ export const mapCjs = {
   name: 'javascript/map-cjs',
   format: (...args) =>
     mapEs
-      .format(...args)
-      .replace('export const tokens', 'exports.tokens'),
+        .format(...args)
+        .replace('export const tokens', 'exports.tokens'),
 };
 
 /**
@@ -82,8 +82,8 @@ export const metaMapCjs = {
   name: 'javascript/meta-map-cjs',
   format: (...args) =>
     metaMapEs
-      .format(...args)
-      .replace('export const tokens', 'exports.tokens'),
+        .format(...args)
+        .replace('export const tokens', 'exports.tokens'),
 };
 
 

@@ -5,15 +5,15 @@ import { tokens } from '@rhds/tokens';
 import stylelint from 'stylelint';
 
 async function getAutofixedCSS(code) {
-  const { output } = await stylelint.lint({
+  const result = await stylelint.lint({
     code,
     fix: true,
     config: {
       rules: { 'rhds/token-values': true },
       plugins: ['./plugins/stylelint.js'],
-    }
+    },
   });
-  return output;
+  return result.code;
 }
 
 describe('token-values', test => {
