@@ -1,11 +1,19 @@
 node_modules
-build
-editor
-js
-json
-css
-scss
-design
 
 .DS_Store
 .wireit
+
+build/**/*
+
+editor/**/*
+js/**/*
+json/**/*
+css/**/*
+scss/**/*
+design/**/*
+plugins/**/*.js
+plugins/**/*.js.map
+plugins/**/*.d.ts
+test/**/*.js
+test/**/*.js.map
+test/**/*.d.ts

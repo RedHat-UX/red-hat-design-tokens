@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "nodenext",
+    "module": "nodenext",
+    "skipLibCheck": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true
+  }
+}

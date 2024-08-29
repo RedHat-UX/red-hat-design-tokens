@@ -1,6 +1,7 @@
 color:
   orange:
     $extensions:
+      isCrayon: true
       com.redhat.ux:
         order: 302
     10:

@@ -2,7 +2,7 @@
 
 /** @param {import('@11ty/eleventy/src/UserConfig')} eleventyConfig */
 module.exports = function(eleventyConfig) {
-  eleventyConfig.on('eleventy.before', () => import('./build.js').then(m => new Promise(r => (m.build(), setTimeout(r, 50)))));
+  //eleventyConfig.on('eleventy.before', () => import('./build.ts').then(m => new Promise(r => (m.build(), setTimeout(r, 50)))));
   eleventyConfig.setServerPassthroughCopyBehavior('passthrough');
   eleventyConfig.addWatchTarget('lib/**/*.js');
   eleventyConfig.addWatchTarget('tokens/**/*.{yml,yaml}');
@@ -27,13 +27,15 @@ module.exports = function(eleventyConfig) {
   const { join } = require('node:path');
   const markdownSyntaxHighlightOptions = require('@11ty/eleventy-plugin-syntaxhighlight/src/markdownSyntaxHighlightOptions');
 
-  const getDocs = (x, options) => x?.$extensions?.[options?.docsExtension ?? 'com.redhat.ux'];
+  const getUxDotExtentions = (x, options) => x?.$extensions?.[options?.docsExtension ?? 'com.redhat.ux'];
   const capitalize = x => `${x.at(0).toUpperCase()}${x.slice(1)}`;
   const isRef = x => x?.original?.$value?.startsWith?.('{') ?? false;
   const deref = x => `rh-${x.original.$value.replace(/[{}]/g, '').split('.').join('-')}`;
 
   /** Returns a string with common indent stripped from each line. Useful for templating HTML */
   function dedent(str) {
+    if (typeof str !== 'string')
+      console.log(str)
     const stripped = str.replace(/^\n/, '');
     const match = stripped.match(/^\s+/);
     return match ? stripped.replace(new RegExp(`^${match[0]}`, 'gm'), '') : str;
@@ -80,9 +82,9 @@ module.exports = function(eleventyConfig) {
       filePath = getFilePathGuess(collection),
       description = '',
       descriptionFile
-    } = getDocs(collection, options) ?? {};
+    } = getUxDotExtentions(collection, options) ?? {};
 
-    if (description) {
+    if (description && typeof description === 'string') {
       return description;
     } else if (descriptionFile) {
       return readFile(join(process.cwd(), filePath, '..', descriptionFile), 'utf-8');
@@ -170,7 +172,7 @@ module.exports = function(eleventyConfig) {
                 [`--${token.attributes.type === 'icon' && token.$type === 'dimension' ? `${name}-size` : name}`]: token.$value,
               })}">
             <td class="sample">
-              <samp${name === 'space' ? ` style="background-color: ${getDocs(token, options)?.color ?? ''};"` : ''}>
+              <samp${name === 'space' ? ` style="background-color: ${getUxDotExtentions(token, options)?.color ?? ''};"` : ''}>
               ${isColor && token.path.includes('text') ? 'Aa'
               : isFont ? (docs?.example ?? token.attributes?.aliases?.[0] ?? 'Aa')
               : name === 'breakpoint' ? `
@@ -247,7 +249,7 @@ module.exports = function(eleventyConfig) {
     const tokens = require('./json/rhds.tokens.json');
     const { parent, key } = getParentCollection({ path }, tokens);
     const collection = parent[key];
-    return getDocs(collection);
+    return getUxDotExtentions(collection);
   });
 
   eleventyConfig.addShortcode('category',
@@ -267,7 +269,7 @@ module.exports = function(eleventyConfig) {
       const name = options.name ?? path.split('.').pop();
       const { parent, key } = getParentCollection(options, tokens);
       const collection = parent[key];
-      const docs = getDocs(collection, options);
+      const docs = getUxDotExtentions(collection, options);
       const heading = docs?.heading ?? capitalize(name.replace('-', ' '));
       const slug = slugify(`${parentName} ${name}`.trim()).toLowerCase();
 
@@ -293,7 +295,7 @@ module.exports = function(eleventyConfig) {
       function getOrder([key, collection]) {
         let docs;
         do {
-          docs = getDocs(collection);
+          docs = getUxDotExtentions(collection);
           collection = collection.parent;
         } while (collection && !docs);
         return docs?.order ?? 0;
