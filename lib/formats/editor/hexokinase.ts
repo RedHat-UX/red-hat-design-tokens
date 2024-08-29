@@ -1,7 +1,7 @@
 import type { Token } from 'style-dictionary';
 import type { Format } from 'style-dictionary/types';
 
-import { isColor } from '../predicates.ts';
+import { isColor } from '../../predicates.ts';
 
 /**
  * Recursively creates a list of entries matching token names with values

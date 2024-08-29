@@ -4,7 +4,7 @@
   "description": "Red Hat Design System Tokens",
   "scripts": {
     "build": "wireit",
-    "11ty": "eleventy",
+    "11ty": "wireit",
     "package-vscode": "wireit",
     "style-dictionary": "wireit",
     "start": "wireit",
@@ -100,6 +100,13 @@
       "command": "tsc -p tsconfig.output.json",
       "dependencies": [
         "style-dictionary"
+      ]
+    },
+    "11ty": {
+      "command": "eleventy",
+      "dependencies": [
+        "style-dictionary",
+        "compile"
       ]
     },
     "style-dictionary": {

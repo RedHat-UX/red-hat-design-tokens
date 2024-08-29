@@ -3,15 +3,14 @@ node_modules
 .DS_Store
 .wireit
 
-./build
+./build/**/*
 
-./editor
-./js
-./json
-./css
-./scss
-./design
-
+./editor/**/*
+./js/**/*
+./json/**/*
+./css/**/*
+./scss/**/*
+./design/**/*
 ./plugins/**/*.js
 ./plugins/**/*.js.map
 ./plugins/**/*.d.ts
