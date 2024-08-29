@@ -6,6 +6,9 @@ json
 css
 scss
 design
+plugins/**/*.js
+plugins/**/*.js.map
+plugins/**/*.d.ts
 
 .DS_Store
 .wireit

@@ -79,8 +79,8 @@
   "files": [
     "css",
     "editor",
-    "plugins",
-    "js/**/*.{js,d.ts,cjs}",
+    "plugins/**/*.{js,d.ts,map}",
+    "js/**/*.{js,d.ts,cjs,map}",
     "json",
     "scss"
   ],
