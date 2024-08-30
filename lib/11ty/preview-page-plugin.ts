@@ -9,6 +9,7 @@ import markdownSyntaxHighlightOptions from '@11ty/eleventy-plugin-syntaxhighligh
 import markdownIt from 'markdown-it';
 
 import { build } from '../../build.ts';
+import { isThemeColorToken } from '../predicates.ts';
 
 interface TableOpts {
   /** the collection of tokens to render */
@@ -40,7 +41,7 @@ function dedent(str) {
   return match ? stripped.replace(new RegExp(`^${match[0]}`, 'gm'), '') : str;
 }
 
-  /** HTML attribute values should use single quotes to avoid breaking out of the value's surrounding double quotes */
+/** HTML attribute values should use single quotes to avoid breaking out of the value's surrounding double quotes */
 function escapeDoubleQuotes(x) {
   return x?.toString().replaceAll('"', '\'');
 }
@@ -69,7 +70,7 @@ function getDescription(collection, options) {
   const {
     filePath = getFilePathGuess(collection),
     description = '',
-    descriptionFile
+    descriptionFile,
   } = getUxDotExtentions(collection, options) ?? {};
 
   if (description && typeof description === 'string') {
@@ -119,7 +120,7 @@ function copyCell(token, variable) {
  * @example isChildEntry(['500', tokens.color.blue.500]); // false
  */
 const isChildEntry = (exclude: string[]) => ([key, value]) =>
-     !value?.$value
+  !value?.$value
   && typeof value === 'object'
   && !key.startsWith('$')
   && !exclude.includes(key);
@@ -147,15 +148,15 @@ export async function PreviewPagePlugin(eleventyConfig: UserConfig) {
   });
 
   function tokenRow(tableOpts: TableOpts) {
-    const { tokens = [], name = '', docs = {}, options = {} } = tableOpts
+    const { tokens = [], name = '', docs = {}, options = {} } = tableOpts;
     return function(token) {
       if (!token.$value || name === 'original' || name === 'attributes') {
-        return ''
+        return '';
       }
-      /* eslint-disable indent */
+
       const { r, g, b } = token.attributes?.rgb ?? {};
       const { h, s, l } = token.attributes?.hsl ?? {};
-      const path = token.path;
+      const { path } = token;
       const isColor = token.$type === 'color';
       const isDimension = token.$type === 'dimension';
       const isCrayon = isColor && token.name?.match(/0$/);
@@ -167,11 +168,10 @@ export async function PreviewPagePlugin(eleventyConfig: UserConfig) {
       const isWeight = !!path.includes('weight');
       const isWidth = !!path.includes('width');
       const variable = `var(--${token.name}, ${escapeDoubleQuotes(token.$value)})`;
-      const isThemeColor = isColor && path.at(-1) === '_' && Array.isArray(token.$value);
 
       if (isHSLorRGB) {
         return '';
-      } else if (isThemeColor) {
+      } else if (isThemeColorToken(token)) {
         return /* html */`
         <tr id="${token.name}" class="${path.join(' ')} theme" data-name="${name}">
           <td class="sample theme-token">
@@ -186,21 +186,21 @@ export async function PreviewPagePlugin(eleventyConfig: UserConfig) {
           ${copyCell(token, variable)}
         </tr>
         ${Object.entries(token)
-        .filter(([k, v]) => k !== 'attributes' && k !== 'original')
-        .map(([name ,v]) => tokenRow({ ...tableOpts, name })(v)).join('\n')}`;
+      .filter(([k, v]) => k !== 'attributes' && k !== 'original')
+      .map(([name, v]) => tokenRow({ ...tableOpts, name })(v)).join('\n')}`;
       } else {
         return /* html */`
         <tr id="${token.name}"
             class="${path.join(' ')}${token.attributes?.isLight ? ' light' : ''}"
             style="${styleMap({
-              '--radius': isRadius ? token.$value : 'initial',
-              '--width': isWidth ? token.$value : 'initial',
-              '--color': isColor ? token.$value : 'initial',
-              '--font-family': isFamily ? token.$value : 'var(--rh-font-family-body-text)',
-              '--font-size': isSize ? token.$value : 'var(--rh-font-size-heading-md)',
-              '--font-weight': isWeight ? token.$value : 'var(--rh-font-weight-body-text-regular)',
-              [`--${token.attributes?.type === 'icon' && token.$type === 'dimension' ? `${name}-size` : name}`]: token.$value,
-            })}">
+    '--radius': isRadius ? token.$value : 'initial',
+    '--width': isWidth ? token.$value : 'initial',
+    '--color': isColor ? token.$value : 'initial',
+    '--font-family': isFamily ? token.$value : 'var(--rh-font-family-body-text)',
+    '--font-size': isSize ? token.$value : 'var(--rh-font-size-heading-md)',
+    '--font-weight': isWeight ? token.$value : 'var(--rh-font-weight-body-text-regular)',
+    [`--${token.attributes?.type === 'icon' && token.$type === 'dimension' ? `${name}-size` : name}`]: token.$value,
+  })}">
           <td class="sample">
             <samp${name === 'space' ? ` style="background-color: ${getUxDotExtentions(token, options)?.color ?? ''};"` : ''}>
             ${isColor && path.includes('text') ? 'Aa'
@@ -259,14 +259,14 @@ export async function PreviewPagePlugin(eleventyConfig: UserConfig) {
               </table>
             </details>
           </td>
-        </tr>`}`
+        </tr>`}`;
       }
-    }
+    };
   }
 
   /** Generate an HTML table of tokens */
   async function table(tableOpts: TableOpts) {
-    const { tokens = [], name = '', docs = {}, options = {} } = tableOpts
+    const { tokens = [], name = '', docs = {}, options = {} } = tableOpts;
     if (!tokens.length || name.startsWith('$')) {
       return '';
     }
@@ -284,7 +284,6 @@ export async function PreviewPagePlugin(eleventyConfig: UserConfig) {
         ${tokens.map(tokenRow(tableOpts)).map(dedent).join('\n')}
         </tbody>
       </table>`).trim();
-    /* eslint-enable indent */
   }
 
   const md = markdownIt({
@@ -326,15 +325,15 @@ export async function PreviewPagePlugin(eleventyConfig: UserConfig) {
     const slug = slugify(`${parentName} ${name}`.trim()).toLowerCase();
 
     const children = Object.entries(collection)
-      .filter(isChildEntry(exclude))
-      .sort(byOrder)
-      .map(([key], i, a) => ({
-        path: key,
-        parent: collection,
-        level: level + 1,
-        parentName: `${parentName} ${name}`.trim(),
-        isLast: i === a.length - 1,
-      }));
+        .filter(isChildEntry(exclude))
+        .sort(byOrder)
+        .map(([key], i, a) => ({
+          path: key,
+          parent: collection,
+          level: level + 1,
+          parentName: `${parentName} ${name}`.trim(),
+          isLast: i === a.length - 1,
+        }));
 
     /**
      * 0. render the description
@@ -345,25 +344,24 @@ export async function PreviewPagePlugin(eleventyConfig: UserConfig) {
       <section id="${name}" class="token-category level-${level - 1}">
         <h${level} id="${slug}">${heading}<a href="#${slug}">#</a></h${level}>
         <div class="description">${md.render(dedent(await getDescription(collection)))}</div>
-        ${await table({ /* eslint-disable indent */
-          tokens: Object.entries(collection).filter(([k, x]) =>
-               typeof x === 'object'
+        ${await table({
+    tokens: Object.entries(collection).filter(([k, x]) =>
+      typeof x === 'object'
             && x !== null
             && '$value' in x
             && k !== 'original'
             && k !== 'attributes').map(([k, v]) => v),
-          options,
-          name,
-          docs,
-        })/* eslint-enable indent */}
+    options,
+    name,
+    docs,
+  })}
         ${(await Promise.all(children.map(category))).join('\n')}
-        ${(await Promise.all(include.map((path, i, a) => category({ /* eslint-disable indent */
-            path,
-            level: level + 1,
-            isLast: !a[i + 1],
-          })))).join('\n')/* eslint-enable indent*/}${isLast ? '' : `
+        ${(await Promise.all(include.map((path, i, a) => category({
+    path,
+    level: level + 1,
+    isLast: !a[i + 1],
+  })))).join('\n')}${isLast ? '' : `
         <a class="btt" href="#">Top</a>`}
       </section>`);
-    });
-
+  });
 }
