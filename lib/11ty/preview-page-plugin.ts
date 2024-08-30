@@ -175,8 +175,8 @@ export async function PreviewPagePlugin(eleventyConfig: UserConfig) {
         return /* html */`
         <tr id="${token.name}" class="${path.join(' ')} theme" data-name="${name}">
           <td class="sample theme-token">
-            <div class="values">${token.$value.map(value => `
-              <samp style="background-color: ${value};"> </samp>`).join('')}
+            <div class="values">${token.$value.map?.(value => `
+              <samp style="background-color: ${value};"> </samp>`)?.join('') ?? `<samp><samp>`}
             </div>
           </td>
           <td class="token name">

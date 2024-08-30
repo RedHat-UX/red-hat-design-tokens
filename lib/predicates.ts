@@ -47,6 +47,4 @@ export const hasDescription = and(
 );
 
 export const isThemeColorToken: Predicate = token =>
-  isColor(token) &&
-    Array.isArray(token.$value)
-
+  isColor(token) && Array.isArray(token.original?.$value);
