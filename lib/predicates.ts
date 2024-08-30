@@ -45,3 +45,8 @@ export const hasDescription = and(
   token =>
     token.$extensions['com.redhat.ux'].description,
 );
+
+export const isThemeColorToken: Predicate = token =>
+  isColor(token) &&
+    Array.isArray(token.$value)
+

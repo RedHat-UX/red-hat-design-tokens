@@ -128,11 +128,8 @@
       ]
     },
     "start": {
-      "command": "eleventy --incremental --serve",
-      "service": true,
-      "dependencies": [
-        "style-dictionary"
-      ]
+      "command": "NODE_OPTIONS=\"--import tsx\" npx eleventy --config=eleventy.config.ts --watch --serve",
+      "service": true
     },
     "test": {
       "command": "tape-es 'test/*.js' | tap-difflet",
