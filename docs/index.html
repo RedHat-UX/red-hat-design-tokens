@@ -41,7 +41,7 @@
         });
       }
 
-      const surface = document.querySelector('rh-surface');
+      const surface = document.querySelector('rh-surface[id]');
 
       surface.addEventListener('change', function(event) {
         const next = event.target.checked ? 'darkest' : 'lightest';
