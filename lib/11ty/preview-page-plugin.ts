@@ -167,17 +167,17 @@ export async function PreviewPagePlugin(eleventyConfig: UserConfig) {
       const isWeight = !!path.includes('weight');
       const isWidth = !!path.includes('width');
       const variable = `var(--${token.name}, ${escapeDoubleQuotes(token.$value)})`;
-      const isThemeColor = isColor && path.at(-1) === '_';
+      const isThemeColor = isColor && path.at(-1) === '_' && Array.isArray(token.$value);
 
       if (isHSLorRGB) {
         return '';
       } else if (isThemeColor) {
         return /* html */`
         <tr id="${token.name}" class="${path.join(' ')} theme" data-name="${name}">
-          <td class="sample">${token.$value.map(value => `
-            <samp${name === 'space' ? ` style="background-color: ${value};"` : ''}>
-            ${isColor && path.includes('text') ? 'Aa' : docs?.example ?? ''}
-            </samp>`).join('')}
+          <td class="sample theme-token">
+            <div class="values">${token.$value.map(value => `
+              <samp style="background-color: ${value};"> </samp>`).join('')}
+            </div>
           </td>
           <td class="token name">
             <button class="copy-button"><code>--${token.name}</code></button>

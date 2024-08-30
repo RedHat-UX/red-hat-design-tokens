@@ -32,16 +32,14 @@ header svg {
 
 main {
   padding-inline: var(--rh-length-2xl);
-}
-
-main aside {
-  float: right;
-  padding-inline: 2em;
-}
-
-main aside :is(ol, ul) {
-  list-style-type: none;
-  padding-inline-start: 0;
+  & aside {
+    float: right;
+    padding-inline: 2em;
+    & :is(ol, ul) {
+      list-style-type: none;
+      padding-inline-start: 0;
+    }
+  }
 }
 
 h1 {
@@ -95,33 +93,33 @@ td:first-child {
   padding-inline-start: var(--rh-space-lg, 16px);
 }
 
-tr.variants > td {
-  vertical-align: top;
-}
+&.variants {
+  & > td {
+    vertical-align: top;
+  }
 
-tr.variants details {
-  position: relative;
-}
+  & details {
+    position: relative;
+    & table {
+      padding-inline: var(--rh-space-lg);
+    }
+  }
 
-tr.variants summary {
-  height: 2.5em;
-  width: 2.5em;
-  position: absolute;
-  translate: 0px -2.25em;
-}
+  & summary {
+    height: 2.5em;
+    width: 2.5em;
+    position: absolute;
+    translate: 0px -2.25em;
+    & rh-tooltip {
+      display: block;
+      position: absolute;
+      inset: 0;
+    }
+  }
 
-tr.variants summary rh-tooltip {
-  display: block;
-  position: absolute;
-  inset: 0;
-}
-
-tr.variants details table {
-  padding-inline: var(--rh-space-lg);
-}
-
-tr.variants > td:first-child {
-  padding: 0;
+  & > td:first-child {
+    padding: 0;
+  }
 }
 
 td.token > div {
@@ -253,21 +251,37 @@ tr:is(:hover, :focus-within).on-dark .copy-cell .copy-button {
   text-transform: capitalize;
 }
 
-.color samp {
-  color: var(--color);
-}
+.color {
+  & samp {
+    color: var(--color);
+  }
 
-.color:not(.border, .text) samp {
-  aspect-ratio: 1;
-  height: var(--rh-length-xl);
-  display: block;
-  border-radius: 100%;
-  border: 1px solid transparent;
-  background: var(--color);
-}
+  &:not(.border, .text) samp {
+    aspect-ratio: 1;
+    height: var(--rh-length-xl);
+    display: block;
+    border-radius: 100%;
+    border: 1px solid transparent;
+    background: var(--color);
+  }
 
-.color:not(.border, .text).light samp {
-  border-color: var(--rh-color-gray-90);
+  &:not(.border, .text).light samp {
+    border-color: var(--rh-color-gray-90);
+  }
+
+  &.theme .sample .values {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: 1fr 1fr;
+    place-content: center;
+    gap: var(--rh-space-md);
+    & samp {
+      border-width: 8px;
+      border-style: solid;
+      &:first-child { border-color: var(--rh-color-surface-light) }
+      &:last-child { border-color: var(--rh-color-surface-dark) }
+    }
+  }
 }
 
 .line-height samp {

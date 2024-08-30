@@ -53,3 +53,16 @@ export const rgbValue: Transform = {
   },
 };
 
+/**
+ * Theme tokens
+ */
+export const themeTokens: Transform = {
+  name: 'color/css/themetokens',
+  type: 'value',
+  filter: x => isColor(x) && x.path.at(-1) === '_' && Array.isArray(x.$value),
+  transform(token) {
+    console.log(token)
+    return 'unset';
+  },
+};
+

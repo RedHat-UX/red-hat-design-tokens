@@ -77,6 +77,7 @@ export async function build(): Promise<void> {
   sd.registerTransform(Transforms.colorFormats);
   sd.registerTransform(Transforms.hslValue);
   sd.registerTransform(Transforms.rgbValue);
+  sd.registerTransform(Transforms.themeTokens);
   sd.registerTransform(Transforms.remToPx);
   sd.registerTransform(Transforms.pxNumeric);
   sd.registerTransform(Transforms.mediaQuery);

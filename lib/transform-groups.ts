@@ -14,6 +14,7 @@ export const css = {
     'color/css',
     'color/css/hsl',
     'color/css/rgb',
+    'color/css/themetokens',
   ],
 };
 
