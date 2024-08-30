@@ -176,8 +176,8 @@ export async function PreviewPagePlugin(eleventyConfig: UserConfig) {
         <tr id="${token.name}" class="${path.join(' ')} theme" data-name="${name}">
           <td class="sample theme-token">
             <div class="values">
-              <samp style="background-color: var(${token.name}-on-light);"></samp>
-              <samp style="background-color: var(${token.name}-on-dark);"></samp>
+              <samp style="background-color: var(--${token.name}-on-light);"></samp>
+              <samp style="background-color: var(--${token.name}-on-dark);"></samp>
             </div>
           </td>
           <td class="token name">
