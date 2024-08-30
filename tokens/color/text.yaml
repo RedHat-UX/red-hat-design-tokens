@@ -27,10 +27,14 @@ color:
           [wcag]: https://www.w3.org/WAI/WCAG2AA-Conformance.html
 
     primary:
-      $description: >-
-        Responsive `text-primary` color value. Typically read only - use a themable container e.g. `<rh-surface>`
-        Resolves to `--rh-color-text-primary-on-light` on a themable container with a light color palette
-        and `--rh-color-text-primary-on-dark` on a themable container with a dark color palette.
+      _:
+        $value:
+          - '{color.text.primary.on-light}'
+          - '{color.text.primary.on-dark}'
+        $description: >-
+          Responsive `text-primary` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-text-primary-on-light` on a themable container with a light color palette
+          and `--rh-color-text-primary-on-dark` on a themable container with a dark color palette.
       on-light:
         $value: '{color.gray.95}'
         $description: Primary text color for light theme
@@ -44,10 +48,14 @@ color:
           category: typography
           type: color
     secondary:
-      $description: >-
-        Responsive `text-secondary` color value. Typically read only - use a themable container e.g. `<rh-surface>`
-        Resolves to `--rh-color-text-secondary-on-light` on a themable container with a light color palette
-        and `--rh-color-text-secondary-on-dark` on a themable container with a dark color palette.
+      _:
+        $value:
+          - '{color.text.secondary.on-light}'
+          - '{color.text.secondary.on-dark}'
+        $description: >-
+          Responsive `text-secondary` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-text-secondary-on-light` on a themable container with a light color palette
+          and `--rh-color-text-secondary-on-dark` on a themable container with a dark color palette.
       on-light:
         $value: '{color.gray.60}'
         $description: Secondary text color for light theme
@@ -61,10 +69,14 @@ color:
           category: typography
           type: color
     brand:
-      $description: >-
-        Responsive `text-brand` color value. Typically read only - use a themable container e.g. `<rh-surface>`
-        Resolves to `--rh-color-text-brand-on-light` on a themable container with a light color palette
-        and `--rh-color-text-brand-on-dark` on a themable container with a dark color palette.
+      _:
+        $value:
+          - '{color.text.brand.on-light}'
+          - '{color.text.brand.on-dark}'
+        $description: >-
+          Responsive `text-brand` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-text-brand-on-light` on a themable container with a light color palette
+          and `--rh-color-text-brand-on-dark` on a themable container with a dark color palette.
       on-light:
         $value: '{color.brand.red.on-light}'
         $description: Brand text color for light theme

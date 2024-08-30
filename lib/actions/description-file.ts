@@ -11,10 +11,10 @@ const OUTPUT_JSON_URL = rel('../../json/rhds.tokens.json');
 const EXT_KEY = 'com.redhat.ux';
 
 function getFilePathGuess(collection: Token) {
-  return Object.values(collection).reduce((path, val) =>
-      path || typeof val !== 'object' ? path
-            : '$value' in val ? val.filePath
-            : getFilePathGuess(val), '');
+  return Object.values(collection ?? {}).reduce((path, val) =>
+      path || (val && typeof val !== 'object') ? path
+    : (val && '$value' in val) ? val.filePath
+    : getFilePathGuess(val), '');
 }
 
 function getDescription(collection) {

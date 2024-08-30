@@ -7,12 +7,18 @@ color:
 
     blue:
       normal:
+        $value:
+          - '{color.interactive.blue.darker}'
+          - '{color.interactive.blue.lightest}'
         $description: >-
           Responsive `interactive-blue` (e.g. link) color value.
           Typically read only - use a themable container e.g. `<rh-surface>`
           Resolves to `--rh-color-interactive-blue-darker` on a themable container with a light color palette
           and `--rh-color-interactive-blue-lighest` on a themable container with a dark color palette.
       emphasized:
+        $value:
+          - '{color.interactive.blue.darkest}'
+          - '{color.interactive.blue.lighter}'
         $description: >-
           Responsive `interactive-blue` (e.g. link hover) color value.
           Typically read only - use a themable container e.g. `<rh-surface>`
@@ -33,12 +39,18 @@ color:
 
     purple:
       normal:
+        $value:
+          - '{color.interactive.purple.darker}'
+          - '{color.interactive.purple.lightest}'
         $description: >-
           Responsive `interactive-purple` (e.g. visited link) color value.
           Typically read only - use a themable container e.g. `<rh-surface>`
           Resolves to `--rh-color-interactive-purple-darker` on a themable container with a light color palette
           and `--rh-color-interactive-purple-lighest` on a themable container with a dark color palette.
       emphasized:
+        $value:
+          - '{color.interactive.purple.darkest}'
+          - '{color.interactive.purple.lighter}'
         $description: >-
           Responsive `interactive-purple` (e.g. visited link hover) color value.
           Typically read only - use a themable container e.g. `<rh-surface>`

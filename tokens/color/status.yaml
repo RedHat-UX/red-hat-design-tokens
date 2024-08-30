@@ -5,6 +5,14 @@ color:
         order: 500
 
     danger:
+      _:
+        $value:
+          - '{color.status.danger.on-light}'
+          - '{color.status.danger.on-dark}'
+        $description: >-
+          Responsive `status-danger` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-status-danger-on-light` on a themable container with a light color palette
+          and `--rh-color-status-danger-on-dark` on a themable container with a dark color palette.
       on-light:
         $value: '{color.red-orange.60}'
         $description: Danger accent color (light theme)
@@ -13,6 +21,14 @@ color:
         $description: Danger accent color (dark theme)
 
     warning:
+      _:
+        $value:
+          - '{color.status.warning.on-light}'
+          - '{color.status.warning.on-dark}'
+        $description: >-
+          Responsive `status-warning` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-status-warning-on-light` on a themable container with a light color palette
+          and `--rh-color-status-warning-on-dark` on a themable container with a dark color palette.
       on-light:
         $value: '{color.orange.50}'
         $description: Warning accent color (light theme)
@@ -21,6 +37,14 @@ color:
         $description: Warning accent color (dark theme)
 
     default:
+      _:
+        $value:
+          - '{color.status.default.on-light}'
+          - '{color.status.default.on-dark}'
+        $description: >-
+          Responsive `status-default` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-status-default-on-light` on a themable container with a light color palette
+          and `--rh-color-status-default-on-dark` on a themable container with a dark color palette.
       on-light:
         $value: '{color.gray.60}'
         $description: Default accent color (light theme)
@@ -29,6 +53,14 @@ color:
         $description: Default accent color (dark theme)
 
     info:
+      _:
+        $value:
+          - '{color.status.info.on-light}'
+          - '{color.status.info.on-dark}'
+        $description: >-
+          Responsive `status-info` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-status-info-on-light` on a themable container with a light color palette
+          and `--rh-color-status-info-on-dark` on a themable container with a dark color palette.
       on-light:
         $value: '{color.purple.50}'
         $description: Info accent color (light theme)
@@ -37,6 +69,14 @@ color:
         $description: Info accent color (dark theme)
 
     success:
+      _:
+        $value:
+          - '{color.status.success.on-light}'
+          - '{color.status.success.on-dark}'
+        $description: >-
+          Responsive `status-success` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-status-success-on-light` on a themable container with a light color palette
+          and `--rh-color-status-success-on-dark` on a themable container with a dark color palette.
       on-light:
         $value: '{color.green.60}'
         $description: Success accent color (light theme)

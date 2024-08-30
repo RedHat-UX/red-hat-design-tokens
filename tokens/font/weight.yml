@@ -14,13 +14,11 @@ font:
         $value: 400
         attributes:
           category: typography
-          type: font-weight
       medium:
         $description: Medium font weight
         $value: 500
         attributes:
           category: typography
-          type: font-weight
 
     code:
       $extensions:
@@ -32,13 +30,11 @@ font:
         $value: 400
         attributes:
           category: typography
-          type: font-weight
       medium:
         $description: Medium font weight
         $value: 500
         attributes:
           category: typography
-          type: font-weight
 
     heading:
       $extensions:
@@ -50,16 +46,13 @@ font:
         $value: 300
         attributes:
           category: typography
-          type: font-weight
       medium:
         $description: Medium font weight for headings
         $value: 500
         attributes:
           category: typography
-          type: font-weight
       bold:
         $description: Bold font weight for headings
         $value: 700
         attributes:
           category: typography
-          type: font-weight
