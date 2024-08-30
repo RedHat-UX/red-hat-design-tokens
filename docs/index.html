@@ -58,9 +58,11 @@
       async function hack(element) {
         await element.updateComplete;
         element.shadowRoot.firstElementChild.classList.add('on');
-        element.shadowRoot.firstElementChild.classList.remove('light');
-        element.shadowRoot.firstElementChild.classList.remove('dark');
-        element.shadowRoot.firstElementChild.classList.add(element.colorPalette.replace(/er|est/, ''));
+        if (!element.on) {
+          element.shadowRoot.firstElementChild.classList.remove('light');
+          element.shadowRoot.firstElementChild.classList.remove('dark');
+          element.shadowRoot.firstElementChild.classList.add((element.colorPalette || 'lightest').replace(/er|est/, ''));
+        }
       }
 
       const styleSheet = new CSSStyleSheet();
@@ -154,9 +156,15 @@
     </script>
     <style>
     #theme-link-demo div {
+      display: grid;
+      gap: var(--rh-space-2xl);
+      grid-template-columns: 1fr 1fr;
       padding: var(--rh-space-2xl);
       border-radius: var(--rh-border-radius-default);
       border: var(--rh-border-width-sm) solid var(--rh-color-border-subtle);
+      & form {
+        grid-column: 1/-1;
+      }
     }
     </style>
   </head>
@@ -252,13 +260,18 @@
         <section id="theme-tokens">
           <rh-surface id="theme-link-demo" color-palette="lightest">
             <div>
-              <label for="theme-demo-switch">Color Palette</label>
-              <rh-switch id="theme-demo-switch"
-                         message-on="Darkest"
-                         message-off="Light"></rh-switch>
-              <p>Use <a href="#">theme tokens</a> for best results.</p>
+              <form>
+                <label for="theme-demo-switch">Color Palette</label>
+                <rh-switch id="theme-demo-switch"
+                           message-on="Darkest"
+                           message-off="Light"></rh-switch>
+              </form>
+              <rh-card>
+                <h2 slot="header" style="color: var(--rh-color-accent-base);">Theme Tokens</h2>
+                <p>Use <a href="#">theme tokens</a> for best results.</p>
+              </rh-card>
               <rh-card color-palette="darkest">
-                <h2 slot="header">Why, though?</h2>
+                <h2 slot="header" style="color: var(--rh-color-accent-base);">Why, though?</h2>
                 <p>That way, colours respond to their parents' <code>color-palette</code>
                    Without requiring <a href="#">custom CSS</a></p>
                 <rh-cta href="#color">Read More</rh-cta>
