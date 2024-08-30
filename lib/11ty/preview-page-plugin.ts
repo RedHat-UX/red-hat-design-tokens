@@ -31,8 +31,11 @@ const capitalize = x =>
 const isRef = x =>
   x?.original?.$value?.startsWith?.('{') ?? false;
 
+const derefValue = x =>
+  `rh-${x.replace(/[{}]/g, '').split('.').join('-')}`;
+
 const deref = x =>
-  `rh-${x.original.$value.replace(/[{}]/g, '').split('.').join('-')}`;
+  derefValue(x.original.$value);
 
 /** Returns a string with common indent stripped from each line. Useful for templating HTML */
 function dedent(str) {
@@ -176,8 +179,8 @@ export async function PreviewPagePlugin(eleventyConfig: UserConfig) {
         <tr id="${token.name}" class="${path.join(' ')} theme" data-name="${name}">
           <td class="sample theme-token">
             <div class="values">
-              <samp style="background-color: var(--${token.name}-on-light);"></samp>
-              <samp style="background-color: var(--${token.name}-on-dark);"></samp>
+              <samp style="background-color: var(--${derefValue(token.original.$value.at(0))});"></samp>
+              <samp style="background-color: var(--${derefValue(token.original.$value.at(1))});"></samp>
             </div>
           </td>
           <td class="token name">

@@ -41,8 +41,7 @@
         });
       }
 
-      const surface = document.getElementById('theme-link-demo');
-      const card = surface.querySelector('rh-card');
+      const surface = document.querySelector('rh-surface');
 
       surface.addEventListener('change', function(event) {
         const next = event.target.checked ? 'darkest' : 'lightest';
