@@ -88,6 +88,7 @@ export async function build(): Promise<void> {
 
   sd.registerFilter(Filters.isColor);
   sd.registerFilter(Filters.isThemeColorToken);
+  sd.registerFilter(Filters.isNotThemeColorToken);
   sd.registerFilter(Filters.isLightThemeColorToken);
   sd.registerFilter(Filters.isDarkThemeColorToken);
 

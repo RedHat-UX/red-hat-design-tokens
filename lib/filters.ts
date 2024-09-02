@@ -17,11 +17,15 @@ export const isThemeColorToken: Filter = {
   filter: Predicates.isThemeColorToken,
 };
 
+export const isNotThemeColorToken: Filter = {
+  name: 'isNotThemeColorToken',
+  filter: Predicates.isNotThemeColorToken,
+};
+
 export const isLightThemeColorToken: Filter = {
   name: 'isLightThemeColorToken',
   filter: Predicates.isLightThemeColorToken,
 };
-
 
 export const isDarkThemeColorToken: Filter = {
   name: 'isDarkThemeColorToken',

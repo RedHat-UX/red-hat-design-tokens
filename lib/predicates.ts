@@ -3,6 +3,7 @@ import type { Token } from 'style-dictionary';
 export type Predicate = (token: Token) => boolean;
 
 const and = (p: Predicate, q: Predicate): Predicate => x => p(x) && q(x);
+const not = (p: Predicate): Predicate => x => !p(x);
 
 export const isColor: Predicate = token =>
   token.$type === 'color';
@@ -48,6 +49,8 @@ export const hasDescription = and(
 
 export const isThemeColorToken: Predicate = token =>
   isColor(token) && Array.isArray(token.original?.$value);
+
+export const isNotThemeColorToken = not(isThemeColorToken);
 
 export const isLightThemeColorToken = and(
   isColor,

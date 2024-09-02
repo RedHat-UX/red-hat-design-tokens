@@ -61,8 +61,8 @@ export const themeTokens: Transform = {
   type: 'value',
   transitive: true,
   filter: isThemeColorToken,
-  transform(token) {
-    return 'unset';
+  transform() {
+    return '';
   },
 };
 

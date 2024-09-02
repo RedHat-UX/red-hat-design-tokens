@@ -5,6 +5,7 @@ css:
   files:
     - destination: global.css
       format: css/variables
+      filter: isNotThemeColorToken
       options:
         fileHeader: redhat/legal
         selector: ':root'
@@ -12,6 +13,7 @@ css:
           commentPosition: above
     - destination: shared.css
       format: css/variables
+      filter: isNotThemeColorToken
       options:
         fileHeader: redhat/legal
         selector: ':host'
@@ -19,6 +21,7 @@ css:
           commentPosition: above
     - destination: reset.css.js
       format: css/lit
+      filter: isNotThemeColorToken
       options:
         fileHeader: redhat/legal
         selector: ':host'

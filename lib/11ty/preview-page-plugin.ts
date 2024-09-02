@@ -153,7 +153,7 @@ export async function PreviewPagePlugin(eleventyConfig: UserConfig) {
   function tokenRow(tableOpts: TableOpts) {
     const { tokens = [], name = '', docs = {}, options = {} } = tableOpts;
     return function(token) {
-      if (!token.$value || name === 'original' || name === 'attributes') {
+      if (!token.$value || name === 'original' || name === 'attributes' || token.name === '_') {
         return '';
       }
 
@@ -322,6 +322,9 @@ export async function PreviewPagePlugin(eleventyConfig: UserConfig) {
       : [options.include].filter(Boolean);
 
     const name = options.name ?? path.split('.').pop().split('.').shift();
+    if (name === '_') {
+      return '';
+    }
     const { parent, key } = getParentCollection(options, tokens);
     const collection = parent[key];
     const docs = getUxDotExtentions(collection, options);

@@ -23,14 +23,27 @@ body {
   align-items: center;
   justify-content: space-between;
   height: 72px;
+  position: sticky;
+  top: 0;
+  gap: var(--rh-space-lg);
+  z-index: 1000;
+  --rh-icon-size: var(--rh-size-icon-04);
+  & [icon="github"] {
+    color: white;
+  }
+  & svg {
+    height: var(--rh-size-icon-04);
+    color: white;
+  }
+  & form {
+    margin-inline-start: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--rh-space-lg);
+  }
 }
 
-header svg {
-  height: 36px;
-  color: white;
-}
-
-main {
+#main-surface {
   padding-inline: var(--rh-length-2xl);
   & aside {
     float: right;
@@ -39,6 +52,31 @@ main {
       list-style-type: none;
       padding-inline-start: 0;
     }
+  }
+  &[color-palette="lightest"] {
+    --_code-background: var(--rh-color-surface-lighter);
+  }
+  &[color-palette="darkest"] {
+    --_code-background: var(--rh-color-surface-dark);
+  }
+}
+
+#theme-tokens {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--rh-space-xl);
+}
+
+ a {
+  color: var(--rh-color-interactive-primary-default);
+  &:hover { color: var(--rh-color-interactive-primary-hover); }
+  &:focus-within { color: var(--rh-color-interactive-primary-focus); }
+  &:active { color: var(--rh-color-interactive-primary-active); }
+  &:visited {
+    color: var(--rh-color-interactive-primary-visited);
+    &:hover { color: var(--rh-color-interactive-primary-visited-hover); }
+    &:focus-within { color: var(--rh-color-interactive-primary-visited-focus); }
+    &:active { color: var(--rh-color-interactive-primary-visited-active); }
   }
 }
 
@@ -77,11 +115,6 @@ th {
 
 tr {
   border-bottom: 1px solid var(--rh-color-border-subtle-on-light);
-}
-
-tr.on-dark {
-  background-color: var(--rh-color-surface-darkest, #151515);
-  color: var(--rh-color-text-primary-on-dark, #ffffff);
 }
 
 th, td {
@@ -171,17 +204,15 @@ code {
   border-radius: var(--rh-border-radius-default);
   border-width: 0;
   padding: var(--rh-space-xs);
-  background: none;
+  background-color: var(--_code-background);
   cursor: pointer;
-}
-
-.copy-button svg {
-  width: 24px;
-  fill: currentcolor;
+  & svg {
+    width: 24px;
+    fill: currentcolor;
+  }
 }
 
 .token:is(.value, .name) .copy-button {
-  background-color: var(--rh-color-surface-lighter);
   overflow-x: hidden;
   max-width: 400px;
   white-space: pre;
@@ -204,16 +235,7 @@ code {
 }
 
 .copy-button:is(:focus, :active, :hover) {
-  background: var(--rh-color-interactive-blue-lightest);
   opacity: 1;
-}
-
-.on-dark :is(.value, .name) .copy-button {
-  background-color: var(--rh-color-surface-darker);
-}
-
-.on-dark .copy-button:is(:focus, :active, :hover) {
-  background: var(--rh-color-interactive-blue-darker);
 }
 
 .copy-cell {
@@ -221,20 +243,32 @@ code {
   vertical-align: middle;
 }
 
-.copy-cell .copy-button {
-  color: var(--rh-color-icon-subtle);
+.copy-button {
+  color: var(--rh-color-text-secondary);
 }
 
-.on-dark .copy-cell .copy-button {
-  color: var(--rh-color-icon-subtle-hover);
+.on-dark  {
+  background-color: var(--rh-color-surface-dark);
+  color: var(--rh-color-text-primary-on-dark);
+  & .copy-button {
+    --_code-background: var(--rh-color-surface-dark);
+    color: var(--rh-color-text-secondary-on-dark);
+    &:is(:focus, :active, :hover) {
+      background: var(--rh-color-interactive-blue-darker);
+    }
+  }
 }
 
-tr:is(:hover, :focus-within) .copy-cell .copy-button {
-  color: var(--rh-color-icon-secondary-on-light);
-}
-
-tr:is(:hover, :focus-within).on-dark .copy-cell .copy-button {
-  color: var(--rh-color-icon-secondary-on-dark);
+.on-light {
+  background-color: var(--rh-color-surface-light);
+  color: var(--rh-color-text-primary-on-light);
+  & .copy-button {
+    --_code-background: var(--rh-color-surface-lighter);
+    color: var(--rh-color-text-secondary-on-light);
+    &:is(:focus, :active, :hover) {
+      background: var(--rh-color-interactive-blue-lighter);
+    }
+  }
 }
 
 .font samp {
@@ -411,5 +445,17 @@ dl.grid dd {
 dl.grid dd {
   display: flex;
   align-items: center;
+}
+
+#theme-link-demo div {
+  display: grid;
+  gap: var(--rh-space-2xl);
+  grid-template-columns: 1fr 1fr;
+  padding: var(--rh-space-2xl);
+  border-radius: var(--rh-border-radius-default);
+  border: var(--rh-border-width-sm) solid var(--rh-color-border-subtle);
+  & form {
+    grid-column: 1/-1;
+  }
 }
 

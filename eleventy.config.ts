@@ -8,24 +8,15 @@ export default function(eleventyConfig: UserConfig) {
   eleventyConfig.addWatchTarget('lib/**/*.{js,ts}');
   eleventyConfig.addWatchTarget('tokens/**/*.{yml,yaml}');
   eleventyConfig.addWatchTarget('plugins/**/*.{cjs,js}');
-  eleventyConfig.addPassthroughCopy({ 'docs/assets': 'assets' });
-  eleventyConfig.addPassthroughCopy({ 'css/global.css': 'assets/rhds.css' });
-  eleventyConfig.addPassthroughCopy({ 'css/prism.css': 'assets/prism.css' });
-  eleventyConfig.addPassthroughCopy({ 'plugins/11ty/styles.css': 'assets/11ty.css' });
-  eleventyConfig.addGlobalData('importMap', async function() {
-    const { Generator } = await import('@jspm/generator');
-    const generator = new Generator();
-    await generator.install([
-      '@rhds/elements',
-      '@rhds/elements/rh-footer/rh-footer-universal.js',
-      '@rhds/elements/rh-tooltip/rh-tooltip.js',
-      '@rhds/elements/rh-card/rh-card.js',
-      '@rhds/elements/rh-switch/rh-switch.js',
-      '@rhds/elements/rh-surface/rh-surface.js',
-    ]);
-    return generator.getMap();
+  eleventyConfig.addPassthroughCopy({
+    'docs/assets': 'assets',
+    'css/global.css': 'assets/rhds.css',
+    'css/prism.css': 'assets/prism.css',
+    'css/color-context-*.css': 'assets/',
+    'plugins/11ty/styles.css': 'assets/11ty.css',
+    'node_modules/@rhds/icons': 'assets/packages/@rhds/icons',
+    'node_modules/@rhds/elements': 'assets/packages/@rhds/elements',
   });
-
   return {
     htmlTemplateEngine: 'njk',
     dir: {
