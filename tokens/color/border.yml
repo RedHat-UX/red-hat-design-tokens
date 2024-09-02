@@ -73,109 +73,24 @@ color:
           category: border
           type: color
 
-    status:
-      danger:
-        _:
-          $value:
-            - '{color.border.status.danger.on-light}'
-            - '{color.border.status.danger.on-dark}'
-          $description: >-
-            Responsive `border-status-danger` color value. Typically read only - use a themable container e.g. `<rh-surface>`
-            Resolves to `--rh-color-border-status-danger-on-light` on a themable container with a light color palette
-            and `--rh-color-border-status-danger-on-dark` on a themable container with a dark color palette.
-        on-light:
-          $value: '{color.red-orange.50}'
-          $description: Danger status border color (light theme)
-          attributes:
-            category: border
-            type: color
-        on-dark:
-          $value: '{color.red-orange.40}'
-          $description: Danger status border color (dark theme)
-          attributes:
-            category: border
-            type: color
-      warning:
-        _:
-          $value:
-            - '{color.border.status.warning.on-light}'
-            - '{color.border.status.warning.on-dark}'
-          $description: >-
-            Responsive `border-status-warning` color value. Typically read only - use a themable container e.g. `<rh-surface>`
-            Resolves to `--rh-color-border-status-warning-on-light` on a themable container with a light color palette
-            and `--rh-color-border-status-warning-on-dark` on a themable container with a dark color palette.
-        on-light:
-          $value: '{color.orange.50}'
-          $description: Warning status border color (light theme)
-          attributes:
-            category: border
-            type: color
-        on-dark:
-          $value: '{color.orange.40}'
-          $description: Warning status border color (dark theme)
-          attributes:
-            category: border
-            type: color
-      default:
-        _:
-          $value:
-            - '{color.border.status.default.on-light}'
-            - '{color.border.status.default.on-dark}'
-          $description: >-
-            Responsive `border-status-default` color value. Typically read only - use a themable container e.g. `<rh-surface>`
-            Resolves to `--rh-color-border-status-default-on-light` on a themable container with a light color palette
-            and `--rh-color-border-status-default-on-dark` on a themable container with a dark color palette.
-        on-light:
-          $value: '{color.gray.60}'
-          $description: Default status border color (light theme)
-          attributes:
-            category: border
-            type: color
-        on-dark:
-          $value: '{color.gray.40}'
-          $description: Default status border color (dark theme)
-          attributes:
-            category: border
-            type: color
-      info:
-        _:
-          $value:
-            - '{color.border.status.info.on-light}'
-            - '{color.border.status.info.on-dark}'
-          $description: >-
-            Responsive `border-status-info` color value. Typically read only - use a themable container e.g. `<rh-surface>`
-            Resolves to `--rh-color-border-status-info-on-light` on a themable container with a light color palette
-            and `--rh-color-border-status-info-on-dark` on a themable container with a dark color palette.
-        on-light:
-          $value: '{color.purple.50}'
-          $description: Info status border color (light theme)
-          attributes:
-            category: border
-            type: color
-        on-dark:
-          $value: '{color.purple.30}'
-          $description: Info status border color (dark theme)
-          attributes:
-            category: border
-            type: color
-      success:
-        _:
-          $value:
-            - '{color.border.status.success.on-light}'
-            - '{color.border.status.success.on-dark}'
-          $description: >-
-            Responsive `border-status-success` color value. Typically read only - use a themable container e.g. `<rh-surface>`
-            Resolves to `--rh-color-border-status-success-on-light` on a themable container with a light color palette
-            and `--rh-color-border-status-success-on-dark` on a themable container with a dark color palette.
-        on-light:
-          $value: '{color.green.60}'
-          $description: Success status border color (light theme)
-          attributes:
-            category: border
-            type: color
-        on-dark:
-          $value: '{color.green.40}'
-          $description: Success status border color (dark theme)
-          attributes:
-            category: border
-            type: color
+    destructive:
+      _:
+        $value:
+          - '{color.border.destructive.on-light}'
+          - '{color.border.destructive.on-dark}'
+        $description: >-
+          Responsive `border-destructive` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-border-destructive-on-light` on a themable container with a light color palette
+          and `--rh-color-border-destructive-on-dark` on a themable container with a dark color palette.
+      on-light:
+        $value: '{color.red-orange.60}'
+        $description: Destructive border color (light theme)
+        attributes:
+          category: border
+          type: color
+      on-dark:
+        $value: '{color.red-orange.40}'
+        $description: Destructive border color (dark theme)
+        attributes:
+          category: border
+          type: color
