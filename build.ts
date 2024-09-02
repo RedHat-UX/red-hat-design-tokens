@@ -87,8 +87,13 @@ export async function build(): Promise<void> {
   sd.registerTransformGroup(TransformGroups.sketch);
 
   sd.registerFilter(Filters.isColor);
+  sd.registerFilter(Filters.isThemeColorToken);
+  sd.registerFilter(Filters.isLightThemeColorToken);
+  sd.registerFilter(Filters.isDarkThemeColorToken);
 
   sd.registerFormat(Formats.litCss);
+  sd.registerFormat(Formats.rhdsColorContextConsumer);
+  sd.registerFormat(Formats.rhdsColorContextProvider);
   sd.registerFormat(Formats.mapEs);
   sd.registerFormat(Formats.mapCjs);
   sd.registerFormat(Formats.metaMapEs);

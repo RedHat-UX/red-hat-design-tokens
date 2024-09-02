@@ -48,3 +48,28 @@ export const hasDescription = and(
 
 export const isThemeColorToken: Predicate = token =>
   isColor(token) && Array.isArray(token.original?.$value);
+
+export const isLightThemeColorToken = and(
+  isColor,
+  token =>
+    token.path.at(-1) === ('on-light'),
+);
+
+const ColorPalettes = [
+  'lightest',
+  'lighter',
+  'light',
+  'dark',
+  'darker',
+  'darkest',
+];
+
+export const isSurfaceColorPaletteToken: Predicate = token =>
+  token.path.at(1) === 'surface'
+    && ColorPalettes.includes(token.path.at(-1));
+
+export const isDarkThemeColorToken = and(
+  isColor,
+  token =>
+    token.path.at(-1) === ('on-dark'),
+);
