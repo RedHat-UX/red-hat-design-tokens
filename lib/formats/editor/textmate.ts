@@ -13,7 +13,7 @@ export const textmateSnippets: Format = {
   format: ({ dictionary }) =>
     dictionary.allTokens.reduce((snippets, token) => `${snippets}
 snippet ${token.name.replaceAll('-', '')}
-  var(--${token.name}${isThemeColorToken(token) ? `\${1:, ${token.$value}}` : ''})$2${!token.$value?.startsWith?.('#') ? '' : `
+  var(--${token.name}${isThemeColorToken(token) ? '' : `\${1:, ${token.$value}}`})$2${!token.$value?.startsWith?.('#') ? '' : `
 snippet ${token.$value.replace(/^#/, '')}
   var(--${token.name}\${1:, ${token.$value}})$2`}`, '').trimStart(),
 };
