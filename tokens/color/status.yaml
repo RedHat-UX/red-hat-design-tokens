@@ -5,6 +5,8 @@ color:
         order: 500
 
     danger:
+      $description: >-
+        Represents an action which could have destructive consequences, e.g. deleting a file.
       _:
         $value:
           - '{color.status.danger.on-light}'
@@ -21,6 +23,8 @@ color:
         $description: Danger status color (dark theme)
 
     warning:
+      $description: >-
+        Represents an action or notice which elicits a warning of potential danger
       _:
         $value:
           - '{color.status.warning.on-light}'
@@ -37,6 +41,8 @@ color:
         $description: Warning status color (dark theme)
 
     caution:
+      $description: >-
+        Represents an action or notice which should immediately draw the attention
       _:
         $value:
           - '{color.status.caution.on-light}'
@@ -53,6 +59,9 @@ color:
         $description: Caution status color (dark theme)
 
     neutral:
+      $description: >-
+        Represents an action or notice which has neither positive nor negative connotations,
+        is neither explicitly constructive or explicitly destructive.
       _:
         $value:
           - '{color.status.caution.on-light}'
@@ -69,6 +78,8 @@ color:
         $description: Warning accent color (dark theme)
 
     note:
+      $description: >-
+        Represents an action or notice which is informational, or a tip on how best to complete a task.
       _:
         $value:
           - '{color.status.note.on-light}'
@@ -85,6 +96,8 @@ color:
         $description: Note/tip status color (dark theme)
 
     success:
+      $description: >-
+        Represents a notice of success.
       _:
         $value:
           - '{color.status.success.on-light}'
