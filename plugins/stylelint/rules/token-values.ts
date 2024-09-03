@@ -16,6 +16,12 @@ const meta = {
   fixable: true,
 };
 
+function isVarCall(parsedNode: parser.Node): parsedNode is parser.FunctionNode {
+  return parsedNode.type === 'function'
+    && parsedNode.value === 'var'
+    && parsedNode.nodes.length > 1;
+}
+
 const ruleFunction: Rule = () => {
   return (root, result) => {
     const validOptions = stylelint.utils.validateOptions(result, ruleName);
@@ -27,24 +33,34 @@ const ruleFunction: Rule = () => {
     root.walk(node => {
       if (node.type === 'decl') {
         const parsedValue = parser(node.value);
-        parsedValue.walk(ch => {
-          if (ch.type === 'function' && ch.value === 'var' && ch.nodes.length > 1) {
-            const [value, , ...values] = ch.nodes ?? [];
+        parsedValue.walk(parsedNode => {
+          if (isVarCall(parsedNode)) {
+            const [value, , ...values] = parsedNode.nodes ?? [];
             const { value: name } = value;
             if (tokens.has(name as `--rh-${string}`)) {
               const actual = parser.stringify(values);
-              const expected = tokens.get(name as `--rh-${string}`)?.toString();
-              if (expected !== actual) {
+              const expected = tokens.get(name as `--rh-${string}`);
+              if (expected === null && actual == null) {
+                return;
+              } else if (expected?.toString() !== actual) {
+                const message =
+                    expected === null ? `Expected ${name} to not have a fallback value`
+                  : `Expected ${name} to equal ${expected}`;
                 stylelint.utils.report({
                   node,
-                  message: `Expected ${name} to equal ${expected}`,
+                  message,
                   ruleName,
                   result,
                   word: name,
                   index: value.sourceIndex,
                   endIndex: value.sourceEndIndex,
                   fix() {
-                    ch.nodes = ch.nodes.toSpliced(2, 0, ...parser(expected).nodes);
+                    if (expected === null) {
+                      parsedNode.nodes = parsedNode.nodes.slice(0, 1);
+                    } else {
+                      parsedNode.nodes =
+                        parsedNode.nodes.toSpliced(2, 0, ...parser(expected).nodes);
+                    }
                     node.value = parser.stringify(parsedValue.nodes);
                   },
                 });
