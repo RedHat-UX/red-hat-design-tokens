@@ -11,6 +11,7 @@ json/**/*
 css/**/*
 scss/**/*
 design/**/*
+plugins/cjs
 plugins/**/*.js
 plugins/**/*.js.map
 plugins/**/*.d.ts

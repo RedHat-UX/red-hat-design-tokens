@@ -91,6 +91,8 @@
   "wireit": {
     "build": {
       "dependencies": [
+        "rename:cjs",
+        "compile:cjs",
         "compile",
         "package-vscode",
         "11ty"
@@ -100,6 +102,21 @@
       "command": "tsc -p tsconfig.output.json",
       "dependencies": [
         "style-dictionary"
+      ]
+    },
+    "compile:cjs": {
+      "command": "tsc -p tsconfig.cjs.json",
+      "dependencies": [
+        "style-dictionary"
+      ]
+    },
+    "rename:cjs": {
+      "command": "node --experimental-strip-types lib/rename-cjs.ts",
+      "files": [
+        "./plugins/cjs/**/*.js"
+      ],
+      "output": [
+        "./plugins/cjs/**/*.cjs"
       ]
     },
     "11ty": {
