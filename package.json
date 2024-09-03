@@ -79,7 +79,7 @@
   "files": [
     "css",
     "editor",
-    "plugins/**/*.{js,d.ts,map}",
+    "plugins/**/*.{js,cjs,d.ts,d,cts,map}",
     "js/**/*.{js,d.ts,cjs,map}",
     "json",
     "scss"
@@ -91,8 +91,6 @@
   "wireit": {
     "build": {
       "dependencies": [
-        "rename:cjs",
-        "compile:cjs",
         "compile",
         "package-vscode",
         "11ty"
@@ -102,21 +100,11 @@
       "command": "tsc -p tsconfig.output.json",
       "dependencies": [
         "style-dictionary"
-      ]
-    },
-    "compile:cjs": {
-      "command": "tsc -p tsconfig.cjs.json",
-      "dependencies": [
-        "style-dictionary"
-      ]
-    },
-    "rename:cjs": {
-      "command": "node --experimental-strip-types lib/rename-cjs.ts",
-      "files": [
-        "./plugins/cjs/**/*.js"
       ],
       "output": [
-        "./plugins/cjs/**/*.cjs"
+        "./plugins/**/*.{js,map,d.ts}",
+        "./test/**/*.{js,map;.d.ts}",
+        "./js/**/*.{d.ts,map}"
       ]
     },
     "11ty": {
