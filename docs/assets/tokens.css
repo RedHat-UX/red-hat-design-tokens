@@ -67,7 +67,7 @@ body {
   gap: var(--rh-space-xl);
 }
 
- a {
+a {
   color: var(--rh-color-interactive-primary-default);
   &:hover { color: var(--rh-color-interactive-primary-hover); }
   &:focus-within { color: var(--rh-color-interactive-primary-focus); }
