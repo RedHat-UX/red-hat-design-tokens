@@ -102,7 +102,7 @@
         "style-dictionary"
       ],
       "output": [
-        "./plugins/**/*.{js,map,d.ts}",
+        "./plugins/**/*.{js,map,d.ts,d.cts}",
         "./test/**/*.{js,map;.d.ts}",
         "./js/**/*.{d.ts,map}"
       ]
