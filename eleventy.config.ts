@@ -11,10 +11,7 @@ export default function(eleventyConfig: UserConfig) {
   eleventyConfig.addWatchTarget('plugins/**/*.{cjs,js}');
   eleventyConfig.addPassthroughCopy({
     'docs/assets': 'assets',
-    'css/global.css': 'assets/rhds.css',
-    'css/prism.css': 'assets/prism.css',
-    'css/color-context-*.css': 'assets/',
-    'plugins/11ty/styles.css': 'assets/11ty.css',
+    'css/': 'assets/packages/@rhds/tokens/css/',
     'node_modules/@rhds/icons': 'assets/packages/@rhds/icons',
     'node_modules/@rhds/elements': 'assets/packages/@rhds/elements',
   });

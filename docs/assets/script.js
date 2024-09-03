@@ -60,8 +60,10 @@ function hackEm() {
 }
 
 const asText = response => response.text();
-const providerStyles = await fetch('/assets/color-context-provider.css').then(asText);
-const consumerStyles = await fetch('/assets/color-context-consumer.css').then(asText);
+const providerStyles =
+  await fetch('/assets/packages/@rhds/tokens/css/color-context-provider.css').then(asText);
+const consumerStyles =
+  await fetch('/assets/packages/@rhds/tokens/css/color-context-consumer.css').then(asText);
 const styleSheet = new CSSStyleSheet();
 styleSheet.replaceSync([providerStyles, consumerStyles].join('\n'));
 
@@ -69,4 +71,3 @@ hackEm();
 modeSwitch.addEventListener('change', hackEm);
 
 // END HACK
-

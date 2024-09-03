@@ -1,15 +1,16 @@
+import type { Token } from 'style-dictionary';
 import type { UserConfig } from '@11ty/eleventy';
 
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-
-import { Generator } from '@jspm/generator';
 
 import markdownSyntaxHighlightOptions from '@11ty/eleventy-plugin-syntaxhighlight/src/markdownSyntaxHighlightOptions';
 import markdownIt from 'markdown-it';
 
 import { build } from '../../build.ts';
 import { isThemeColorToken } from '../predicates.ts';
+
+import { tokens } from '@rhds/tokens/meta.js';
 
 interface TableOpts {
   /** the collection of tokens to render */
@@ -22,54 +23,58 @@ interface TableOpts {
   options: any;
 }
 
-const getUxDotExtentions = (x, options) =>
+const getUxDotExtentions = (x: Token, options?: { docsExtension?: string }) =>
   x?.$extensions?.[options?.docsExtension ?? 'com.redhat.ux'];
 
-const capitalize = x =>
+const capitalize = (x: string) =>
   `${x.at(0).toUpperCase()}${x.slice(1)}`;
 
-const isRef = x =>
-  x?.original?.$value?.startsWith?.('{') ?? false;
-
-const derefValue = x =>
+const derefValue = (x: string) =>
   `rh-${x.replace(/[{}]/g, '').split('.').join('-')}`;
 
-const deref = x =>
-  derefValue(x.original.$value);
-
-/** Returns a string with common indent stripped from each line. Useful for templating HTML */
-function dedent(str) {
+/**
+ * Returns a string with common indent stripped from each line. Useful for templating HTML
+ * @param str string
+ */
+function dedent(str: string) {
   const stripped = str.replace(/^\n/, '');
   const match = stripped.match(/^\s+/);
   return match ? stripped.replace(new RegExp(`^${match[0]}`, 'gm'), '') : str;
 }
 
-/** HTML attribute values should use single quotes to avoid breaking out of the value's surrounding double quotes */
-function escapeDoubleQuotes(x) {
+/**
+ * HTML attribute values should use single quotes to avoid breaking out of the value's surrounding double quotes
+ * @param x string
+ */
+function escapeDoubleQuotes(x: string) {
   return x?.toString().replaceAll('"', '\'');
 }
 
-/** Converts an object mapping css property names to values into a CSS rule for inlining into HTML */
-function styleMap(objt) {
+/**
+ * Converts an object mapping css property names to values into a CSS rule for inlining into HTML
+ * @param objt style map
+ */
+function styleMap(objt: Record<string, string>) {
   return Object.entries(objt).map(([k, v]) => `${k}: ${escapeDoubleQuotes(v)}`).join(';');
 }
 
-/** When recursing over the token categories, it's helpful to get the containing category for things like docs and key names */
-function getParentCollection(options, tokens) {
-  let parent = options.parent ?? tokens;
-  let collection;
-  const key = options.path.split('.').pop();
-  options.path.split('.').forEach((part, i, a) => {
-    collection = parent[part];
-    if (a[i + 1]) {
-      parent = collection;
-    }
-  });
+/**
+ * When recursing over the token categories, it's helpful to get the containing category for things like docs and key names
+ * @param options options
+ * @param tokens tokens
+ */
+function getParentCollection(options: CategoryOptions, tokens: Token[]) {
+  const parent = options?.parent ?? tokens;
+  const key = options?.path?.split('.')?.pop();
   return { parent, key };
 }
 
-/** Get the markdown description in a category's docs extension */
-function getDescription(collection, options) {
+/**
+ * Get the markdown description in a category's docs extension
+ * @param collection tokens
+ * @param options options
+ */
+function getDescription(collection: Token, options?: CategoryOptions) {
   const {
     filePath = getFilePathGuess(collection),
     description = '',
@@ -85,15 +90,18 @@ function getDescription(collection, options) {
   }
 }
 
-/** Try to get the path to a token source file. Not all object values in a token collection have that metadata attached */
-function getFilePathGuess(collection) {
+/**
+ * Try to get the path to a token source file. Not all object values in a token collection have that metadata attached
+ * @param collection tokens
+ */
+function getFilePathGuess(collection: Token) {
   return Object.values(collection).reduce((path, val) =>
     path || typeof val !== 'object' || val === null ? path
           : '$value' in val ? val.filePath
           : getFilePathGuess(val), '');
 }
 
-function copyCell(token, variable) {
+function copyCell(token: Token, variable: string) {
   return /* html */`
     <td class="copy-cell">
       <rh-tooltip position="top-start">
@@ -119,6 +127,7 @@ function copyCell(token, variable) {
 
 /**
  * is the object a child collection?
+ * @param exclude paths
  * @example isChildEntry(['blue', tokens.color.blue]); // true
  * @example isChildEntry(['500', tokens.color.blue.500]); // false
  */
@@ -128,8 +137,8 @@ const isChildEntry = (exclude: string[]) => ([key, value]) =>
   && !key.startsWith('$')
   && !exclude.includes(key);
 
-function getOrder([key, collection]) {
-  let docs;
+function getOrder([, collection]) {
+  let docs: any;
   do {
     docs = getUxDotExtentions(collection);
     collection = collection.parent;
@@ -139,6 +148,24 @@ function getOrder([key, collection]) {
 
 function byOrder(a, b) {
   return getOrder(a) - getOrder(b);
+}
+
+const isValueToken = ([k, x]: [string, Token]) =>
+  typeof x === 'object'
+            && x !== null
+            && '$value' in x
+            && k !== 'original'
+            && k !== 'attributes';
+
+interface CategoryOptions {
+  name?: string;
+  parentName?: string;
+  parent?: Token;
+  path?: string;
+  level?: number;
+  include?: string[];
+  exclude?: string[];
+  docsExtension?: string;
 }
 
 export async function PreviewPagePlugin(eleventyConfig: UserConfig) {
@@ -306,41 +333,55 @@ export async function PreviewPagePlugin(eleventyConfig: UserConfig) {
     return getUxDotExtentions(collection);
   });
 
-  eleventyConfig.addShortcode('category', async function category(options = {}) {
+  eleventyConfig.addShortcode('category', async function category(options?: CategoryOptions) {
+    options ??= {};
     options.docsExtension ??= 'com.redhat.ux';
 
     const tokens = await import('../../json/rhds.tokens.json');
 
-    const isLast = options.isLast ?? false;
-    const parentName = options.parentName ?? '';
+    const parentName = options?.parentName ?? '';
 
-    const path = options.path ?? '.';
-    const level = options.level ?? 2;
-    const exclude = options.exclude ?? [];
+    options.path = (Array.isArray(options?.path) ? options.path.join('.') : options?.path) || '.';
+    const level = options?.level ?? 2;
+    const exclude = options?.exclude ?? [];
     const include =
-        Array.isArray(options.include) ? options.include
-      : [options.include].filter(Boolean);
+        Array.isArray(options?.include) ? options?.include
+      : [options?.include].filter(Boolean);
 
-    const name = options.name ?? path.split('.').pop().split('.').shift();
+    const name = options?.name ?? options.path.split('.').pop().split('.').shift();
     if (name === '_') {
       return '';
     }
     const { parent, key } = getParentCollection(options, tokens);
-    const collection = parent[key];
+    const collection: Token[] = parent[key];
     const docs = getUxDotExtentions(collection, options);
     const heading = docs?.heading ?? capitalize(name.replace('-', ' '));
     const slug = slugify(`${parentName} ${name}`.trim()).toLowerCase();
 
-    const children = Object.entries(collection)
+    const entries = Object.entries(collection ?? {});
+    const children = entries
         .filter(isChildEntry(exclude))
         .sort(byOrder)
-        .map(([key], i, a) => ({
-          path: key,
+        .map(([key]) => ({
+          path: `${options.path}.${key}`.replace('..', '.'),
           parent: collection,
           level: level + 1,
           parentName: `${parentName} ${name}`.trim(),
-          isLast: i === a.length - 1,
         }));
+
+    const nextTokens = entries.filter(isValueToken).map(([, v]) => v);
+
+    const parts = options.path.split('.');
+
+    const themeTokens = [];
+    if (parts.at(0) === 'color' && parts.length === 2) {
+      const prefix = `rh-color-${parts.at(1)}`;
+      for (const token of await import('@rhds/tokens/meta.js').then(x => x.tokens.values())) {
+        if (isThemeColorToken(token) && token.name.startsWith(prefix)) {
+          themeTokens.push(token);
+        }
+      }
+    }
 
     /**
      * 0. render the description
@@ -350,25 +391,20 @@ export async function PreviewPagePlugin(eleventyConfig: UserConfig) {
     return dedent(/* html */`
       <section id="${name}" class="token-category level-${level - 1}">
         <h${level} id="${slug}">${heading}<a href="#${slug}">#</a></h${level}>
-        <div class="description">${md.render(dedent(await getDescription(collection)))}</div>
-        ${await table({
-    tokens: Object.entries(collection).filter(([k, x]) =>
-      typeof x === 'object'
-            && x !== null
-            && '$value' in x
-            && k !== 'original'
-            && k !== 'attributes').map(([k, v]) => v),
-    options,
-    name,
-    docs,
-  })}
+        <div class="description">${md.render(dedent(await getDescription(collection ?? {})))}</div>
+        ${!themeTokens.length ? '' : /* html*/`
+        <div class="swatches">${themeTokens.map(token => /* html*/`
+          <figure class="swatch">
+            <samp style="background-color: var(--${token.name})"></samp>
+            <figcaption>--${token.name}</figcaption>
+          </figure>`).join('')}
+        </div>`}
+        ${await table({ tokens: nextTokens, options, name, docs })}
         ${(await Promise.all(children.map(category))).join('\n')}
-        ${(await Promise.all(include.map((path, i, a) => category({
-    path,
-    level: level + 1,
-    isLast: !a[i + 1],
-  })))).join('\n')}${isLast ? '' : `
-        <a class="btt" href="#">Top</a>`}
+        ${(await Promise.all(include.map(path => category({ path, level: level + 1 })))).join('\n')}
       </section>`);
   });
+
+  eleventyConfig.addFilter('isThemeColorToken', xs => xs.filter(isThemeColorToken));
+  eleventyConfig.addGlobalData('allTokens', Array.from(tokens.values()));
 }

@@ -10,11 +10,10 @@
     <link rel="preconnect" href="https://ga.jspm.io">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://static.redhat.com/libs/redhat/redhat-font/4/webfonts/red-hat-font.min.css">
-    <link rel="stylesheet" href="https://static.redhat.com/libs/redhat/redhat-theme/4/advanced-theme.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@300;500;700&family=Noto+Sans+JP:wght@300;500;700&family=Noto+Sans+KR:wght@300;500;700&family=Noto+Sans+Malayalam:wght@300;500;700&family=Noto+Sans+SC:wght@300;500;700&family=Noto+Sans+TC:wght@300;500;700&family=Noto+Sans+Tamil:wght@300;500;700&family=Noto+Sans+Thai:wght@300;500;700&display=swap"> 
-    <link rel="stylesheet" href="https://ga.jspm.io/npm:@rhds/elements@2.0.0/elements/rh-footer/rh-footer-lightdom.css">
-    <link rel="stylesheet" href="/assets/rhds.css">
-    <link rel="stylesheet" href="/assets/tokens.css">
+    <link rel="stylesheet" href="/assets/packages/@rhds/elements/rh-footer/rh-footer-lightdom.css">
+    <link rel="stylesheet" href="/assets/packages/@rhds/tokens/css/global.css">
+    <link rel="stylesheet" href="/assets/demo-styles.css">
     <script type="importmap">
     {
       "imports": {
@@ -74,6 +73,7 @@
       </a>
     </rh-surface>
     <rh-surface role="main" id="main-surface">
+      <rh-back-to-top><a href="#main-surface">Back to top</a></rh-back-to-top>
       <aside id="downloads">
         <nav>
           <h3>Contents</h3>
@@ -155,18 +155,18 @@
       </section>
 
       {% category path = 'color',
-      exclude = ['border', 'text', 'icon'] %}
+                  exclude = ['border', 'text', 'icon'] %}
       {% category path = 'box-shadow' %}
       {% category path = 'font',
-      include = ['line-height', 'color.text'] %}
+                  include = ['line-height', 'color.text'] %}
       {% category path = 'border',
-      include = 'color.border' %}
+                  include = 'color.border' %}
       {% category path = 'opacity' %}
       {% category path = 'space' %}
       {% category path = 'length' %}
       {% category path = 'size.icon',
-      name = 'icon',
-      include = 'color.icon' %}
+                  name = 'icon',
+                  include = 'color.icon' %}
       {% category path = 'breakpoint' %}
       {% category path = 'media' %}
 
