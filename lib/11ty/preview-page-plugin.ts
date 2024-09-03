@@ -394,8 +394,9 @@ export async function PreviewPagePlugin(eleventyConfig: UserConfig) {
         <div class="description">${md.render(dedent(await getDescription(collection ?? {})))}</div>
         ${!themeTokens.length ? '' : /* html*/`
         <div class="swatches">${themeTokens.map(token => /* html*/`
-          <figure class="swatch">
-            <samp style="background-color: var(--${token.name})"></samp>
+          <figure>${parts.includes('text') ? /* html*/`
+            <samp class="font" style="color: var(--${token.name})">Aa</samp>` : `
+            <samp class="swatch" style="background-color: var(--${token.name})"></samp>`}
             <figcaption>--${token.name}</figcaption>
           </figure>`).join('')}
         </div>`}

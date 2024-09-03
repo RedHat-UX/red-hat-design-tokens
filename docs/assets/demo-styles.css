@@ -463,16 +463,20 @@ dl.grid dd {
   display: grid;
   grid-template-columns: repeat(auto-fill,minmax(200px, auto));
   gap: var(--rh-space-md);
-  & .swatch {
+  & figure {
     margin: 0;
     & samp {
-      padding: var(--rh-space-2xl) var(--rh-space-xl);
-      border-radius: var(--rh-border-radius-pill);
-      outline: var(--rh-border-width-sm) solid var(--rh-color-border-subtle);
       transition: all var(--rh-animation-speed, 0.3s) var(--rh-animation-timing, cubic-bezier(0.465, 0.183, 0.153, 0.946));
-      margin: var(--rh-space-sm);
-      box-sizing: border-box;
       display: block;
+      &.swatch {
+        padding: var(--rh-space-2xl) var(--rh-space-xl);
+        border-radius: var(--rh-border-radius-pill);
+        outline: var(--rh-border-width-sm) solid var(--rh-color-border-subtle);
+      }
+      &.font {
+        font-size: var(--rh-font-size-heading-lg);
+        font-weight: var(--rh-font-weight-heading-bold);
+      }
       &:hover,
       &:focus-within {
         outline-width: var(--rh-border-width-lg);
