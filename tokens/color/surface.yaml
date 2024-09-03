@@ -3,6 +3,17 @@ color:
     $extensions:
       com.redhat.ux:
         order: 250
+    _:
+      $value:
+        - '{color.surface.lightest}'
+        - '{color.surface.lighter}'
+        - '{color.surface.light}'
+        - '{color.surface.dark}'
+        - '{color.surface.darker}'
+        - '{color.surface.darkest}'
+      $description: >-
+        Responsive `surface` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+        Resolves to the surface color corresponding to the surface' color palette.
 
     lightest:
       $value: '{color.white}'
