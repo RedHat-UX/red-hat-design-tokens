@@ -137,7 +137,6 @@ color:
             $value: '{color.purple.10}'
             $description: Primary interactive visited - focus (Dark theme)
 
-
     secondary:
       default:
         _:
@@ -270,3 +269,61 @@ color:
             $value: '{color.gray.30}'
             $description: Secondary interactive visited - focus (Dark theme)
 
+    blue:
+      lightest:
+        $value: '{color.interactive.primary.hover.on-dark}'
+        $description: Inline link hover (dark theme)
+        $extensions:
+          com.redhat.ux:
+            # https://github.com/design-tokens/community-group/issues/118
+            deprecated: true
+      lighter:
+        $value: '{color.interactive.primary.default.on-dark}'
+        $description: Inline link (dark theme)
+        $extensions:
+          com.redhat.ux:
+            # https://github.com/design-tokens/community-group/issues/118
+            deprecated: true
+      darker:
+        $value: '{color.interactive.primary.default.on-light}'
+        $description: Inline link (light theme)
+        $extensions:
+          com.redhat.ux:
+            # https://github.com/design-tokens/community-group/issues/118
+            deprecated: true
+      darkest:
+        $value: '{color.interactive.primary.hover.on-light}'
+        $description: Inline link hover (light theme)
+        $extensions:
+          com.redhat.ux:
+            # https://github.com/design-tokens/community-group/issues/118
+            deprecated: true
+    purple:
+      lightest:
+        $value: '{color.interactive.primary.visited.hover.on-dark}'
+        $description: Inline link visited hover (dark theme)
+        $extensions:
+          com.redhat.ux:
+            # https://github.com/design-tokens/community-group/issues/118
+            deprecated: true
+      lighter:
+        $value: '{color.interactive.primary.visited.default.on-dark}'
+        $description: Inline link visited (dark theme)
+        $extensions:
+          com.redhat.ux:
+            # https://github.com/design-tokens/community-group/issues/118
+            deprecated: true
+      darker:
+        $value: '{color.interactive.primary.visited.default.on-light}'
+        $description: Inline link visited (light theme)
+        $extensions:
+          com.redhat.ux:
+            # https://github.com/design-tokens/community-group/issues/118
+            deprecated: true
+      darkest:
+        $value: '{color.interactive.primary.visited.hover.on-dark}'
+        $description: Inline link visited hover (light theme)
+        $extensions:
+          com.redhat.ux:
+            # https://github.com/design-tokens/community-group/issues/118
+            deprecated: true
