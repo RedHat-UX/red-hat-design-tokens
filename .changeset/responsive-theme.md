@@ -17,15 +17,15 @@ such as `<rh-card>` to style themable content that responds to the color palette
 ```css
 rh-surface {
   & a {
-    color: var(--rh-color-interactive-blue-normal);
-    &:hover,
-    &:focus-within,
-    &:active { color: var(--rh-color-interactive-blue-emphasized); }
+    color: var(--rh-color-interactive-primary-default);
+    &:hover { color: var(--rh-color-interactive-primary-hover); }
+    &:focus-within { color: var(--rh-color-interactive-primary-focus); }
+    &:active { color: var(--rh-color-interactive-primary-active); }
     &:visited {
-      color: var(--rh-color-interactive-purple-normal);
-      &:hover,
-      &:focus-within,
-      &:active { color: var(--rh-color-interactive-purple-emphasized); }
+      color: var(--rh-color-interactive-primary-visited);
+      &:hover { color: var(--rh-color-interactive-primary-visited-hover); }
+      &:focus-within { color: var(--rh-color-interactive-primary-visited-focus); }
+      &:active { color: var(--rh-color-interactive-primary-visited-active); }
     }
   }
 }
