@@ -1,5 +1,19 @@
 # @rhds/tokens
 
+## 2.1.0-next.9
+
+### Minor Changes
+
+- a9edc95: Stylelint: added `allowed` option to `rhds/no-unknown-token-name`
+
+  ```yaml
+  rules:
+    rhds/no-unknown-token-name:
+      - true
+      - allowed:
+          - --rh-icon-color
+  ```
+
 ## 2.1.0-next.0
 
 ### Minor Changes
@@ -20,9 +34,10 @@
   <rh-surface color-palette="lighter">
     <p>Use <a href="#">theme tokens</a> for best results.</p>
     <rh-card color-palette="darkest">
-      <p>That way, colours respond to their parents'
-        <code>color-palette</code> Without requiring
-        <a href="#">custom CSS</a></p>
+      <p>
+        That way, colours respond to their parents'
+        <code>color-palette</code> Without requiring <a href="#">custom CSS</a>
+      </p>
     </rh-card>
   </rh-surface>
   ```
@@ -31,14 +46,26 @@
   rh-surface {
     & a {
       color: var(--rh-color-interactive-primary-default);
-      &:hover { color: var(--rh-color-interactive-primary-hover); }
-      &:focus-within { color: var(--rh-color-interactive-primary-focus); }
-      &:active { color: var(--rh-color-interactive-primary-active); }
+      &:hover {
+        color: var(--rh-color-interactive-primary-hover);
+      }
+      &:focus-within {
+        color: var(--rh-color-interactive-primary-focus);
+      }
+      &:active {
+        color: var(--rh-color-interactive-primary-active);
+      }
       &:visited {
         color: var(--rh-color-interactive-primary-visited);
-        &:hover { color: var(--rh-color-interactive-primary-visited-hover); }
-        &:focus-within { color: var(--rh-color-interactive-primary-visited-focus); }
-        &:active { color: var(--rh-color-interactive-primary-visited-active); }
+        &:hover {
+          color: var(--rh-color-interactive-primary-visited-hover);
+        }
+        &:focus-within {
+          color: var(--rh-color-interactive-primary-visited-focus);
+        }
+        &:active {
+          color: var(--rh-color-interactive-primary-visited-active);
+        }
       }
     }
   }
@@ -52,12 +79,24 @@
 
   ```css
   button {
-    &.danger { background: var(--rh-color-status-danger); }
-    &.warning { background: var(--rh-color-status-warning); }
-    &.caution { background: var(--rh-color-status-caution); }
-    &.neutral { background: var(--rh-color-status-neutral); }
-    &.note { background: var(--rh-color-status-note); }
-    &.success { background: var(--rh-color-status-success); }
+    &.danger {
+      background: var(--rh-color-status-danger);
+    }
+    &.warning {
+      background: var(--rh-color-status-warning);
+    }
+    &.caution {
+      background: var(--rh-color-status-caution);
+    }
+    &.neutral {
+      background: var(--rh-color-status-neutral);
+    }
+    &.note {
+      background: var(--rh-color-status-note);
+    }
+    &.success {
+      background: var(--rh-color-status-success);
+    }
   }
   ```
 
