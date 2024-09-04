@@ -2,6 +2,7 @@ import type { Format } from 'style-dictionary/types';
 import type { Dictionary } from 'style-dictionary';
 import { fileHeader, getReferences } from 'style-dictionary/utils';
 import { isSurfaceColorPaletteToken, isThemeColorToken } from '../predicates.ts';
+import { constructStyleSheet } from './lit.ts';
 
 function getThemeTokens(index: 0 | 1) {
   return function(dictionary: Dictionary) {
@@ -20,31 +21,45 @@ function getThemeTokens(index: 0 | 1) {
 const getLightTokens = getThemeTokens(0);
 const getDarkTokens = getThemeTokens(1);
 
-/**
- */
-export const rhdsColorContextConsumer: Format = {
-  name: 'css/rhds/color-context-consumer',
-  format: async ({ file, dictionary }) => `${await fileHeader({ file })}
+function consumer(dictionary: Dictionary) {
+  return /* css*/`
 .on.light {\n${getLightTokens(dictionary)}\n}
 
 .on.dark {\n${getDarkTokens(dictionary)}\n}
-`,
-};
+`;
+}
 
-
-/**
- */
-export const rhdsColorContextProvider: Format = {
-  name: 'css/rhds/color-context-provider',
-  format: async ({ file, dictionary }) =>
-    `${await fileHeader({ file })}
+function provider({ allTokens }: Dictionary) {
+  return /* css*/`
 :host([color-palette^="dark"]) { --context: dark; }
 :host([color-palette^="light"]) { --context: light; }
 
-${dictionary.allTokens.filter(isSurfaceColorPaletteToken)
-      .map(token => `
-:host([color-palette="${token.path.at(-1)}"]) {
-  --rh-color-surface: var(--${token.name}, ${token.$value});
+${allTokens.filter(isSurfaceColorPaletteToken).map(({ name, path, $value }) => /* css */`
+:host([color-palette="${path.at(-1)}"]) {
+  --rh-color-surface: var(--${name}, ${$value});
+}`.trimStart()).join('\n')}`;
 }
-`.trimStart()).join('\n')}`,
+
+const formatter = (fn: (d: Dictionary) => string) =>
+  async ({ file, dictionary }) =>
+    `${await fileHeader({ file })}${fn(dictionary)}`;
+
+export const cssRhdsColorContextConsumer: Format = {
+  name: 'css/rhds/color-context-consumer',
+  format: formatter(consumer),
+};
+
+export const cssRhdsColorContextProvider: Format = {
+  name: 'css/rhds/color-context-provider',
+  format: formatter(provider),
+};
+
+export const jsRhdsColorContextConsumer: Format = {
+  name: 'js/rhds/color-context-consumer',
+  format: formatter(x => constructStyleSheet(consumer(x))),
+};
+
+export const jsRhdsColorContextProvider: Format = {
+  name: 'js/rhds/color-context-provider',
+  format: formatter(x => constructStyleSheet(provider(x))),
 };
