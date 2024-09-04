@@ -6,7 +6,7 @@ box-shadow:
       offsetX: '0'
       offsetY: '{length.3xs}'
       blur: '{length.xs}'
-      spread: '0px'
+      spread: '0'
       color: rgba(21, 21, 21, 0.2)
   md:
     $description: Medium box shadow
