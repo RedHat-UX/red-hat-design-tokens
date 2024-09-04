@@ -6,16 +6,34 @@ color:
         collapse: true
 
     base:
+      _:
+        $value:
+          - '{color.accent.base.on-light}'
+          - '{color.accent.base.on-dark}'
+        $description: >-
+          Responsive `accent-base` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-accent-base-on-light` on a themable container with a light color palette
+          and `--rh-color-accent-base-on-dark` on a themable container with a dark color palette.
       on-light:
         $value: '{color.blue.50}'
         $description: Inline link (light theme)
       on-dark:
         $value: '{color.blue.30}'
         $description: Inline link (dark theme)
+
     brand:
+      _:
+        $value:
+          - '{color.accent.brand.on-light}'
+          - '{color.accent.brand.on-dark}'
+        $description: >-
+          Responsive `accent-brand` color value. Typically read only - use a themable container e.g. `<rh-surface>`.
+          Resolves to `--rh-color-accent-brand-on-light` on a themable container with a light color palette
+          and `--rh-color-accent-brand-on-dark` on a themable container with a dark color palette.
       on-light:
         $value: '{color.brand.red.on-light}'
         $description: Brand red (light theme)
       on-dark:
         $value: '{color.brand.red.on-dark}'
         $description: Brand red (dark theme)
+

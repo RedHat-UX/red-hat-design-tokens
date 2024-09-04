@@ -1,6 +1,7 @@
 color:
   blue:
     $extensions:
+      isCrayon: true
       com.redhat.ux:
         order: 306
     10:
@@ -23,4 +24,4 @@ color:
       $description: Inline link hover (light theme)
     70:
       $value: '#003366'
-      $description: 	Alert - Info title text
+      $description: Alert - Info title text

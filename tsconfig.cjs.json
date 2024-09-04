@@ -1,0 +1,20 @@
+{
+  "include": [
+    "./plugins"
+  ],
+  "extends": "./tsconfig.output.json",
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "outDir": "./plugins/cjs",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "lib": [
+      "es2023"
+    ],
+    "paths": {
+      "@rhds/tokens": [
+        "./js/tokens.cjs"
+      ]
+    }
+  },
+}

@@ -6,7 +6,7 @@ extends: stylelint-config-standard
 
 # add the plugin:
 plugins:
-  - ./node_modules/@rhds/tokens/plugins/stylelint.cjs
+  - ./node_modules/@rhds/tokens/plugins/stylelint.js
 
 # Make sure to activate the rule:
 rules:

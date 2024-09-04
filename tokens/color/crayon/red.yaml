@@ -1,13 +1,13 @@
 color:
   red:
     $extensions:
+      isCrayon: true
       com.redhat.ux:
         order: 300
         description: >-
           Avoid using *any* red color token for danger or error messaging.
     10:
       $value: '#FCE3E3'
-      $description:
     20:
       $value: '#FBC5C5'
       $description: Lightest brand red
