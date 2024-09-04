@@ -10,7 +10,8 @@ import { isColor } from '../../predicates.ts';
 function pairAliasWithValue(token: Token) {
   if (typeof token.$value === 'string') {
     const name =
-        token.original?.$value?.startsWith('{') ? token.original.$value.replace(/\._}$/, '}')
+           typeof token.original?.$value === 'string'
+        && token.original?.$value?.startsWith('{') ? token.original.$value.replace(/\._}$/, '}')
       : `{${token.path.reduce((a, b) => `${a}.${b}`, '')}}`.replace(/^\{\./, '{');
     return [[name, token.$value]];
   } else if (token.$value) {

@@ -1,9 +1,10 @@
 import type { Dictionary, Format } from 'style-dictionary/types';
 
 import { fileHeader } from 'style-dictionary/utils';
+import { isThemeColorToken } from '../predicates.ts';
 
 const makeEntries = (dictionary: Dictionary) =>
-  dictionary.allTokens.map(x => [`--${x.name}`, x.value]);
+  dictionary.allTokens.map(x => [`--${x.name}`, isThemeColorToken(x) ? null : x.$value]);
 
 const makeMetaEntries = (dictionary: Dictionary) =>
   dictionary.allTokens.map(x => [`--${x.name}`, x]);

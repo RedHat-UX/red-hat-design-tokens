@@ -3,34 +3,327 @@ color:
     $extensions:
       com.redhat.ux:
         order: 30
-        description: >-
-          Each theme features two shades of blue, one for Link and Focus states and one for Hover
-          and Active states.
+        descriptionFile: interactive.md
+
+    primary:
+      default:
+        _:
+          $value:
+            - '{color.interactive.primary.default.on-light}'
+            - '{color.interactive.primary.default.on-dark}'
+          $description: >-
+            Responsive `interactive-primary` (e.g. link) color value.
+            Typically read only - use a themable container e.g. `<rh-surface>`.
+            Resolves to `--rh-color-interactive-primary-default-on-light` on a themable container with a light color palette
+            and `--rh-color-interactive-primary-default-on-dark` on a themable container with a dark color palette.
+        on-light:
+          $value: '{color.blue.50}'
+          $description: Primary interactive - default (Light theme)
+        on-dark:
+          $value: '{color.blue.30}'
+          $description: Primary interactive - default (Dark theme)
+      hover:
+        _:
+          $value:
+            - '{color.interactive.primary.hover.on-light}'
+            - '{color.interactive.primary.hover.on-dark}'
+          $description: >-
+            Responsive `interactive-primary` (e.g. link) color value.
+            Typically read only - use a themable container e.g. `<rh-surface>`.
+            Resolves to `--rh-color-interactive-primary-hover-on-light` on a themable container with a light color palette
+                 and to `--rh-color-interactive-primary-hover-on-dark` on a themable container with a dark color palette.
+        on-light:
+          $value: '{color.blue.70}'
+          $description: Primary interactive - hover (Light theme)
+        on-dark:
+          $value: '{color.blue.20}'
+          $description: Primary interactive - hover (Dark theme)
+      active:
+        _:
+          $value:
+            - '{color.interactive.primary.active.on-light}'
+            - '{color.interactive.primary.active.on-dark}'
+          $description: >-
+            Responsive `interactive-primary` (e.g. link) color value.
+            Typically read only - use a themable container e.g. `<rh-surface>`.
+            Resolves to `--rh-color-interactive-primary-active-on-light` on a themable container with a light color palette
+                 and to `--rh-color-interactive-primary-active-on-dark` on a themable container with a dark color palette.
+        on-light:
+          $value: '{color.blue.70}'
+          $description: Primary interactive - active (Light theme)
+        on-dark:
+          $value: '{color.blue.20}'
+          $description: Primary interactive - active (Dark theme)
+      focus:
+        _:
+          $value:
+            - '{color.interactive.primary.focus.on-light}'
+            - '{color.interactive.primary.focus.on-dark}'
+          $description: >-
+            Responsive `interactive-primary` (e.g. link) color value.
+            Typically read only - use a themable container e.g. `<rh-surface>`.
+            Resolves to `--rh-color-interactive-primary-focus-on-light` on a themable container with a light color palette
+                 and to `--rh-color-interactive-primary-focus-on-dark` on a themable container with a dark color palette.
+        on-light:
+          $value: '{color.blue.70}'
+          $description: Primary interactive - focus (Light theme)
+        on-dark:
+          $value: '{color.blue.20}'
+          $description: Primary interactive - focus (Dark theme)
+
+      visited:
+        default:
+          _:
+            $value:
+              - '{color.interactive.primary.visited.default.on-light}'
+              - '{color.interactive.primary.visited.default.on-dark}'
+            $description: >-
+              Responsive `interactive-primary-visited` (e.g. visited link) color value.
+              Typically read only - use a themable container e.g. `<rh-surface>`.
+              Resolves to `--rh-color-interactive-primary-visited-default-on-light` on a themable container with a light color palette
+              and `--rh-color-interactive-primary-visited-default-on-dark` on a themable container with a dark color palette.
+          on-light:
+            $value: '{color.purple.50}'
+            $description: Primary interactive visited - default (Light theme)
+          on-dark:
+            $value: '{color.purple.30}'
+            $description: Primary interactive visited - default (Dark theme)
+        hover:
+          _:
+            $value:
+              - '{color.interactive.primary.visited.hover.on-light}'
+              - '{color.interactive.primary.visited.hover.on-dark}'
+            $description: >-
+              Responsive `interactive-primary-visited` (e.g. visited link) color value.
+              Typically read only - use a themable container e.g. `<rh-surface>`.
+              Resolves to `--rh-color-interactive-primary-visited-hover-on-light` on a themable container with a light color palette
+                   and to `--rh-color-interactive-primary-visited-hover-on-dark` on a themable container with a dark color palette.
+          on-light:
+            $value: '{color.purple.70}'
+            $description: Primary interactive visited - hover (Light theme)
+          on-dark:
+            $value: '{color.purple.10}'
+            $description: Primary interactive visited - hover (Dark theme)
+        active:
+          _:
+            $value:
+              - '{color.interactive.primary.visited.active.on-light}'
+              - '{color.interactive.primary.visited.active.on-dark}'
+            $description: >-
+              Responsive `interactive-primary-visited` (e.g. visited link) color value.
+              Typically read only - use a themable container e.g. `<rh-surface>`.
+              Resolves to `--rh-color-interactive-primary-visited-active-on-light` on a themable container with a light color palette
+                   and to `--rh-color-interactive-primary-visited-active-on-dark` on a themable container with a dark color palette.
+          on-light:
+            $value: '{color.purple.70}'
+            $description: Primary interactive visited - active (Light theme)
+          on-dark:
+            $value: '{color.purple.10}'
+            $description: Primary interactive visited - active (Dark theme)
+        focus:
+          _:
+            $value:
+              - '{color.interactive.primary.visited.focus.on-light}'
+              - '{color.interactive.primary.visited.focus.on-dark}'
+            $description: >-
+              Responsive `interactive-primary-visited` (e.g. visited link) color value.
+              Typically read only - use a themable container e.g. `<rh-surface>`.
+              Resolves to `--rh-color-interactive-primary-visited-focus-on-light` on a themable container with a light color palette
+                   and to `--rh-color-interactive-primary-visited-focus-on-dark` on a themable container with a dark color palette.
+          on-light:
+            $value: '{color.purple.70}'
+            $description: Primary interactive visited - focus (Light theme)
+          on-dark:
+            $value: '{color.purple.10}'
+            $description: Primary interactive visited - focus (Dark theme)
+
+    secondary:
+      default:
+        _:
+          $value:
+            - '{color.interactive.secondary.default.on-light}'
+            - '{color.interactive.secondary.default.on-dark}'
+          $description: >-
+            Responsive `interactive-secondary` (e.g. link) color value.
+            Typically read only - use a themable container e.g. `<rh-surface>`.
+            Resolves to `--rh-color-interactive-secondary-default-on-light` on a themable container with a light color palette
+            and `--rh-color-interactive-secondary-default-on-dark` on a themable container with a dark color palette.
+        on-light:
+          $value: '{color.gray.60}'
+          $description: Secondary interactive - default (Light theme)
+        on-dark:
+          $value: '{color.gray.30}'
+          $description: Secondary interactive - default (Dark theme)
+      hover:
+        _:
+          $value:
+            - '{color.interactive.secondary.hover.on-light}'
+            - '{color.interactive.secondary.hover.on-dark}'
+          $description: >-
+            Responsive `interactive-secondary` (e.g. link) color value.
+            Typically read only - use a themable container e.g. `<rh-surface>`.
+            Resolves to `--rh-color-interactive-secondary-hover-on-light` on a themable container with a light color palette
+                 and to `--rh-color-interactive-secondary-hover-on-dark` on a themable container with a dark color palette.
+        on-light:
+          $value: '{color.gray.60}'
+          $description: Secondary interactive - hover (Light theme)
+        on-dark:
+          $value: '{color.gray.30}'
+          $description: Secondary interactive - hover (Dark theme)
+      active:
+        _:
+          $value:
+            - '{color.interactive.secondary.active.on-light}'
+            - '{color.interactive.secondary.active.on-dark}'
+          $description: >-
+            Responsive `interactive-secondary` (e.g. link) color value.
+            Typically read only - use a themable container e.g. `<rh-surface>`.
+            Resolves to `--rh-color-interactive-secondary-active-on-light` on a themable container with a light color palette
+                 and to `--rh-color-interactive-secondary-active-on-dark` on a themable container with a dark color palette.
+        on-light:
+          $value: '{color.gray.60}'
+          $description: Secondary interactive - active (Light theme)
+        on-dark:
+          $value: '{color.gray.30}'
+          $description: Secondary interactive - active (Dark theme)
+      focus:
+        _:
+          $value:
+            - '{color.interactive.secondary.focus.on-light}'
+            - '{color.interactive.secondary.focus.on-dark}'
+          $description: >-
+            Responsive `interactive-secondary` (e.g. link) color value.
+            Typically read only - use a themable container e.g. `<rh-surface>`.
+            Resolves to `--rh-color-interactive-secondary-focus-on-light` on a themable container with a light color palette
+                 and to `--rh-color-interactive-secondary-focus-on-dark` on a themable container with a dark color palette.
+        on-light:
+          $value: '{color.gray.60}'
+          $description: Secondary interactive - focus (Light theme)
+        on-dark:
+          $value: '{color.gray.30}'
+          $description: Secondary interactive - focus (Dark theme)
+
+      visited:
+        default:
+          _:
+            $value:
+              - '{color.interactive.secondary.visited.default.on-light}'
+              - '{color.interactive.secondary.visited.default.on-dark}'
+            $description: >-
+              Responsive `interactive-secondary-visited` (e.g. visited link) color value.
+              Typically read only - use a themable container e.g. `<rh-surface>`.
+              Resolves to `--rh-color-interactive-secondary-visited-default-on-light` on a themable container with a light color palette
+              and `--rh-color-interactive-secondary-visited-default-on-dark` on a themable container with a dark color palette.
+          on-light:
+            $value: '{color.gray.60}'
+            $description: Secondary interactive visited - default (Light theme)
+          on-dark:
+            $value: '{color.gray.30}'
+            $description: Secondary interactive visited - default (Dark theme)
+        hover:
+          _:
+            $value:
+              - '{color.interactive.secondary.visited.hover.on-light}'
+              - '{color.interactive.secondary.visited.hover.on-dark}'
+            $description: >-
+              Responsive `interactive-secondary-visited` (e.g. visited link) color value.
+              Typically read only - use a themable container e.g. `<rh-surface>`.
+              Resolves to `--rh-color-interactive-secondary-visited-hover-on-light` on a themable container with a light color palette
+                   and to `--rh-color-interactive-secondary-visited-hover-on-dark` on a themable container with a dark color palette.
+          on-light:
+            $value: '{color.gray.60}'
+            $description: Secondary interactive visited - hover (Light theme)
+          on-dark:
+            $value: '{color.gray.30}'
+            $description: Secondary interactive visited - hover (Dark theme)
+        active:
+          _:
+            $value:
+              - '{color.interactive.secondary.visited.active.on-light}'
+              - '{color.interactive.secondary.visited.active.on-dark}'
+            $description: >-
+              Responsive `interactive-secondary-visited` (e.g. visited link) color value.
+              Typically read only - use a themable container e.g. `<rh-surface>`.
+              Resolves to `--rh-color-interactive-secondary-visited-active-on-light` on a themable container with a light color palette
+                   and to `--rh-color-interactive-secondary-visited-active-on-dark` on a themable container with a dark color palette.
+          on-light:
+            $value: '{color.gray.60}'
+            $description: Secondary interactive visited - active (Light theme)
+          on-dark:
+            $value: '{color.gray.30}'
+            $description: Secondary interactive visited - active (Dark theme)
+        focus:
+          _:
+            $value:
+              - '{color.interactive.secondary.visited.focus.on-light}'
+              - '{color.interactive.secondary.visited.focus.on-dark}'
+            $description: >-
+              Responsive `interactive-secondary-visited` (e.g. visited link) color value.
+              Typically read only - use a themable container e.g. `<rh-surface>`.
+              Resolves to `--rh-color-interactive-secondary-visited-focus-on-light` on a themable container with a light color palette
+                   and to `--rh-color-interactive-secondary-visited-focus-on-dark` on a themable container with a dark color palette.
+          on-light:
+            $value: '{color.gray.60}'
+            $description: Secondary interactive visited - focus (Light theme)
+          on-dark:
+            $value: '{color.gray.30}'
+            $description: Secondary interactive visited - focus (Dark theme)
 
     blue:
       lightest:
-        $value: '{color.blue.20}'
+        $value: '{color.interactive.primary.hover.on-dark}'
         $description: Inline link hover (dark theme)
+        $extensions:
+          com.redhat.ux:
+            # https://github.com/design-tokens/community-group/issues/118
+            deprecated: true
       lighter:
-        $value: '{color.blue.30}'
+        $value: '{color.interactive.primary.default.on-dark}'
         $description: Inline link (dark theme)
+        $extensions:
+          com.redhat.ux:
+            # https://github.com/design-tokens/community-group/issues/118
+            deprecated: true
       darker:
-        $value: '{color.blue.50}'
+        $value: '{color.interactive.primary.default.on-light}'
         $description: Inline link (light theme)
+        $extensions:
+          com.redhat.ux:
+            # https://github.com/design-tokens/community-group/issues/118
+            deprecated: true
       darkest:
-        $value: '{color.blue.70}'
+        $value: '{color.interactive.primary.hover.on-light}'
         $description: Inline link hover (light theme)
-
+        $extensions:
+          com.redhat.ux:
+            # https://github.com/design-tokens/community-group/issues/118
+            deprecated: true
     purple:
       lightest:
-        $value: '{color.purple.10}'
+        $value: '{color.interactive.primary.visited.hover.on-dark}'
         $description: Inline link visited hover (dark theme)
+        $extensions:
+          com.redhat.ux:
+            # https://github.com/design-tokens/community-group/issues/118
+            deprecated: true
       lighter:
-        $value: '{color.purple.30}'
+        $value: '{color.interactive.primary.visited.default.on-dark}'
         $description: Inline link visited (dark theme)
+        $extensions:
+          com.redhat.ux:
+            # https://github.com/design-tokens/community-group/issues/118
+            deprecated: true
       darker:
-        $value: '{color.purple.50}'
+        $value: '{color.interactive.primary.visited.default.on-light}'
         $description: Inline link visited (light theme)
+        $extensions:
+          com.redhat.ux:
+            # https://github.com/design-tokens/community-group/issues/118
+            deprecated: true
       darkest:
-        $value: '{color.purple.70}'
+        $value: '{color.interactive.primary.visited.hover.on-dark}'
         $description: Inline link visited hover (light theme)
+        $extensions:
+          com.redhat.ux:
+            # https://github.com/design-tokens/community-group/issues/118
+            deprecated: true

@@ -1,25 +1,24 @@
 import type { Rule } from 'stylelint';
 
-import { tokens } from '@rhds/tokens';
+import { tokens } from '@rhds/tokens/meta.js';
 
 import stylelint from 'stylelint';
 import parser from 'postcss-value-parser';
 
-const ruleName = 'rhds/token-values';
+const ruleName = 'rhds/deprecated';
 
 const messages = stylelint.utils.ruleMessages(ruleName, {
-  expected: 'Expected ...',
+  expected: '...',
 });
 
 const meta = {
-  url: 'https://github.com/RedHat-UX/red-hat-design-tokens/tree/main/plugins/stylelint/rules/token-values.ts',
+  url: 'https://github.com/RedHat-UX/red-hat-design-tokens/tree/main/plugins/stylelint/rules/deprecated.ts',
   fixable: true,
 };
 
 function isVarCall(parsedNode: parser.Node): parsedNode is parser.FunctionNode {
   return parsedNode.type === 'function'
-    && parsedNode.value === 'var'
-    && parsedNode.nodes.length > 1;
+    && parsedNode.value === 'var';
 }
 
 const ruleFunction: Rule = () => {
@@ -35,17 +34,13 @@ const ruleFunction: Rule = () => {
         const parsedValue = parser(node.value);
         parsedValue.walk(parsedNode => {
           if (isVarCall(parsedNode)) {
-            const [value, , ...values] = parsedNode.nodes ?? [];
+            const [value, ...fallback] = parsedNode.nodes ?? [];
             const { value: name } = value;
             if (tokens.has(name as `--rh-${string}`)) {
-              const actual = parser.stringify(values);
               const expected = tokens.get(name as `--rh-${string}`);
-              if (expected === null && actual == null) {
-                return;
-              } else if (expected?.toString() !== actual) {
-                const message =
-                    expected === null ? `Expected ${name} to not have a fallback value`
-                  : `Expected ${name} to equal ${expected}`;
+              if (expected?.$extensions?.['com.redhat.ux']?.deprecated) {
+                const replacement = `--rh-${expected.original.$value.replace(/{(.*)}/, '$1').replaceAll('.', '-')}`;
+                const message = `${name} is deprecated, use ${replacement} instead`;
                 stylelint.utils.report({
                   node,
                   message,
@@ -56,11 +51,8 @@ const ruleFunction: Rule = () => {
                   endIndex: value.sourceEndIndex,
                   fix() {
                     const prefix = node.value.slice(0, parsedNode.sourceIndex);
-                    let infix = `var(${name}, ${expected})`;
+                    const infix = `var(${replacement}${fallback?.map(node => node.value)?.join('') ?? ''})`;
                     const suffix = node.value.slice(parsedNode.sourceEndIndex);
-                    if (expected === null) {
-                      infix = `var(${name})`;
-                    }
                     node.value = `${prefix}${infix}${suffix}`;
                   },
                 });

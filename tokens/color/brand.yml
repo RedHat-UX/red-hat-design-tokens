@@ -3,16 +3,24 @@ color:
     $extensions:
       com.redhat.ux:
         order: 0
+        descriptionFile: brand.md
 
     red:
-      $extensions:
-        com.redhat.ux:
-          description: >-
-            The primary brand color is red, it brings boldness and helps guide the eye or highlight
-            important information.
+      _:
+        $value:
+          - '{color.brand.red.on-light}'
+          - '{color.brand.red.on-dark}'
+        $description: >-
+          Responsive `brand-red` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Resolves to `--rh-color-brand-red-on-light` on a themable container with a light color palette
+          and `--rh-color-brand-red-on-dark` on a themable container with a dark color palette.
 
-            To learn more about how the red color is used, visit the
-            [Brand standards](https://www.redhat.com/en/about/brand/standards/color) page.
+      on-light:
+        $value: '{color.red.50}'
+        $description: Brand red on light background
+      on-dark:
+        $value: '{color.red.50}'
+        $description: Brand red on dark background
 
       lightest:
         $value: '{color.red.20}'
@@ -34,10 +42,4 @@ color:
         $value: '{color.red.70}'
         $description: Darkest brand red
 
-      on-dark:
-        $value: '{color.red.50}'
-        $description: Brand red on dark background
-      on-light:
-        $value: '{color.red.50}'
-        $description: Brand red on light background
 

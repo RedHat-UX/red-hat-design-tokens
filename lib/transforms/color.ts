@@ -1,7 +1,7 @@
 import type { Transform } from 'style-dictionary/types';
 
 import Color from 'tinycolor2';
-import { isColor } from '../predicates.ts';
+import { isColor, isThemeColorToken } from '../predicates.ts';
 
 /**
  * Add HEX, RGB, HSL, HSV, and isLight (boolean) to colour types
@@ -50,6 +50,19 @@ export const rgbValue: Transform = {
     const { r, g, b } = token.attributes.rgb as { r: string; g: string; b: string };
     token.$value = `${r} ${g} ${b}`;
     return token.$value;
+  },
+};
+
+/**
+ * Theme tokens
+ */
+export const themeTokens: Transform = {
+  name: 'color/css/themetokens',
+  type: 'value',
+  transitive: true,
+  filter: isThemeColorToken,
+  transform() {
+    return '';
   },
 };
 

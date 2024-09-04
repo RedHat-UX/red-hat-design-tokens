@@ -5,19 +5,40 @@ css:
   files:
     - destination: global.css
       format: css/variables
+      filter: isNotThemeColorToken
       options:
         fileHeader: redhat/legal
         selector: ':root'
+        formatting:
+          commentPosition: above
     - destination: shared.css
       format: css/variables
+      filter: isNotThemeColorToken
       options:
         fileHeader: redhat/legal
         selector: ':host'
+        formatting:
+          commentPosition: above
     - destination: reset.css.js
       format: css/lit
+      filter: isNotThemeColorToken
       options:
         fileHeader: redhat/legal
         selector: ':host'
+        formatting:
+          commentPosition: above
+    - destination: color-context-consumer.css
+      format: css/rhds/color-context-consumer
+      options:
+        fileHeader: redhat/legal
+        formatting:
+          commentPosition: above
+    - destination: color-context-provider.css
+      format: css/rhds/color-context-provider
+      options:
+        fileHeader: redhat/legal
+        formatting:
+          commentPosition: above
 
 scss:
   transformGroup: css

@@ -9,6 +9,6 @@
     "module": "nodenext",
     "skipLibCheck": true,
     "declaration": true,
-    "inlineSourceMap": true
-  }
+    "inlineSourceMap": true,
+  },
 }

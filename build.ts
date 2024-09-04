@@ -77,6 +77,7 @@ export async function build(): Promise<void> {
   sd.registerTransform(Transforms.colorFormats);
   sd.registerTransform(Transforms.hslValue);
   sd.registerTransform(Transforms.rgbValue);
+  sd.registerTransform(Transforms.themeTokens);
   sd.registerTransform(Transforms.remToPx);
   sd.registerTransform(Transforms.pxNumeric);
   sd.registerTransform(Transforms.mediaQuery);
@@ -86,8 +87,14 @@ export async function build(): Promise<void> {
   sd.registerTransformGroup(TransformGroups.sketch);
 
   sd.registerFilter(Filters.isColor);
+  sd.registerFilter(Filters.isThemeColorToken);
+  sd.registerFilter(Filters.isNotThemeColorToken);
+  sd.registerFilter(Filters.isLightThemeColorToken);
+  sd.registerFilter(Filters.isDarkThemeColorToken);
 
   sd.registerFormat(Formats.litCss);
+  sd.registerFormat(Formats.rhdsColorContextConsumer);
+  sd.registerFormat(Formats.rhdsColorContextProvider);
   sd.registerFormat(Formats.mapEs);
   sd.registerFormat(Formats.mapCjs);
   sd.registerFormat(Formats.metaMapEs);

@@ -2,21 +2,17 @@
 "@rhds/tokens": minor
 ---
 
-Added status tokens
+✨ Added status tokens:
+
+RHDS describes six statuses: `danger`, `warning`, `caution`, `neutral`, `note`, and `success`.
 
 ```css
 button {
-  .light &.danger {
-    background: var(--rh-color-status-danger-on-light);
-  }
-  .light &.success {
-    background: var(--rh-color-status-success-on-light);
-  }
-  .dark &.danger {
-    background: var(--rh-color-status-danger-on-dark);
-  }
-  .dark &.success {
-    background: var(--rh-color-status-success-on-dark);
-  }
+  &.danger { background: var(--rh-color-status-danger); }
+  &.warning { background: var(--rh-color-status-warning); }
+  &.caution { background: var(--rh-color-status-caution); }
+  &.neutral { background: var(--rh-color-status-neutral); }
+  &.note { background: var(--rh-color-status-note); }
+  &.success { background: var(--rh-color-status-success); }
 }
 ```
