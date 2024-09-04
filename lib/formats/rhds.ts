@@ -4,28 +4,29 @@ import { fileHeader, getReferences } from 'style-dictionary/utils';
 import { isSurfaceColorPaletteToken, isThemeColorToken } from '../predicates.ts';
 import { constructStyleSheet } from './lit.ts';
 
-function getThemeTokens(index: 0 | 1) {
-  return function(dictionary: Dictionary) {
-    return dictionary.allTokens.filter(isThemeColorToken).map(token => {
-      const variant = token.original.$value.at(index);
-      const references = getReferences(variant, dictionary.unfilteredTokens);
-      if (references.length > 1) {
-        console.log(`${token.name} has multiple references: ${references.map(r => r.name)}`);
-      }
-      const [first] = references;
-      return `  --${token.name}: var(--${first.name}, ${first.$value});`;
-    }).join('\n');
-  };
-}
+function getThemeTokensForConsumer(dictionary: Dictionary, surface: 'light' | 'dark') {
+  let index = ['light', 'dark'].indexOf(surface);
 
-const getLightTokens = getThemeTokens(0);
-const getDarkTokens = getThemeTokens(1);
+  return dictionary.allTokens.filter(isThemeColorToken).map(token => {
+    switch (token.name) {
+      case 'rh-color-surface': index = surface === 'light' ? 0 : -1;
+    }
+
+    const variant = token.original.$value.at(index);
+    const references = getReferences(variant, dictionary.unfilteredTokens);
+    if (references.length > 1) {
+      console.log(`${token.name} has multiple references: ${references.map(r => r.name)}`);
+    }
+    const [first] = references;
+    return `  --${token.name}: var(--${first.name}, ${first.$value});`;
+  }).join('\n');
+}
 
 function consumer(dictionary: Dictionary) {
   return /* css*/`
-.on.light {\n${getLightTokens(dictionary)}\n}
+.on.light {\n${getThemeTokensForConsumer(dictionary, 'light')}\n}
 
-.on.dark {\n${getDarkTokens(dictionary)}\n}
+.on.dark {\n${getThemeTokensForConsumer(dictionary, 'dark')}\n}
 `;
 }
 
