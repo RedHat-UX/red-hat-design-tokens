@@ -1,0 +1,13 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@rhds/tokens": "2.0.1"
+  },
+  "changesets": [
+    "interactive-tokens",
+    "responsive-theme",
+    "rich-bags-deliver",
+    "textmate-stops"
+  ]
+}
