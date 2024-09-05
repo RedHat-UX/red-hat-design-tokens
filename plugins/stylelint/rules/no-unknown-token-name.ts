@@ -30,7 +30,7 @@ const ruleFunction: Rule = (_, opts) => {
     }
 
     const migrations = new Map(Object.entries(opts?.migrations ?? {}));
-    const allowed = new Set(opts?.migrations ?? []);
+    const allowed = new Set(opts?.allowed ?? []);
 
     root.walk(node => {
       if (node.type === 'decl') {
