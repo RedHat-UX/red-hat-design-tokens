@@ -5,11 +5,11 @@ import { isSurfaceColorPaletteToken, isThemeColorToken } from '../predicates.ts'
 import { constructStyleSheet } from './lit.ts';
 
 function getThemeTokensForConsumer(dictionary: Dictionary, surface: 'light' | 'dark') {
-  let index = ['light', 'dark'].indexOf(surface);
+  const index = ['light', 'dark'].indexOf(surface);
 
   return dictionary.allTokens.filter(isThemeColorToken).map(token => {
     switch (token.name) {
-      case 'rh-color-surface': index = surface === 'light' ? 0 : -1;
+      case 'rh-color-surface': return '';
     }
 
     const variant = token.original.$value.at(index);
@@ -18,8 +18,8 @@ function getThemeTokensForConsumer(dictionary: Dictionary, surface: 'light' | 'd
       console.log(`${token.name} has multiple references: ${references.map(r => r.name)}`);
     }
     const [first] = references;
-    return `  --${token.name}: var(--${first.name}, ${first.$value});`;
-  }).join('\n');
+    return `  --${token.name}: var(--${first.name}, ${first.$value});\n`;
+  }).join('');
 }
 
 function consumer(dictionary: Dictionary) {
