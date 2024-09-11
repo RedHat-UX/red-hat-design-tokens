@@ -25,7 +25,7 @@ const getDarkTokens = getThemeTokens(1);
 export const rhdsColorContextConsumer: Format = {
   name: 'css/rhds/color-context-consumer',
   format: async ({ file, dictionary }) => `${await fileHeader({ file })}
-.on.light {\n${getLightTokens(dictionary)}\n}
+:is(.on.light, .on:not(.dark)) {\n${getLightTokens(dictionary)}\n}
 
 .on.dark {\n${getDarkTokens(dictionary)}\n}
 `,
