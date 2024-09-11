@@ -24,6 +24,7 @@ function getThemeTokensForConsumer(dictionary: Dictionary, surface: 'light' | 'd
 
 function consumer(dictionary: Dictionary) {
   return /* css*/`
+.on,
 .on.light {\n${getThemeTokensForConsumer(dictionary, 'light')}\n}
 
 .on.dark {\n${getThemeTokensForConsumer(dictionary, 'dark')}\n}
