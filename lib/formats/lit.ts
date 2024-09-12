@@ -1,6 +1,9 @@
 import type { Format } from 'style-dictionary/types';
 import { fileHeader, formattedVariables } from 'style-dictionary/utils';
 
+export function constructStyleSheet(css: string) {
+  return `import { css } from 'lit'; export default css\`${css.trimEnd()}\`;`;
+}
 /**
  * Lit CSS object
  * @example ```js
@@ -15,15 +18,8 @@ import { fileHeader, formattedVariables } from 'style-dictionary/utils';
 export const litCss: Format = {
   name: 'css/lit',
   format: async ({ file, dictionary, options }) =>
-    `${await fileHeader({ file })}
-import { css } from 'lit';
-export const resetStyles = css\`
+    `${await fileHeader({ file })}${constructStyleSheet(/* css */`
 :host {
-${formattedVariables({
-    format: 'css',
-    dictionary,
-    ...options,
-  })}
-}\`;
-export default resetStyles;`,
+${formattedVariables({ format: 'css', dictionary, ...options })}
+}`)}`,
 };

@@ -1,5 +1,109 @@
 # @rhds/tokens
 
+## 2.1.0-next.9
+
+### Minor Changes
+
+- a9edc95: Stylelint: added `allowed` option to `rhds/no-unknown-token-name`
+
+  ```yaml
+  rules:
+    rhds/no-unknown-token-name:
+      - true
+      - allowed:
+          - --rh-icon-color
+  ```
+
+## 2.1.0-next.0
+
+### Minor Changes
+
+- 9d914cc: ✨ Added interactive tokens, and **DEPRECATES** the older interactive tokens
+
+  ```diff
+  - color: var(--rh-color-interactive-blue-darker);
+  + color: var(--rh-color-interactive-primary-default-on-light);
+  - color: var(--rh-color-interactive-purple-darker);
+  + color: var(--rh-color-interactive-primary-visited-default-on-light);
+  ```
+
+- 9d914cc: Added theme tokens for responsive colours. Read these in a themable container
+  such as `<rh-card>` to style themable content that responds to the color palette
+
+  ```html
+  <rh-surface color-palette="lighter">
+    <p>Use <a href="#">theme tokens</a> for best results.</p>
+    <rh-card color-palette="darkest">
+      <p>
+        That way, colours respond to their parents'
+        <code>color-palette</code> Without requiring <a href="#">custom CSS</a>
+      </p>
+    </rh-card>
+  </rh-surface>
+  ```
+
+  ```css
+  rh-surface {
+    & a {
+      color: var(--rh-color-interactive-primary-default);
+      &:hover {
+        color: var(--rh-color-interactive-primary-hover);
+      }
+      &:focus-within {
+        color: var(--rh-color-interactive-primary-focus);
+      }
+      &:active {
+        color: var(--rh-color-interactive-primary-active);
+      }
+      &:visited {
+        color: var(--rh-color-interactive-primary-visited);
+        &:hover {
+          color: var(--rh-color-interactive-primary-visited-hover);
+        }
+        &:focus-within {
+          color: var(--rh-color-interactive-primary-visited-focus);
+        }
+        &:active {
+          color: var(--rh-color-interactive-primary-visited-active);
+        }
+      }
+    }
+  }
+  ```
+
+  For more information, please see our [theming docs](https://ux.redhat.com/themeing).
+
+- b64dd32: ✨ Added status tokens:
+
+  RHDS describes six statuses: `danger`, `warning`, `caution`, `neutral`, `note`, and `success`.
+
+  ```css
+  button {
+    &.danger {
+      background: var(--rh-color-status-danger);
+    }
+    &.warning {
+      background: var(--rh-color-status-warning);
+    }
+    &.caution {
+      background: var(--rh-color-status-caution);
+    }
+    &.neutral {
+      background: var(--rh-color-status-neutral);
+    }
+    &.note {
+      background: var(--rh-color-status-note);
+    }
+    &.success {
+      background: var(--rh-color-status-success);
+    }
+  }
+  ```
+
+### Patch Changes
+
+- 9d914cc: added stops to textmate snippets
+
 ## 2.0.1
 
 ### Patch Changes

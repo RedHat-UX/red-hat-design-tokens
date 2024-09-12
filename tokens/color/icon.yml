@@ -47,6 +47,9 @@ color:
           type: color
 
     subtle:
+      $description: >-
+        Subtle icons (like the close button in the dialog component) are used in both light and
+        dark themes and also have interactive states.
       # @see https://github.com/amzn/style-dictionary/issues/716#issuecomment-943673202
       _:
         $value: '{color.gray.50}'

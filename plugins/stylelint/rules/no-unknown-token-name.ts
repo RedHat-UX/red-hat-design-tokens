@@ -30,6 +30,7 @@ const ruleFunction: Rule = (_, opts) => {
     }
 
     const migrations = new Map(Object.entries(opts?.migrations ?? {}));
+    const allowed = new Set(opts?.allowed ?? []);
 
     root.walk(node => {
       if (node.type === 'decl') {
@@ -41,6 +42,7 @@ const ruleFunction: Rule = (_, opts) => {
             if (value.startsWith('--rh')
                 && !value.startsWith(`--${tagName}`)
                 && !tokens.has(value as `--rh-${string}`)
+                && !allowed.has(value)
                 || migrations.has(value)) {
               const message = `Expected ${value} to be a known token name`;
               stylelint.utils.report({
