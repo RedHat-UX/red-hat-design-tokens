@@ -77,7 +77,7 @@ color:
         $value: '{color.gray.30}'
         $description: Neutral accent color (dark theme)
 
-# Note: note token should be phased out in the next major release.
+    # note token should be phased out in the next major release.
     note:
       $description: >-
         Represents an action or notice which is informational, or a tip on how best to complete a task.
@@ -96,7 +96,7 @@ color:
         $value: '{color.status.info.on-dark}'
         $description: Note/tip status color (dark theme)
 
-# info token should be used in place of note token.
+    # info token should be used in place of note token.
     info:
       $description: >-
         Represents an action or notice which is informational, or a tip on how best to complete a task.

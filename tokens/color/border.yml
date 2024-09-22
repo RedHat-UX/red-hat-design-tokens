@@ -73,7 +73,7 @@ color:
           category: border
           type: color
 
-#remove destructive during next major release
+    # remove destructive during next major release
     destructive:
       _:
         $value:
@@ -95,8 +95,8 @@ color:
         attributes:
           category: border
           type: color
-#danger should replace destructive during next major release
     status:
+      # status-danger should replace destructive during next major release
       danger:
         _:
           $value:
