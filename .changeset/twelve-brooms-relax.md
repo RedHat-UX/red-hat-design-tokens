@@ -11,11 +11,13 @@ Align status tokens across color categories by:
   ```diff
   - color: var(--rh-color-status-note-on-light,
   + color: var(--rh-color-status-info-on-light,
-     var(--rh-color-purple-50, #5e40be))
+      var(--rh-color-purple-50, #5e40be))
   ```
 - Alias icon and border status token values to status tokens  
   ```diff
   - color: var(--rh-color-icon-status-success-on-light,
-  + color: var(--rh-color-status-success-on-light,
-     var(--rh-color-green-60, #3d7317));
+  -   var(--rh-color-green-60, #3d7317));
+  + color: var(--rh-color-icon-status-success-on-light,
+  +   var(--rh-color-status-success-on-light,
+  +     var(--rh-color-green-60, #3d7317));
   ```
