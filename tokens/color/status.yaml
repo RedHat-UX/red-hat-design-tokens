@@ -12,33 +12,15 @@ color:
           - '{color.status.danger.on-light}'
           - '{color.status.danger.on-dark}'
         $description: >-
-          Responsive `status-danger` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Responsive `status-danger` color value. Typically read-only – use a themable container, e.g. `<rh-surface>`.
           Resolves to `--rh-color-status-danger-on-light` on a themable container with a light color palette
           and `--rh-color-status-danger-on-dark` on a themable container with a dark color palette.
       on-light:
-        $value: '{color.red-orange.50}'
+        $value: '{color.red-orange.60}'
         $description: Danger status color (light theme)
       on-dark:
         $value: '{color.red-orange.50}'
         $description: Danger status color (dark theme)
-
-    warning:
-      $description: >-
-        Represents an action or notice which elicits a warning of potential danger
-      _:
-        $value:
-          - '{color.status.warning.on-light}'
-          - '{color.status.warning.on-dark}'
-        $description: >-
-          Responsive `status-warning` color value. Typically read only - use a themable container e.g. `<rh-surface>`
-          Resolves to `--rh-color-status-warning-on-light` on a themable container with a light color palette
-          and `--rh-color-status-warning-on-dark` on a themable container with a dark color palette.
-      on-light:
-        $value: '{color.orange.50}'
-        $description: Warning status color (light theme)
-      on-dark:
-        $value: '{color.orange.40}'
-        $description: Warning status color (dark theme)
 
     caution:
       $description: >-
@@ -48,15 +30,33 @@ color:
           - '{color.status.caution.on-light}'
           - '{color.status.caution.on-dark}'
         $description: >-
-          Responsive `status-caution` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Responsive `status-caution` color value. Typically read-only - use a themable container, e.g. `<rh-surface>`.
           Resolves to `--rh-color-status-caution-on-light` on a themable container with a light color palette
           and `--rh-color-status-caution-on-dark` on a themable container with a dark color palette.
       on-light:
-        $value: '{color.yellow.30}'
+        $value: '{color.orange.50}'
         $description: Caution status color (light theme)
       on-dark:
-        $value: '{color.orange.30}'
+        $value: '{color.orange.40}'
         $description: Caution status color (dark theme)
+
+    warning:
+      $description: >-
+        Represents an action or notice which elicits a warning of potential danger
+      _:
+        $value:
+          - '{color.status.warning.on-light}'
+          - '{color.status.warning.on-dark}'
+        $description: >-
+          Responsive `status-warning` color value. Typically read-only - use a themable container, e.g. `<rh-surface>`.
+          Resolves to `--rh-color-status-warning-on-light` on a themable container with a light color palette
+          and `--rh-color-status-warning-on-dark` on a themable container with a dark color palette.
+      on-light:
+        $value: '{color.yellow.40}'
+        $description: Warning status color (light theme)
+      on-dark:
+        $value: '{color.yellow.30}'
+        $description: Warning status color (dark theme)
 
     neutral:
       $description: >-
@@ -64,19 +64,20 @@ color:
         is neither explicitly constructive or explicitly destructive.
       _:
         $value:
-          - '{color.status.caution.on-light}'
-          - '{color.status.caution.on-dark}'
+          - '{color.status.neutral.on-light}'
+          - '{color.status.neutral.on-dark}'
         $description: >-
-          Responsive `status-warning` color value. Typically read only - use a themable container e.g. `<rh-surface>`
-          Resolves to `--rh-color-status-warning-on-light` on a themable container with a light color palette
-          and `--rh-color-status-warning-on-dark` on a themable container with a dark color palette.
+          Responsive `status-neutral` color value. Typically read-only - use a themable container, e.g. `<rh-surface>`.
+          Resolves to `--rh-color-status-neutral-on-light` on a themable container with a light color palette
+          and `--rh-color-status-neutral-on-dark` on a themable container with a dark color palette.
       on-light:
-        $value: '{color.yellow.30}'
-        $description: Warning accent color (light theme)
+        $value: '{color.gray.60}'
+        $description: Neutral accent color (light theme)
       on-dark:
-        $value: '{color.orange.30}'
-        $description: Warning accent color (dark theme)
+        $value: '{color.gray.30}'
+        $description: Neutral accent color (dark theme)
 
+    # note token should be phased out in the next major release.
     note:
       $description: >-
         Represents an action or notice which is informational, or a tip on how best to complete a task.
@@ -85,15 +86,34 @@ color:
           - '{color.status.note.on-light}'
           - '{color.status.note.on-dark}'
         $description: >-
-          Responsive `status-note` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Responsive `status-note` color value. Typically read-only - use a themable container, e.g. `<rh-surface>`.
           Resolves to `--rh-color-status-note-on-light` on a themable container with a light color palette
           and `--rh-color-status-note-on-dark` on a themable container with a dark color palette.
       on-light:
-        $value: '{color.purple.50}'
+        $value: '{color.status.info.on-light}'
         $description: Note/tip status color (light theme)
       on-dark:
-        $value: '{color.purple.30}'
+        $value: '{color.status.info.on-dark}'
         $description: Note/tip status color (dark theme)
+
+    # info token should be used in place of note token.
+    info:
+      $description: >-
+        Represents an action or notice which is informational, or a tip on how best to complete a task.
+      _:
+        $value:
+          - '{color.status.info.on-light}'
+          - '{color.status.info.on-dark}'
+        $description: >-
+          Responsive `status-info` color value. Typically read-only - use a themable container, e.g. `<rh-surface>`.
+          Resolves to `--rh-color-status-info-on-light` on a themable container with a light color palette
+          and `--rh-color-status-info-on-dark` on a themable container with a dark color palette.
+      on-light:
+        $value: '{color.purple.50}'
+        $description: Info status color (light theme)
+      on-dark:
+        $value: '{color.purple.30}'
+        $description: Info status color (dark theme)
 
     success:
       $description: >-
@@ -103,12 +123,12 @@ color:
           - '{color.status.success.on-light}'
           - '{color.status.success.on-dark}'
         $description: >-
-          Responsive `status-success` color value. Typically read only - use a themable container e.g. `<rh-surface>`
+          Responsive `status-success` color value. Typically read-only - use a themable container, e.g. `<rh-surface>`.
           Resolves to `--rh-color-status-success-on-light` on a themable container with a light color palette
           and `--rh-color-status-success-on-dark` on a themable container with a dark color palette.
       on-light:
-        $value: '{color.green.50}'
+        $value: '{color.green.60}'
         $description: Success status color (light theme)
       on-dark:
-        $value: '{color.green.50}'
+        $value: '{color.green.40}'
         $description: Success status color (dark theme)
