@@ -1,5 +1,5 @@
 ---
-"@rhds/tokens": major
+"@rhds/tokens": patch
 ---
 
 - Added language specific font-family tokens. Example: `--rh-font-family-lang-he: 'Noto Sans Hebrew';`
