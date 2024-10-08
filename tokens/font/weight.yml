@@ -43,7 +43,7 @@ font:
           fontFamily: var(--rh-font-family-heading)
       regular:
         $description: Regular font weight for headings
-        $value: 300
+        $value: 400
         attributes:
           category: typography
       medium:
