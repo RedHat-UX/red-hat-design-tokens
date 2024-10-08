@@ -58,6 +58,7 @@ scss:
   prefix: rh
   files:
     - destination: _variables.scss
+      filter: isNotThemeColorToken
       format: scss/variables
       options:
         fileHeader: redhat/legal
