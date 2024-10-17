@@ -1,0 +1,15 @@
+{
+  "include": [
+    "./css/",
+    "./js/",
+    "./plugins/",
+    "./test/"
+  ],
+  "compilerOptions": {
+    "moduleResolution": "nodenext",
+    "module": "nodenext",
+    "skipLibCheck": true,
+    "declaration": true,
+    "inlineSourceMap": true,
+  },
+}

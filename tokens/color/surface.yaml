@@ -3,6 +3,17 @@ color:
     $extensions:
       com.redhat.ux:
         order: 250
+    _:
+      $value:
+        - '{color.surface.lightest}'
+        - '{color.surface.lighter}'
+        - '{color.surface.light}'
+        - '{color.surface.dark}'
+        - '{color.surface.darker}'
+        - '{color.surface.darkest}'
+      $description: >-
+        Responsive `surface` color value. Typically read-only - use a themable container, e.g. `<rh-surface>`.
+        Resolves to the surface color corresponding to the surface' color palette.
 
     lightest:
       $value: '{color.white}'
@@ -28,37 +39,109 @@ color:
 
     status:
       danger:
+        _:
+          $value:
+            - '{color.surface.status.danger.on-light}'
+            - '{color.surface.status.danger.on-dark}'
+          $description: >-
+            Responsive `surface-status-danger` color value. Typically read-only - use a themable container, e.g. `<rh-surface>`.
+            Resolves to `--rh-color-surface-status-danger-on-light` on a themable container with a light color palette
+            and `--rh-color-surface-status-danger-on-dark` on a themable container with a dark color palette.
         on-light:
           $value: '{color.red-orange.10}'
           $description: Danger status surface color (light theme)
         on-dark:
-          $value: '{color.red-orange.70}'
+          $value: '{color.red-orange.10}'
           $description: Danger status surface color (dark theme)
-      warning:
+      caution:
+        _:
+          $value:
+            - '{color.surface.status.caution.on-light}'
+            - '{color.surface.status.caution.on-dark}'
+          $description: >-
+            Responsive `surface-status-caution` color value. Typically read-only - use a themable container, e.g. `<rh-surface>`.
+            Resolves to `--rh-color-surface-status-caution-on-light` on a themable container with a light color palette
+            and `--rh-color-surface-status-caution-on-dark` on a themable container with a dark color palette.
         on-light:
           $value: '{color.orange.10}'
+          $description: Caution status surface color (light theme)
+        on-dark:
+          $value: '{color.orange.10}'
+          $description: Caution status surface color (dark theme)
+      warning:
+        _:
+          $value:
+            - '{color.surface.status.warning.on-light}'
+            - '{color.surface.status.warning.on-dark}'
+          $description: >-
+            Responsive `surface-status-warning` color value. Typically read-only - use a themable container, e.g. `<rh-surface>`.
+            Resolves to `--rh-color-surface-status-warning-on-light` on a themable container with a light color palette
+            and `--rh-color-surface-status-warning-on-dark` on a themable container with a dark color palette.
+        on-light:
+          $value: '{color.yellow.10}'
           $description: Warning status surface color (light theme)
         on-dark:
-          $value: '{color.orange.70}'
+          $value: '{color.yellow.70}'
           $description: Warning status surface color (dark theme)
+      # remove default during the next major release
       default:
+        _:
+          $value:
+            - '{color.surface.status.default.on-light}'
+            - '{color.surface.status.default.on-dark}'
+          $description: >-
+            Responsive `surface-status-default` color value. Typically read-only - use a themable container, e.g. `<rh-surface>`.
+            Resolves to `--rh-color-surface-status-default-on-light` on a themable container with a light color palette
+            and `--rh-color-surface-status-default-on-dark` on a themable container with a dark color palette.
         on-light:
-          $value: '{color.gray.10}'
+          $value: '{color.surface.status.neutral.on-light}'
           $description: Default status surface color (light theme)
         on-dark:
-          $value: '{color.gray.80}'
+          $value: '{color.surface.status.neutral.on-light}'
           $description: Default status surface color (dark theme)
+      # neutral will replace default in next major release
+      neutral:
+        _:
+          $value:
+            - '{color.surface.status.neutral.on-light}'
+            - '{color.surface.status.neutral.on-dark}'
+          $description: >-
+            Responsive `surface-status-neutral` color value. Typically read-only - use a themable container, e.g. `<rh-surface>`.
+            Resolves to `--rh-color-surface-status-neutral-on-light` on a themable container with a light color palette
+            and `--rh-color-surface-status-neutral-on-dark` on a themable container with a dark color palette.
+        on-light:
+          $value: '{color.gray.10}'
+          $description: Neutral status surface color (light theme)
+        on-dark:
+          $value: '{color.gray.10}'
+          $description: Neutral status surface color (dark theme)
       info:
+        _:
+          $value:
+            - '{color.surface.status.info.on-light}'
+            - '{color.surface.status.info.on-dark}'
+          $description: >-
+            Responsive `surface-status-info` color value. Typically read-only - use a themable container, e.g. `<rh-surface>`.
+            Resolves to `--rh-color-surface-status-info-on-light` on a themable container with a light color palette
+            and `--rh-color-surface-status-info-on-dark` on a themable container with a dark color palette.
         on-light:
           $value: '{color.purple.10}'
           $description: Info status surface color (light theme)
         on-dark:
-          $value: '{color.purple.60}'
+          $value: '{color.purple.10}'
           $description: Info status surface color (dark theme)
       success:
+        _:
+          $value:
+            - '{color.surface.status.success.on-light}'
+            - '{color.surface.status.success.on-dark}'
+          $description: >-
+            Responsive `surface-status-success` color value. Typically read-only - use a themable container, e.g. `<rh-surface>`.
+            Resolves to `--rh-color-surface-status-success-on-light` on a themable container with a light color palette
+            and `--rh-color-surface-status-success-on-dark` on a themable container with a dark color palette.
         on-light:
           $value: '{color.green.10}'
           $description: Success status surface color (light theme)
         on-dark:
-          $value: '{color.green.70}'
+          $value: '{color.green.10}'
           $description: Success status surface color (dark theme)

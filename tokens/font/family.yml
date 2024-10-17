@@ -8,7 +8,7 @@ font:
           [Red Hat Fonts](https://github.com/RedHatOfficial/RedHatFont), designed by Jeremy Mickel
           and released under Open Font License, form the typographic basis for the Red Hat Design
           System. Pages using non-latin characters should fall back to
-          [Noto Sans](https://github.com/notofonts/noto-fonts). By loading language-specific Noto
+          [Noto Sans](https://notofonts.github.io/). By loading language-specific Noto
           Sans fonts, <abbr title="Red Hat Design System">RHDS</abbr> can accomodate mixed-language
           content including <span lang="ar">العربية</span>, <span lang="he">עברית</span>,
           <span lang="jp">日本語</span>, <span lang="kr">조선말</span>, <span lang="ml">മലയാളം</span>,
@@ -20,7 +20,7 @@ font:
           ```html
           <link rel="preconnect" href="https://fonts.googleapis.com">
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-          <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@300;500;700&family=Noto+Sans+JP:wght@300;500;700&family=Noto+Sans+KR:wght@300;500;700&family=Noto+Sans+Malayalam:wght@300;500;700&family=Noto+Sans+SC:wght@300;500;700&family=Noto+Sans+TC:wght@300;500;700&family=Noto+Sans+Tamil:wght@300;500;700&family=Noto+Sans+Thai:wght@300;500;700&display=swap" rel="stylesheet">
+          <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@500;700&family=Noto+Sans+JP:wght@500;700&family=Noto+Sans+KR:wght@500;700&family=Noto+Sans+Malayalam:wght@500;700&family=Noto+Sans+SC:wght@500;700&family=Noto+Sans+TC:wght@500;700&family=Noto+Sans+Tamil:wght@500;700&family=Noto+Sans+Thai:wght@500;700&display=swap" rel="stylesheet">
           ```
 
     heading:
@@ -31,14 +31,6 @@ font:
       $value:
         - RedHatDisplay
         - Red Hat Display
-        - Noto Sans Arabic
-        - Noto Sans Hebrew
-        - Noto Sans JP
-        - Noto Sans KR
-        - Noto Sans Malayalam
-        - Noto Sans SC
-        - Noto Sans TC
-        - Noto Sans Thai
         - Helvetica
         - Arial
         - sans-serif
@@ -53,14 +45,6 @@ font:
       $value:
         - RedHatText
         - Red Hat Text
-        - Noto Sans Arabic
-        - Noto Sans Hebrew
-        - Noto Sans JP
-        - Noto Sans KR
-        - Noto Sans Malayalam
-        - Noto Sans SC
-        - Noto Sans TC
-        - Noto Sans Thai
         - Helvetica
         - Arial
         - sans-serif
@@ -78,6 +62,86 @@ font:
         - Courier New
         - Courier
         - monospace
+      attributes:
+        category: typography
+        type: font-family
+    lang-ar:
+      $description: Arabic font family
+      $extensions:
+        com.redhat.ux:
+          example: Arabic
+      $value:
+        - Noto Sans Arabic
+      attributes:
+        category: typography
+        type: font-family
+    lang-he:
+      $description: Hebrew font family
+      $extensions:
+        com.redhat.ux:
+          example: Hebrew
+      $value:
+        - Noto Sans Hebrew
+      attributes:
+        category: typography
+        type: font-family
+    lang-ja:
+      $description: Japanese font family
+      $extensions:
+        com.redhat.ux:
+          example: Japanese
+      $value:
+        - Noto Sans JP
+      attributes:
+        category: typography
+        type: font-family
+    lang-ko:
+      $description: Korean font family
+      $extensions:
+        com.redhat.ux:
+          example: Korean
+      $value:
+        - Noto Sans KR
+      attributes:
+        category: typography
+        type: font-family
+    lang-hi:
+      $description: Malayalam font family
+      $extensions:
+        com.redhat.ux:
+          example: Malayalam
+      $value:
+        - Noto Sans Malayalam
+      attributes:
+        category: typography
+        type: font-family
+    lang-th:
+      $description: Thai font family
+      $extensions:
+        com.redhat.ux:
+          example: Thai
+      $value:
+        - Noto Sans Thai
+      attributes:
+        category: typography
+        type: font-family
+    lang-zh-cn:
+      $description: Simplified Chinese font family
+      $extensions:
+        com.redhat.ux:
+          example: Simplified Chinese
+      $value:
+        - Noto Sans SC
+      attributes:
+        category: typography
+        type: font-family
+    lang-zh-hk:
+      $description: Traditional Chinese font family
+      $extensions:
+        com.redhat.ux:
+          example: Traditional Chinese
+      $value:
+        - Noto Sans TC
       attributes:
         category: typography
         type: font-family

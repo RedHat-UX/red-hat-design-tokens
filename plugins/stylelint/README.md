@@ -6,7 +6,7 @@ extends: stylelint-config-standard
 
 # add the plugin:
 plugins:
-  - ./node_modules/@rhds/tokens/plugins/stylelint.cjs
+  - ./node_modules/@rhds/tokens/plugins/stylelint.js
 
 # Make sure to activate the rule:
 rules:
@@ -19,6 +19,9 @@ Be sure to configure your editor to fix stylelint issues on save:
 - [vscode](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint#editor.codeactionsonsave)
 
 ## Rules
+
+### `deprecated`
+Replaces deprecated tokens with their new versions.
 
 ### `token-values`
 Validates that the fallback values for tokens correspond with the values 
@@ -36,7 +39,9 @@ specified names, it will automatically replace it with the new one.
 rules:
   rhds/no-unknown-token-name:
     - true
-    - migrations:
+    - allowed:
+      - --rh-icon-color
+      migrations:
       # instances of gray-90 will be replaced with gray-95
       --rh-color-gray-90: --rh-color-gray-95
 ```

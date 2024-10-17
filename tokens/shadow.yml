@@ -3,15 +3,15 @@ box-shadow:
   sm:
     $description: Small box shadow
     $value:
-      offsetX: 0
+      offsetX: '0'
       offsetY: '{length.3xs}'
       blur: '{length.xs}'
-      spread: 0
+      spread: '0'
       color: rgba(21, 21, 21, 0.2)
   md:
     $description: Medium box shadow
     $value:
-      offsetX: 0
+      offsetX: '0'
       offsetY: '{length.xs}'
       blur: '{length.sm}'
       spread: '{length.4xs}'
@@ -19,7 +19,7 @@ box-shadow:
   lg:
     $description: Large box shadow
     $value:
-      offsetX: 0
+      offsetX: '0'
       offsetY: '{length.sm}'
       blur: '{length.md}'
       spread: '{length.3xs}'
@@ -27,7 +27,7 @@ box-shadow:
   xl:
     $description: Extra large box shadow
     $value:
-      offsetX: 0
+      offsetX: '0'
       offsetY: '{length.md}'
       blur: '{length.xl}'
       spread: '{length.2xs}'

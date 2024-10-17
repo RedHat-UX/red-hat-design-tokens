@@ -1,12 +1,13 @@
 color:
   white:
+    $description: 'Lightest surface (light theme) or primary text (dark theme)'
     $value: '#ffffff'
-    $description: Lightest surface (light theme) or primary text (dark theme)
     attributes:
       type: gray
 
   gray:
     $extensions:
+      isCrayon: true
       com.redhat.ux:
         order: 390
         description: >-
