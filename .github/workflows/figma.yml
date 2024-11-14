@@ -19,14 +19,14 @@ jobs:
     if: github.repository == 'RedHat-UX/red-hat-design-tokens'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: brianferry/figma-create@v1.0
         with:
           api_token: ${{ github.event.inputs.figma_token }}
           file_id: ${{ github.event.inputs.file_id }}
           style_dictionary_url: ${{ github.event.inputs.style_dictionary_url }}
       - name: Archive Figma Tokens Payload
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: figma-tokens
           path: build/
