@@ -6,7 +6,7 @@
 - Removes language fonts from `--rh-font-family-body-text` and `--rh-font-family-heading`
 
 Before:
-```
+```css
 body {
   font-family: var(--rh-font-family-body-text, RedHatText, "Red Hat Text", "Noto Sans Arabic", "Noto Sans Hebrew", "Noto Sans JP", "Noto Sans KR", "Noto Sans Malayalam", "Noto Sans SC", "Noto Sans TC", "Noto Sans Thai", Helvetica, Arial, sans-serif);
 }
@@ -17,7 +17,7 @@ body {
 ```
 
 After:
-```
+```css
 body {
   font-family: var(--rh-font-family-body-text, RedHatText, "Red Hat Text");
 }
