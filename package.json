@@ -180,7 +180,7 @@
     "eslint": "^9.9.1",
     "globals": "^15.9.0",
     "markdown-it": "^14.1.0",
-    "style-dictionary": "^4.1.0",
+    "style-dictionary": "^4.2.0",
     "tap-difflet": "^0.7.2",
     "tape-describe": "^1.0.3",
     "tape-es": "^1.2.17",
