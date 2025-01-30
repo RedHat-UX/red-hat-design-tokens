@@ -12,6 +12,8 @@ on:
       style_dictionary_url: 
         description: 'Style Dictionary URL'
         required: true
+  release:
+    types: [published]
 
 jobs:
   add-collection-to-figma:
@@ -20,11 +22,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - run: npm run build
+
+      - uses: actions/checkout@v4
       - uses: brianferry/figma-create@v1.0
         with:
           api_token: ${{ github.event.inputs.figma_token }}
           file_id: ${{ github.event.inputs.file_id }}
-          style_dictionary_url: ${{ github.event.inputs.style_dictionary_url }}
+          style_dictionary_url: file://${GITHUB_WORKSPACE}/json/rhds.tokens.json
       - name: Archive Figma Tokens Payload
         uses: actions/upload-artifact@v4
         with:
