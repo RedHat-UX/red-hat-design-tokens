@@ -27,7 +27,7 @@ color:
         $description: Lightest brand red
       lighter:
         $value: '{color.red.30}'
-        $description: lighter brand red
+        $description: Lighter brand red
       light:
         $value: '{color.red.40}'
         $description: Light brand red
@@ -39,7 +39,7 @@ color:
         $value: '{color.red.70}'
         $description: Darker brand red
       darkest:
-        $value: '{color.red.70}'
+        $value: '{color.red.80}'
         $description: Darkest brand red
 
 

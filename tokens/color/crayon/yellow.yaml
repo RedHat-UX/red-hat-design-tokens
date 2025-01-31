@@ -23,3 +23,5 @@ color:
     70:
       $value: '#73480B'
       $description: Alert - Warning title text
+    80:
+      $value: '#54330B'

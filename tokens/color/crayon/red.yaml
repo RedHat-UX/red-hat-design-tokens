@@ -26,3 +26,6 @@ color:
     70:
       $value: '#5F0000'
       $description: Darker brand red
+    80:
+      $value: '#3F0000'
+      $description: Darkest brand red
