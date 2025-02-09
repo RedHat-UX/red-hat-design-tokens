@@ -22,4 +22,6 @@ color:
       $value: '#9E4A06'
     70:
       $value: '#732E00'
-      $description: 	Label - Filled (Orange) text color
+      $description: Label - Filled (Orange) text color
+    80:
+      $value: '#4D1F00'
