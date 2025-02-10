@@ -24,3 +24,5 @@ color:
     70:
       $value: '#004D4D'
       $description: Alert - Default title text
+    80:
+      $value: '#003333'

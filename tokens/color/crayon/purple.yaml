@@ -23,3 +23,5 @@ color:
     70:
       $value: '#21134D'
       $description: Inline link visited hover (light theme)
+    80:
+      $value: '#1B0D33'
