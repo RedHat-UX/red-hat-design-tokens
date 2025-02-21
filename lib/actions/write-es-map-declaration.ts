@@ -1,16 +1,33 @@
 import type { Action } from 'style-dictionary/types';
 
-import { readFile, writeFile, rm } from 'node:fs/promises';
-
-import { fileURLToPath } from 'node:url';
+import { writeFile, rm } from 'node:fs/promises';
 
 const rel = (path: string) => new URL(path, import.meta.url);
-const PACKAGE_JSON_URL = rel('../../package.json');
-const TOKENS_DECL_CONTENT = 'export declare const tokens: Map<`--rh-${string}`, string|number>;';
-const TOKENS_DECL_URLS = [
-  rel('../../js/tokens.d.ts'),
-  rel('../../js/tokens.d.cts'),
-];
+
+const files = new Map([
+  [
+    rel('../../js/tokens.d.ts'),
+    'export declare const tokens: Map<`--rh-${string}`, string|number>;',
+  ],
+  [
+    rel('../../js/meta.d.ts'),
+    `interface DesignToken {
+    value?: any;
+    $value?: any;
+    type?: string;
+    $type?: string;
+    $description?: string;
+    name?: string;
+    comment?: string;
+    themeable?: boolean;
+    attributes?: Record<string, unknown>;
+    [key: string]: any;
+}
+
+export declare const tokens: Map<\`--rh-\${string}\`, DesignToken>;
+`,
+  ],
+]);
 
 /**
  * Write declaration file for JS token map
@@ -18,12 +35,12 @@ const TOKENS_DECL_URLS = [
 export const writeEsMapDeclaration: Action = {
   name: 'writeEsMapDeclaration',
   async do() {
-    for (const url of TOKENS_DECL_URLS) {
-      await writeFile(url, TOKENS_DECL_CONTENT, 'utf8');
+    for (const [url, content] of files) {
+      await writeFile(url, content, 'utf8');
     }
   },
   async undo() {
-    for (const url of TOKENS_DECL_URLS) {
+    for (const [url] of files) {
       await rm(url);
     }
   },
