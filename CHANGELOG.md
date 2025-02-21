@@ -1,5 +1,11 @@
 # @rhds/tokens
 
+## 2.2.2
+
+### Patch Changes
+
+- a73e9c9: Reclassify dependencies as dev dependencies, add `lit` as a peer dependency
+
 ## 2.2.1
 
 ### Patch Changes
