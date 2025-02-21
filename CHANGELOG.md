@@ -1,5 +1,11 @@
 # @rhds/tokens
 
+## 2.2.1
+
+### Patch Changes
+
+- 2fd6b6b: Added missing typescript type declarations
+
 ## 2.2.0
 
 ### Minor Changes

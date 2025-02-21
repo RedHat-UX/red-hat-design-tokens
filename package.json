@@ -1,6 +1,6 @@
 {
   "name": "@rhds/tokens",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Red Hat Design System Tokens",
   "scripts": {
     "build": "wireit",
@@ -23,7 +23,8 @@
     },
     "./meta.js": {
       "import": "./js/meta.js",
-      "require": "./js/meta.cjs"
+      "require": "./js/meta.cjs",
+      "types": "./js/meta.d.ts"
     },
     "./json/*": {
       "require": "./json/*"
