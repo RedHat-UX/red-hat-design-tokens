@@ -1,5 +1,11 @@
 # @rhds/tokens
 
+## 2.2.3
+
+### Patch Changes
+
+- d2fcded: Correct build process so that all necessary files are included in the package
+
 ## 2.2.2
 
 ### Patch Changes
