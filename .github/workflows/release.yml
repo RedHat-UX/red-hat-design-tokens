@@ -22,6 +22,7 @@ jobs:
 
       - run: npm ci --prefer-offline
       - run: npm run test
+      - run: node --experimental-strip-types build.ts
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
