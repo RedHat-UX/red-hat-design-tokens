@@ -15,6 +15,7 @@
   "type": "module",
   "main": "js/tokens.cjs",
   "module": "js/tokens.js",
+  "types": "js/types.d.ts",
   "exports": {
     ".": {
       "import": "./js/tokens.js",

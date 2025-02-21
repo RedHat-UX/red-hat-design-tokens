@@ -7,24 +7,18 @@ const rel = (path: string) => new URL(path, import.meta.url);
 const files = new Map([
   [
     rel('../../js/tokens.d.ts'),
-    'export declare const tokens: Map<`--rh-${string}`, string|number>;',
+    /* ts */`\
+import { ValuesMap } from './types.js';
+export type * from './types.js';
+export declare const tokens: ValuesMap;
+`,
   ],
   [
     rel('../../js/meta.d.ts'),
-    `interface DesignToken {
-    value?: any;
-    $value?: any;
-    type?: string;
-    $type?: string;
-    $description?: string;
-    name?: string;
-    comment?: string;
-    themeable?: boolean;
-    attributes?: Record<string, unknown>;
-    [key: string]: any;
-}
-
-export declare const tokens: Map<\`--rh-\${string}\`, DesignToken>;
+    /* ts */`\
+import { ValuesMap } from './types.js';
+export type * from './types.js';
+export declare const tokens: DesignTokensMap;
 `,
   ],
 ]);
@@ -45,5 +39,3 @@ export const writeEsMapDeclaration: Action = {
     }
   },
 };
-
-
