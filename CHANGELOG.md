@@ -1,5 +1,11 @@
 # @rhds/tokens
 
+## 2.2.4
+
+### Patch Changes
+
+- 7daff50: Fix typescript type exports
+
 ## 2.2.3
 
 ### Patch Changes
