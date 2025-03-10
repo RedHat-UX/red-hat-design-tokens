@@ -46,7 +46,7 @@ css:
         formatting:
           commentPosition: above
     - destination: color-palette.css.ts
-      format: js/rhds/color-scheme
+      format: js/rhds/color-palette
       options:
         fileHeader: redhat/legal
         formatting:
