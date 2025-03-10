@@ -45,6 +45,7 @@ function consumer(dictionary: Dictionary) {
 function provider({ allTokens }: Dictionary) {
   const surfaceTokens = allTokens.filter(isSurfaceColorPaletteToken);
   return /* css*/`
+:host { color-scheme: light dark; }
 :host([color-palette^="dark"]) { color-scheme: only dark; }
 :host([color-palette^="light"]) { color-scheme: only light; }
 ${surfaceTokens.map(({ name, path, $value }) => /* css */`
