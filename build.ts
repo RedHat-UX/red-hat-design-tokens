@@ -93,10 +93,10 @@ export async function build(): Promise<void> {
   sd.registerFilter(Filters.isDarkThemeColorToken);
 
   sd.registerFormat(Formats.litCss);
-  sd.registerFormat(Formats.cssRhdsColorContextConsumer);
-  sd.registerFormat(Formats.cssRhdsColorContextProvider);
-  sd.registerFormat(Formats.jsRhdsColorContextConsumer);
-  sd.registerFormat(Formats.jsRhdsColorContextProvider);
+  sd.registerFormat(Formats.cssRhdsColorScheme);
+  sd.registerFormat(Formats.cssRhdsColorPalette);
+  sd.registerFormat(Formats.jsRhdsColorScheme);
+  sd.registerFormat(Formats.jsRhdsColorPalette);
   sd.registerFormat(Formats.mapEs);
   sd.registerFormat(Formats.mapCjs);
   sd.registerFormat(Formats.metaMapEs);

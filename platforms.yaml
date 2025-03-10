@@ -27,26 +27,26 @@ css:
         selector: ':host'
         formatting:
           commentPosition: above
-    - destination: color-context-consumer.css
-      format: css/rhds/color-context-consumer
+    - destination: color-scheme.css
+      format: css/rhds/color-scheme
       options:
         fileHeader: redhat/legal
         formatting:
           commentPosition: above
-    - destination: color-context-consumer.css.ts
-      format: js/rhds/color-context-consumer
+    - destination: color-scheme.css.ts
+      format: js/rhds/color-scheme
       options:
         fileHeader: redhat/legal
         formatting:
           commentPosition: above
-    - destination: color-context-provider.css
-      format: css/rhds/color-context-provider
+    - destination: color-palette.css
+      format: css/rhds/color-palette
       options:
         fileHeader: redhat/legal
         formatting:
           commentPosition: above
-    - destination: color-context-provider.css.ts
-      format: js/rhds/color-context-provider
+    - destination: color-palette.css.ts
+      format: js/rhds/color-scheme
       options:
         fileHeader: redhat/legal
         formatting:
