@@ -17,7 +17,12 @@ function dereferenceToken(token: DesignToken, dictionary: Dictionary) {
 function getThemeTokensForConsumer(dictionary: Dictionary) {
   return dictionary.allTokens.filter(isThemeColorToken).map(token => {
     switch (token.name) {
-      case 'rh-color-surface': return '';
+      case 'rh-color-surface': return /* css */`\
+  --rh-color-surface:
+    light-dark(
+      var(--rh-color-surface-lightest, ${dictionary.allTokens.find(x => x.name === 'rh-color-surface-lightest').$value}),
+      var(--rh-color-surface-darkest, ${dictionary.allTokens.find(x => x.name === 'rh-color-surface-darkest').$value})
+    );`;
     }
 
     const [light, dark] = token.original.$value.map(x => dereferenceToken(x, dictionary));
@@ -41,7 +46,8 @@ function provider({ allTokens }: Dictionary) {
   const surfaceTokens = allTokens.filter(isSurfaceColorPaletteToken);
   return /* css*/`
 :host([color-palette^="dark"]) { color-scheme: only dark; }
-:host([color-palette^="light"]) { color-scheme: only light; }${surfaceTokens.map(({ name, path, $value }) => /* css */`
+:host([color-palette^="light"]) { color-scheme: only light; }
+${surfaceTokens.map(({ name, path, $value }) => /* css */`
 :host([color-palette="${path.at(-1)}"]) { --rh-color-surface: var(--${name}, ${$value}); }`.trimStart()).join('\n')}`;
 }
 
