@@ -30,7 +30,7 @@ function getThemeTokensForConsumer(dictionary: Dictionary) {
     return /* css */`\
   --${token.name}:
     light-dark(
-      var(--${light.name}-on-light, ${light.$value}),
+      var(--${light.name}, ${light.$value}),
       var(--${dark.name}, ${dark.$value})
     );`;
   }).join('\n');
