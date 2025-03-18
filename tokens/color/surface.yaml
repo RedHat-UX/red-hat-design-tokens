@@ -28,11 +28,11 @@ color:
       $value: '{color.gray.70}'
       $description: Tertiary surface (dark theme)
     dark-alt:
-      $value: oklch(from(--rh-color-surface-dark) calc(l * 1.45) c h)
+      $value: oklch(from(--rh-color-surface-dark) calc(l * 0.82) c h)
       $description: >
         DEPRECATED.
         Theme authors should use --rh-color-surface-dark.
-        Element authors should use oklch(from var(--rh-color-surface-dark) calc(l * 1.45) c h).
+        Element authors should use oklch(from var(--rh-color-surface-dark) calc(l * 0.82) c h).
         Alternative tertiary surface (not available for use with context provider)
       $extensions:
         com.redhat.ux:
