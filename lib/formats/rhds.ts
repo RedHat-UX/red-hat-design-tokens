@@ -38,7 +38,7 @@ function getThemeTokensForConsumer(dictionary: Dictionary) {
 
 function consumer(dictionary: Dictionary) {
   return /* css*/`
-:root, :host {\n${getThemeTokensForConsumer(dictionary)}\n}
+:root {\n${getThemeTokensForConsumer(dictionary)}\n}
 `;
 }
 
