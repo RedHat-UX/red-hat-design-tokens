@@ -56,13 +56,13 @@ const formatter = (fn: (d: Dictionary) => string) =>
   async ({ file, dictionary }) =>
     `${await fileHeader({ file })}${fn(dictionary)}`;
 
-export const cssRhdsColorScheme: Format = {
-  name: 'css/rhds/color-scheme',
+export const cssRhdsDefaultTheme: Format = {
+  name: 'css/rhds/default-theme',
   format: formatter(consumer),
 };
 
-export const jsRhdsColorScheme: Format = {
-  name: 'js/rhds/color-scheme',
+export const jsRhdsDefaultTheme: Format = {
+  name: 'js/rhds/default-theme',
   format: formatter(x => constructStyleSheet(consumer(x))),
 };
 

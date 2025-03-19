@@ -27,14 +27,14 @@ css:
         selector: ':host'
         formatting:
           commentPosition: above
-    - destination: color-scheme.css
-      format: css/rhds/color-scheme
+    - destination: default-theme.css
+      format: css/rhds/default-theme
       options:
         fileHeader: redhat/legal
         formatting:
           commentPosition: above
-    - destination: color-scheme.css.ts
-      format: js/rhds/color-scheme
+    - destination: default-theme.css.ts
+      format: js/rhds/default-theme
       options:
         fileHeader: redhat/legal
         formatting:
