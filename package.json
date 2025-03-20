@@ -139,7 +139,7 @@
         "tokens/**/*.ya?ml"
       ],
       "dependencies": [
-        "compile"
+        "build"
       ]
     },
     "package-vscode": {
