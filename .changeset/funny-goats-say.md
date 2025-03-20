@@ -1,12 +1,10 @@
 ---
 "@rhds/tokens": major
 ---
-#### TypeScript
-
-Improves the TypeScript developer experience. Introduces well typed tokens maps. 
-Get auto-complete in your IDE when calling `tokens.get('--rh-')`, for example. 
-TypeScript will also correctly return the type of `get` and `has` calls, so no 
-more type assertions
+**TypeScript**: Improves the TypeScript developer experience. Introduces well 
+typed tokens maps. Get auto-complete in your IDE when calling 
+`tokens.get('--rh-')`, for example. TypeScript will also correctly return the 
+type of `get` and `has` calls, so no more type assertions
 
 ```diff
   const value = tokens.get('--rh-line-height-code');
