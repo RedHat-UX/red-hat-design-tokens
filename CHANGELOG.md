@@ -1,5 +1,116 @@
 # @rhds/tokens
 
+## 3.0.0
+
+### Major Changes
+
+- 4d01e44: **TypeScript**: Improves the TypeScript developer experience. Introduces well
+  typed tokens maps. Get auto-complete in your IDE when calling
+  `tokens.get('--rh-')`, for example. TypeScript will also correctly return the
+  type of `get` and `has` calls, so no more type assertions
+
+  ```diff
+    const value = tokens.get('--rh-line-height-code');
+  - expect(lightHeight).to.equal(value as number);
+  + expect(lightHeight).to.equal(value);
+  ```
+
+  Theming tokens also no longer return `null`, but rather their computed
+  `light-dark()` values, with fallback.
+
+  This release also makes the tokens and metadata maps _read only_. If you were
+  relying on `instanceof Map` checks in your code, they will no longer work
+
+  ```ts
+  import { tokens } from "@rhds/tokens";
+  // no longer works
+  tokens.set("--rh-color-surface-dark", "blue");
+  // no longer works
+  if (tokens instanceof Map) {
+    // ...
+  }
+  ```
+
+- 4d01e44: **Theming and color schemes**: enables device dark mode preferences.
+
+  - Remove the `.on.light` and `.on.dark` selectors from color-context stylesheets. Uses `light-dark()` instead.
+  - Rename the file `color-context-consumer.css` to `default-theme.css` as well as it's associated JavaScript modules
+  - Rename the file `color-context-provider.css` to `color-palette.css` as well as it's associated JavaScript modules
+
+  The default theme is now a global stylesheet. For best performance, we recommend
+  loading it early on in the page. However, if you forget to load it, themable
+  elements will load it themselves.
+
+  ```html
+  <head>
+    <!-- load default RHDS theme, which was copied from the NPM package to /assets -->
+    <link
+      rel="stylesheets"
+      href="/assets/packages/@rhds/tokens/css/default-theme.css"
+    />
+  </head>
+  ```
+
+- 4d01e44: **Colors**: deprecated `--rh-color-surface-dark-alt`.
+
+  In order to simplify the surface tokens, we've deprecated the
+  `--rh-color-surface-dark-alt` token. While it still exists, it now refers to a color
+  transformation in the OKLAB color space. If you wrote a [custom
+  theme](https://ux.redhat.com/theming/customizing/) that sets a value for
+  `--rh-color-surface-dark-alt`, you may not need to make any changes, as the value for `--rh-color-surface-dark`
+  will be used to computed the new value.
+
+  ```diff
+    .my-theme {
+      --rh-color-surface-dark: #224242;
+  -   --rh-color-surface-dark-alt: #113132;
+    }
+  ```
+
+  When authoring components that use `--rh-color-surface-dark-alt`,
+  replace that token with the color transform function.
+
+  ```diff
+    :host {
+  -    background: var(--rh-color-surface-dark-alt);
+  +    background: oklch(from var(--rh-color-surface-dark) calc(l * 0.82) c h);
+    }
+  ```
+
+- 4d01e44: **Colors**: Deprecates the `*-rgb` and `*-hsl` tokens. Use CSS color transforms instead
+
+  ```diff
+  - color: rgb(var(--rh-color-orange-90-rgb) / var(--rh-opacity-10));
+  + color: rgb(from var(--rh-color-orange-90) r g b / var(--rh-opacity-10));
+  ```
+
+### Minor Changes
+
+- 4d01e44: **Stylelint**: adds `light-dark()` fallbacks to the `token-values` rule for themable tokens e.g. `--rh-color-accent-base`.
+- 4d01e44: **Editors**: Added support for the neovim plugin [nvim-colorizer](), which displays colors next to their values or names.
+
+  With this configuration (for lazy.nvim), you'll see a color swatch in your editor next to rhds variable names
+
+  ```lua
+  return {"catgoose/nvim-colorizer.lua",
+      event = "BufReadPre",
+      opts = { -- set to setup table
+      user_default_options = {
+        mode = 'virtualtext',
+        names_custom = function()
+          -- set this to your local machine's path
+          local json_path = '~/Developer/redhat-ux/red-hat-design-tokens/editor/neovim/nvim-colorizer.json'
+          local handle = assert(io.open(vim.fn.expand(json_path), 'r'))
+          local content = handle:read('*a')
+                handle:close()
+          local colors = vim.json.decode(content)
+          return colors
+        end,
+      }
+    },
+  }
+  ```
+
 ## 2.2.4
 
 ### Patch Changes
