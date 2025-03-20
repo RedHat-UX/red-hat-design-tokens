@@ -1,7 +1,7 @@
 ---
 "@rhds/tokens": major
 ---
-**Surface**: deprecated `--rh-color-surface-dark-alt`.
+**Colors**: deprecated `--rh-color-surface-dark-alt`.
 
 In order to simplify the surface tokens, we've deprecated the 
 `--rh-color-surface-dark-alt` token. While it still exists, it now refers to a color 

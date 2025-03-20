@@ -75,7 +75,7 @@ export const modules: Format = {
       const hasColors = category.some(x => Predicates.isColor(x));
       const contents = [
         await fileHeader({ file }),
-        ...!hasColors ? [] : ['import type { Color } from "./types.js";'],
+        ...!hasColors ? [] : ['import type { Color } from "./tokens.js";'],
         ...defs,
       ].join('\n');
 

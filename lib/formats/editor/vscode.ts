@@ -1,5 +1,5 @@
 import type { Format } from 'style-dictionary/types';
-import { isThemeColorToken } from '../../predicates.ts';
+import { getValueFallback } from './lib.ts';
 
 /**
  * Exports VSCode-style snippets for editor support
@@ -18,7 +18,7 @@ export const vscodeSnippets: Format = {
               token.name.replaceAll('-', ''),
               token.$value?.startsWith?.('#') ? token.$value.replace(/^#/, '') : null,
             ].filter(Boolean),
-            body: [`var(--${token.name}${isThemeColorToken(token) ? '' : `\${1:, ${token.$value}}`})$2`],
+            body: [`var(--${token.name}${getValueFallback(token)})$2`],
             description: token.$description,
           },
         ];

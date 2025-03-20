@@ -1,6 +1,6 @@
 import type { Rule } from 'stylelint';
 
-import { tokens } from '@rhds/tokens/meta.js';
+import { tokens, type TokenName } from '@rhds/tokens/meta.js';
 
 import stylelint from 'stylelint';
 import parser from 'postcss-value-parser';
@@ -36,10 +36,10 @@ const ruleFunction: Rule = () => {
           if (isVarCall(parsedNode)) {
             const [value, ...fallback] = parsedNode.nodes ?? [];
             const { value: name } = value;
-            if (tokens.has(name as `--rh-${string}`)) {
-              const expected = tokens.get(name as `--rh-${string}`);
+            if (tokens.has(name as TokenName)) {
+              const expected = tokens.get(name as TokenName);
               if (expected?.$extensions?.['com.redhat.ux']?.deprecated) {
-                const replacement = `--rh-${expected.original.$value.replace(/{(.*)}/, '$1').replaceAll('.', '-')}`;
+                const replacement = `--rh-${expected.original.$value.toString().replace(/{(.*)}/, '$1').replaceAll('.', '-')}`;
                 const message = `${name} is deprecated, use ${replacement} instead`;
                 stylelint.utils.report({
                   node,

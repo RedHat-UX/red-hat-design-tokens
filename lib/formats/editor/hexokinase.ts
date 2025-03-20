@@ -1,13 +1,13 @@
 import type { Token } from 'style-dictionary';
 import type { Format } from 'style-dictionary/types';
 
-import { isColor } from '../../predicates.ts';
+import { isColor, isDeprecatedRGBHSL, not } from '../../predicates.ts';
 
 /**
  * Recursively creates a list of entries matching token names with values
  * @param token token to match against
  */
-function pairAliasWithValue(token: Token) {
+function pairRefNameWithValue(token: Token) {
   if (typeof token.$value === 'string') {
     const name =
            typeof token.original?.$value === 'string'
@@ -16,7 +16,24 @@ function pairAliasWithValue(token: Token) {
     return [[name, token.$value]];
   } else if (token.$value) {
     return Object.fromEntries(Object.entries(token.$value)
-        .map(pairAliasWithValue));
+        .map(pairRefNameWithValue));
+  } else {
+    return [];
+  }
+}
+
+/**
+ * Recursively creates a list of entries matching token names with values
+ * @param token token to match against
+ */
+function pairVarNameWithValue(token: Token) {
+  if (typeof token.$value === 'string') {
+    const name = `--rh-${token.path.filter(x => x !== '_').join('-')}`;
+    console.log(token.$value, token.$value.match(/#\w{6}/));
+    return [[name, token.$value.match(/#\w{6}/)?.pop() ?? token.$value]];
+  } else if (token.$value) {
+    return Object.fromEntries(Object.entries(token.$value)
+        .map(pairVarNameWithValue));
   } else {
     return [];
   }
@@ -29,20 +46,44 @@ function pairAliasWithValue(token: Token) {
  * capture group 2: **0-9** (_1-3x_)
  * `}`
  */
-const COLOR_TOKEN_RE = /{color\.(\w+)\.(\d{1,3})}/;
+const COLOR_REF_RE = /{color(\.[\w-]+)+}/;
+const COLOR_VAR_RE = /var\(--rh-color(-[\w-]+)+\)/;
+const STRIP_SLS_RE = /^\/|\/$/g;
+
+const patternize = (re: RegExp) => re.toString().replace(STRIP_SLS_RE, '');
 
 /**
- * Exports [vim-hexokinase](https://github.com/RRethy/vim-hexokinase) custom patterns
+ * Exports [vim-hexokinase](https://github.com/RRethy/vim-hexokinase)
+ * custom patterns for token refs e.g. `{color.gray.90}`
  */
-export const hexokinase: Format = {
-  name: 'editor/hexokinase',
+export const hexokinaseRefs: Format = {
+  name: 'editor/hexokinase/refs',
   format: ({ dictionary }) =>
     JSON.stringify({
-      regex_pattern: COLOR_TOKEN_RE.toString().replace(/^\/|\/$/, ''),
+      regex_pattern: patternize(COLOR_REF_RE),
       colour_table: Object.fromEntries(
         dictionary.allTokens
             .filter(isColor)
-            .flatMap(pairAliasWithValue)
+            .filter(not(isDeprecatedRGBHSL))
+            .flatMap(pairRefNameWithValue)
+            .sort()),
+    }, null, 2),
+};
+
+/**
+ * Exports [vim-hexokinase](https://github.com/RRethy/vim-hexokinase)
+ * custom patterns for token refs e.g. `{color.gray.90}`
+ */
+export const hexokinaseVars: Format = {
+  name: 'editor/hexokinase/vars',
+  format: ({ dictionary }) =>
+    JSON.stringify({
+      regex_pattern: patternize(COLOR_VAR_RE),
+      colour_table: Object.fromEntries(
+        dictionary.allTokens
+            .filter(isColor)
+            .filter(not(isDeprecatedRGBHSL))
+            .flatMap(pairVarNameWithValue)
             .sort()),
     }, null, 2),
 };

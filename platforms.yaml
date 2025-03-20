@@ -91,22 +91,20 @@ map:
   buildPath: js/
   prefix: rh
   actions:
-    - writeEsMapDeclaration
+    - compile
   files:
-    - destination: tokens.js
-      format: javascript/map
+    - destination: tokens.ts
+      format: typescript/map
     - destination: tokens.cjs
       format: javascript/map-cjs
-    - destination: meta.js
-      format: javascript/meta-map
+    - destination: meta.ts
+      format: typescript/meta-map
     - destination: meta.cjs
       format: javascript/meta-map-cjs
 
 js:
   transformGroup: js
   buildPath: js/
-  actions:
-    - copyTypes
   files:
     - destination: values.js
       format: javascript/modules
@@ -124,8 +122,12 @@ editor:
       format: editor/snippets/vscode
     - destination: textmate/css.snippets
       format: editor/snippets/textmate
-    - destination: neovim/hexokinase.json
-      format: editor/hexokinase
+    - destination: neovim/hexokinase-refs.json
+      format: editor/hexokinase/refs
+    - destination: neovim/hexokinase-vars.json
+      format: editor/hexokinase/vars
+    - destination: neovim/nvim-colorizer.json
+      format: editor/neovim/colorizer
 
 sketch:
   transformGroup: sketch
