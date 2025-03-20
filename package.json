@@ -134,7 +134,7 @@
     "test": {
       "command": "tape-es 'test/*.js' | tap-difflet",
       "files": [
-        "test/**/*.js",
+        "test/**/*.{ts,js}",
         "plugins/**/*.js",
         "tokens/**/*.ya?ml"
       ],

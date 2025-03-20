@@ -21,8 +21,8 @@ jobs:
       - uses: google/wireit@setup-github-actions-caching/v2
 
       - run: npm ci --prefer-offline
-      - run: npm run test
-      - run: node --experimental-strip-types build.ts
+      - run: npm test
+      - run: npm run build
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
