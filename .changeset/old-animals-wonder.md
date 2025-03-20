@@ -14,8 +14,8 @@ return {"catgoose/nvim-colorizer.lua",
       names_custom = function()
         -- set this to your local machine's path
         local json_path = '~/Developer/redhat-ux/red-hat-design-tokens/editor/neovim/nvim-colorizer.json'
-        local handle = assert(io.open(vim.fn.expand(json_path), "r")) -- assuming path is in the scope
-        local content = handle:read("*a")
+        local handle = assert(io.open(vim.fn.expand(json_path), 'r'))
+        local content = handle:read('*a')
               handle:close()
         local colors = vim.json.decode(content)
         return colors
