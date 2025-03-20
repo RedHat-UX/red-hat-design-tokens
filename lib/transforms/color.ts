@@ -1,4 +1,5 @@
 import type { Transform } from 'style-dictionary/types';
+import type { Token } from 'style-dictionary';
 
 import Color from 'tinycolor2';
 import { isColor, isThemeColorToken } from '../predicates.ts';
@@ -53,6 +54,19 @@ export const rgbValue: Transform = {
   },
 };
 
+const deref = (name: string, value: string | number) =>
+  `var(--rh-${name.replace(/[{}]/g, '').split('.').join('-')}, ${value})`;
+
+export function getLightDarkValue(token: Token) {
+  if (typeof token.$value === 'string' && token.$value.startsWith('light-dark')) {
+    return token.$value;
+  } else {
+    const [light, dark] = token.$value;
+    const [lightRef, darkRef] = token.original.$value;
+    return `light-dark(${deref(lightRef, light)}, ${deref(darkRef, dark)})`;
+  }
+}
+
 /**
  * Theme tokens
  */
@@ -61,8 +75,8 @@ export const themeTokens: Transform = {
   type: 'value',
   transitive: true,
   filter: isThemeColorToken,
-  transform() {
-    return '';
+  transform(token) {
+    return getLightDarkValue(token);
   },
 };
 

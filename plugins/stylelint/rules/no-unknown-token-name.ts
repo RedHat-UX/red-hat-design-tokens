@@ -1,7 +1,7 @@
 import type { Rule } from 'stylelint';
 
 import { dirname, sep } from 'node:path';
-import { tokens } from '@rhds/tokens';
+import { tokens, type TokenName } from '@rhds/tokens';
 
 import stylelint from 'stylelint';
 import parser from 'postcss-value-parser';
@@ -41,7 +41,7 @@ const ruleFunction: Rule = (_, opts) => {
             const { value } = child;
             if (value.startsWith('--rh')
                 && !value.startsWith(`--${tagName}`)
-                && !tokens.has(value as `--rh-${string}`)
+                && !tokens.has(value)
                 && !allowed.has(value)
                 || migrations.has(value)) {
               const message = `Expected ${value} to be a known token name`;

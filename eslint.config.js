@@ -9,6 +9,7 @@ export default [
       '**/*.yml',
       '**/*.yaml',
       '**/*.js',
+      'js/*.ts',
       '!docs/**/*.js',
       '**/*.css',
       '**/*.svg',

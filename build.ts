@@ -93,23 +93,24 @@ export async function build(): Promise<void> {
   sd.registerFilter(Filters.isDarkThemeColorToken);
 
   sd.registerFormat(Formats.litCss);
-  sd.registerFormat(Formats.cssRhdsColorContextConsumer);
-  sd.registerFormat(Formats.cssRhdsColorContextProvider);
-  sd.registerFormat(Formats.jsRhdsColorContextConsumer);
-  sd.registerFormat(Formats.jsRhdsColorContextProvider);
-  sd.registerFormat(Formats.mapEs);
+  sd.registerFormat(Formats.cssRhdsDefaultTheme);
+  sd.registerFormat(Formats.cssRhdsColorPalette);
+  sd.registerFormat(Formats.jsRhdsDefaultTheme);
+  sd.registerFormat(Formats.jsRhdsColorPalette);
+  sd.registerFormat(Formats.mapTs);
   sd.registerFormat(Formats.mapCjs);
-  sd.registerFormat(Formats.metaMapEs);
+  sd.registerFormat(Formats.metaMapTs);
   sd.registerFormat(Formats.metaMapCjs);
   sd.registerFormat(Formats.modules);
   sd.registerFormat(Formats.vscodeSnippets);
   sd.registerFormat(Formats.textmateSnippets);
-  sd.registerFormat(Formats.hexokinase);
+  sd.registerFormat(Formats.hexokinaseRefs);
+  sd.registerFormat(Formats.hexokinaseVars);
+  sd.registerFormat(Formats.nvimColorizer);
   sd.registerFormat(Formats.docsPage);
 
+  sd.registerAction(Actions.compile);
   sd.registerAction(Actions.copyAssets);
-  sd.registerAction(Actions.copyTypes);
-  sd.registerAction(Actions.writeEsMapDeclaration);
   sd.registerAction(Actions.writeVSIXManifest);
   sd.registerAction(Actions.descriptionFile);
 

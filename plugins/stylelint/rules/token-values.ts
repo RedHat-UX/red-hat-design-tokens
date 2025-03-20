@@ -37,12 +37,12 @@ const ruleFunction: Rule = () => {
           if (isVarCall(parsedNode)) {
             const [value, , ...values] = parsedNode.nodes ?? [];
             const { value: name } = value;
-            if (tokens.has(name as `--rh-${string}`)) {
+            if (tokens.has(name)) {
               const actual = parser.stringify(values);
-              const expected = tokens.get(name as `--rh-${string}`);
+              const expected = tokens.get(name);
               if (expected === null && actual == null) {
                 return;
-              } else if (expected?.toString() !== actual) {
+              } else if ((expected as string)?.toString() !== actual) {
                 const message =
                     expected === null ? `Expected ${name} to not have a fallback value`
                   : `Expected ${name} to equal ${expected}`;
