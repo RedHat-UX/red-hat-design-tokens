@@ -16,6 +16,13 @@
   "main": "js/tokens.cjs",
   "module": "js/tokens.js",
   "types": "js/tokens.d.ts",
+  "designTokensLanguageServer": {
+    "prefix": "rh",
+    "tokensFiles": [
+      "./tokens/**/*.yaml",
+      "./tokens/**/*.yml"
+    ]
+  },
   "exports": {
     ".": {
       "import": "./js/tokens.js",
@@ -132,8 +139,9 @@
       "service": true
     },
     "test": {
-      "command": "tape-es 'test/*.js' | tap-difflet",
+      "command": "tape-es 'test/*.ts' | tap-difflet",
       "files": [
+        "**/*.test.{ts,js}",
         "test/**/*.{ts,js}",
         "plugins/**/*.js",
         "tokens/**/*.ya?ml"

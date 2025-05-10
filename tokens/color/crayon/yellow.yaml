@@ -1,6 +1,7 @@
 #Yellow replaces gold from RHDS Tokens 1.0
 
 color:
+  $type: color
   yellow:
     $extensions:
       isCrayon: true

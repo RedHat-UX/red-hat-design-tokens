@@ -1,4 +1,5 @@
 color:
+  $type: color
   canvas:
     $extensions:
       com.redhat.ux:
