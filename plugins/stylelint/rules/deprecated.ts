@@ -38,7 +38,7 @@ const ruleFunction: Rule = () => {
             const { value: name } = value;
             if (tokens.has(name as TokenName)) {
               const expected = tokens.get(name as TokenName);
-              if (expected?.$extensions?.['com.redhat.ux']?.deprecated) {
+              if (expected?.$deprecated) {
                 const replacement = `--rh-${expected.original.$value.toString().replace(/{(.*)}/, '$1').replaceAll('.', '-')}`;
                 const message = `${name} is deprecated, use ${replacement} instead`;
                 stylelint.utils.report({
