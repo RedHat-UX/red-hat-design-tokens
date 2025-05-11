@@ -1,4 +1,5 @@
 color:
+  $type: color
   interactive:
     $extensions:
       com.redhat.ux:

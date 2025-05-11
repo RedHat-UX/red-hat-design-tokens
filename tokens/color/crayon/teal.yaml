@@ -1,6 +1,7 @@
 # Teal replaces cyan from RHDS Tokens 1.0
 
 color:
+  $type: color
   teal:
     $extensions:
       isCrayon: true
