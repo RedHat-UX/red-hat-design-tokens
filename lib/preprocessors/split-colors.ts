@@ -23,8 +23,8 @@ function splitColorsRecurse(slice: Tokens | Token, opts: Config) {
           if (token[tkey]?.$value) {
             const $value = `{color.${key}.${tkey}}`;
             const tname = `--rh-color-${key}-${tkey}`;
-            token[`${tkey}-hsl`] = { $value, comment: `DEPRECATED. Use color transforms instead e.g. hsla(from var(${tname}) h s l / 10%)` };
-            token[`${tkey}-rgb`] = { $value, comment: `DEPRECATED. Use color transforms instead e.g. rgba(from var(${tname}) r g b / 10%)` };
+            token[`${tkey}-hsl`] = { $value, $deprecated: `Use color transforms instead e.g. hsla(from var(${tname}) h s l / 10%)` };
+            token[`${tkey}-rgb`] = { $value, $deprecated: `Use color transforms instead e.g. rgba(from var(${tname}) r g b / 10%)` };
           }
         }
       } else if (typeof token === 'object') {
