@@ -1,5 +1,11 @@
 # @rhds/tokens
 
+## 3.0.1
+
+### Patch Changes
+
+- 55e7862: Add `$deprecated` field where applicable
+
 ## 3.0.0
 
 ### Major Changes
