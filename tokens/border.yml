@@ -13,6 +13,9 @@ border:
     lg:
       $value: '{length.2xs}'
       $description: '3px border width: Example: Expanded Accordion panel'
+    xl:
+      $value: '{length.2xs}'
+      $description: '3px border width: Example: Expanded Accordion panel'
 
   radius:
     $extensions:

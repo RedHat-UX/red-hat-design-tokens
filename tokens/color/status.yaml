@@ -5,6 +5,22 @@ color:
       com.redhat.ux:
         order: 500
 
+    disabled:
+      $description: >-
+        TBD
+      _:
+        $value:
+          - '{color.gray.30}'
+          - '{color.gray.40}'
+        $description: >-
+          TBD
+      on-light:
+        $value: '{color.gray.30}'
+        $description: TBD
+      on-dark:
+        $value: '{color.gray.40}'
+        $description: TBD
+
     danger:
       $description: >-
         Represents an action which could have destructive consequences, e.g. deleting a file.
