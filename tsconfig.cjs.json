@@ -2,9 +2,6 @@
   "include": [
     "./plugins"
   ],
-  "exclude": [
-    "./plugins/**/*.js"
-  ],
   "extends": "./tsconfig.output.json",
   "compilerOptions": {
     "esModuleInterop": true,
