@@ -207,7 +207,7 @@ export async function PreviewPagePlugin(eleventyConfig: UserConfig) {
           <td class="sample theme-token">
             <div class="values">
               <samp style="background-color: var(--${derefValue(token.original.$value.at(0))});"></samp>
-              <samp style="background-color: var(--${derefValue(token.original.$value.at(1))});"></samp>
+              <samp style="background-color: var(--${derefValue(token.original.$value.at(-1))});"></samp>
             </div>
           </td>
           <td class="token name">

@@ -29,7 +29,7 @@ function pairRefNameWithValue(token: Token) {
 function pairVarNameWithValue(token: Token) {
   if (typeof token.$value === 'string') {
     const name = `--rh-${token.path.filter(x => x !== '_').join('-')}`;
-    console.log(token.$value, token.$value.match(/#\w{6}/));
+    // console.log(token.$value, token.$value.match(/#\w{6}/));
     return [[name, token.$value.match(/#\w{6}/)?.pop() ?? token.$value]];
   } else if (token.$value) {
     return Object.fromEntries(Object.entries(token.$value)
