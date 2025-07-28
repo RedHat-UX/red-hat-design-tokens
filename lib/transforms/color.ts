@@ -61,8 +61,10 @@ export function getLightDarkValue(token: Token) {
   if (typeof token.$value === 'string' && token.$value.startsWith('light-dark')) {
     return token.$value;
   } else {
-    const [light, dark] = token.$value;
-    const [lightRef, darkRef] = token.original.$value;
+    const [light] = token.$value;
+    const dark = token.$value.at(-1);
+    const [lightRef] = token.original.$value;
+    const darkRef = token.original.$value.at(-1);
     return `light-dark(${deref(lightRef, light)}, ${deref(darkRef, dark)})`;
   }
 }
