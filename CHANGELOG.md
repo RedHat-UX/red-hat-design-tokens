@@ -1,5 +1,11 @@
 # @rhds/tokens
 
+## 3.0.2
+
+### Patch Changes
+
+- 338a97d: Fixed dark value for `--rh-color-surface` in light-dark()
+
 ## 3.0.1
 
 ### Patch Changes
