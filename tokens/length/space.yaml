@@ -8,6 +8,18 @@ space:
         patterns as well as simplify the handoff process between designers and developers.
         Consistent spacing helps maintain balance and rhythm across the system.
 
+  3xs:
+    $value: '{length.3xs}'
+    $description: 1px spacer
+    $extensions:
+      com.redhat.ux:
+        color: '#F00'
+  2xs:
+    $value: '{length.2xs}'
+    $description: 2px spacer
+    $extensions:
+      com.redhat.ux:
+        color: '#F00'
   xs:
     $value: '{length.xs}'
     $description: 4px spacer

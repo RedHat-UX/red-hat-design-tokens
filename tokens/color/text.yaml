@@ -27,6 +27,27 @@ color:
 
           [wcag]: https://www.w3.org/WAI/WCAG2AA-Conformance.html
 
+    status:
+      disabled:
+        _:
+          $value:
+            - '{color.gray.50}'
+            - '{color.gray.60}'
+          $description: >-
+            TBD
+        on-light:
+          $value: '{color.gray.50}'
+          $description: TBD
+          attributes:
+            category: border
+            type: color
+        on-dark:
+          $value: '{color.gray.60}'
+          $description: TBD
+          attributes:
+            category: border
+            type: color
+
     primary:
       _:
         $value:

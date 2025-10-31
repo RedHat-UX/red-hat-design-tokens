@@ -8,6 +8,26 @@ color:
         order: 80
         heading: Color
 
+    readonly:
+      _:
+        $value:
+          - '{color.gray.20}'
+          - '{color.gray.70}'
+        $description: >-
+          TBD
+      on-light:
+        $value: '{color.gray.20}'
+        $description: TBD
+        attributes:
+          category: border
+          type: color
+      on-dark:
+        $value: '{color.gray.70}'
+        $description: TBD
+        attributes:
+          category: border
+          type: color
+
     strong:
       _:
         $value:
@@ -96,7 +116,27 @@ color:
         attributes:
           category: border
           type: color
+
     status:
+      disabled:
+        _:
+          $value:
+            - '{color.gray.40}'
+            - '{color.gray.50}'
+          $description: >-
+            TBD
+        on-light:
+          $value: '{color.gray.40}'
+          $description: TBD
+          attributes:
+            category: border
+            type: color
+        on-dark:
+          $value: '{color.gray.50}'
+          $description: TBD
+          attributes:
+            category: border
+            type: color
       # status-danger should replace destructive during next major release
       danger:
         _:
