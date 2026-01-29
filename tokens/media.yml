@@ -1,5 +1,5 @@
 media:
-  $type: mediaQuery
+  $type: dimension
   $extensions:
     com.redhat.ux:
       use: breakpoint
