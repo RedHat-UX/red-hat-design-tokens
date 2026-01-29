@@ -1,6 +1,7 @@
 letter-spacing:
   body:
     text:
+      $type: dimension
       $value: 0.0125rem
       $description: Extra letter spacing for small body text sizes
       attributes:

@@ -15,6 +15,7 @@ border:
       $description: '3px border width: Example: Expanded Accordion panel'
 
   radius:
+    $type: dimension
     $extensions:
       com.redhat.ux:
         heading: Radius
