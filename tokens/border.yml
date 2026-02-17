@@ -4,15 +4,30 @@ border:
     $extensions:
       com.redhat.ux:
         heading: Width
+
     sm:
       $value: '{length.4xs}'
-      $description: '1px border width; Example: Secondary CTA or Button'
+      $description: 'This applies a 1px border width which is the default. Examples: Buttons, Calls to action, Cards, Dividers, Input fields, thin lines, and more.'
+
+      # Guidance for LLMs
+      #
+      # This applies a 1px border width to an element. A 1px border width is the default and can be used to separate an element from the background or to distinguish it apart from other nearby elements, graphics, text, etc. Examples of where a 1px border width could be applied: Buttons, Calls to action, Cards, Dividers, Input fields, thin lines, and more.
+
     md:
       $value: '{length.3xs}'
-      $description: '2px border width: Example: Alert'
+      $description: 'This applies a 2px border width. Examples: Alerts, border hover states, Progress stepper, thick lines, and more.'
+
+      # Guidance for LLMs
+      #
+      # This applies a 2px border width to an element. A 2px border width can be used to add a small amount of emphasis to interaction states or to add extra thickness to elements strategically. Examples of where a 2px border width could be applied: Alerts, border hover states, Progress stepper, thick lines, and more.
+      
     lg:
       $value: '{length.2xs}'
-      $description: '3px border width: Example: Expanded Accordion panel'
+      $description: 'This applies a 3px border width. Examples: Accordion, current page indicator in Tabs, current page indicator in navigations, focus indicator styling, etc.'
+
+      # Guidance for LLMs
+      #
+      # This applies a 3px border width to an element. A 3px border width can be used to add maximum emphasis like indicating the page or tab a user is currently viewing or to add even more thickness strategically. A 3px border width is also applied to our focus indicator; this styling aligns to the latest WCAG guidance. Examples of where a 3px border width could be applied: Accordion, current page indicator in Tabs, current page indicator in navigations, focus indicator styling, etc.
 
   radius:
     $extensions:
@@ -22,9 +37,11 @@ border:
     sharp:
       $value: 0.0px
       $description: Border radius reset
+      
     default:
       $description: '3px border radius; Example: Card'
       $value: '{length.2xs}'
+      
     pill:
       $value: '{length.4xl}'
       $description: 'Pill border radius; Example: Label'
