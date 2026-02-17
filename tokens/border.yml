@@ -7,11 +7,12 @@ border:
 
     sm:
       $value: '{length.4xs}'
-      $description: 'This applies a 1px border width which is the default. Examples: Buttons, Calls to action, Cards, Dividers, Input fields, thin lines, and more.'
-
-      # Guidance for LLMs
-      #
-      # This applies a 1px border width to an element. A 1px border width is the default and can be used to separate an element from the background or to distinguish it apart from other nearby elements, graphics, text, etc. Examples of where a 1px border width could be applied: Buttons, Calls to action, Cards, Dividers, Input fields, thin lines, and more.
+      $description: >-
+        Applies a 1px border width to an element.
+        A 1px border width is the default and should be used to separate an element from the
+        background or to distinguish it apart from other nearby elements, graphics, text, etc.
+        Examples of where a 1px border width should be applied: Buttons, Calls to action, Cards,
+        Dividers, Input fields, thin lines, and more.
 
     md:
       $value: '{length.3xs}'
