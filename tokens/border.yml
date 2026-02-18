@@ -8,32 +8,29 @@ border:
     sm:
       $value: '{length.4xs}'
       $description: >-
-      
-      This token applies a 1px border width, it SHALL be considered the default width for all borders and dividers.
-      It SHOULD be used to establish a baseline thickness. It MAY also be used to establish visual separation with
-      a container or thin line. It is RECOMMENDED to apply this token to elements that require a thin border or line
-      like Buttons, Calls to action, Cards, Dividers, Input fields, Tables, and more. This token MUST NOT be used
-      for emphasis like indicating a selected state. Applying this token to all 4 sides of a border is OPTIONAL.
+        This token applies a 1px border width, it shall be considered the default width for all borders and dividers.
+        It should be used to establish a baseline thickness. It may also be used to establish visual separation with
+        a container or thin line. It is recommended to apply this token to elements that require a thin border or line
+        like Buttons, Calls to action, Cards, Dividers, Input fields, Tables, and more. This token must not be used
+        for emphasis like indicating a selected state. Applying this token to all 4 sides of a border is optional.
 
     md:
       $value: '{length.3xs}'
-      $description: 'This applies a 2px border width. Examples: Alerts, border hover states, Progress stepper, thick lines, and more.'
+      $description: >-
+        This token applies a 2px border width. It should be used to add a little extra thickness to a thin border
+        or line when needed. It must be used to ensure interaction states are discernible by more than just color as
+        outlined by WCAG guidelines. It is recommended to apply this token to elements that already have a thin border
+        or line like Alerts, Progress stepper, and more. This token must not be applied to all 4 sides of a border.
 
-      This token applies a 2px border width. It SHOULD be used to add a little extra thickness to a thin border
-      or line when needed. It MUST be used to ensure interaction states are discernible by more than just color as
-      outlined by WCAG guidelines. It is RECOMMENDED to apply this token to elements that already have a thin border
-      or line like Alerts, Progress stepper, and more. This token MUST NOT be applied to all 4 sides of a border.
-      
     lg:
       $value: '{length.2xs}'
-      $description: 'This applies a 3px border width. Examples: Accordion, current page indicator in Tabs, current page indicator in navigations, focus indicator styling, etc.'
+      $description: >-
+        This token applies a 3px border width. It should be used as strong emphasis like indicating a current page
+        or selected state. It must be used for the focus indicator as well according to WCAG guidelines. It is
+        recommended to apply this token to elements that require directional accent borders like Accordions, Disclosures,
+        Jump links, Navigations, Tabs, and more. Except for the focus indicator, this token must not be applied to all
+        4 sides of a border.
 
-      This token applies a 3px border width. It SHOULD be used as strong emphasis like indicating a current page
-      or selected state. It MUST be used for the focus indicator as well according to WCAG guidelines. It is
-      RECOMMENDED to apply this token to elements that require directional accent borders like Accordions, Disclosures,
-      Jump links, Navigations, Tabs, and more. Except for the focus indicator, this token MUST NOT be applied to all
-      4 sides of a border.
-      
   radius:
     $extensions:
       com.redhat.ux:
@@ -42,11 +39,11 @@ border:
     sharp:
       $value: 0.0px
       $description: Border radius reset
-      
+
     default:
       $description: '3px border radius; Example: Card'
       $value: '{length.2xs}'
-      
+
     pill:
       $value: '{length.4xl}'
       $description: 'Pill border radius; Example: Label'
