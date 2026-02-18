@@ -8,28 +8,32 @@ border:
     sm:
       $value: '{length.4xs}'
       $description: >-
-        Applies a 1px border width to an element.
-        A 1px border width is the default and should be used to separate an element from the
-        background or to distinguish it apart from other nearby elements, graphics, text, etc.
-        Examples of where a 1px border width should be applied: Buttons, Calls to action, Cards,
-        Dividers, Input fields, thin lines, and more.
+      
+      This token applies a 1px border width, it SHALL be considered the default width for all borders and dividers.
+      It SHOULD be used to establish a baseline thickness. It MAY also be used to establish visual separation with
+      a container or thin line. It is RECOMMENDED to apply this token to elements that require a thin border or line
+      like Buttons, Calls to action, Cards, Dividers, Input fields, Tables, and more. This token MUST NOT be used
+      for emphasis like indicating a selected state. Applying this token to all 4 sides of a border is OPTIONAL.
 
     md:
       $value: '{length.3xs}'
       $description: 'This applies a 2px border width. Examples: Alerts, border hover states, Progress stepper, thick lines, and more.'
 
-      # Guidance for LLMs
-      #
-      # This applies a 2px border width to an element. A 2px border width can be used to add a small amount of emphasis to interaction states or to add extra thickness to elements strategically. Examples of where a 2px border width could be applied: Alerts, border hover states, Progress stepper, thick lines, and more.
+      This token applies a 2px border width. It SHOULD be used to add a little extra thickness to a thin border
+      or line when needed. It MUST be used to ensure interaction states are discernible by more than just color as
+      outlined by WCAG guidelines. It is RECOMMENDED to apply this token to elements that already have a thin border
+      or line like Alerts, Progress stepper, and more. This token MUST NOT be applied to all 4 sides of a border.
       
     lg:
       $value: '{length.2xs}'
       $description: 'This applies a 3px border width. Examples: Accordion, current page indicator in Tabs, current page indicator in navigations, focus indicator styling, etc.'
 
-      # Guidance for LLMs
-      #
-      # This applies a 3px border width to an element. A 3px border width can be used to add maximum emphasis like indicating the page or tab a user is currently viewing or to add even more thickness strategically. A 3px border width is also applied to our focus indicator; this styling aligns to the latest WCAG guidance. Examples of where a 3px border width could be applied: Accordion, current page indicator in Tabs, current page indicator in navigations, focus indicator styling, etc.
-
+      This token applies a 3px border width. It SHOULD be used as strong emphasis like indicating a current page
+      or selected state. It MUST be used for the focus indicator as well according to WCAG guidelines. It is
+      RECOMMENDED to apply this token to elements that require directional accent borders like Accordions, Disclosures,
+      Jump links, Navigations, Tabs, and more. Except for the focus indicator, this token MUST NOT be applied to all
+      4 sides of a border.
+      
   radius:
     $extensions:
       com.redhat.ux:
