@@ -8,28 +8,30 @@ border:
     sm:
       $value: '{length.4xs}'
       $description: >-
-        This token applies a 1px border width, it shall be considered the default width for all borders and dividers.
-        It should be used to establish a baseline thickness. It may also be used to establish visual separation with
-        a container or thin line. It is recommended to apply this token to elements that require a thin border or line
-        like Buttons, Calls to action, Cards, Dividers, Input fields, Tables, and more. This token must not be used
-        for emphasis like indicating a selected state. Applying this token to all 4 sides of a border is optional.
+        This token applies a 1px border width, it shall be considered the default width for all borders and dividing lines.
+        It should be used to establish a baseline thickness. It may also be used to establish visual separation with a
+        container or thin line. It is recommended to apply this token to element containers that require a thin border or
+        line like Buttons, Calls to action, Cards, Fields, Tables, and more. This token must not be used for strong
+        directional emphasis like indicating a selected state. Applying this token as a border to all 4 sides of a container
+        at once is optional.
 
     md:
       $value: '{length.3xs}'
       $description: >-
-        This token applies a 2px border width. It should be used to add a little extra thickness to a thin border
-        or line when needed. It must be used to ensure interaction states are discernible by more than just color as
-        outlined by WCAG guidelines. It is recommended to apply this token to elements that already have a thin border
-        or line like Alerts, Progress stepper, and more. This token must not be applied to all 4 sides of a border.
+        This token applies a 2px border width. It should be used to add extra thickness or visual separation to a thin
+        border or line when needed. It must be used to ensure that hover, focus, and active interaction states are
+        discernible by more than just color alone as outlined by WCAG guidelines. It is recommended to apply this token
+        to element containers that already display a thin border or line like Alerts, Progress stepper, and more.
+        Applying this token as a border to all 4 sides of a container at once is optional.
 
     lg:
       $value: '{length.2xs}'
       $description: >-
-        This token applies a 3px border width. It should be used as strong emphasis like indicating a current page
-        or selected state. It must be used for the focus indicator as well according to WCAG guidelines. It is
-        recommended to apply this token to elements that require directional accent borders like Accordions, Disclosures,
-        Jump links, Navigations, Tabs, and more. Except for the focus indicator, this token must not be applied to all
-        4 sides of a border.
+        This token applies a 3px border width. It should be used as strong directional emphasis like viewing the current
+        page or indicating a selected state. It must be used for the focus indicator as well according to WCAG guidelines.
+        It is recommended to apply this token to element container borders that require high visual weight like Accordions,
+        Disclosures, Jump links, Navigations, Tabs, and more. Except for the focus indicator, this token must not be
+        applied to all 4 sides of a container border at once.
 
   radius:
     $extensions:
@@ -38,13 +40,24 @@ border:
 
     sharp:
       $value: 0.0px
-      $description: Border radius reset
+      $description: >-
+        This token resets the border radius of a container. It should be used to remove rounding and apply perfectly sharp
+        corners to a container. This token must be applied to all 4 corners of a container at once.
 
     default:
-      $description: '3px border radius; Example: Card'
       $value: '{length.2xs}'
+      $descrition: >-
+        This token applies 3px to each corner of a container. It shall be considered the default for containers that
+        need rounded corners. It should be used to soften the visual footprint of a container in a layout and promote
+        a modern look and feel. It is recommended to apply this token to element containers that require subtle rounded
+        corners like Buttons, Calls to action, Cards, Dialogs, and more. This token must be applied to all 4 corners of
+        a container at once.
 
     pill:
       $value: '{length.4xl}'
-      $description: 'Pill border radius; Example: Label'
-
+      $description: >-
+        This token applies 64px to each corner of a container. It should be used as a visually-distinct container option
+        for compact elements like Badge. It must be used to convert rectilinear containers into circle or pill-shaped
+        containers. It must not replace the default 3px as an alternate rounded corner design treatment. It is recommended
+        to apply this token to elements that require circle or pill-shaped containers like Avatars, Badges, Switches,
+        Tags, and more. This token must be applied to all 4 corners of a container at once.
