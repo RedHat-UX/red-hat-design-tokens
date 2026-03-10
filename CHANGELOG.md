@@ -1,5 +1,11 @@
 # @rhds/tokens
 
+## 3.0.3
+
+### Patch Changes
+
+- 257d876: Clarify use cases for `width` and `radius` tokens like `--rh-border-width-sm` and `--rh-border-radius-sharp`.
+
 ## 3.0.2
 
 ### Patch Changes
