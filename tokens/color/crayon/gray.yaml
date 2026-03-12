@@ -35,6 +35,11 @@ color:
       $description: Subtle icon (hover state)
       attributes:
         type: gray
+    45:
+      $value: '#8C8C8C'
+      $description: 
+      attributes:
+        type: gray
     50:
       $value: '#707070'
       $description: Subtle icon
