@@ -30,6 +30,7 @@ border:
         should not be applied to all 4 sides at once.
 
   radius:
+    $type: dimension
     $extensions:
       com.redhat.ux:
         heading: Radius
