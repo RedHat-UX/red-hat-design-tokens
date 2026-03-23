@@ -37,7 +37,7 @@ color:
         type: gray
     45:
       $value: '#8C8C8C'
-      $description: Call to action text underline (unified theme)
+      $description: Call to action text decoration (unified theme)
       attributes:
         type: gray
     50:
