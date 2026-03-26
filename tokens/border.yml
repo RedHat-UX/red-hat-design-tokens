@@ -4,15 +4,30 @@ border:
     $extensions:
       com.redhat.ux:
         heading: Width
+
     sm:
       $value: '{length.4xs}'
-      $description: '1px border width; Example: Secondary CTA or Button'
+      $description: >-
+        Applies a 1px border width to at least 1 side of a container. This shall be the default width for all borders and
+        lines. It should be used to establish baseline thickness or visual separation with a container or thin line. It must
+        not be used for strong directional emphasis like indicating a selected state. Recommended for elements like Button,
+        Card, or Field. Applying to all 4 sides at once is optional.
+
     md:
       $value: '{length.3xs}'
-      $description: '2px border width: Example: Alert'
+      $description: >-
+        Applies a 2px border width to at least 1 side of a container. It should be used to add emphasis or visual separation
+        beyond a 1px border. Recommended for elements needing extra thickness like Alert or Progress stepper. It must be used
+        to ensure hover, focus, and active states are discernible by more than color alone per WCAG. Applying to all 4 sides
+        at once is optional.
+
     lg:
       $value: '{length.2xs}'
-      $description: '3px border width: Example: Expanded Accordion panel'
+      $description: >-
+        Applies a 3px border width to 1 side of a container. It should be used for strong directional emphasis like indicating
+        a current page, expanded, or selected state. Recommended for elements needing heavy visual weight like Accordion,
+        Navigation, or Tabs. It must also be used for the focus indicator border per WCAG. Except for the focus indicator, it
+        should not be applied to all 4 sides at once.
 
   radius:
     $extensions:
@@ -21,11 +36,20 @@ border:
 
     sharp:
       $value: 0.0px
-      $description: Border radius reset
+      $description: >-
+        This token resets the border radius of a container back to 0 or sharp. It must be applied to all 4 corners of a
+        container at once.
+
     default:
-      $description: '3px border radius; Example: Card'
       $value: '{length.2xs}'
+      $description: >-
+        Applies a 3px border radius to at least 1 corner of a container. This shall be the default for all containers needing
+        rounded corners. It should be used to soften a container's visual footprint. Recommended for elements with subtle
+        rounded corners like Button, Card, or Dialog. It must be applied to all 4 corners of a container at once.
+
     pill:
       $value: '{length.4xl}'
-      $description: 'Pill border radius; Example: Label'
-
+      $description: >-
+        Applies a 64px border radius to at least 1 corner of a container. It should be used for elements needing a circle or
+        pill-shaped background like Avatar, Badge, or Switch. It may also be used for Hybrid style branding. Applying to all
+        4 corners at once is optional. It may replace the default 3px radius when not all corners need the same value.
