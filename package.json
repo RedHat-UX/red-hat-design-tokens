@@ -197,5 +197,9 @@
     "vsce": "^2.15.0",
     "wireit": "^0.14.12",
     "yaml": "^2.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RedHat-UX/red-hat-design-tokens.git"
   }
 }
