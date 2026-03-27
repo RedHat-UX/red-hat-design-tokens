@@ -7,6 +7,8 @@ color:
         order: 300
         description: >-
           Avoid using *any* red color token for danger or error messaging.
+    05:
+      $value: '#FEF0F0'
     10:
       $value: '#FCE3E3'
     20:
