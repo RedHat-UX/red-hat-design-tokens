@@ -10,7 +10,8 @@
     "start": "wireit",
     "lint": "eslint lib plugins test docs",
     "format": "eslint --fix lib plugins test docs",
-    "test": "wireit"
+    "test": "wireit",
+    "test:smoke": "wireit"
   },
   "type": "module",
   "main": "js/tokens.cjs",
@@ -139,6 +140,12 @@
       "service": true
     },
     "test": {
+      "dependencies": [
+        "test:tape",
+        "test:smoke"
+      ]
+    },
+    "test:tape": {
       "command": "tape-es 'test/*.ts' | tap-difflet",
       "files": [
         "**/*.test.{ts,js}",
@@ -148,6 +155,15 @@
       ],
       "dependencies": [
         "build"
+      ]
+    },
+    "test:smoke": {
+      "command": "node --test test/smoke.cjs",
+      "files": [
+        "test/smoke.cjs"
+      ],
+      "dependencies": [
+        "style-dictionary"
       ]
     },
     "package-vscode": {
