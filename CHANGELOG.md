@@ -1,5 +1,16 @@
 # @rhds/tokens
 
+## 3.1.0
+
+### Minor Changes
+
+- 1d0045a: Added new `red-05` crayon token
+- d934124: Add new `gray-45` crayon color.
+
+### Patch Changes
+
+- 257d876: Clarify use cases for `width` and `radius` tokens like `--rh-border-width-sm` and `--rh-border-radius-sharp`.
+
 ## 3.0.2
 
 ### Patch Changes
