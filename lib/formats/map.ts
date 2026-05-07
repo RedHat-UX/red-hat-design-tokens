@@ -132,7 +132,7 @@ export const tokens = new TokenMetaMap(${JSON.stringify(makeMetaRecord(dictionar
 
 
 /**
- * CommonJS token map
+ * CommonJS token map (pure JavaScript with JSDoc types)
  * @example ```js
  * const { tokens } = require('@rhds/tokens');
  *
@@ -142,17 +142,68 @@ export const tokens = new TokenMetaMap(${JSON.stringify(makeMetaRecord(dictionar
  */
 export const mapCjs: Format = {
   name: 'javascript/map-cjs',
-  format: async (...args) =>
-    (await mapTs
-        .format(...args) as string)
-        .replace('export const tokens', 'exports.tokens'),
+  async format({ file, dictionary }) {
+    const tokenNameUnion = dictionary.allTokens.map(x => `'--${x.name}'`).join(' | ');
+    return [
+      await fileHeader({ file }),
+      /* javascript */`\
+/**
+ * @typedef {${tokenNameUnion}} TokenName
+ */
+
+/**
+ * @typedef {string | number} TokenValue
+ */
+
+/**
+ * @typedef {Object} Color
+ * @property {boolean} isLight
+ * @property {string} hex
+ * @property {{ r: number, g: number, b: number, a: number }} rgb
+ * @property {{ h: number, s: number, l: number, a: number }} hsl
+ * @property {{ h: number, s: number, v: number, a: number }} hsv
+ */
+
+/**
+ * @typedef {Object} DesignToken
+ * @property {*} [value]
+ * @property {*} [$value]
+ * @property {string} [type]
+ * @property {string} [$type]
+ * @property {string} [$description]
+ * @property {string} [name]
+ * @property {string} [comment]
+ * @property {boolean} [themeable]
+ * @property {Record<string, unknown>} [attributes]
+ * @property {boolean} [isSource]
+ * @property {Partial<DesignToken>} [original]
+ */
+
+class TokenMap {
+  #map;
+  get size() { return this.#map.size; }
+  [Symbol.iterator]() { return this.#map[Symbol.iterator](); }
+  constructor(entries) { this.#map = new Map(Object.entries(entries)); }
+  get(key) { return this.#map.get(key); }
+  has(key) { return this.#map.has(key); }
+  keys() { return this.#map.keys(); }
+  values() { return this.#map.values(); }
+  entries() { return this.#map.entries(); }
+  forEach(fn, thisArg) {
+    this.#map.forEach((v, k) => { fn.call(thisArg, v, k, this); });
+  }
+}
+
+exports.tokens = new TokenMap(${JSON.stringify(makeTokensRecord(dictionary), null, 2)});`,
+    ].join('\n');
+  },
 };
 
 /**
- * CommonJS token map
+ * CommonJS token meta map (pure JavaScript with JSDoc types)
  * @example Importing token objects in CommonJS modules
  *          ```js
- *          import { tokens } from '@rhds/tokens/meta.js';
+ *          const { tokens } = require('@rhds/tokens/meta.js');
  *
  *          const family = tokens.get('--rh-font-family-body-text');
  *          console.log(family.$description);
@@ -161,9 +212,46 @@ export const mapCjs: Format = {
  */
 export const metaMapCjs: Format = {
   name: 'javascript/meta-map-cjs',
-  format: async (...args) =>
-    (await metaMapTs
-        .format(...args) as string)
-        .replace(TYPE_EXPORT, '')
-        .replace('export const tokens', 'exports.tokens'),
+  async format({ file, dictionary }) {
+    const tokenNameUnion = dictionary.allTokens.map(x => `'--${x.name}'`).join(' | ');
+    return [
+      await fileHeader({ file }),
+      /* javascript */`\
+/**
+ * @typedef {${tokenNameUnion}} TokenName
+ */
+
+/**
+ * @typedef {Object} DesignToken
+ * @property {*} [value]
+ * @property {*} [$value]
+ * @property {string} [type]
+ * @property {string} [$type]
+ * @property {string} [$description]
+ * @property {string} [name]
+ * @property {string} [comment]
+ * @property {boolean} [themeable]
+ * @property {Record<string, unknown>} [attributes]
+ * @property {boolean} [isSource]
+ * @property {Partial<DesignToken>} [original]
+ */
+
+class TokenMetaMap {
+  #map;
+  get size() { return this.#map.size; }
+  [Symbol.iterator]() { return this.#map[Symbol.iterator](); }
+  constructor(entries) { this.#map = new Map(Object.entries(entries)); }
+  get(key) { return this.#map.get(key); }
+  has(key) { return this.#map.has(key); }
+  keys() { return this.#map.keys(); }
+  values() { return this.#map.values(); }
+  entries() { return this.#map.entries(); }
+  forEach(fn, thisArg) {
+    this.#map.forEach((v, k) => { fn.call(thisArg, v, k, this); });
+  }
+}
+
+exports.tokens = new TokenMetaMap(${JSON.stringify(makeMetaRecord(dictionary), null, 2)});`,
+    ].join('\n');
+  },
 };
