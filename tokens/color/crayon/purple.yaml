@@ -8,21 +8,59 @@ color:
     10:
       $value: '#ECE6FF'
       $description: Label - Filled (Purple) background color
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [10, 10, 0, 0]
     20:
       $value: '#D0C5F4'
       $description: Inline link visited hover (dark theme)
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [20, 25, 0, 0]
     30:
       $value: '#B6A6E9'
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [35, 40, 0, 0]
+          pantone: 2092 C
     40:
       $value: '#876FD4'
       $description: Inline link visited (dark theme)
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [60, 65, 0, 0]
+          pantone: 2101 C
     50:
       $value: '#5E40BE'
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [75, 80, 0, 0]
+          pantone: 2097 C
     60:
       $value: '#3D2785'
       $description: Inline link visited (light theme)
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [90, 100, 10, 0]
+          pantone: 2105 C
     70:
       $value: '#21134D'
       $description: Inline link visited hover (light theme)
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [100, 100, 20, 40]
+          pantone: 273 C
     80:
       $value: '#1B0D33'
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [90, 100, 20, 75]
+          pantone: 2695 C

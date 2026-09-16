@@ -10,18 +10,49 @@ color:
     10:
       $value: '#E9F7DF'
       $description: Alert - success background
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [10, 0, 15, 10]
     20:
       $value: '#D1F1BB'
       $description: Label - Filled (Green) border color
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [20, 0, 30, 10]
     30:
       $value: '#AFDC8F'
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [40, 0, 50, 10]
     40:
       $value: '#87BB62'
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [60, 0, 80, 10]
     50:
       $value: '#63993D'
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [70, 0, 100, 10]
+          pantone: 7737 C
     60:
       $value: '#3D7317'
       $description: Alert - Success accent
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [75, 0, 100, 30]
     70:
       $value: '#204D00'
       $description: Alert - Success title text
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [65, 0, 100, 60]
+    80:
+      $value: '#183301'

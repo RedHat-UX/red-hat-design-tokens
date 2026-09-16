@@ -9,26 +9,69 @@ color:
           Avoid using *any* red color token for danger or error messaging.
     05:
       $value: '#FEF0F0'
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [0, 6, 1, 0]
     10:
       $value: '#FCE3E3'
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [0, 12, 6, 0]
     20:
       $value: '#FBC5C5'
       $description: Lightest brand red
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [0, 27, 13, 0]
+          pantone: 176 C
     30:
       $value: '#F9A8A8'
       $description: Lighter brand red
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [0, 41, 23, 0]
+          pantone: 177 C
     40:
       $value: '#F56E6E'
       $description: Light brand red
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [0, 70, 47, 0]
+          pantone: 178 C
     50:
       $value: '#EE0000'
       $description: Brand red (light and dark theme)
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [0, 98, 85, 0]
+          pantone: 1788 C
     60:
       $value: '#A60000'
       $description: Dark brand red
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [0, 98, 85, 35]
+          pantone: 1805 C
     70:
       $value: '#5F0000'
       $description: Darker brand red
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [0, 98, 85, 70]
+          pantone: 1815 C
     80:
       $value: '#3F0000'
       $description: Darkest brand red
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [0, 98, 85, 85]
+          pantone: 1817 C
