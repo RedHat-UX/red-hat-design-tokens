@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "rh-example.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "RhExample",
+          "customElement": true,
+          "tagName": "rh-example",
+          "cssProperties": [
+            {
+              "name": "--rh-example-color"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

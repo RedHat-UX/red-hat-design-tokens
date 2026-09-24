@@ -15,6 +15,21 @@ async function runRule(codeFilename: string, code: string) {
   });
 }
 
+async function runRuleWithCem(codeFilename: string, code: string) {
+  return stylelint.lint({
+    code,
+    codeFilename,
+    config: {
+      rules: {
+        'rhds/no-unknown-token-name': [true, {
+          cem: 'test/fixtures/custom-elements.json',
+        }],
+      },
+      plugins: ['./plugins/stylelint.js'],
+    },
+  });
+}
+
 async function getAutofixedCSS(codeFilename: string, code: string) {
   const result = await stylelint.lint({
     code,
@@ -32,6 +47,17 @@ async function getAutofixedCSS(codeFilename: string, code: string) {
 }
 
 describe('no-unknown-token-name', (test: typeof tape) => {
+  test('allows component custom properties declared in a CEM', async t => {
+    t.plan(2);
+    const { errored, results: [{ warnings }] } = await runRuleWithCem(
+      'component-property.css',
+      'a { color: var(--rh-example-color); }',
+    );
+
+    t.false(errored, 'does not error');
+    t.equal(warnings.length, 0, 'does not warn');
+  });
+
   test('simple list with typo in one name', async t => {
     t.plan(3);
     const { errored, results: [{ warnings: [warning, ...rest] }] } =

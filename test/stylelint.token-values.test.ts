@@ -20,6 +20,20 @@ async function getAutofixedCSS(codeFilename: string, code: string) {
 }
 
 describe('token-values', (test: typeof tape) => {
+  test('light-dark value', async t => {
+    t.plan(2);
+    const name = '--rh-color-accent-base';
+    const value = tokens.get(name);
+    const input = `a { color: var(${name}, light-dark( var(--rh-color-accent-base-on-light, #0066cc), var(--rh-color-accent-base-on-dark, #92c5f9) )); }`;
+    const valid = await getAutofixedCSS('light-dark-valid.css', input);
+    t.isEqual(valid, input, 'accepts a structurally matching light-dark fallback');
+
+    const invalid = `a { color: var(${name}, hotpink); }`;
+    const fixed = `a { color: var(${name}, ${value}); }`;
+    const actual = await getAutofixedCSS('light-dark-invalid.css', invalid);
+    t.isEqual(actual, fixed, 'corrects an invalid light-dark fallback');
+  });
+
   test('simple value', async t => {
     t.plan(1);
     const xl = tokens.get('--rh-space-xl');

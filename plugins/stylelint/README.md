@@ -33,13 +33,15 @@ Validates CSS Custom Property names beginning with `--rh` are legit token names.
 
 #### Options
 This rule can take a dictionary of names to migrate, and if it finds one of the 
-specified names, it will automatically replace it with the new one.
+specified names, it will automatically replace it with the new one. It can also
+allow component custom properties declared in a Custom Elements Manifest.
 
 ```yaml
 rules:
   rhds/no-unknown-token-name:
     - true
-    - allowed:
+    - cem: custom-elements.json
+      allowed:
       - --rh-icon-color
       migrations:
       # instances of gray-90 will be replaced with gray-95
