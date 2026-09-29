@@ -120,8 +120,12 @@
         "tokens/**/*",
         "docs/**/*",
         "lib/**/*",
+        "plugins/**/*.cts",
+        "plugins/**/*.ts",
+        "test/**/*.ts",
         "platforms.yaml",
-        "build.ts"
+        "build.ts",
+        "tsconfig.output.json"
       ],
       "output": [
         "build/**",
@@ -143,6 +147,7 @@
       "files": [
         "**/*.test.{ts,js}",
         "test/**/*.{ts,js}",
+        "test/fixtures/**/*.json",
         "plugins/**/*.js",
         "tokens/**/*.ya?ml"
       ],
