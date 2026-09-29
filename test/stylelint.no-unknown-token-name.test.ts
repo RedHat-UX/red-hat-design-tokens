@@ -1,5 +1,7 @@
 import type tape from 'tape';
 
+import { resolve } from 'node:path';
+
 import describe from 'tape-describe';
 
 import stylelint from 'stylelint';
@@ -15,14 +17,18 @@ async function runRule(codeFilename: string, code: string) {
   });
 }
 
-async function runRuleWithCem(codeFilename: string, code: string) {
+async function runRuleWithCem(
+  codeFilename: string,
+  code: string,
+  cem = 'test/fixtures/custom-elements.json',
+) {
   return stylelint.lint({
     code,
     codeFilename,
     config: {
       rules: {
         'rhds/no-unknown-token-name': [true, {
-          cem: 'test/fixtures/custom-elements.json',
+          cem,
         }],
       },
       plugins: ['./plugins/stylelint.js'],
@@ -52,6 +58,19 @@ describe('no-unknown-token-name', (test: typeof tape) => {
     const { errored, results: [{ warnings }] } = await runRuleWithCem(
       'component-property.css',
       'a { color: var(--rh-example-color); }',
+    );
+
+    t.false(errored, 'does not error');
+    t.equal(warnings.length, 0, 'does not warn');
+  });
+
+  test('allows component custom properties with an absolute CEM path', async t => {
+    t.plan(2);
+    const cem = resolve(process.cwd(), 'test/fixtures/custom-elements.json');
+    const { errored, results: [{ warnings }] } = await runRuleWithCem(
+      'component-property-absolute-cem.css',
+      'a { color: var(--rh-example-color); }',
+      cem,
     );
 
     t.false(errored, 'does not error');

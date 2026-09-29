@@ -1,7 +1,7 @@
 import type { Rule } from 'stylelint';
 
 import { readFileSync } from 'node:fs';
-import { dirname, join, sep } from 'node:path';
+import { dirname, resolve, sep } from 'node:path';
 import { tokens, type TokenName } from '@rhds/tokens';
 
 import stylelint from 'stylelint';
@@ -80,7 +80,7 @@ const ruleFunction: Rule = (_, opts) => {
     if (opts?.cem) {
       // Resolve relative CEM paths the same way Stylelint resolves project
       // configuration: from the process working directory.
-      for (const name of getCemAllowed(join(process.cwd(), opts.cem))) {
+      for (const name of getCemAllowed(resolve(process.cwd(), opts.cem))) {
         allowed.add(name);
       }
     }

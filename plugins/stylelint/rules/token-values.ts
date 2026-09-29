@@ -23,51 +23,72 @@ function isVarCall(parsedNode: parser.Node): parsedNode is parser.FunctionNode {
 }
 
 /**
- * Extract the token name and literal fallback from each `var()` branch of a
- * `light-dark()` value. Returning structured parts lets the rule ignore harmless
- * whitespace differences while still requiring both branches to be canonical.
+ * Extract exactly two arguments from a `light-dark()` value. Each argument
+ * must be a single significant node, but it can be any kind of node.
  */
-function extractLightDarkParts(parsed: parser.ParsedValue) {
-  const lightDark = parsed.nodes?.find(node =>
-    node.type === 'function' && node.value === 'light-dark');
-  if (!lightDark || lightDark.type !== 'function') {
+function extractLightDarkArgs(parsed: parser.ParsedValue) {
+  const significantNodes = parsed.nodes.filter(node => node.type !== 'space');
+  const [lightDark] = significantNodes;
+  if (!lightDark
+      || significantNodes.length !== 1
+      || lightDark.type !== 'function'
+      || lightDark.value !== 'light-dark') {
     return null;
   }
 
-  const varNodes = lightDark.nodes.filter((node): node is parser.FunctionNode =>
-    node.type === 'function' && node.value === 'var');
-  if (varNodes.length !== 2) {
+  const args: parser.Node[][] = [[]];
+  for (const node of lightDark.nodes) {
+    if (node.type === 'div' && node.value === ',') {
+      args.push([]);
+    } else if (node.type !== 'space') {
+      args[args.length - 1].push(node);
+    }
+  }
+
+  if (args.length !== 2 || args.some(arg => arg.length !== 1)) {
     return null;
   }
 
-  return varNodes.map(variable => {
-    const [nameNode, , ...fallbackNodes] = variable.nodes;
-    return {
-      name: nameNode.value,
-      fallback: parser.stringify(fallbackNodes),
-    };
-  });
+  return args;
 }
 
 /**
- * Compare `light-dark()` fallbacks structurally. A null result means the token's
- * expected value is not in the supported two-branch shape and should fall back
- * to the rule's existing string comparison.
+ * Return whether an argument is a direct `var()` call for a known RHDS token.
  */
-function lightDarkMatches(actual: string, expected: string) {
-  const expectedParts = extractLightDarkParts(parser(expected));
-  if (!expectedParts) {
-    return null;
-  }
-
-  const actualParts = extractLightDarkParts(parser(actual));
-  if (!actualParts) {
+function isRhdsTokenVarArg(arg: parser.Node[]) {
+  const [variable] = arg;
+  if (!variable || variable.type !== 'function' || variable.value !== 'var') {
     return false;
   }
 
-  return expectedParts.every((expectedPart, index) =>
-    actualParts[index]?.name === expectedPart.name
-      && actualParts[index]?.fallback === expectedPart.fallback);
+  const [nameNode] = variable.nodes.filter(node => node.type !== 'space');
+  return nameNode?.type === 'word'
+    && nameNode.value.startsWith('--rh-')
+    && tokens.has(nameNode.value as TokenName);
+}
+
+/**
+ * Compare the RHDS token `var()` arguments in a theme-aware fallback. A null
+ * result means the expected value is not in the supported shape and should use
+ * string comparison.
+ */
+function lightDarkMatches(actual: string, expected: string) {
+  const expectedArgs = extractLightDarkArgs(parser(expected));
+  if (!expectedArgs || !expectedArgs.every(isRhdsTokenVarArg)) {
+    return null;
+  }
+
+  const actualArgs = extractLightDarkArgs(parser(actual));
+  if (!actualArgs) {
+    return false;
+  }
+
+  return actualArgs.every((actualArg, index) => {
+    const expectedArg = expectedArgs[index];
+    return !!expectedArg
+      && isRhdsTokenVarArg(actualArg)
+      && parser.stringify(actualArg) === parser.stringify(expectedArg);
+  });
 }
 
 const ruleFunction: Rule = () => {
