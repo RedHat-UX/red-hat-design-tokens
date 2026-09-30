@@ -74,6 +74,28 @@ color:
           category: border
           type: color
 
+    focus:
+      _:
+        $value:
+          - '{color.border.focus.on-light}'
+          - '{color.border.focus.on-dark}'
+        $description: >-
+          Responsive `border-focus` color value. Typically read-only - use a themeable container, e.g. `<rh-surface>`.
+          Resolves to `--rh-color-border-focus-on-light` on a themable container with a light color palette
+          and `--rh-color-border-focus-on-dark` on a themable container with a dark color palette.
+      on-light:
+        $value: '{color.blue.50}'
+        $description: Focus border color (light theme)
+        attributes:
+          category: border
+          type: color
+      on-dark:
+        $value: '{color.blue.30}'
+        $description: Focus border color (dark theme)
+        attributes:
+          category: border
+          type: color
+
     # remove destructive during next major release
     destructive:
       _:
