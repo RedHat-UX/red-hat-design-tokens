@@ -10,20 +10,58 @@ color:
     10:
       $value: '#DAF2F2'
       $description: Alert - Default background
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [10, 0, 2, 0]
     20:
       $value: '#B9E5E5'
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [20, 0, 7, 0]
     30:
       $value: '#9AD8D8'
       $description: Label (Cyan) border color
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [30, 5, 10, 0]
+          pantone: 5523 C
     40:
       $value: '#63BDBD'
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [45, 10, 20, 0]
+          pantone: 5503 C
     50:
       $value: '#37A3A3'
       $description: Alert - Default accent
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [80, 10, 30, 10]
+          pantone: 2234 C
     60:
       $value: '#147878'
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [90, 10, 35, 20]
+          pantone: 2237 C
     70:
       $value: '#004D4D'
       $description: Alert - Default title text
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [95, 40, 55, 40]
+          pantone: 7722 C
     80:
       $value: '#003333'
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [95, 40, 55, 70]
+          pantone: 4168 C

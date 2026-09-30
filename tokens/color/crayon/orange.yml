@@ -8,21 +8,60 @@ color:
     10:
       $value: '#FFE8CC'
       $description: Label - Filled (Orange) background color
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [0, 10, 20, 0]
     20:
       $value: '#FCCB8F'
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [0, 20, 50, 0]
+          pantone: 149 C
     30:
       $value: '#F8AE54'
       $description: Label - Filled (Orange) border color
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [0, 35, 75, 0]
+          pantone: 157 C
     40:
       $value: '#F5921B'
       $description: Label - Filled (Orange) accent color
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [0, 50, 100, 0]
+          pantone: 144 C
     50:
       $value: '#CA6C0F'
       $description: Label - Filled (Orange) accent color
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [0, 75, 100, 10]
+          pantone: 2019 C
     60:
       $value: '#9E4A06'
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [10, 80, 100, 10]
+          pantone: 2020 C
     70:
       $value: '#732E00'
       $description: Label - Filled (Orange) text color
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [20, 90, 100, 20]
+          pantone: 2021 C
     80:
       $value: '#4D1F00'
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [20, 90, 100, 60]
+          pantone: 168 C

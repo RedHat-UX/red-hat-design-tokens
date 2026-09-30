@@ -8,21 +8,57 @@ color:
     10:
       $value: '#E0F0FF'
       $description: Alert - Info background
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [10, 5, 0, 0]
     20:
       $value: '#B9DAFC'
       $description: Label - Filled (Blue) border color
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [35, 10, 0, 0]
+          pantone: 277 C
     30:
       $value: '#92C5F9'
       $description: Inline link (dark theme)
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [60, 20, 0, 0]
+          pantone: 278 C
     40:
       $value: '#4394E5'
       $description: Alert - Info accent
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [70, 35, 0, 0]
+          pantone: 279 C
     50:
       $value: '#0066CC'
       $description: Label - Filled (Blue) accent color
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [85, 55, 0, 5]
+          pantone: 2387 C
     60:
       $value: '#004D99'
       $description: Inline link hover (light theme)
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [100, 80, 0, 10]
+          pantone: 4152 C
     70:
       $value: '#003366'
       $description: Alert - Info title text
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [100, 85, 20, 20]
+          pantone: 4154 C
+    80:
+      $value: '#032142'

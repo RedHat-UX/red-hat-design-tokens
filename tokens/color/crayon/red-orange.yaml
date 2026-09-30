@@ -10,15 +10,46 @@ color:
 
     10:
       $value: '#FFE3D9'
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [0, 15, 10, 0]
     20:
       $value: '#FBBEA8'
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [0, 30, 30, 0]
     30:
       $value: '#F89B78'
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [0, 50, 50, 0]
     40:
       $value: '#F4784A'
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [0, 70, 80, 0]
     50:
       $value: '#F0561D'
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [0, 80, 100, 0]
+          pantone: 165 C
     60:
       $value: '#B1380B'
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [0, 90, 100, 20]
     70:
       $value: '#731F00'
+      $extensions:
+        com.redhat.print:
+          colorSpace: cmyk
+          components: [0, 90, 100, 40]
+    80:
+      $value: '#4C1405'
