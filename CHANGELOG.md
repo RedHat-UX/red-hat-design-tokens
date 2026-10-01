@@ -1,5 +1,30 @@
 # @rhds/tokens
 
+## 3.2.0
+
+### Minor Changes
+
+- 1f8b511: **Stylelint**: Added Custom Elements Manifest support to
+  `rhds/no-unknown-token-name`. Use the new `cem` option to allow component custom
+  properties declared in the manifest without maintaining a separate `allowed`
+  list.
+
+  ```yaml
+  rules:
+    rhds/no-unknown-token-name:
+      - true
+      - cem: custom-elements.json
+  ```
+
+  Improved `rhds/token-values` validation for themable tokens. Structurally
+  equivalent `light-dark()` fallbacks no longer fail validation because of
+  formatting differences, while invalid branches are still autofixed.
+
+- e0e334b: Added CMYK and Pantone values to crayon colors under `$extensions['com.redhat.print']`.
+- 58ff557: Added `--rh-color-border-focus`, `--rh-color-border-focus-on-light`, and
+  `--rh-color-border-focus-on-dark` border color tokens.
+- e0e334b: Added `red-orange-80`, `green-80`, and `blue-80` crayon color tokens.
+
 ## 3.1.0
 
 ### Minor Changes
