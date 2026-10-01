@@ -82,5 +82,10 @@ export async function release({ core, github, tag, workspace }) {
     });
   } catch (error) {
     core.error(error);
+    // npm has already been published by the time this helper runs. core.error
+    // only logs an error message, so rethrow to fail the step if preparing or
+    // uploading the VSIX fails; otherwise the release could appear successful
+    // without its GitHub artifact.
+    throw error;
   }
 }

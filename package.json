@@ -4,6 +4,7 @@
   "description": "Red Hat Design System Tokens",
   "scripts": {
     "build": "wireit",
+    "compile-release": "wireit",
     "11ty": "wireit",
     "package-vscode": "wireit",
     "style-dictionary": "wireit",
@@ -102,7 +103,18 @@
       "dependencies": [
         "style-dictionary",
         "package-vscode",
-        "11ty"
+        "11ty",
+        "compile-release"
+      ]
+    },
+    "compile-release": {
+      "command": "tsc --target es2022 --module nodenext --moduleResolution nodenext --skipLibCheck --rootDir . --outDir . lib/release.ts",
+      "files": [
+        "lib/release.ts",
+        "package.json"
+      ],
+      "output": [
+        "lib/release.js"
       ]
     },
     "11ty": {
