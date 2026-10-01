@@ -61,10 +61,11 @@ jobs:
             const { release } = await import('${{ github.workspace }}/lib/release.js');
             await release({ core, github, tag, workspace });
 
-      - name: Publish VSCode
-        if: ${{ steps.changesets.outputs.published == 'true' }}
-        run: |
-          cd editor/vscode
-          npx vsce publish --pre-release
-        env:
-          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+      # Temporarily skipped. Restore after the Marketplace publisher ID is corrected.
+      # - name: Publish VSCode
+      #   if: ${{ steps.changesets.outputs.published == 'true' }}
+      #   run: |
+      #     cd editor/vscode
+      #     npx vsce publish --pre-release
+      #   env:
+      #     VSCE_PAT: ${{ secrets.VSCE_PAT }}
