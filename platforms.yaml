@@ -115,11 +115,7 @@ editor:
   transformGroup: css
   buildPath: editor/
   prefix: rh
-  actions:
-    - writeVSIXManifest
   files:
-    - destination: vscode/snippets.json
-      format: editor/snippets/vscode
     - destination: textmate/css.snippets
       format: editor/snippets/textmate
     - destination: neovim/hexokinase-refs.json

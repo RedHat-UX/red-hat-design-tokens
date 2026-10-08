@@ -102,7 +102,6 @@ export async function build(): Promise<void> {
   sd.registerFormat(Formats.metaMapTs);
   sd.registerFormat(Formats.metaMapCjs);
   sd.registerFormat(Formats.modules);
-  sd.registerFormat(Formats.vscodeSnippets);
   sd.registerFormat(Formats.textmateSnippets);
   sd.registerFormat(Formats.hexokinaseRefs);
   sd.registerFormat(Formats.hexokinaseVars);
@@ -111,7 +110,6 @@ export async function build(): Promise<void> {
 
   sd.registerAction(Actions.compile);
   sd.registerAction(Actions.copyAssets);
-  sd.registerAction(Actions.writeVSIXManifest);
   sd.registerAction(Actions.descriptionFile);
 
   await sd.hasInitialized;

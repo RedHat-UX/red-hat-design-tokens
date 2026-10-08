@@ -35,37 +35,3 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      # changesets action outputs `publishedPackages` in the format
-      #   [{"name": "@xx/xx", "version": "1.2.0"}, {"name": "@xx/xy", "version": "0.8.9"}]
-      # The following step converts that list of objects to a single string of form "1.0.0-beta.0"
-      - name: Transform Tags
-        id: get-tag
-        if: ${{ steps.changesets.outputs.published == 'true' }}
-        run: |
-          tag=$(echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -c '.[0].version')
-          echo "$tag"
-          echo "::set-output name=tag::$tag"
-
-      - run: npm run package-vscode
-
-      - name: Upload release artifact
-        uses: actions/github-script@v6
-        if: ${{ steps.changesets.outputs.published == 'true' }}
-        with:
-          debug: ${{ secrets.ACTIONS_RUNNER_DEBUG }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const workspace = '${{ github.workspace }}';
-            const tag = 'v' + ${{ steps.get-tag.outputs.tag }};
-            const { release } = await import('${{ github.workspace }}/lib/release.js');
-            await release({ core, github, tag, workspace });
-
-      # Temporarily skipped. Restore after the Marketplace publisher ID is corrected.
-      # - name: Publish VSCode
-      #   if: ${{ steps.changesets.outputs.published == 'true' }}
-      #   run: |
-      #     cd editor/vscode
-      #     npx vsce publish --pre-release
-      #   env:
-      #     VSCE_PAT: ${{ secrets.VSCE_PAT }}
