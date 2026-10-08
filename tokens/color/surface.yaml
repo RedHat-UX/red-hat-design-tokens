@@ -49,14 +49,14 @@ color:
             - '{color.surface.status.danger.on-dark}'
           $description: >-
             Responsive `surface-status-danger` color value. Typically read-only - use a themable container, e.g. `<rh-surface>`.
-            Resolves to `--rh-color-surface-status-danger-on-light` on a themable container with a light color palette
-            and `--rh-color-surface-status-danger-on-dark` on a themable container with a dark color palette.
+            Resolves to `--rh-color-surface-status-danger-on-light` (red-orange-10) on a themable container with a light color palette
+            and `--rh-color-surface-status-danger-on-dark` (red-orange-10) on a themable container with a dark color palette.
         on-light:
           $value: '{color.red-orange.10}'
-          $description: Danger status surface color (light theme)
+          $description: Danger status surface color (light theme). Resolves to red-orange-10.
         on-dark:
           $value: '{color.red-orange.10}'
-          $description: Danger status surface color (dark theme)
+          $description: Danger status surface color (dark theme). Resolves to red-orange-10.
       caution:
         _:
           $value:

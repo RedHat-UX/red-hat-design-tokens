@@ -10,6 +10,7 @@ color:
 
     10:
       $value: '#FFE3D9'
+      $description: Alert - Danger orange background
       $extensions:
         com.redhat.print:
           colorSpace: cmyk
@@ -34,6 +35,7 @@ color:
           components: [0, 70, 80, 0]
     50:
       $value: '#F0561D'
+      $description: Alert - Danger orange accent (dark theme)
       $extensions:
         com.redhat.print:
           colorSpace: cmyk
@@ -41,6 +43,7 @@ color:
           pantone: 165 C
     60:
       $value: '#B1380B'
+      $description: Alert - Danger orange accent (light theme)
       $extensions:
         com.redhat.print:
           colorSpace: cmyk
