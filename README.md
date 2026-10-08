@@ -69,17 +69,7 @@ color: var(--rh-color-brand, #ee0000);
 
 They also provide reverse lookup, so if you want to choose between _all_ the tokens with value `#e00`, you can do so by completing the prefix `e00`.
 
-Load snippets in **VSCode**:
-Download the VSIX bundle from [the releases page](https://github.com/redhat-ux/red-hat-design-tokens/releases).
-Or, search the VSCode marketplace for [`Red Hat Design Tokens`](https://marketplace.visualstudio.com/search?term=%40category%3A%22snippets%22%20%22Red%20Hat%20Design%20Tokens%22&target=VSCode&category=All%20categories&sortBy=Relevance)
-
-Load snippets in **neovim** via LuaSnip:
-```lua
-require 'luasnip.loaders.from_vscode'.lazy_load { paths = {
-  -- Path to the built project, perhaps in your `node_modules`
-  '~/Developer/redhat-ux/red-hat-design-tokens/editor/vscode'
-} }
-```
+TextMate-compatible snippets are available at `editor/textmate/css.snippets`.
 
 ### `vim-hexokinase`
 Vim users can load the [vim-hexokinase](https://github.com/RRethy/vim-hexokinase) plugin to display colour swatches
@@ -107,4 +97,3 @@ vim.g.Hexokinase_palettes = {
 
 ## 🏆 Contributing
 See [CONTRIBUTING.md](./CONTRIBUTING.md)
-

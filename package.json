@@ -5,7 +5,6 @@
   "scripts": {
     "build": "wireit",
     "11ty": "wireit",
-    "package-vscode": "wireit",
     "style-dictionary": "wireit",
     "start": "wireit",
     "lint": "eslint lib plugins test docs",
@@ -101,7 +100,6 @@
     "build": {
       "dependencies": [
         "style-dictionary",
-        "package-vscode",
         "11ty"
       ]
     },
@@ -154,19 +152,6 @@
       "dependencies": [
         "build"
       ]
-    },
-    "package-vscode": {
-      "command": "cd editor/vscode && vsce package",
-      "files": [
-        "editor/vscode/package.json",
-        "editor/vscode/snippets.json"
-      ],
-      "dependencies": [
-        "style-dictionary"
-      ],
-      "output": [
-        "*.vsix"
-      ]
     }
   },
   "peerDependencies": {
@@ -199,7 +184,6 @@
     "tape-es": "^1.2.17",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2",
-    "vsce": "^2.15.0",
     "wireit": "^0.14.12",
     "yaml": "^2.7.0"
   }

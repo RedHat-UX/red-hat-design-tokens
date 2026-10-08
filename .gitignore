@@ -4,6 +4,7 @@ node_modules
 .wireit
 
 build/**/*
+lib/release.js
 
 editor/**/*
 js/**/*
